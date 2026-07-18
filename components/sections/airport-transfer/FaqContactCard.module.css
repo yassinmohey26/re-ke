@@ -1,0 +1,49 @@
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: var(--space-8);
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: 300px;
+}
+
+.iconWrap {
+  margin-bottom: var(--space-2);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1B4FD8;
+}
+
+.quote {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-2);
+  max-width: 280px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  background: #1B4FD8;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #1543b0;
+}

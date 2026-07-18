@@ -1,0 +1,417 @@
+/* ============================================================
+   Hurghada Reiseplaner — Global Design Tokens
+   Faithfully ported from the WordPress "Togo" theme
+   ============================================================ */
+
+/* ---- Google Fonts loaded via next/font in layout.tsx ---- */
+
+:root {
+  /* Brand Colors */
+  --color-primary:      #111111;
+  --color-accent:       #155fa7;
+  --color-accent-light: rgba(21, 95, 167, 0.12);
+  --color-accent-dark:  #0e4578;
+
+  /* Text Colors */
+  --color-text-1: #111111;
+  --color-text-2: #555555;
+  --color-text-3: #333333;
+  --color-text-4: #ffffff;
+  --color-text-5: #999999;
+  --color-text-6: #dddddd;
+
+  /* Background Colors */
+  --color-bg-body:  #ffffff;
+  --color-bg-light: #f9f9f9;
+  --color-bg-card:  #ffffff;
+
+  /* Border Colors */
+  --color-border-1: #111111;
+  --color-border-2: #dddddd;
+  --color-border-3: #f9f9f9;
+  --color-border-4: #eeeeee;
+  --color-border-5: #cccccc;
+
+  /* Tonal / Status Colors */
+  --color-tone-red:    #ed0006;
+  --color-tone-yellow: #ffd75e;
+  --color-tone-green:  #3ab446;
+
+  /* Typography — Body */
+  --font-body:        'DM Sans', system-ui, sans-serif;
+  --font-heading:     'Outfit', sans-serif;
+  --font-serif:       'Marcellus', Georgia, serif;
+  --font-weight-body: 400;
+  --font-size-body:   16px;
+  --line-height-body: 1.6;
+
+  /* Typography — Headings */
+  --font-weight-heading: 600;
+  --font-h1: 56px;
+  --font-h2: 48px;
+  --font-h3: 40px;
+  --font-h4: 36px;
+  --font-h5: 32px;
+  --font-h6: 24px;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-28: 112px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-pad: clamp(16px, 5vw, 80px);
+  --logo-width:    110px;
+
+  /* Border Radius */
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  50px;
+  --radius-card: 20px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 24px rgba(0,0,0,.10);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,.12);
+  --shadow-card: 0 2px 20px rgba(0,0,0,.07);
+
+  /* Buttons (full-filled) */
+  --btn-bg:            var(--color-accent);
+  --btn-bg-hover:      var(--color-accent-dark);
+  --btn-color:         #ffffff;
+  --btn-padding:       11px 24px;
+  --btn-radius:        var(--radius-pill);
+  --btn-font:          var(--font-body);
+  --btn-font-weight:   500;
+  --btn-font-size:     16px;
+  --btn-line-height:   1.4;
+
+  /* Transitions */
+  --transition-fast: 200ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Header */
+  --header-height: 200px;
+}
+
+/* ============================================================
+   CSS Reset & Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: var(--font-size-body);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-1);
+  background-color: var(--color-bg-body);
+  overflow-x: hidden;
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol { list-style: none; }
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+input, textarea, select { font-family: inherit; }
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.2;
+  color: var(--color-text-1);
+}
+
+h1 { font-size: clamp(36px, 5vw, var(--font-h1)); }
+h2 { font-size: clamp(28px, 4vw, var(--font-h2)); }
+h3 { font-size: clamp(24px, 3.5vw, var(--font-h3)); }
+h4 { font-size: clamp(20px, 3vw, var(--font-h4)); }
+h5 { font-size: clamp(18px, 2.5vw, var(--font-h5)); }
+h6 { font-size: clamp(16px, 2vw, var(--font-h6)); }
+
+p { margin-bottom: var(--space-4); }
+p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   Layout Utilities
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--space-20);
+}
+
+.section--light {
+  background-color: var(--color-bg-light);
+}
+
+/* ============================================================
+   Button Styles
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--btn-padding);
+  border-radius: var(--btn-radius);
+  font-family: var(--btn-font);
+  font-weight: var(--btn-font-weight);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  transition: background-color var(--transition-base), color var(--transition-base),
+              border-color var(--transition-base), transform var(--transition-fast),
+              box-shadow var(--transition-base);
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  border: 2px solid var(--btn-bg);
+}
+.btn--primary:hover {
+  background-color: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-border-1);
+}
+.btn--outline:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-accent);
+  border: none;
+  padding-inline: 0;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn--ghost:hover {
+  color: var(--color-accent-dark);
+}
+
+.btn--lg {
+  padding: 14px 32px;
+  font-size: 17px;
+}
+
+/* ============================================================
+   Card
+   ============================================================ */
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   Form Elements
+   ============================================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-2);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-1);
+  background: #fff;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+.form-input.error,
+.form-textarea.error {
+  border-color: var(--color-tone-red);
+}
+
+.form-error {
+  font-size: 13px;
+  color: var(--color-tone-red);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ============================================================
+   Section Titles
+   ============================================================ */
+.section-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-1);
+  margin-bottom: var(--space-4);
+}
+
+.section-title--light {
+  color: #ffffff;
+}
+
+.section-desc {
+  font-size: 17px;
+  color: var(--color-text-2);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* ============================================================
+   Animations (keyframes)
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .5; }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ============================================================
+   Scrollbar Styling
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-light); }
+::-webkit-scrollbar-thumb { background: var(--color-border-5); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* ============================================================
+   Utility classes
+   ============================================================ */
+.text-accent     { color: var(--color-accent); }
+.text-muted      { color: var(--color-text-2); }
+.text-center     { text-align: center; }
+.text-serif      { font-family: var(--font-serif); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Responsive helpers
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root {
+    --space-20: 64px;
+    --container-pad: clamp(16px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-20: 48px;
+    --font-h1: 40px;
+    --font-h2: 34px;
+    --font-h3: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --space-20: 40px;
+  }
+}

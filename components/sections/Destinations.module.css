@@ -1,0 +1,149 @@
+.section {
+  padding-block: var(--space-20);
+}
+
+/* ── Section header ──────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.headerText { flex: 1; }
+
+/* ── Mosaic Grid ─────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 220px 220px;
+  gap: 14px;
+}
+
+/* ── Card Base ───────────────────────────────────────────────── */
+.card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+}
+
+.card:hover .cardImg {
+  transform: scale(1.06);
+}
+
+.cardImg {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cardName {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  margin: 0;
+  pointer-events: none;
+}
+
+/* ── Bento Layout: tall · stacked · tall · stacked ───────────── */
+/* Card 1 (index 0): tall, column 1 */
+.cardLarge:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* Card 2 (index 1): small, column 2 top */
+.cardSmall:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Card 3 (index 2): small, column 2 bottom */
+.cardSmall:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Card 4 (index 3): tall, column 3 */
+.cardLarge:nth-child(4) {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+/* Card 5 (index 4): small, column 4 top */
+.cardSmall:nth-child(5) {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+/* Card 6 (index 5): small, column 4 bottom */
+.cardSmall:nth-child(6) {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+/* ── Responsive: Tablet ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 200px);
+  }
+
+  .cardLarge:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .cardSmall:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .cardSmall:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .cardLarge:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .cardSmall:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  .cardSmall:nth-child(6) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+/* ── Responsive: Mobile ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 200px);
+  }
+
+  .cardLarge:nth-child(1),
+  .cardSmall:nth-child(2),
+  .cardSmall:nth-child(3),
+  .cardLarge:nth-child(4),
+  .cardSmall:nth-child(5),
+  .cardSmall:nth-child(6) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

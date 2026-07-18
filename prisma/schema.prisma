@@ -1,0 +1,89 @@
+// This is your Prisma schema file.
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Contact Messages (replaces wp_cf7 data) ──────────────────────
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([read])
+}
+
+// ── Bookings (tour booking requests) ─────────────────────────────
+model Booking {
+  id          Int           @id @default(autoincrement())
+  tourSlug    String
+  tourName    String
+  firstName   String
+  lastName    String
+  email       String
+  phone       String
+  date        DateTime
+  guests      Int           @default(1)
+  message     String?       @db.Text
+  status      BookingStatus @default(PENDING)
+  totalPrice  Float?
+  stripePaymentId String?   @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status])
+  @@index([email])
+  @@index([date])
+  @@index([tourSlug])
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  REFUNDED
+}
+
+// ── Newsletter subscribers ────────────────────────────────────────
+model NewsletterSubscriber {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  name        String?
+  confirmedAt DateTime?
+  unsubscribedAt DateTime?
+  source      String?  @default("website")
+  createdAt   DateTime @default(now())
+
+  @@index([email])
+}
+
+// ── Admin users (for the custom admin panel) ──────────────────────
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         AdminRole @default(EDITOR)
+  lastLoginAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}

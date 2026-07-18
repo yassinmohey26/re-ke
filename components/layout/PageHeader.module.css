@@ -1,0 +1,59 @@
+/* --- Section --- */
+.pageHeader {
+  padding: var(--space-20) 0;
+  background-color: var(--color-bg-light);
+  text-align: center;
+}
+
+.withBg {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: var(--space-24) 0;
+}
+
+.withBg .title,
+.withBg .description,
+.withBg :global(.section-eyebrow) {
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 0;
+}
+
+/* --- Content --- */
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5vw, var(--font-h1));
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  font-size: 17px;
+  color: var(--color-text-2);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .pageHeader {
+    padding: var(--space-12) 0;
+  }
+  .withBg {
+    padding: var(--space-16) 0;
+  }
+}

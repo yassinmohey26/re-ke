@@ -1,0 +1,73 @@
+.form {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 14px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.input:focus {
+  border-color: var(--color-accent);
+}
+.input.error {
+  border-color: var(--color-tone-red);
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-fast);
+}
+.btn:hover {
+  background: var(--color-accent-dark);
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorText {
+  display: block;
+  font-size: 12px;
+  color: var(--color-tone-red);
+  margin-top: var(--space-1);
+}
+
+.success {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.resetBtn {
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  margin-top: var(--space-1);
+}

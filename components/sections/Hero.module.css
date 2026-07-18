@@ -1,0 +1,237 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Remove header height offset since marketing layout adds paddingTop */
+  margin-top: calc(var(--header-height) * -1);
+}
+
+/* ── Background ─────────────────────────────────────────────── */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.05s linear;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(5, 15, 35, 0.78) 0%,
+    rgba(5, 15, 35, 0.55) 50%,
+    rgba(5, 15, 35, 0.25) 100%
+  );
+}
+
+/* ── Content ─────────────────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-28) var(--container-pad) var(--space-20);
+}
+
+.textBlock {
+  max-width: 620px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: var(--space-5);
+  animation: fadeInUp 0.7s ease 0.1s both;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* ── Headline ─────────────────────────────────────────────────── */
+.headline {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #ffffff;
+  margin-bottom: var(--space-6);
+  animation: fadeInUp 0.7s ease 0.2s both;
+}
+
+.headlineAccent {
+  font-style: normal;
+  color: #a8d4ff;
+  position: relative;
+}
+
+/* ── Subtext ─────────────────────────────────────────────────── */
+.subtext {
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: var(--space-8);
+  animation: fadeInUp 0.7s ease 0.3s both;
+  max-width: 520px;
+}
+
+/* ── Checklist ───────────────────────────────────────────────── */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  animation: fadeInUp 0.7s ease 0.4s both;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+
+/* ── Actions ─────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-bottom: var(--space-12);
+  animation: fadeInUp 0.7s ease 0.5s both;
+}
+
+.ghostBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 2px;
+}
+
+.ghostBtn:hover {
+  color: #fff;
+  gap: var(--space-3);
+  border-bottom-color: #fff;
+}
+
+/* ── Trust badges ────────────────────────────────────────────── */
+.trust {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  animation: fadeInUp 0.7s ease 0.6s both;
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trustNumber {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.trustLabel {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.trustDivider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.25);
+}
+
+/* ── Scroll indicator ────────────────────────────────────────── */
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: fadeIn 1s ease 1.2s both;
+}
+
+.scrollDot {
+  width: 28px;
+  height: 44px;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 14px;
+  position: relative;
+}
+
+.scrollDot::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translate(-50%, 0); opacity: 1; }
+  80%       { transform: translate(-50%, 16px); opacity: 0; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .content {
+    padding-top: calc(var(--header-height) + var(--space-12));
+  }
+  .headline { font-size: clamp(32px, 8vw, 48px); }
+  .trust { flex-wrap: wrap; gap: var(--space-4); }
+  .subtext { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+  .actions { flex-direction: column; align-items: flex-start; }
+}

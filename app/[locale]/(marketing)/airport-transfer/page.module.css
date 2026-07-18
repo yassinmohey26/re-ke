@@ -1,0 +1,17 @@
+.faqSection {
+  background: #F3F4F6;
+  padding: var(--space-16) 0;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-10);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+}

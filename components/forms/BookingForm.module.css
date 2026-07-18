@@ -1,0 +1,87 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-2);
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-1);
+  background: #fff;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.input:focus, .textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+.input.error, .textarea.error {
+  border-color: var(--color-tone-red);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.errorText {
+  font-size: 12px;
+  color: var(--color-tone-red);
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: var(--color-text-5);
+  text-align: center;
+  margin-top: var(--space-1);
+}
+
+.priceDisplay {
+  text-align: center;
+  font-size: 15px;
+  color: var(--color-text-2);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border-4);
+}
+
+/* --- Success State --- */
+.success {
+  text-align: center;
+  padding: var(--space-6) 0;
+}
+.successIcon {
+  margin-bottom: var(--space-4);
+}
+.successTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.successText {
+  font-size: 14px;
+  color: var(--color-text-2);
+  margin-bottom: var(--space-4);
+}

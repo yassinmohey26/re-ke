@@ -1,0 +1,170 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useAdminLocale } from '../AdminLanguageContext';
+import styles from './page.module.css';
+
+interface Tour {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  category_label: string;
+  price: number | null;
+  destination: string;
+  featured: boolean;
+  active: boolean;
+  created_at: string;
+}
+
+export default function AdminToursPage() {
+  const { t } = useAdminLocale();
+  const [tours, setTours] = useState<Tour[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [filterCategory, setFilterCategory] = useState('all');
+
+  useEffect(() => { fetchTours(); }, []);
+
+  async function fetchTours() {
+    const res = await fetch('/api/admin/tours');
+    const data = await res.json();
+    setTours(Array.isArray(data) ? data : []);
+    setLoading(false);
+  }
+
+  async function handleDelete(id: string) {
+    if (!confirm(t('confirmDeleteTour'))) return;
+    const res = await fetch(`/api/admin/tours/${id}`, { method: 'DELETE' });
+    if (res.ok) setTours(tours.filter(tour => tour.id !== id));
+  }
+
+  async function toggleFeatured(id: string, current: boolean) {
+    const res = await fetch(`/api/admin/tours/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ featured: !current }),
+    });
+    if (res.ok) setTours(tours.map(tour => tour.id === id ? { ...tour, featured: !current } : tour));
+  }
+
+  async function toggleActive(id: string, current: boolean) {
+    const res = await fetch(`/api/admin/tours/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ active: !current }),
+    });
+    if (res.ok) setTours(tours.map(tour => tour.id === id ? { ...tour, active: !current } : tour));
+  }
+
+  const categoryMap: Record<string, string> = {
+    ganztag: t('catGanztag'),
+    halbtag: t('catHalbtag'),
+    wassersport: t('catWassersport'),
+    'wuesten-safari': t('catWuesten'),
+  };
+
+  const filtered = tours.filter(tour => {
+    const matchSearch = tour.name.toLowerCase().includes(search.toLowerCase()) || tour.destination.toLowerCase().includes(search.toLowerCase());
+    const matchCategory = filterCategory === 'all' || tour.category === filterCategory;
+    return matchSearch && matchCategory;
+  });
+
+  return (
+    <div>
+      <div className={styles.header}>
+        <div>
+          <h1 className={styles.title}>{t('toursTitle')}</h1>
+          <p className={styles.subtitle}>{tours.length} {t('toursTotal')}</p>
+        </div>
+        <Link href="/ZAIMOZ/tours/new" className={styles.addBtn}>{t('newTourBtn')}</Link>
+      </div>
+
+      <div className={styles.filters}>
+        <input
+          type="text"
+          placeholder={t('searchPlaceholder')}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className={styles.searchInput}
+        />
+        <select
+          value={filterCategory}
+          onChange={(e) => setFilterCategory(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="all">{t('allCategories')}</option>
+          <option value="ganztag">{t('catGanztag')}</option>
+          <option value="halbtag">{t('catHalbtag')}</option>
+          <option value="wassersport">{t('catWassersport')}</option>
+          <option value="wuesten-safari">{t('catWuesten')}</option>
+        </select>
+      </div>
+
+      {loading ? (
+        <p className={styles.loading}>{t('loading')}</p>
+      ) : (
+        <div className={styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>{t('colName')}</th>
+                <th>{t('colCategory')}</th>
+                <th>{t('colDestination')}</th>
+                <th>{t('colPrice')}</th>
+                <th>{t('colFeatured')}</th>
+                <th>{t('colActive')}</th>
+                <th>{t('colActions')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((tour) => (
+                <tr key={tour.id}>
+                  <td className={styles.tourName}>{tour.name}</td>
+                  <td>
+                    <span className={styles.badge}>{categoryMap[tour.category] || tour.category}</span>
+                  </td>
+                  <td>{tour.destination}</td>
+                  <td>{tour.price ? `€${tour.price}` : t('onRequest')}</td>
+                  <td>
+                    <button
+                      className={`${styles.toggleBtn} ${tour.featured ? styles.activeToggle : ''}`}
+                      onClick={() => toggleFeatured(tour.id, tour.featured)}
+                    >
+                      {tour.featured ? '★' : '☆'}
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className={`${styles.toggleBtn} ${tour.active ? styles.activeToggle : ''}`}
+                      onClick={() => toggleActive(tour.id, tour.active)}
+                    >
+                      {tour.active ? '✓' : '✕'}
+                    </button>
+                  </td>
+                  <td>
+                    <div className={styles.actions}>
+                      <Link href={`/ZAIMOZ/tours/edit/${tour.id}`} className={styles.editBtn}>{t('edit')}</Link>
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => handleDelete(tour.id)}
+                      >
+                        {t('delete')}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {filtered.length === 0 && (
+                <tr>
+                  <td colSpan={7} className={styles.empty}>{t('noResults')}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
