@@ -1,4 +1,5 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { translateBlogPost } from './translate';
 
 const db = getSupabaseAdmin();
 
@@ -33,7 +34,13 @@ function mapPost(row: any): BlogPostData {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPostData | undefined> {
-  const { data } = await db.from('blog_posts').select('*').eq('slug', slug).eq('published', true).single();
+  const { data, error } = await db.from('blog_posts').select('*').eq('slug', slug).eq('published', true).single();
+  if (error) {
+    console.error('[posts] getBlogPostBySlug error:', error.message, 'slug:', slug);
+  }
+  if (!data) {
+    console.error('[posts] getBlogPostBySlug: no data for slug:', slug);
+  }
   return data ? mapPost(data) : undefined;
 }
 
@@ -61,23 +68,15 @@ export async function getLocalizedBlogPost(slug: string, locale: string): Promis
   if (!post) return undefined;
   if (locale === 'de') return post;
 
-  const { data, error } = await db
-    .from('blog_post_translations')
-    .select('*')
-    .eq('post_slug', slug)
-    .eq('locale', locale)
-    .single();
-
-  if (!data || error) return post;
-
+  const tr = await translateBlogPost(post, locale);
   return {
     ...post,
-    title: data.title || post.title,
-    excerpt: data.excerpt || post.excerpt,
-    content: data.content || post.content,
-    category: data.category || post.category,
-    readTime: data.read_time || post.readTime,
-    tags: data.tags?.length ? data.tags : post.tags,
+    title: tr.title,
+    excerpt: tr.excerpt,
+    content: tr.content,
+    category: tr.category,
+    readTime: tr.readTime,
+    tags: tr.tags,
   };
 }
 
@@ -85,30 +84,18 @@ export async function getLocalizedAllBlogPosts(locale: string): Promise<BlogPost
   const posts = await getAllBlogPosts();
   if (locale === 'de') return posts;
 
-  const slugs = posts.map((p) => p.slug);
-  if (slugs.length === 0) return posts;
-
-  const { data: translations, error: transErr } = await db
-    .from('blog_post_translations')
-    .select('*')
-    .eq('locale', locale)
-    .in('post_slug', slugs);
-
-  if (!translations?.length || transErr) return posts;
-
-  const transMap = new Map(translations.map((tr) => [tr.post_slug, tr]));
-
-  return posts.map((post) => {
-    const tr = transMap.get(post.slug);
-    if (!tr) return post;
-    return {
+  const translated: BlogPostData[] = [];
+  for (const post of posts) {
+    const tr = await translateBlogPost(post, locale);
+    translated.push({
       ...post,
-      title: tr.title || post.title,
-      excerpt: tr.excerpt || post.excerpt,
-      content: tr.content || post.content,
-      category: tr.category || post.category,
-      readTime: tr.read_time || post.readTime,
-      tags: tr.tags?.length ? tr.tags : post.tags,
-    };
-  });
+      title: tr.title,
+      excerpt: tr.excerpt,
+      content: tr.content,
+      category: tr.category,
+      readTime: tr.readTime,
+      tags: tr.tags,
+    });
+  }
+  return translated;
 }

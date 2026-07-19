@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import PageHeader from '@/components/layout/PageHeader';
-import { getDestinations } from '@/lib/data/tours';
+import { getDestinations, getLocalizedDestinationData } from '@/lib/data/tours';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -20,7 +20,14 @@ export default async function DestinationenPage({ params }: { params: Promise<{ 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'destinations' });
-  const destinations = await getDestinations();
+  const rawDestinations = await getDestinations();
+
+  const destinations = await Promise.all(
+    rawDestinations.map(async (dest) => {
+      const loc = await getLocalizedDestinationData(dest, locale);
+      return { ...dest, name: loc.name, tagline: loc.tagline, description: loc.description };
+    })
+  );
 
   return (
     <>

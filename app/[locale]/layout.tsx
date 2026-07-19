@@ -3,9 +3,10 @@ import { hasLocale } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/config';
+import TranslationPoller from '@/components/ui/TranslationPoller';
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return [{ locale: 'de' }];
 }
 
 export default async function LocaleLayout({
@@ -26,6 +27,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <TranslationPoller />
       {children}
     </NextIntlClientProvider>
   );

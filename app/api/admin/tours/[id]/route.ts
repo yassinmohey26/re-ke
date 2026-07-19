@@ -14,13 +14,7 @@ export async function GET(
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('tours').select('*').eq('id', id).single();
   if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-
-  const { data: translations } = await supabase
-    .from('tour_translations')
-    .select('*')
-    .eq('tour_slug', data.slug);
-
-  return NextResponse.json({ ...data, translations: translations ?? [] });
+  return NextResponse.json(data);
 }
 
 export async function PUT(
@@ -84,30 +78,6 @@ export async function PUT(
     if (error) {
       console.error('Tour update error:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    if (body.translations && typeof body.translations === 'object') {
-      const tourSlug = body.slug || data.slug;
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          tour_slug: tourSlug,
-          locale,
-          name: tr.name || '',
-          short_description: tr.shortDescription || '',
-          description: tr.description || '',
-          category_label: tr.categoryLabel || '',
-          highlights: tr.highlights || [],
-          included: tr.included || [],
-          not_included: tr.notIncluded || [],
-          itinerary: tr.itinerary || [],
-          faqs: tr.faqs || [],
-          meeting_point: tr.meetingPoint || '',
-          duration: tr.duration || '',
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('tour_translations').upsert(transRows, { onConflict: 'tour_slug,locale' });
-      }
     }
 
     return NextResponse.json(data);

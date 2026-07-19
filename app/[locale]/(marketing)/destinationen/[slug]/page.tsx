@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from '@/app/[locale]/(marketing)/touren/ToursClient';
-import { getDestinationBySlug, getToursByDestination, getLocalizedDestinationData } from '@/lib/data/tours';
+import { getDestinationBySlug, getLocalizedAllTours, getLocalizedDestinationData } from '@/lib/data/tours';
 
 type Props = { params: Promise<{ slug: string; locale: string }> };
 
@@ -11,8 +11,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   setRequestLocale(locale);
   const dest = await getDestinationBySlug(slug);
   if (!dest) return { title: (await getTranslations({ locale, namespace: 'common' }))('noResults') };
-  const { tagline } = await getLocalizedDestinationData(dest, locale);
-  return { title: `${dest.name} – Touren`, description: tagline };
+  const { name, tagline } = await getLocalizedDestinationData(dest, locale);
+  return { title: `${name} – Touren`, description: tagline };
 }
 
 export default async function DestinationDetailPage({ params }: Props) {
@@ -21,7 +21,11 @@ export default async function DestinationDetailPage({ params }: Props) {
   const dest = await getDestinationBySlug(slug);
   if (!dest) notFound();
 
-  const tours = await getToursByDestination(slug);
+  const [localizedDest, allTours] = await Promise.all([
+    getLocalizedDestinationData(dest, locale),
+    getLocalizedAllTours(locale),
+  ]);
+  const tours = allTours.filter((t) => t.destinationSlug === slug);
   const t = await getTranslations('tours');
 
   const translations = {
@@ -73,7 +77,7 @@ export default async function DestinationDetailPage({ params }: Props) {
     <ToursClient
       tours={tours}
       locale={locale}
-      heroTitle={dest.name}
+      heroTitle={localizedDest.name}
       heroImage={dest.image || undefined}
       translations={translations}
     />

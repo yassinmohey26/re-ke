@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import type { Tour } from '@/lib/data/tours';
 import styles from './ToursClient.module.css';
 

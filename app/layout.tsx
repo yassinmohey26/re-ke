@@ -1,5 +1,12 @@
 import './globals.css';
+import type { Metadata } from 'next';
 import { DM_Sans, Outfit, Marcellus } from 'next/font/google';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+};
 
 const dmSans = DM_Sans({
   subsets: ['latin'],

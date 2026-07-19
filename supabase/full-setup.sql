@@ -21,17 +21,7 @@ CREATE TABLE IF NOT EXISTS destinations (
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- 2) destination_translations — ترجمات الوجهات (إنجليزي وروسي)
-CREATE TABLE IF NOT EXISTS destination_translations (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  destination_slug TEXT NOT NULL REFERENCES destinations(slug) ON DELETE CASCADE,
-  locale TEXT NOT NULL DEFAULT 'en',
-  tagline TEXT DEFAULT '',
-  description TEXT DEFAULT '',
-  UNIQUE(destination_slug, locale)
-);
-
--- 3) tour_categories — فئات الجولات
+-- 2) tour_categories — فئات الجولات
 CREATE TABLE IF NOT EXISTS tour_categories (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug TEXT UNIQUE NOT NULL,
@@ -41,17 +31,7 @@ CREATE TABLE IF NOT EXISTS tour_categories (
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- 4) category_translations — ترجمات الفئات
-CREATE TABLE IF NOT EXISTS category_translations (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  category_slug TEXT NOT NULL REFERENCES tour_categories(slug) ON DELETE CASCADE,
-  locale TEXT NOT NULL DEFAULT 'en',
-  label TEXT DEFAULT '',
-  description TEXT DEFAULT '',
-  UNIQUE(category_slug, locale)
-);
-
--- 5) tours — الجولات السياحية
+-- 3) tours — الجولات السياحية
 CREATE TABLE IF NOT EXISTS tours (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug TEXT UNIQUE NOT NULL,
@@ -80,18 +60,7 @@ CREATE TABLE IF NOT EXISTS tours (
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 
--- 6) tour_translations — ترجمات الجولات
-CREATE TABLE IF NOT EXISTS tour_translations (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  tour_slug TEXT NOT NULL REFERENCES tours(slug) ON DELETE CASCADE,
-  locale TEXT NOT NULL DEFAULT 'en',
-  name TEXT DEFAULT '',
-  short_description TEXT DEFAULT '',
-  category_label TEXT DEFAULT '',
-  UNIQUE(tour_slug, locale)
-);
-
--- 7) blog_posts — مقالات المدونة
+-- 4) blog_posts — مقالات المدونة
 CREATE TABLE IF NOT EXISTS blog_posts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   slug TEXT UNIQUE NOT NULL,
@@ -165,9 +134,6 @@ CREATE INDEX IF NOT EXISTS idx_tours_slug ON tours(slug);
 CREATE INDEX IF NOT EXISTS idx_tours_category ON tours(category);
 CREATE INDEX IF NOT EXISTS idx_tours_destination ON tours(destination_slug);
 CREATE INDEX IF NOT EXISTS idx_tours_featured ON tours(featured);
-CREATE INDEX IF NOT EXISTS idx_tour_translations_slug ON tour_translations(tour_slug);
-CREATE INDEX IF NOT EXISTS idx_destination_translations_slug ON destination_translations(destination_slug);
-CREATE INDEX IF NOT EXISTS idx_category_translations_slug ON category_translations(category_slug);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON blog_posts(slug);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_date ON blog_posts(date DESC);
 CREATE INDEX IF NOT EXISTS idx_bookings_email ON bookings(email);
@@ -189,27 +155,6 @@ INSERT INTO destinations (slug, name, tagline, description, image) VALUES
 
 
 -- =========================================================
--- الجزء الرابع: بيانات تجريبية — ترجمات الوجهات
--- =========================================================
-
-INSERT INTO destination_translations (destination_slug, locale, tagline, description) VALUES
--- English
-('hurghada', 'en', 'Pearl of the Red Sea', 'Hurghada is the most popular resort city on the Red Sea coast in Egypt. Crystal clear water, beautiful coral reefs and endless sandy beaches await you.'),
-('safaga', 'en', 'Diver''s Paradise', 'Safaga is a quiet fishing village with one of the best diving regions in the world. The toxic-free sandy beaches and marine biodiversity are unique.'),
-('quseir', 'en', 'Ancient Port City', 'Quseir combines history with nature. The ancient Roman port city offers pristine reefs, desert adventures and an authentic Egyptian atmosphere.'),
-('el-gouna', 'en', 'Luxury by the Sea', 'El Gouna is an exclusive resort town with marina, top gastronomy and first-class hotels. Ideal for discerning travelers.'),
-('soma-bay', 'en', 'Sports & Wellness', 'Soma Bay offers perfect conditions for kitesurfing, diving and golf. The resort area is known for its wellness hotels.'),
-('makadi-bay', 'en', 'Family Friendly', 'Makadi Bay is ideal for families. Calm bays, shallow beaches and the famous Makadi Water World make it a family paradise.'),
--- Russian
-('hurghada', 'ru', 'Жемчужина Красного моря', 'Хургада — самый популярный курортный город на побережье Красного моря в Египте. Кристально чистая вода, прекрасные коралловые рифы и бесконечные песчаные пляжи ждут вас.'),
-('safaga', 'ru', 'Рай для дайверов', 'Сафага — тихая рыбацкая деревушка с одним из лучших дайвинговых регионов мира. Песчаные пляжи и морское биоразнообразие уникальны.'),
-('quseir', 'ru', 'Древний портовый город', 'Кусейр сочетает историю и природу. Древний римский портовый город предлагает нетронутые рифы, пустынные приключения и атмосферу настоящего Египта.'),
-('el-gouna', 'ru', 'Роскошь у моря', 'Эль-Гуна — эксклюзивный курортный город с мариной, отличной гастрономией и первоклассными отелями. Идеально для требовательных путешественников.'),
-('soma-bay', 'ru', 'Спорт и оздоровление', 'Сома Бей предлагает идеальные условия для кайтсёрфинга, дайвинга и гольфа. Курортная зона известна своими оздоровительными отелями.'),
-('makadi-bay', 'ru', 'Для семей', 'Макади Бей идеален для семей. Спокойные бухты, мелкие пляжи и знаменитый аквапарк Makadi Water World делают его семейным раем.');
-
-
--- =========================================================
 -- الجزء الخامس: بيانات تجريبية — 4 فئات جولات
 -- =========================================================
 
@@ -218,21 +163,6 @@ INSERT INTO tour_categories (slug, label, category, description) VALUES
 ('halbtagstouren', 'Halbtagestouren', 'halbtag', 'Kurze, intensive Erlebnisse fürwenig Zeit — perfekt für einen Vormittag oder Nachmittag.'),
 ('wassersport', 'Wassersport', 'wassersport', 'Tauchen, Schnorcheln, Parasailing und mehr — Spannung auf dem Roten Meer.'),
 ('wuesten-safari', 'Wüstensafari', 'wuesten-safari', 'Quad, Camel, Sterne — die ägyptische Wüste aufregend erleben.');
-
-
--- =========================================================
--- الجزء السادس: بيانات تجريبية — ترجمات الفئات
--- =========================================================
-
-INSERT INTO category_translations (category_slug, locale, label, description) VALUES
-('ganztagstouren', 'en', 'Full Day Tours', 'Experience the highlights of Egypt on a full day — from the desert to the sea.'),
-('ganztagstouren', 'ru', 'Дневные экскурсии', 'Откройте для себя достопримечательности Египта за целый день — от пустыни до моря.'),
-('halbtagstouren', 'en', 'Half Day Tours', 'Short, intense experiences for little time — perfect for a morning or afternoon.'),
-('halbtagstouren', 'ru', 'Полуденные экскурсии', 'Короткие, насыщенные впечатления — идеально для утра или послеобеда.'),
-('wassersport', 'en', 'Water Sports', 'Diving, snorkeling, parasailing and more — excitement on the Red Sea.'),
-('wassersport', 'ru', 'Водные виды спорта', 'Дайвинг, снорклинг, парапланеризм и многое другое — адреналин на Красном море.'),
-('wuesten-safari', 'en', 'Desert Safari', 'Quad, camel, stars — experience the Egyptian desert excitingly.'),
-('wuesten-safari', 'ru', 'Пустынное сафари', 'Квадроциклы, верблюды, звёзды — увлекательное путешествие по египетской пустыне.');
 
 
 -- =========================================================
@@ -283,25 +213,7 @@ INSERT INTO tours (slug, name, short_description, description, price, duration, 
 
 
 -- =========================================================
--- الجزء الثامن: ترجمات الجولات — English
--- =========================================================
-
-INSERT INTO tour_translations (tour_slug, locale, name, short_description, category_label) VALUES
-('kairo-von-hurghada', 'en', 'Day Trip to Cairo from Hurghada', 'The Pyramids of Giza, the Egyptian Museum and Cairo Old Town — all in one day.', 'Full Day Tours'),
-('rote-meer-schnorcheltour', 'en', 'Red Sea Snorkeling Tour', 'Discover the colorful underwater world off Hurghada — suitable for beginners too.', 'Water Sports'),
-('wuesten-safari-quad', 'en', 'Quad Desert Safari from Hurghada', 'Ride a quad through the Egyptian desert — sunset and Bedouin camp included.', 'Desert Safari'),
-('snorkeln-giftun-insel', 'en', 'Giftun Island Snorkeling & BBQ', 'Day trip to Giftun Island with snorkeling, BBQ and beach.', 'Full Day Tours'),
-('halbtags-schnorcheln', 'en', 'Half Day Snorkeling Adventure', 'Snorkel two of the best reefs off Hurghada in just 4 hours.', 'Half Day Tours'),
-
-('kairo-von-hurghada', 'ru', 'Дневная поездка в Каир из Хургады', 'Пирамиды Гизы, Египетский музей и Старый Каир — всё за один день.', 'Дневные экскурсии'),
-('rote-meer-schnorcheltour', 'ru', 'Снорклинг на Красном море', 'Откройте красочный подводный мир Хургады — подходит для начинающих.', 'Водные виды спорта'),
-('wuesten-safari-quad', 'ru', 'Квадроциклы в пустыне из Хургады', 'Прокат на квадроцикле по египетской пустыне — закат и бедуинский лагерь.', 'Пустынное сафари'),
-('snorkeln-giftun-insel', 'ru', 'Остров Гифтун: снорклинг и барбекю', 'Дневная поездка на остров Гифтун со снорклингом, барбекю и пляжем.', 'Дневные экскурсии'),
-('halbtags-schnorcheln', 'ru', 'Полуденный снорклинг', 'Снорклинг на двух лучших рифах Хургады всего за 4 часа.', 'Полуденные экскурсии');
-
-
--- =========================================================
--- الجزء التاسع: بيانات تجريبية — 5 مقالات مدونة
+-- الجزء الثامن: بيانات تجريبية — 5 مقالات مدونة
 -- =========================================================
 
 INSERT INTO blog_posts (slug, title, excerpt, content, image, category, date, read_time, tags, author, published) VALUES
@@ -342,11 +254,8 @@ INSERT INTO faqs (question, answer, sort_order) VALUES
 
 -- ENABLE RLS on all tables
 ALTER TABLE destinations ENABLE ROW LEVEL SECURITY;
-ALTER TABLE destination_translations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tour_categories ENABLE ROW LEVEL SECURITY;
-ALTER TABLE category_translations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE tours ENABLE ROW LEVEL SECURITY;
-ALTER TABLE tour_translations ENABLE ROW LEVEL SECURITY;
 ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE faqs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
@@ -355,11 +264,8 @@ ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
 
 -- Public READ policies (everyone can read)
 CREATE POLICY "Public read destinations" ON destinations FOR SELECT USING (true);
-CREATE POLICY "Public read destination_translations" ON destination_translations FOR SELECT USING (true);
 CREATE POLICY "Public read tour_categories" ON tour_categories FOR SELECT USING (true);
-CREATE POLICY "Public read category_translations" ON category_translations FOR SELECT USING (true);
 CREATE POLICY "Public read tours" ON tours FOR SELECT USING (true);
-CREATE POLICY "Public read tour_translations" ON tour_translations FOR SELECT USING (true);
 CREATE POLICY "Public read published blog_posts" ON blog_posts FOR SELECT USING (published = true);
 CREATE POLICY "Public read faqs" ON faqs FOR SELECT USING (true);
 

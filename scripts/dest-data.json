@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "el-gouna",
+    "name": "El Gouna",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "hurghada",
+    "name": "Hurghada",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "makadi-bay",
+    "name": "Makadi Bay",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "soma-bay",
+    "name": "Soma Bay",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "safaga",
+    "name": "Safaga",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "sahl-hasheesh",
+    "name": "Sahl Hasheesh",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "el-quseir",
+    "name": "El Quseir",
+    "tagline": "",
+    "description": ""
+  },
+  {
+    "slug": "marsa-alam",
+    "name": "Marsa Alam",
+    "tagline": "",
+    "description": ""
+  }
+]

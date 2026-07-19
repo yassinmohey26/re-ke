@@ -14,13 +14,7 @@ export async function GET(
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).single();
   if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-
-  const { data: translations } = await supabase
-    .from('blog_post_translations')
-    .select('*')
-    .eq('post_slug', data.slug);
-
-  return NextResponse.json({ ...data, translations: translations ?? [] });
+  return NextResponse.json(data);
 }
 
 export async function PUT(
@@ -56,26 +50,6 @@ export async function PUT(
       .select()
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-    if (body.translations && typeof body.translations === 'object') {
-      const postSlug = body.slug || data.slug;
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          post_slug: postSlug,
-          locale,
-          title: tr.title || '',
-          excerpt: tr.excerpt || '',
-          content: tr.content || '',
-          category: tr.category || '',
-          read_time: tr.readTime || '',
-          tags: tr.tags || [],
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('blog_post_translations').upsert(transRows, { onConflict: 'post_slug,locale' });
-      }
-    }
-
     return NextResponse.json(data);
   } catch {
     return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });

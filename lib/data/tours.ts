@@ -1,4 +1,5 @@
-import { supabase, getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
+import { translateTour, translateDestination, translateCategory } from './translate';
 
 const db = getSupabaseAdmin();
 
@@ -130,59 +131,36 @@ export async function getTourCategories(): Promise<TourCategory[]> {
 }
 
 export async function getLocalizedTourName(slug: string, locale: string): Promise<string> {
-  if (locale === 'de') {
-    const tour = await getTourBySlug(slug);
-    return tour?.name ?? slug;
-  }
-  const { data } = await supabase
-    .from('tour_translations')
-    .select('name')
-    .eq('tour_slug', slug)
-    .eq('locale', locale)
-    .single();
-  return data?.name || (await getTourBySlug(slug))?.name || slug;
+  const tour = await getTourBySlug(slug);
+  if (!tour) return slug;
+  if (locale === 'de') return tour.name;
+  const tr = await translateTour(tour, locale);
+  return tr.name;
 }
 
 export async function getLocalizedTourShortDescription(slug: string, locale: string): Promise<string> {
-  if (locale === 'de') {
-    const tour = await getTourBySlug(slug);
-    return tour?.shortDescription ?? '';
-  }
-  const { data } = await supabase
-    .from('tour_translations')
-    .select('short_description')
-    .eq('tour_slug', slug)
-    .eq('locale', locale)
-    .single();
-  return data?.short_description || (await getTourBySlug(slug))?.shortDescription || '';
+  const tour = await getTourBySlug(slug);
+  if (!tour) return '';
+  if (locale === 'de') return tour.shortDescription;
+  const tr = await translateTour(tour, locale);
+  return tr.shortDescription;
 }
 
-export async function getLocalizedDestinationData(dest: Destination, locale: string): Promise<{ tagline: string; description: string }> {
-  if (locale === 'de') return { tagline: dest.tagline, description: dest.description };
-  const { data } = await supabase
-    .from('destination_translations')
-    .select('tagline, description')
-    .eq('destination_slug', dest.slug)
-    .eq('locale', locale)
-    .single();
-  return {
-    tagline: data?.tagline ?? dest.tagline,
-    description: data?.description ?? dest.description,
-  };
+export async function getLocalizedDestinationData(
+  dest: Destination,
+  locale: string,
+): Promise<{ tagline: string; description: string; name: string }> {
+  if (locale === 'de') return { tagline: dest.tagline, description: dest.description, name: dest.name };
+  return translateDestination(dest, locale);
 }
 
 export async function getLocalizedCategoryLabel(slug: string, locale: string): Promise<string> {
-  if (locale === 'de') {
-    const cats = await getTourCategories();
-    return cats.find((c) => c.slug === slug)?.label ?? slug;
-  }
-  const { data } = await supabase
-    .from('category_translations')
-    .select('label')
-    .eq('category_slug', slug)
-    .eq('locale', locale)
-    .single();
-  return data?.label || slug;
+  const cats = await getTourCategories();
+  const cat = cats.find((c) => c.slug === slug);
+  if (!cat) return slug;
+  if (locale === 'de') return cat.label;
+  const tr = await translateCategory(cat, locale);
+  return tr.label;
 }
 
 export async function getLocalizedTour(slug: string, locale: string): Promise<Tour | undefined> {
@@ -190,28 +168,20 @@ export async function getLocalizedTour(slug: string, locale: string): Promise<To
   if (!tour) return undefined;
   if (locale === 'de') return tour;
 
-  const { data } = await supabase
-    .from('tour_translations')
-    .select('*')
-    .eq('tour_slug', slug)
-    .eq('locale', locale)
-    .single();
-
-  if (!data) return tour;
-
+  const tr = await translateTour(tour, locale);
   return {
     ...tour,
-    name: data.name || tour.name,
-    shortDescription: data.short_description || tour.shortDescription,
-    description: data.description || tour.description,
-    categoryLabel: data.category_label || tour.categoryLabel,
-    highlights: data.highlights?.length ? data.highlights : tour.highlights,
-    included: data.included?.length ? data.included : tour.included,
-    notIncluded: data.not_included?.length ? data.not_included : tour.notIncluded,
-    itinerary: data.itinerary?.length ? data.itinerary : tour.itinerary,
-    faqs: data.faqs?.length ? data.faqs : tour.faqs,
-    meetingPoint: data.meeting_point || tour.meetingPoint,
-    duration: data.duration || tour.duration,
+    name: tr.name,
+    shortDescription: tr.shortDescription,
+    description: tr.description,
+    categoryLabel: tr.categoryLabel,
+    highlights: tr.highlights,
+    included: tr.included,
+    notIncluded: tr.notIncluded,
+    itinerary: tr.itinerary,
+    faqs: tr.faqs,
+    meetingPoint: tr.meetingPoint,
+    duration: tr.duration,
   };
 }
 
@@ -219,35 +189,23 @@ export async function getLocalizedAllTours(locale: string): Promise<Tour[]> {
   const tours = await getTours();
   if (locale === 'de') return tours;
 
-  const slugs = tours.map((t) => t.slug);
-  if (slugs.length === 0) return tours;
-
-  const { data: translations } = await supabase
-    .from('tour_translations')
-    .select('*')
-    .eq('locale', locale)
-    .in('tour_slug', slugs);
-
-  if (!translations?.length) return tours;
-
-  const transMap = new Map(translations.map((tr) => [tr.tour_slug, tr]));
-
-  return tours.map((tour) => {
-    const tr = transMap.get(tour.slug);
-    if (!tr) return tour;
-    return {
+  const translated: Tour[] = [];
+  for (const tour of tours) {
+    const tr = await translateTour(tour, locale);
+    translated.push({
       ...tour,
-      name: tr.name || tour.name,
-      shortDescription: tr.short_description || tour.shortDescription,
-      description: tr.description || tour.description,
-      categoryLabel: tr.category_label || tour.categoryLabel,
-      highlights: tr.highlights?.length ? tr.highlights : tour.highlights,
-      included: tr.included?.length ? tr.included : tour.included,
-      notIncluded: tr.not_included?.length ? tr.not_included : tour.notIncluded,
-      itinerary: tr.itinerary?.length ? tr.itinerary : tour.itinerary,
-      faqs: tr.faqs?.length ? tr.faqs : tour.faqs,
-      meetingPoint: tr.meeting_point || tour.meetingPoint,
-      duration: tr.duration || tour.duration,
-    };
-  });
+      name: tr.name,
+      shortDescription: tr.shortDescription,
+      description: tr.description,
+      categoryLabel: tr.categoryLabel,
+      highlights: tr.highlights,
+      included: tr.included,
+      notIncluded: tr.notIncluded,
+      itinerary: tr.itinerary,
+      faqs: tr.faqs,
+      meetingPoint: tr.meetingPoint,
+      duration: tr.duration,
+    });
+  }
+  return translated;
 }

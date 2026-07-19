@@ -1,11 +1,12 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import TourCard from '@/components/cards/TourCard';
-import { getFeaturedTours } from '@/lib/data/tours';
+import { getLocalizedAllTours } from '@/lib/data/tours';
 
 export default async function FeaturedTours({ locale }: { locale: string }) {
   const t = await getTranslations('homeFeatured');
-  const tours = await getFeaturedTours();
+  const allTours = await getLocalizedAllTours(locale);
+  const tours = allTours.filter((tour) => tour.featured);
 
   if (tours.length === 0) return null;
 

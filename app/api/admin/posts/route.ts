@@ -10,25 +10,7 @@ export async function GET() {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('blog_posts').select('*').order('date', { ascending: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  const postSlugs = (data ?? []).map((p: any) => p.slug);
-  const { data: translations } = await supabase
-    .from('blog_post_translations')
-    .select('*')
-    .in('post_slug', postSlugs);
-
-  const transMap = new Map<string, any[]>();
-  for (const tr of translations ?? []) {
-    if (!transMap.has(tr.post_slug)) transMap.set(tr.post_slug, []);
-    transMap.get(tr.post_slug)!.push(tr);
-  }
-
-  const posts = (data ?? []).map((p: any) => ({
-    ...p,
-    translations: transMap.get(p.slug) ?? [],
-  }));
-
-  return NextResponse.json(posts);
+  return NextResponse.json(data ?? []);
 }
 
 export async function POST(request: NextRequest) {
@@ -58,25 +40,6 @@ export async function POST(request: NextRequest) {
       .select()
       .single();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-    if (body.translations && typeof body.translations === 'object') {
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          post_slug: body.slug,
-          locale,
-          title: tr.title || '',
-          excerpt: tr.excerpt || '',
-          content: tr.content || '',
-          category: tr.category || '',
-          read_time: tr.readTime || '',
-          tags: tr.tags || [],
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('blog_post_translations').upsert(transRows, { onConflict: 'post_slug,locale' });
-      }
-    }
-
     return NextResponse.json(data, { status: 201 });
   } catch {
     return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });

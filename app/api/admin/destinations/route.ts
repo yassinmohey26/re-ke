@@ -10,25 +10,7 @@ export async function GET() {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('destinations').select('*').order('created_at', { ascending: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  const destSlugs = (data ?? []).map((d: any) => d.slug);
-  const { data: translations } = await supabase
-    .from('destination_translations')
-    .select('*')
-    .in('destination_slug', destSlugs);
-
-  const transMap = new Map<string, any[]>();
-  for (const tr of translations ?? []) {
-    if (!transMap.has(tr.destination_slug)) transMap.set(tr.destination_slug, []);
-    transMap.get(tr.destination_slug)!.push(tr);
-  }
-
-  const destinations = (data ?? []).map((d: any) => ({
-    ...d,
-    translations: transMap.get(d.slug) ?? [],
-  }));
-
-  return NextResponse.json(destinations);
+  return NextResponse.json(data ?? []);
 }
 
 export async function POST(request: NextRequest) {
@@ -53,21 +35,6 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-    if (body.translations && typeof body.translations === 'object') {
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          destination_slug: body.slug || data.slug,
-          locale,
-          tagline: tr.tagline || '',
-          description: tr.description || '',
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('destination_translations').upsert(transRows, { onConflict: 'destination_slug,locale' });
-      }
-    }
-
     return NextResponse.json(data, { status: 201 });
   } catch {
     return NextResponse.json({ error: 'Failed to create destination' }, { status: 500 });

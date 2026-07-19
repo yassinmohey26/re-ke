@@ -11,6 +11,7 @@ const translations = {
   navNewsletter: { de: 'Newsletter', en: 'Newsletter' },
   navFaqs: { de: 'FAQs', en: 'FAQs' },
   navDestinations: { de: 'Destinationen', en: 'Destinations' },
+  navTranslations: { de: 'Übersetzungen', en: 'Translations', ru: 'Переводы' },
   viewWebsite: { de: 'Website ansehen', en: 'View Website' },
   signOut: { de: 'Abmelden', en: 'Sign Out' },
 

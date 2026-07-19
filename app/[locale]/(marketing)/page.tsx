@@ -7,7 +7,7 @@ import Features from '@/components/sections/Features';
 import BlogPreview from '@/components/sections/BlogPreview';
 import FAQ from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
-import { getDestinations } from '@/lib/data/tours';
+import { getDestinations, getLocalizedDestinationData } from '@/lib/data/tours';
 import { getAllBlogPosts, getLocalizedAllBlogPosts } from '@/lib/data/posts';
 import { supabase } from '@/lib/supabase';
 
@@ -25,11 +25,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [destinations, allPosts, faqsResult] = await Promise.all([
+  const [rawDestinations, allPosts, faqsResult] = await Promise.all([
     getDestinations(),
     getLocalizedAllBlogPosts(locale),
     supabase.from('faqs').select('question, answer').eq('locale', locale).order('sort_order', { ascending: true }),
   ]);
+
+  const destinations = await Promise.all(
+    rawDestinations.map(async (d) => {
+      const loc = await getLocalizedDestinationData(d, locale);
+      return { ...d, name: loc.name, tagline: loc.tagline, description: loc.description };
+    })
+  );
 
   let faqs = faqsResult.data ?? [];
   if (faqsResult.error && faqsResult.error.message?.includes('locale')) {

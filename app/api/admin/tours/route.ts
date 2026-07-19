@@ -10,25 +10,7 @@ export async function GET() {
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('tours').select('*').order('created_at', { ascending: false });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  const tourIds = (data ?? []).map((t: any) => t.slug);
-  const { data: translations } = await supabase
-    .from('tour_translations')
-    .select('*')
-    .in('tour_slug', tourIds);
-
-  const transMap = new Map<string, any[]>();
-  for (const tr of translations ?? []) {
-    if (!transMap.has(tr.tour_slug)) transMap.set(tr.tour_slug, []);
-    transMap.get(tr.tour_slug)!.push(tr);
-  }
-
-  const tours = (data ?? []).map((t: any) => ({
-    ...t,
-    translations: transMap.get(t.slug) ?? [],
-  }));
-
-  return NextResponse.json(tours);
+  return NextResponse.json(data ?? []);
 }
 
 export async function POST(request: NextRequest) {
@@ -83,29 +65,6 @@ export async function POST(request: NextRequest) {
     if (error) {
       console.error('Tour insert error:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    if (body.translations && typeof body.translations === 'object') {
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          tour_slug: body.slug,
-          locale,
-          name: tr.name || '',
-          short_description: tr.shortDescription || '',
-          description: tr.description || '',
-          category_label: tr.categoryLabel || '',
-          highlights: tr.highlights || [],
-          included: tr.included || [],
-          not_included: tr.notIncluded || [],
-          itinerary: tr.itinerary || [],
-          faqs: tr.faqs || [],
-          meeting_point: tr.meetingPoint || '',
-          duration: tr.duration || '',
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('tour_translations').upsert(transRows, { onConflict: 'tour_slug,locale' });
-      }
     }
 
     return NextResponse.json(data, { status: 201 });

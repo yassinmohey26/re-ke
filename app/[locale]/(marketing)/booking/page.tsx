@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import BookingForm from '@/components/forms/BookingForm';
 import styles from './page.module.css';
 
@@ -19,9 +20,9 @@ function BookingContent() {
           <p className={styles.description}>
             {t('noTourDesc')}
           </p>
-          <a href="/touren" className={styles.primaryButton}>
+          <Link href="/touren" className={styles.primaryButton}>
             {t('noTourCta')}
-          </a>
+          </Link>
         </div>
       </div>
     );

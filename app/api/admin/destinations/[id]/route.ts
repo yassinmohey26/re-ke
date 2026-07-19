@@ -14,13 +14,7 @@ export async function GET(
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase.from('destinations').select('*').eq('id', id).single();
   if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-
-  const { data: translations } = await supabase
-    .from('destination_translations')
-    .select('*')
-    .eq('destination_slug', data.slug);
-
-  return NextResponse.json({ ...data, translations: translations ?? [] });
+  return NextResponse.json(data);
 }
 
 export async function PUT(
@@ -52,22 +46,6 @@ export async function PUT(
       .single();
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-    if (body.translations && typeof body.translations === 'object') {
-      const destSlug = body.slug || data.slug;
-      const transRows = Object.entries(body.translations)
-        .filter(([locale]) => locale !== 'de')
-        .map(([locale, tr]: [string, any]) => ({
-          destination_slug: destSlug,
-          locale,
-          tagline: tr.tagline || '',
-          description: tr.description || '',
-        }));
-      if (transRows.length > 0) {
-        await supabase.from('destination_translations').upsert(transRows, { onConflict: 'destination_slug,locale' });
-      }
-    }
-
     return NextResponse.json(data);
   } catch {
     return NextResponse.json({ error: 'Failed to update destination' }, { status: 500 });
