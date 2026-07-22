@@ -1,9 +1,10 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { translateTour, translateDestination, translateCategory } from './translate';
+import { translateTour, translateAllTours, translateDestination, translateCategory } from './translate';
 
 const db = getSupabaseAdmin();
 
 export interface Tour {
+  id: string;
   slug: string;
   name: string;
   shortDescription: string;
@@ -44,8 +45,16 @@ export interface TourCategory {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface TourExtra {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+}
+
 function mapTour(row: any): Tour {
   return {
+    id: row.id,
     slug: row.slug,
     name: row.name,
     shortDescription: row.short_description ?? '',
@@ -98,6 +107,22 @@ export async function getTours(): Promise<Tour[]> {
 export async function getTourBySlug(slug: string): Promise<Tour | undefined> {
   const { data } = await db.from('tours').select('*').eq('slug', slug).single();
   return data ? mapTour(data) : undefined;
+}
+
+export async function getTourExtras(tourId: string): Promise<TourExtra[]> {
+  const { data } = await db
+    .from('tour_extras')
+    .select('*')
+    .eq('tour_id', tourId)
+    .eq('active', true)
+    .order('sort_order', { ascending: true });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data ?? []).map((row: any) => ({
+    id: row.id,
+    name: row.name,
+    description: row.description ?? '',
+    price: Number(row.price),
+  }));
 }
 
 export async function getToursByCategory(category: Tour['category']): Promise<Tour[]> {
@@ -189,23 +214,35 @@ export async function getLocalizedAllTours(locale: string): Promise<Tour[]> {
   const tours = await getTours();
   if (locale === 'de') return tours;
 
-  const translated: Tour[] = [];
-  for (const tour of tours) {
-    const tr = await translateTour(tour, locale);
-    translated.push({
-      ...tour,
-      name: tr.name,
-      shortDescription: tr.shortDescription,
-      description: tr.description,
-      categoryLabel: tr.categoryLabel,
-      highlights: tr.highlights,
-      included: tr.included,
-      notIncluded: tr.notIncluded,
-      itinerary: tr.itinerary,
-      faqs: tr.faqs,
-      meetingPoint: tr.meetingPoint,
-      duration: tr.duration,
-    });
-  }
-  return translated;
+  const bulk = await translateAllTours(
+    tours.map((t) => ({
+      name: t.name,
+      shortDescription: t.shortDescription,
+      description: t.description,
+      categoryLabel: t.categoryLabel,
+      highlights: t.highlights,
+      included: t.included,
+      notIncluded: t.notIncluded,
+      itinerary: t.itinerary,
+      faqs: t.faqs,
+      meetingPoint: t.meetingPoint,
+      duration: t.duration,
+    })),
+    locale,
+  );
+
+  return tours.map((tour, i) => ({
+    ...tour,
+    name: bulk[i].name,
+    shortDescription: bulk[i].shortDescription,
+    description: bulk[i].description,
+    categoryLabel: bulk[i].categoryLabel,
+    highlights: bulk[i].highlights,
+    included: bulk[i].included,
+    notIncluded: bulk[i].notIncluded,
+    itinerary: bulk[i].itinerary,
+    faqs: bulk[i].faqs,
+    meetingPoint: bulk[i].meetingPoint,
+    duration: bulk[i].duration,
+  }));
 }

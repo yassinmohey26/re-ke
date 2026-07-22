@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useAdminLocale } from '../AdminLanguageContext';
 import ImageUpload from '@/components/admin/ImageUpload';
+import ExtrasManager from './ExtrasManager';
 import styles from './TourForm.module.css';
 
 interface TourFormProps {
@@ -180,6 +181,10 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
           </div>
         </div>
       </div>
+
+      {initialData?.id && (
+        <ExtrasManager tourId={initialData.id} styles={styles} />
+      )}
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('tourStatus')}</h2>

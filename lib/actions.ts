@@ -77,6 +77,9 @@ export async function submitContact(formData: FormData) {
 // ── Booking Form Action ───────────────────────────────────────────
 export async function submitBooking(formData: FormData) {
   try {
+    const totalPriceRaw = formData.get('totalPrice');
+    const extrasJsonRaw = formData.get('extrasJson');
+
     const raw = {
       tourSlug: formData.get('tourSlug'),
       tourName: formData.get('tourName'),
@@ -87,6 +90,8 @@ export async function submitBooking(formData: FormData) {
       date: formData.get('date'),
       guests: Number(formData.get('guests')),
       message: formData.get('message'),
+      totalPrice: totalPriceRaw ? Number(totalPriceRaw) : undefined,
+      extrasJson: extrasJsonRaw ? String(extrasJsonRaw) : undefined,
     };
 
     const parsed = bookingSchema.safeParse(raw);
@@ -98,6 +103,13 @@ export async function submitBooking(formData: FormData) {
     }
 
     const data = parsed.data;
+
+    let extras: { id: string; name: string; price: number }[] = [];
+    try {
+      extras = data.extrasJson ? JSON.parse(data.extrasJson) : [];
+    } catch {
+      extras = [];
+    }
 
     const supabase = getSupabaseAdmin();
     const { data: booking, error } = await supabase
@@ -112,6 +124,8 @@ export async function submitBooking(formData: FormData) {
         date: data.date,
         guests: data.guests,
         status: 'PENDING',
+        total_price: data.totalPrice ?? null,
+        extras,
       })
       .select('id')
       .single();
@@ -121,6 +135,8 @@ export async function submitBooking(formData: FormData) {
     try {
       if (process.env.RESEND_API_KEY) {
         const resend = new Resend(process.env.RESEND_API_KEY);
+
+        // Customer confirmation email
         await resend.emails.send({
           from: process.env.EMAIL_FROM!,
           to: data.email,
@@ -140,6 +156,31 @@ export async function submitBooking(formData: FormData) {
             <p>Mit freundlichen Grüßen,<br/>Ihr Hurghada Reiseplaner Team</p>
           `,
         });
+
+        // Admin notification email
+        const adminEmail = process.env.EMAIL_TO || process.env.EMAIL_FROM;
+        if (adminEmail) {
+          await resend.emails.send({
+            from: process.env.EMAIL_FROM!,
+            to: adminEmail,
+            subject: `🔔 Neue Buchungsanfrage — ${data.tourName}`,
+            html: `
+              <h2>Neue Buchungsanfrage</h2>
+              <table style="border-collapse:collapse;width:100%;max-width:600px">
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Tour</td><td style="padding:8px;border:1px solid #ddd">${data.tourName}</td></tr>
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Kunde</td><td style="padding:8px;border:1px solid #ddd">${data.firstName} ${data.lastName}</td></tr>
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">E-Mail</td><td style="padding:8px;border:1px solid #ddd"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Telefon</td><td style="padding:8px;border:1px solid #ddd">${data.phone || '—'}</td></tr>
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Datum</td><td style="padding:8px;border:1px solid #ddd">${new Date(data.date).toLocaleDateString('de-AT')}</td></tr>
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Personen</td><td style="padding:8px;border:1px solid #ddd">${data.guests}</td></tr>
+                ${extras.length ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Extras</td><td style="padding:8px;border:1px solid #ddd">${extras.map(e => e.name).join(', ')}</td></tr>` : ''}
+                ${data.totalPrice ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Gesamtpreis</td><td style="padding:8px;border:1px solid #ddd">€${data.totalPrice}</td></tr>` : ''}
+                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Buchungs-ID</td><td style="padding:8px;border:1px solid #ddd">#${booking.id}</td></tr>
+              </table>
+              <p style="margin-top:16px"><a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at'}/ZAIMOZ/bookings" style="background:#0057b8;color:#fff;padding:10px 20px;text-decoration:none;border-radius:6px">Im Admin anzeigen</a></p>
+            `,
+          });
+        }
       }
     } catch (e) {
       console.error('Booking email error (non-fatal):', e);

@@ -65,7 +65,56 @@ export const bookingSchema = z.object({
     .min(1, 'Mindestens 1 Person')
     .max(20, 'Maximal 20 Personen'),
   message: z.string().max(2000).optional().or(z.literal('')),
+  totalPrice: z.number().optional(),
+  extrasJson: z.string().optional(),
 });
+
+export interface BookingValidationMessages {
+  firstNameMin: string;
+  firstNameMax: string;
+  lastNameMin: string;
+  lastNameMax: string;
+  emailInvalid: string;
+  phoneMin: string;
+  phoneMax: string;
+  dateInvalid: string;
+  guestsMin: string;
+  guestsMax: string;
+  messageMax: string;
+}
+
+export function createBookingSchema(messages: BookingValidationMessages) {
+  return z.object({
+    tourSlug: z.string().min(1),
+    tourName: z.string().min(1),
+    firstName: z.string().min(2, messages.firstNameMin).max(60, messages.firstNameMax).trim(),
+    lastName: z.string().min(2, messages.lastNameMin).max(60, messages.lastNameMax).trim(),
+    email: z.string().email(messages.emailInvalid).max(254).trim().toLowerCase(),
+    phone: z.string().min(7, messages.phoneMin).max(30, messages.phoneMax),
+    date: z.string().refine((value) => {
+      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+      if (!match) return false;
+
+      const [, year, month, day] = match;
+      const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
+      if (
+        selectedDate.getFullYear() !== Number(year) ||
+        selectedDate.getMonth() !== Number(month) - 1 ||
+        selectedDate.getDate() !== Number(day)
+      ) {
+        return false;
+      }
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return selectedDate >= today;
+    }, messages.dateInvalid),
+    guests: z.number().int().min(1, messages.guestsMin).max(20, messages.guestsMax),
+    message: z.string().max(2000, messages.messageMax).optional().or(z.literal('')),
+    totalPrice: z.number().optional(),
+    extrasJson: z.string().optional(),
+  });
+}
 
 export type BookingFormData = z.infer<typeof bookingSchema>;
 

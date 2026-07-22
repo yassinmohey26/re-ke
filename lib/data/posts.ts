@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { translateBlogPost } from './translate';
+import { translateBlogPost, translateAllBlogPosts } from './translate';
 
 const db = getSupabaseAdmin();
 
@@ -84,18 +84,25 @@ export async function getLocalizedAllBlogPosts(locale: string): Promise<BlogPost
   const posts = await getAllBlogPosts();
   if (locale === 'de') return posts;
 
-  const translated: BlogPostData[] = [];
-  for (const post of posts) {
-    const tr = await translateBlogPost(post, locale);
-    translated.push({
-      ...post,
-      title: tr.title,
-      excerpt: tr.excerpt,
-      content: tr.content,
-      category: tr.category,
-      readTime: tr.readTime,
-      tags: tr.tags,
-    });
-  }
-  return translated;
+  const bulk = await translateAllBlogPosts(
+    posts.map((p) => ({
+      title: p.title,
+      excerpt: p.excerpt,
+      content: p.content,
+      category: p.category,
+      readTime: p.readTime,
+      tags: p.tags,
+    })),
+    locale,
+  );
+
+  return posts.map((post, i) => ({
+    ...post,
+    title: bulk[i].title,
+    excerpt: bulk[i].excerpt,
+    content: bulk[i].content,
+    category: bulk[i].category,
+    readTime: bulk[i].readTime,
+    tags: bulk[i].tags,
+  }));
 }

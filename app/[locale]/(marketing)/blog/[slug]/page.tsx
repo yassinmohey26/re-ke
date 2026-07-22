@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export function generateStaticParams() {
   return [];
 }
+export const dynamicParams = true;
 
 function formatDate(dateStr: string, locale: string): string {
   return new Date(dateStr).toLocaleDateString(locale === 'de' ? 'de-AT' : locale === 'ru' ? 'ru-RU' : 'en-US', {

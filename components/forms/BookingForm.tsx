@@ -1,38 +1,100 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { bookingSchema, type BookingFormData } from '@/lib/validations';
+import { createBookingSchema, type BookingFormData } from '@/lib/validations';
 import { submitBooking } from '@/lib/actions';
+import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
 import styles from './BookingForm.module.css';
+
+function getTodayLocalDate() {
+  const today = new Date();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${today.getFullYear()}-${month}-${day}`;
+}
+
+interface Extra {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+}
 
 interface BookingFormProps {
   tourSlug: string;
   tourName: string;
   pricePerPerson?: number | null;
+  pricingTiers?: PricingTier[];
+  extras?: Extra[];
+  initialSelectedExtraIds?: string[];
+  initialDate?: string;
+  initialGuests?: number;
 }
 
-export default function BookingForm({ tourSlug, tourName, pricePerPerson }: BookingFormProps) {
+export default function BookingForm({
+  tourSlug,
+  tourName,
+  pricePerPerson,
+  pricingTiers = [],
+  extras = [],
+  initialSelectedExtraIds = [],
+  initialDate = '',
+  initialGuests = 1,
+}: BookingFormProps) {
   const t = useTranslations('booking');
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState('');
+  const [selectedExtraIds, setSelectedExtraIds] = useState<string[]>(initialSelectedExtraIds);
+  const minimumDate = getTodayLocalDate();
+  const bookingSchema = useMemo(
+    () => createBookingSchema({
+      firstNameMin: t('validation.firstNameMin'),
+      firstNameMax: t('validation.firstNameMax'),
+      lastNameMin: t('validation.lastNameMin'),
+      lastNameMax: t('validation.lastNameMax'),
+      emailInvalid: t('validation.emailInvalid'),
+      phoneMin: t('validation.phoneMin'),
+      phoneMax: t('validation.phoneMax'),
+      dateInvalid: t('validation.dateInvalid'),
+      guestsMin: t('validation.guestsMin'),
+      guestsMax: t('validation.guestsMax'),
+      messageMax: t('validation.messageMax'),
+    }),
+    [t],
+  );
 
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<BookingFormData>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
       tourSlug,
       tourName,
-      guests: 1,
+      date: initialDate,
+      guests: initialGuests,
     },
   });
+
+  const guests = watch('guests') || 1;
+  const dynamicPricePerPerson = getPriceForGuests(pricingTiers, pricePerPerson ?? null, guests);
+
+  function toggleExtra(id: string) {
+    setSelectedExtraIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  }
+
+  const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
+  const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0);
+  const totalPrice = dynamicPricePerPerson != null ? dynamicPricePerPerson * guests + extrasTotal : null;
 
   const onSubmit = (data: BookingFormData) => {
     setServerError('');
@@ -43,6 +105,8 @@ export default function BookingForm({ tourSlug, tourName, pricePerPerson }: Book
       });
       fd.append('tourSlug', tourSlug);
       fd.append('tourName', tourName);
+      fd.append('extrasJson', JSON.stringify(selectedExtras));
+      if (totalPrice != null) fd.append('totalPrice', String(totalPrice));
       const result = await submitBooking(fd);
       if (result.success) {
         setSuccess(true);
@@ -141,6 +205,7 @@ export default function BookingForm({ tourSlug, tourName, pricePerPerson }: Book
           <input
             id="booking-date"
             type="date"
+            min={minimumDate}
             className={`${styles.input} ${errors.date ? styles.error : ''}`}
             {...register('date')}
           />
@@ -174,11 +239,38 @@ export default function BookingForm({ tourSlug, tourName, pricePerPerson }: Book
         />
       </div>
 
+      {extras.length > 0 && (
+        <div className={styles.field}>
+          <label className={styles.label}>Extras</label>
+          {extras.map((extra) => (
+            <label key={extra.id} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+              <input
+                type="checkbox"
+                checked={selectedExtraIds.includes(extra.id)}
+                onChange={() => toggleExtra(extra.id)}
+              />
+              <span>{extra.name} (+{extra.price.toFixed(2)} EUR)</span>
+            </label>
+          ))}
+        </div>
+      )}
+
       {serverError && <span className={styles.errorText}>{serverError}</span>}
 
-      {pricePerPerson && (
+      {dynamicPricePerPerson != null && (
         <div className={styles.priceDisplay}>
-          {t('pricePerPerson', { price: pricePerPerson })}
+          {dynamicPricePerPerson !== pricePerPerson && pricePerPerson != null && (
+            <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginRight: 8 }}>
+              {t('pricePerPerson', { price: pricePerPerson })}
+            </span>
+          )}
+          {t('pricePerPerson', { price: dynamicPricePerPerson })}
+        </div>
+      )}
+
+      {totalPrice != null && guests > 1 && (
+        <div className={styles.priceDisplay}>
+          {guests} × {dynamicPricePerPerson} EUR + {extrasTotal.toFixed(2)} EUR extras = <strong>{totalPrice.toFixed(2)} EUR</strong>
         </div>
       )}
 

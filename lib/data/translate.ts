@@ -7,13 +7,14 @@ const DEEPL_BASE = DEEPL_FREE
   : 'https://api.deepl.com/v2';
 
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+const TRANSLATION_CACHE_VERSION = 'v2';
 const cache = new Map<string, { data: string; expiresAt: number }>();
 
 const BATCH_SEP = '\n§§\n';
 const FIELD_SEP = '\n---SPLIT---\n';
 
 function cacheKey(locale: string, sourceHash: string, field: string): string {
-  return `${locale}:${sourceHash}:${field}`;
+  return `${TRANSLATION_CACHE_VERSION}:${locale}:${sourceHash}:${field}`;
 }
 
 function getCached(key: string): string | null {
@@ -59,7 +60,7 @@ async function callDeepL(texts: string[], targetLang: string, tagHandling?: stri
 
   const body = new URLSearchParams();
   body.append('source_lang', 'DE');
-  body.append('target_lang', targetLang);
+  body.append('target_lang', targetLang.toUpperCase());
   if (tagHandling) body.append('tag_handling', tagHandling);
   for (const t of texts) {
     body.append('text', t);
@@ -193,9 +194,15 @@ export async function translateTour(
   // Check if already fully cached
   if (
     getCached(ck('name')) !== null &&
-    getCached(ck('content')) !== null
+    getCached(ck('description')) !== null
   ) {
     const getC = (field: string) => getCached(ck(field));
+    const parseArr = (val: string | null | undefined, fallback: string[]) =>
+      val ? val.split(FIELD_SEP).map((s) => s.trim()) : fallback;
+    const itinTitles = parseArr(getC('itinTitles'), tour.itinerary.map((i) => i.title));
+    const itinContents = parseArr(getC('itinContents'), tour.itinerary.map((i) => i.content));
+    const faqQ = parseArr(getC('faqQ'), tour.faqs.map((f) => f.question));
+    const faqA = parseArr(getC('faqA'), tour.faqs.map((f) => f.answer));
     return {
       name: getC('name') ?? tour.name,
       shortDescription: getC('shortDescription') ?? tour.shortDescription,
@@ -203,16 +210,22 @@ export async function translateTour(
       categoryLabel: getC('categoryLabel') ?? tour.categoryLabel,
       meetingPoint: getC('meetingPoint') ?? tour.meetingPoint,
       duration: getC('duration') ?? tour.duration,
-      highlights: JSON.parse(getC('highlights') ?? 'null') ?? tour.highlights,
-      included: JSON.parse(getC('included') ?? 'null') ?? tour.included,
-      notIncluded: JSON.parse(getC('notIncluded') ?? 'null') ?? tour.notIncluded,
-      itinerary: JSON.parse(getC('itinerary') ?? 'null') ?? tour.itinerary,
-      faqs: JSON.parse(getC('faqs') ?? 'null') ?? tour.faqs,
+      highlights: parseArr(getC('highlights'), tour.highlights),
+      included: parseArr(getC('included'), tour.included),
+      notIncluded: parseArr(getC('notIncluded'), tour.notIncluded),
+      itinerary: tour.itinerary.map((item, i) => ({
+        title: itinTitles[i] ?? item.title,
+        content: itinContents[i] ?? item.content,
+      })),
+      faqs: tour.faqs.map((item, i) => ({
+        question: faqQ[i] ?? item.question,
+        answer: faqA[i] ?? item.answer,
+      })),
     };
   }
 
   // Batch 1: scalar text fields
-  const scalarFields = ['name', 'shortDescription', 'description', 'categoryLabel', 'meetingPoint', 'duration'] as const;
+  const scalarFields = ['name', 'shortDescription', 'categoryLabel', 'meetingPoint', 'duration'] as const;
   const scalarEntries = scalarFields.map((field) => ({
     text: tour[field],
     key: field,
@@ -220,6 +233,19 @@ export async function translateTour(
     field,
   }));
   const scalars = await batchTranslate(scalarEntries, locale);
+
+  // The overview is HTML authored in the CMS. Translate it separately so DeepL
+  // preserves its markup rather than treating tags as plain text.
+  const descriptionKey = ck('description');
+  const cachedDescription = getCached(descriptionKey);
+  let description: string;
+  if (cachedDescription !== null) {
+    description = cachedDescription;
+  } else {
+    const [translatedDescription] = await callDeepL([tour.description], locale, 'html');
+    description = translatedDescription ?? tour.description;
+    setCache(descriptionKey, description);
+  }
 
   // Batch 2: array fields (join into single strings)
   const arrayEntries = [
@@ -264,7 +290,7 @@ export async function translateTour(
   return {
     name: scalars.get('name') ?? tour.name,
     shortDescription: scalars.get('shortDescription') ?? tour.shortDescription,
-    description: scalars.get('description') ?? tour.description,
+    description,
     categoryLabel: scalars.get('categoryLabel') ?? tour.categoryLabel,
     meetingPoint: scalars.get('meetingPoint') ?? tour.meetingPoint,
     duration: scalars.get('duration') ?? tour.duration,
@@ -372,7 +398,7 @@ export async function translateBlogPost(
       content: getC('content') ?? post.content,
       category: getC('category') ?? post.category,
       readTime: getC('readTime') ?? post.readTime,
-      tags: JSON.parse(getC('tags') ?? 'null') ?? post.tags,
+      tags: getC('tags') ? getC('tags')!.split(FIELD_SEP).map((s) => s.trim()) : post.tags,
     };
   }
 
@@ -413,4 +439,305 @@ export async function translateBlogPost(
 
 export function contentHashValue(locale: string, obj: Record<string, unknown>): string {
   return `${locale}:${sourceHash(obj)}`;
+}
+
+// ── Bulk translate all tours in minimal API calls ────────────────
+export interface BulkTourResult {
+  name: string;
+  shortDescription: string;
+  description: string;
+  categoryLabel: string;
+  meetingPoint: string;
+  duration: string;
+  highlights: string[];
+  included: string[];
+  notIncluded: string[];
+  itinerary: { title: string; content: string }[];
+  faqs: { question: string; answer: string }[];
+}
+
+export async function translateAllTours(
+  tours: {
+    name: string;
+    shortDescription: string;
+    description: string;
+    categoryLabel: string;
+    highlights: string[];
+    included: string[];
+    notIncluded: string[];
+    itinerary: { title: string; content: string }[];
+    faqs: { question: string; answer: string }[];
+    meetingPoint: string;
+    duration: string;
+  }[],
+  locale: string,
+): Promise<BulkTourResult[]> {
+  if (locale === 'de') {
+    return tours.map((t) => ({
+      name: t.name,
+      shortDescription: t.shortDescription,
+      description: t.description,
+      categoryLabel: t.categoryLabel,
+      meetingPoint: t.meetingPoint,
+      duration: t.duration,
+      highlights: t.highlights,
+      included: t.included,
+      notIncluded: t.notIncluded,
+      itinerary: t.itinerary,
+      faqs: t.faqs,
+    }));
+  }
+
+  const results: BulkTourResult[] = tours.map((t) => ({
+    name: t.name,
+    shortDescription: t.shortDescription,
+    description: t.description,
+    categoryLabel: t.categoryLabel,
+    meetingPoint: t.meetingPoint,
+    duration: t.duration,
+    highlights: t.highlights,
+    included: t.included,
+    notIncluded: t.notIncluded,
+    itinerary: t.itinerary,
+    faqs: t.faqs,
+  }));
+
+  // Check cache for each tour, collect uncached ones
+  const scalarsToTranslate: { text: string; tourIdx: number; field: string }[] = [];
+  const arraysToTranslate: { text: string; tourIdx: number; field: string }[] = [];
+  const complexToTranslate: { text: string; tourIdx: number; field: string }[] = [];
+
+  for (let i = 0; i < tours.length; i++) {
+    const t = tours[i];
+    const h = sourceHash(t);
+
+    // Scalar fields
+    for (const field of ['name', 'shortDescription', 'description', 'categoryLabel', 'meetingPoint', 'duration'] as const) {
+      if (!t[field]) continue;
+      const ck = cacheKey(locale, h, field);
+      const cached = getCached(ck);
+      if (cached !== null) {
+        (results[i] as any)[field] = cached;
+      } else {
+        scalarsToTranslate.push({ text: t[field], tourIdx: i, field });
+      }
+    }
+
+    // Array fields
+    for (const field of ['highlights', 'included', 'notIncluded'] as const) {
+      const joined = t[field].join(FIELD_SEP);
+      if (!joined) continue;
+      const ck = cacheKey(locale, h, field);
+      const cached = getCached(ck);
+      if (cached !== null) {
+        (results[i] as any)[field] = cached.split(FIELD_SEP).map((s: string) => s.trim());
+      } else {
+        arraysToTranslate.push({ text: joined, tourIdx: i, field });
+      }
+    }
+
+    // Complex fields
+    const itinTitles = t.itinerary.map((x) => x.title).join(FIELD_SEP);
+    const itinContents = t.itinerary.map((x) => x.content).join(FIELD_SEP);
+    const faqQ = t.faqs.map((x) => x.question).join(FIELD_SEP);
+    const faqA = t.faqs.map((x) => x.answer).join(FIELD_SEP);
+
+    for (const [subField, text] of [['itinTitles', itinTitles], ['itinContents', itinContents], ['faqQ', faqQ], ['faqA', faqA]] as const) {
+      if (!text) continue;
+      const ck = cacheKey(locale, h, subField);
+      const cached = getCached(ck);
+      if (cached === null) {
+        complexToTranslate.push({ text, tourIdx: i, field: subField });
+      }
+    }
+  }
+
+  // Batch 1: all scalar fields in one API call
+  if (scalarsToTranslate.length > 0) {
+    const combined = scalarsToTranslate.map((e) => e.text).join(BATCH_SEP);
+    const [translated] = await callDeepL([combined], locale);
+    const parts = (translated ?? combined).split(BATCH_SEP);
+    for (let j = 0; j < scalarsToTranslate.length; j++) {
+      const val = parts[j]?.trim() ?? scalarsToTranslate[j].text;
+      const e = scalarsToTranslate[j];
+      (results[e.tourIdx] as any)[e.field] = val;
+      const t = tours[e.tourIdx];
+      const h = sourceHash(t);
+      setCache(cacheKey(locale, h, e.field), val);
+    }
+  }
+
+  // Batch 2: all array fields in one API call
+  if (arraysToTranslate.length > 0) {
+    const combined = arraysToTranslate.map((e) => e.text).join(BATCH_SEP);
+    const [translated] = await callDeepL([combined], locale);
+    const parts = (translated ?? combined).split(BATCH_SEP);
+    for (let j = 0; j < arraysToTranslate.length; j++) {
+      const val = parts[j]?.trim() ?? arraysToTranslate[j].text;
+      const e = arraysToTranslate[j];
+      (results[e.tourIdx] as any)[e.field] = val.split(FIELD_SEP).map((s) => s.trim());
+      const t = tours[e.tourIdx];
+      const h = sourceHash(t);
+      setCache(cacheKey(locale, h, e.field), val);
+    }
+  }
+
+  // Batch 3: all complex fields in one API call
+  if (complexToTranslate.length > 0) {
+    const combined = complexToTranslate.map((e) => e.text).join(BATCH_SEP);
+    const [translated] = await callDeepL([combined], locale);
+    const parts = (translated ?? combined).split(BATCH_SEP);
+    for (let j = 0; j < complexToTranslate.length; j++) {
+      const val = parts[j]?.trim() ?? complexToTranslate[j].text;
+      const e = complexToTranslate[j];
+      const t = tours[e.tourIdx];
+      const h = sourceHash(t);
+      setCache(cacheKey(locale, h, e.field), val);
+    }
+  }
+
+  // Reconstruct complex fields from cache
+  for (let i = 0; i < tours.length; i++) {
+    const t = tours[i];
+    const h = sourceHash(t);
+
+    const itinTitlesRaw = getCached(cacheKey(locale, h, 'itinTitles'));
+    const itinContentsRaw = getCached(cacheKey(locale, h, 'itinContents'));
+    const faqQRaw = getCached(cacheKey(locale, h, 'faqQ'));
+    const faqARaw = getCached(cacheKey(locale, h, 'faqA'));
+
+    if (itinTitlesRaw && itinContentsRaw) {
+      const titles = itinTitlesRaw.split(FIELD_SEP).map((s) => s.trim());
+      const contents = itinContentsRaw.split(FIELD_SEP).map((s) => s.trim());
+      results[i].itinerary = t.itinerary.map((item, idx) => ({
+        title: titles[idx] ?? item.title,
+        content: contents[idx] ?? item.content,
+      }));
+    }
+
+    if (faqQRaw && faqARaw) {
+      const qs = faqQRaw.split(FIELD_SEP).map((s) => s.trim());
+      const as = faqARaw.split(FIELD_SEP).map((s) => s.trim());
+      results[i].faqs = t.faqs.map((item, idx) => ({
+        question: qs[idx] ?? item.question,
+        answer: as[idx] ?? item.answer,
+      }));
+    }
+  }
+
+  return results;
+}
+
+// ── Bulk translate all blog posts in minimal API calls ───────────
+export interface BulkBlogResult {
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  readTime: string;
+  tags: string[];
+}
+
+export async function translateAllBlogPosts(
+  posts: {
+    title: string;
+    excerpt: string;
+    content: string;
+    category: string;
+    readTime: string;
+    tags: string[];
+  }[],
+  locale: string,
+): Promise<BulkBlogResult[]> {
+  if (locale === 'de') {
+    return posts.map((p) => ({
+      title: p.title,
+      excerpt: p.excerpt,
+      content: p.content,
+      category: p.category,
+      readTime: p.readTime,
+      tags: p.tags,
+    }));
+  }
+
+  const results: BulkBlogResult[] = posts.map((p) => ({
+    title: p.title,
+    excerpt: p.excerpt,
+    content: p.content,
+    category: p.category,
+    readTime: p.readTime,
+    tags: p.tags,
+  }));
+
+  const scalarsToTranslate: { text: string; postIdx: number; field: string }[] = [];
+  const contentsToTranslate: { text: string; postIdx: number }[] = [];
+
+  for (let i = 0; i < posts.length; i++) {
+    const p = posts[i];
+    const h = sourceHash(p);
+
+    for (const field of ['title', 'excerpt', 'category', 'readTime'] as const) {
+      if (!p[field]) continue;
+      const ck = cacheKey(locale, h, field);
+      const cached = getCached(ck);
+      if (cached !== null) {
+        (results[i] as any)[field] = cached;
+      } else {
+        scalarsToTranslate.push({ text: p[field], postIdx: i, field });
+      }
+    }
+
+    if (p.tags.length > 0) {
+      const joined = p.tags.join(FIELD_SEP);
+      const ck = cacheKey(locale, h, 'tags');
+      const cached = getCached(ck);
+      if (cached !== null) {
+        results[i].tags = cached.split(FIELD_SEP).map((s) => s.trim());
+      } else {
+        scalarsToTranslate.push({ text: joined, postIdx: i, field: 'tags' });
+      }
+    }
+
+    if (p.content) {
+      const ck = cacheKey(locale, h, 'content');
+      const cached = getCached(ck);
+      if (cached !== null) {
+        results[i].content = cached;
+      } else {
+        contentsToTranslate.push({ text: p.content, postIdx: i });
+      }
+    }
+  }
+
+  if (scalarsToTranslate.length > 0) {
+    const combined = scalarsToTranslate.map((e) => e.text).join(BATCH_SEP);
+    const [translated] = await callDeepL([combined], locale);
+    const parts = (translated ?? combined).split(BATCH_SEP);
+    for (let j = 0; j < scalarsToTranslate.length; j++) {
+      const val = parts[j]?.trim() ?? scalarsToTranslate[j].text;
+      const e = scalarsToTranslate[j];
+      (results[e.postIdx] as any)[e.field] = e.field === 'tags'
+        ? val.split(FIELD_SEP).map((s) => s.trim())
+        : val;
+      const p = posts[e.postIdx];
+      const h = sourceHash(p);
+      setCache(cacheKey(locale, h, e.field), val);
+    }
+  }
+
+  if (contentsToTranslate.length > 0) {
+    const combined = contentsToTranslate.map((e) => e.text).join(BATCH_SEP);
+    const [translated] = await callDeepL([combined], locale);
+    const parts = (translated ?? combined).split(BATCH_SEP);
+    for (let j = 0; j < contentsToTranslate.length; j++) {
+      const val = parts[j]?.trim() ?? contentsToTranslate[j].text;
+      const e = contentsToTranslate[j];
+      results[e.postIdx].content = val;
+      const p = posts[e.postIdx];
+      const h = sourceHash(p);
+      setCache(cacheKey(locale, h, 'content'), val);
+    }
+  }
+
+  return results;
 }

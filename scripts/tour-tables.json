@@ -1,0 +1,799 @@
+﻿[
+    {
+        "slug":  "glasbodenboot-hurghada-mit-schnorcheln",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 20 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 12:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 20 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 12:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "orange-bay-insel-schnorchelausflug-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 35 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 8:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 35 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 8:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "hula-hula-insel-schnorchelausflug-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 35 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 8:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 35 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 8:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "mahmya-insel-ausflug-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 95 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 8:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 95 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 8:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "eden-island-schnorchelausflug-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth style=\"text-align: center\"\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 75 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 8:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 75 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 8:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "private-speedboot-tour-orange-bay-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth style=\"text-align: center\"\u003eBoot\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e1 Person\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e220 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e115  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e90  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e75  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e65  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e60  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Boot",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "1 Person",
+                              "Privates Speedboot",
+                              "220 € p.P."
+                          ],
+                          [
+                              "2 Personen",
+                              "Privates Speedboot",
+                              "115 € p.P."
+                          ],
+                          [
+                              "3 Personen",
+                              "Privates Speedboot",
+                              "90 € p.P."
+                          ],
+                          [
+                              "4 Personen",
+                              "Privates Speedboot",
+                              "75 € p.P."
+                          ],
+                          [
+                              "5 Personen",
+                              "Privates Speedboot",
+                              "65 € p.P."
+                          ],
+                          [
+                              "6 Personen",
+                              "Privates Speedboot",
+                              "60 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "private-delfin-tour-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth style=\"text-align: center\"\u003eBoot\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e1 Person\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e150 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e80  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e70  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e60  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e55  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e50  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Boot",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "1 Person",
+                              "Privates Speedboot",
+                              "150 € p.P."
+                          ],
+                          [
+                              "2 Personen",
+                              "Privates Speedboot",
+                              "80 € p.P."
+                          ],
+                          [
+                              "3 Personen",
+                              "Privates Speedboot",
+                              "70 € p.P."
+                          ],
+                          [
+                              "4 Personen",
+                              "Privates Speedboot",
+                              "60 € p.P."
+                          ],
+                          [
+                              "5 Personen",
+                              "Privates Speedboot",
+                              "55 € p.P."
+                          ],
+                          [
+                              "6 Personen",
+                              "Privates Speedboot",
+                              "50 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth style=\"text-align: center\"\u003eBoot\u003c/th\u003e\n\u003cth\u003ePreis pro Person\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e1 Person\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e150 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e80  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e70  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e60  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e55  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmer\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Boot\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivates Speedboot\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e50  € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Boot",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "1 Person",
+                              "Privates Speedboot",
+                              "150 € p.P."
+                          ],
+                          [
+                              "2 Personen",
+                              "Privates Speedboot",
+                              "80 € p.P."
+                          ],
+                          [
+                              "3 Personen",
+                              "Privates Speedboot",
+                              "70 € p.P."
+                          ],
+                          [
+                              "4 Personen",
+                              "Privates Speedboot",
+                              "60 € p.P."
+                          ],
+                          [
+                              "5 Personen",
+                              "Privates Speedboot",
+                              "55 € p.P."
+                          ],
+                          [
+                              "6 Personen",
+                              "Privates Speedboot",
+                              "50 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "makadi-water-park-hurghada-mittagessen-transfer",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 50 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eEintrittsticket\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 9:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 50 € p.P.",
+                              "Eintrittsticket",
+                              "täglich",
+                              "ca. 9:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "hurghada-shopping-tour-basar-transfer",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis pro Person\"\u003e\u003cstrong\u003ekostenlos\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis pro Person\"\u003e\u003cstrong\u003ekostenlos\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis pro Person\"\u003e\u003cstrong\u003ekostenlos\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis pro Person\"\u003e\u003cstrong\u003ekostenlos\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "kostenlos"
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "kostenlos"
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "kostenlos"
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "kostenlos"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "eintrittskarte-zum-hurghada-grand-aquarium",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 45 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cstrong\u003eEintrittskarte mit Transfer\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 10:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 45 € p.P.",
+                              "Eintrittskarte mit Transfer",
+                              "täglich",
+                              "ca. 10:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "mini-egypt-park-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 35 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eindividuell\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 10:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 35 € p.P.",
+                              "individuell",
+                              "täglich",
+                              "ca. 10:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "naechtliche-stadtrundfahrt-durch-hurghada-private-tour",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e30 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e25 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e20 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e15 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "30 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "25 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "20 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "15 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtsturm",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e50 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e40 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e35 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e30 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "50 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "40 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "35 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "30 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "kloester-st-antonius-st-paulus",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e96€ p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e85€ p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e80€ p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e71€ p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "96€ p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "85€ p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "80€ p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "71€ p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e120 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e110 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e100 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e90 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "120 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "110 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "100 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "90 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "privater-tagesausflug-ab-hurghada-dendera-abydos-tempel",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e140 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e130 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e120 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e110 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "140 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "130 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "120 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "110 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "privater-tagesausflug-ab-hurghada-dendera-abydos-tempel",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eUhrzeit\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eProgrammpunkt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e04:00–04:30\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung vom Hotel in Hurghada\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eca. 250 km\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eFahrt nach Dendera\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e2 Std.\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eBesichtigung Hathor-Tempel\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eca. 100 km\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eWeiterfahrt nach Abydos\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eMittag\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eMittagessen in Abydos\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e2 Std.\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eBesichtigung des Abydos-Tempels\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbend\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eRückfahrt nach Hurghada\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eGesamt\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eca. 13 Std.\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Uhrzeit",
+                              "Programmpunkt"
+                          ],
+                          [
+                              "04:00–04:30",
+                              "Abholung vom Hotel in Hurghada"
+                          ],
+                          [
+                              "ca. 250 km",
+                              "Fahrt nach Dendera"
+                          ],
+                          [
+                              "2 Std.",
+                              "Besichtigung Hathor-Tempel"
+                          ],
+                          [
+                              "ca. 100 km",
+                              "Weiterfahrt nach Abydos"
+                          ],
+                          [
+                              "Mittag",
+                              "Mittagessen in Abydos"
+                          ],
+                          [
+                              "2 Std.",
+                              "Besichtigung des Abydos-Tempels"
+                          ],
+                          [
+                              "Abend",
+                              "Rückfahrt nach Hurghada"
+                          ],
+                          [
+                              "Gesamt",
+                              "ca. 13 Std."
+                          ]
+                      ],
+        "title":  "Ablauf der Tour"
+    },
+    {
+        "slug":  "luxor-tagesausflug-ab-hurghada",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e150 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e135 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e100 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e90 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "150 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "135 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "100 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "90 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "luxor-tagesausflug-heissluftballon-hoteluebernachtung",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e300 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e270 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e240 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003e220 € p.P.\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "300 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "270 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "240 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "220 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e160 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e140 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e110 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e100 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "160 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "140 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "110 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "100 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "kairo-mit-flug-ab-hurghada-pyramiden-museum",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003eFlug \u0026amp; Transfer\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eFlug + Privattransfer\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e300 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003eFlug + Privattransfer\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e280 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003eFlug + Privattransfer\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e270 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003eFlug + Privattransfer\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e255 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Flug \u0026 Transfer",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Flug + Privattransfer",
+                              "300 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Flug + Privattransfer",
+                              "280 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Flug + Privattransfer",
+                              "270 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Flug + Privattransfer",
+                              "255 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "kairo-mit-flug-ab-hurghada-pyramiden-museum",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eZeit\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eProgrammpunkt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e04:00 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung vom Hotel in Hurghada\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e06:00 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eFlug nach Kairo\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e06:50 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAnkunft in Kairo \u0026amp; Begrüßung durch Ihren Guide\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e08:00–19:00 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003ePyramiden\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eSphinx\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMuseum\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMittagessen\u003c/strong\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e19:00 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eRückflug nach Hurghada\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003e19:45 Uhr\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAnkunft \u0026amp; Transfer zum Hotel\u003c/span\u003e\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Zeit",
+                              "Programmpunkt"
+                          ],
+                          [
+                              "04:00 Uhr",
+                              "Abholung vom Hotel in Hurghada"
+                          ],
+                          [
+                              "06:00 Uhr",
+                              "Flug nach Kairo"
+                          ],
+                          [
+                              "06:50 Uhr",
+                              "Ankunft in Kairo \u0026 Begrüßung durch Ihren Guide"
+                          ],
+                          [
+                              "08:00–19:00 Uhr",
+                              "Pyramiden Sphinx Museum Mittagessen"
+                          ],
+                          [
+                              "19:00 Uhr",
+                              "Rückflug nach Hurghada"
+                          ],
+                          [
+                              "19:45 Uhr",
+                              "Ankunft \u0026 Transfer zum Hotel"
+                          ]
+                      ],
+        "title":  "Ablauf der Tour"
+    },
+    {
+        "slug":  "privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e175 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e155 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e135 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e115 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "175 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "155 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "135 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "115 € p.P."
+                          ]
+                      ],
+        "title":  "Ablauf der Tour"
+    },
+    {
+        "slug":  "super-safari-hurghada",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 40 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 13:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 40 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 13:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "quad-tour-hurghada-kamelritt",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/th\u003e\n\u003cth\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 30 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eGruppentour\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 8:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 30 € p.P.",
+                              "Gruppentour",
+                              "täglich",
+                              "ca. 8:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "reiten-in-hurghada-strand-wueste-pferde-im-meer",
+        "tableHtml":  "\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003ePreis\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReisetyp\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eReiseantritt\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003e\u003cspan style=\"color: #000000\"\u003eAbholung\u003c/span\u003e\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Preis\"\u003e\u003cstrong\u003eAb 40 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reisetyp\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eindividuell\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Reiseantritt\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003etäglich\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd data-label=\"Abholung\"\u003e\u003cspan style=\"color: #000000\"\u003e\u003cstrong\u003eca. 10:00 Uhr\u003c/strong\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Preis",
+                              "Reisetyp",
+                              "Reiseantritt",
+                              "Abholung"
+                          ],
+                          [
+                              "Ab 40 € p.P.",
+                              "individuell",
+                              "täglich",
+                              "ca. 10:00 Uhr"
+                          ]
+                      ],
+        "title":  "Preis"
+    },
+    {
+        "slug":  "2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben",
+        "tableHtml":  "\u003ctable class=\"pricing-table\"\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e\u003cstrong\u003eTeilnehmer\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003eFahrzeug\u003c/strong\u003e\u003c/th\u003e\n\u003cth\u003e\u003cstrong\u003ePreis pro Person\u003c/strong\u003e\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e2 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivate Limousine\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e350 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e3 – 4 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e335 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e5 – 6 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003e\u003cstrong\u003ePrivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e300 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd data-label=\"Teilnehmeranzahl\"\u003e\u003cstrong\u003e7 – 8 Personen\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Fahrzeug\"\u003eP\u003cstrong\u003erivater Minibus\u003c/strong\u003e\u003c/td\u003e\n\u003ctd data-label=\"Preis \"\u003e\u003cstrong\u003e280 € p.P.\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e",
+        "tableData":  [
+                          [
+                              "Teilnehmer",
+                              "Fahrzeug",
+                              "Preis pro Person"
+                          ],
+                          [
+                              "2 Personen",
+                              "Private Limousine",
+                              "350 € p.P."
+                          ],
+                          [
+                              "3 – 4 Personen",
+                              "Privater Minibus",
+                              "335 € p.P."
+                          ],
+                          [
+                              "5 – 6 Personen",
+                              "Privater Minibus",
+                              "300 € p.P."
+                          ],
+                          [
+                              "7 – 8 Personen",
+                              "Privater Minibus",
+                              "280 € p.P."
+                          ]
+                      ],
+        "title":  "Preis"
+    }
+]

@@ -1,13 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { saveTranslations, invalidateTranslationCache } from '@/lib/data/translations';
 
 const db = getSupabaseAdmin();
 
+async function requireAuthenticatedAdmin() {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  return null;
+}
+
 // GET /api/admin/translations?locale=de&namespace=nav
 // or GET /api/admin/translations?locale=de (all namespaces)
 // or GET /api/admin/translations (all rows)
 export async function GET(req: NextRequest) {
+  const unauthorized = await requireAuthenticatedAdmin();
+  if (unauthorized) return unauthorized;
+
   const { searchParams } = new URL(req.url);
   const locale = searchParams.get('locale');
   const namespace = searchParams.get('namespace');
@@ -26,6 +39,9 @@ export async function GET(req: NextRequest) {
 // PUT /api/admin/translations
 // Body: { rows: [{ locale, namespace, key, value }] }
 export async function PUT(req: NextRequest) {
+  const unauthorized = await requireAuthenticatedAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await req.json();
     const { rows } = body;
@@ -53,6 +69,9 @@ export async function PUT(req: NextRequest) {
 // DELETE /api/admin/translations
 // Body: { locale, namespace, key } — deletes a single key
 export async function DELETE(req: NextRequest) {
+  const unauthorized = await requireAuthenticatedAdmin();
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await req.json();
     const { locale, namespace, key } = body;

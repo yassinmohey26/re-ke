@@ -3,6 +3,7 @@
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
+import { KineticText } from '@/components/ui/kinetic-text';
 import styles from './Hero.module.css';
 
 interface TrustStat {
@@ -38,7 +39,7 @@ export default function Hero({ trustStats = [] }: { trustStats?: TrustStat[] }) 
         <div className={styles.textBlock}>
           <span className={styles.eyebrow}>{t('eyebrow')}</span>
           <h1 className={styles.headline}>
-            {t('title')}
+            <KineticText text={t('title')} as="span" />
           </h1>
           <p className={styles.subtext}>{t('subtitle')}</p>
           <ul className={styles.checklist} aria-label={t('benefits')}>
