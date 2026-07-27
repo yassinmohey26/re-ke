@@ -137,8 +137,8 @@
     "childDiscountTitle": "Réductions enfants",
     "childDiscountAge": "Âge",
     "childDiscountPrice": "Prix",
-    "childAge04": "0–4 ans",
-    "childAge511": "5–10 ans",
+    "childAge04": "0–2 ans",
+    "childAge511": "3–10 ans",
     "childAge12": "11+ ans",
     "childPriceFree": "Gratuit",
     "childPriceDiscount": "Réduit",
@@ -305,9 +305,9 @@
     "adults": "Adultes",
     "adultsAge": "Âge 11+",
     "children": "Enfants",
-    "childrenAge": "Âge 5 – 10",
+    "childrenAge": "Âge 3 – 10",
     "infant": "Bébé",
-    "infantAge": "Âge 0 – 4",
+    "infantAge": "Âge 0 – 2",
     "minGuestsRequired": "Minimum 2 participants requis",
     "extrasLabel": "Suppléments",
     "priceBreakdownAdults": "(Adultes)",
@@ -561,7 +561,7 @@
     },
     "governingLaw": {
       "title": "9. Droit Applicable et Juridiction",
-      "text": "Le droit autrichien s'applique. Le tribunal compétent est Vienne, dans la mesure où le client est un commerçant, une personne morale de droit public ou un fonds spécial de droit public."
+      "text": "Le droit slovaque s'applique. Le tribunal compétent est Bratislava, dans la mesure où le client est un commerçant, une personne morale de droit public ou un fonds spécial de droit public."
     },
     "severability": {
       "title": "10. Clause de Divisibilité",
@@ -571,7 +571,7 @@
       "title": "Contact",
       "text": "Pour toute question concernant ces CGU, veuillez nous contacter :",
       "email": "info@hurghada-reiseplaner.at",
-      "address": "Hurghada Travel Planner, Hurghada, Mer Rouge, Égypte",
+      "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Bratislava – Quartier Rača, 831 52, Slovaquie",
       "link": "Nous contacter"
     },
     "privacy": {

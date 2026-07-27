@@ -137,8 +137,8 @@
     "childDiscountTitle": "خصم الأطفال",
     "childDiscountAge": "العمر",
     "childDiscountPrice": "السعر",
-    "childAge04": "0–4 سنوات",
-    "childAge511": "5–10 سنة",
+    "childAge04": "0–2 سنوات",
+    "childAge511": "3–10 سنة",
     "childAge12": "11+ سنة",
     "childPriceFree": "مجاني",
     "childPriceDiscount": "مخفض",
@@ -305,9 +305,9 @@
     "adults": "البالغون",
     "adultsAge": "العمر 11+",
     "children": "الأطفال",
-    "childrenAge": "العمر 5 – 10",
+    "childrenAge": "العمر 3 – 10",
     "infant": "رضيع",
-    "infantAge": "العمر 0 – 4",
+    "infantAge": "العمر 0 – 2",
     "minGuestsRequired": "الحد الأدنى 2 أشخاص",
     "extrasLabel": "إضافات",
     "priceBreakdownAdults": "(بالغون)",
@@ -558,13 +558,13 @@
     },
     "governingLaw": {
       "title": "9. القانون الحاكم والاختصاص القضائي",
-      "text": "ينطبق القانون النمساوي. مكان الاختصاص القضائي هو فيينا، شريطة أن يكون العميل تاجراً أو شخصاً اعتبارياً في القانون العام."
+      "text": "ينطبق القانون السلوفاكي. مكان الاختصاص القضائي هو براتيسلافا، شريطة أن يكون العميل تاجراً أو شخصاً اعتبارياً في القانون العام."
     },
     "contact": {
       "title": "التواصل",
       "text": "لأي استفسارات بخصوص هذه الشروط، يرجى التواصل معنا:",
       "email": "info@hurghada-reiseplaner.at",
-      "address": "هورгадا للسفر، الغردقة، البحر الأحمر، مصر",
+      "address": "Hurghada Reiseplaner، Pekná cesta 2459/19، براتيسلافا – حي Rača، 831 52، سلوفاكيا",
       "link": "تواصل معنا"
     }
   }

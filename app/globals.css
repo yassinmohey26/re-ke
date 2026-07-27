@@ -326,7 +326,7 @@ p:last-child { margin-bottom: 0; }
   font-size: clamp(26px, 4vw, 34px);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--color-text-1);
+  color: #FAA32E;
   margin-bottom: var(--space-4);
 }
 

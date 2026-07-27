@@ -134,11 +134,11 @@
     "priceTableType": "Reiseart",
     "priceTableDuration": "Dauer",
     "priceTableCollection": "Abholung",
-    "childDiscountTitle": "Kinderrabatt",
+    "childDiscountTitle": "Kinderermäßigung",
     "childDiscountAge": "Alter",
     "childDiscountPrice": "Preis",
-    "childAge04": "0–4 Jahre",
-    "childAge511": "5–10 Jahre",
+    "childAge04": "0–2 Jahre",
+    "childAge511": "3–10 Jahre",
     "childAge12": "11+ Jahre",
     "childPriceFree": "Kostenlos",
     "childPriceDiscount": "Ermäßigt",
@@ -305,9 +305,9 @@
     "adults": "Erwachsene",
     "adultsAge": "Alter 11+",
     "children": "Kinder",
-    "childrenAge": "Alter 5 – 10",
+    "childrenAge": "Alter 3 – 10",
     "infant": "Kleinkind",
-    "infantAge": "Alter 0 – 4",
+    "infantAge": "Alter 0 – 2",
     "minGuestsRequired": "Mindestens 2 Personen erforderlich",
     "extrasLabel": "Extras",
     "priceBreakdownAdults": "(Erwachsene)",
@@ -389,8 +389,8 @@
   },
   "homeDest": {
     "eyebrow": "Wo möchten Sie hin?",
-    "titlePart1": "Entdecken Sie unsere",
-    "titleAccent": "Destinationen",
+    "titlePart1": "Entdecken Sie die besten",
+    "titleAccent": "Reiseziele",
     "viewAll": "Alle anzeigen →"
   },
   "homeBlog": {
@@ -480,8 +480,8 @@
   },
   "homeFeatured": {
     "eyebrow": "Highlights",
-    "titlePart1": "Unsere",
-    "titleAccent": "Top-Touren",
+    "titlePart1": "Die beliebtesten Ausflüge",
+    "titleAccent": "unserer Gäste",
     "viewAll": "Alle Touren ansehen"
   },
   "a11y": {
@@ -569,7 +569,7 @@
     },
     "governingLaw": {
       "title": "9. Anwendbares Recht und Gerichtsstand",
-      "text": "Es gilt österreichisches Recht. Gerichtsstand ist Wien, soweit der Teilnehmer Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist."
+      "text": "Es gilt slowakisches Recht. Gerichtsstand ist Bratislava, soweit der Teilnehmer Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist."
     },
     "severability": {
       "title": "11. Salvatorische Klausel",
@@ -579,7 +579,7 @@
       "title": "Kontakt",
       "text": "Bei Fragen zu diesen AGB kontaktieren Sie uns:",
       "email": "info@hurghada-reiseplaner.at",
-      "address": "Hurghada Reiseplaner, Hurghada, Rotes Meer, Ägypten",
+      "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Bratislava – Stadtteil Rača, 831 52, Slowakei",
       "link": "Kontaktieren Sie uns"
     },
     "privacy": {

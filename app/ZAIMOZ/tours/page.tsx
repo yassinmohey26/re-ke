@@ -80,6 +80,9 @@ export default function AdminToursPage() {
     ganztag: t('catGanztag'),
     halbtag: t('catHalbtag'),
     wassersport: t('catWassersport'),
+    snorkel: t('catWassersport'),
+    kultur: t('catGanztag'),
+    cultural: t('catGanztag'),
     'wuesten-safari': t('catWuesten'),
   };
 
@@ -116,6 +119,9 @@ export default function AdminToursPage() {
           <option value="ganztag">{t('catGanztag')}</option>
           <option value="halbtag">{t('catHalbtag')}</option>
           <option value="wassersport">{t('catWassersport')}</option>
+          <option value="snorkel">Schnorcheltouren</option>
+          <option value="kultur">{t('catGanztag')}</option>
+          <option value="cultural">{t('catGanztag')}</option>
           <option value="wuesten-safari">{t('catWuesten')}</option>
         </select>
       </div>

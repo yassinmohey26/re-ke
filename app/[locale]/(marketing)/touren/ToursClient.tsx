@@ -54,9 +54,9 @@ interface Props {
 const PER_PAGE = 12;
 
 const TYPE_MAP: Record<string, string[]> = {
-  cultural: ['halbtag', 'ganztag'],
-  snorkel: ['wassersport'],
-  safari: ['wuesten-safari'],
+  cultural: ['cultural', 'halbtag', 'ganztag', 'kultur'],
+  snorkel: ['wassersport', 'snorkel'],
+  safari: ['wuesten-safari', 'safari'],
 };
 
 const DURATION_MAP: Record<string, [number, number]> = {

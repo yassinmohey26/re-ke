@@ -44,6 +44,26 @@ export default async function TermsPage({ params }: Props) {
           <p className={styles.lastUpdated}>{t('lastUpdated', { date: new Date().toLocaleDateString(locale) })}</p>
         </header>
 
+        <div className={styles.agencyCard}>
+          <div className={styles.agencyCardAccent} />
+          <div className={styles.agencyCardBody}>
+            <h3 className={styles.agencyCardTitle}>{t('contact.title')}</h3>
+            <div className={styles.agencyCardDetails}>
+              <div className={styles.agencyCardRow}>
+                <svg className={styles.agencyCardIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div>
+                  <p className={styles.agencyCardLabel}>{locale === 'de' ? 'Adresse' : locale === 'fr' ? 'Adresse' : locale === 'ru' ? 'Адрес' : locale === 'ar' ? 'العنوان' : locale === 'hu' ? 'Cím' : 'Address'}</p>
+                  <p className={styles.agencyCardValue}>{t('contact.address')}</p>
+                </div>
+              </div>
+            </div>
+            <p><Link href="/kontakt" className={styles.link}>{t('contact.link')}</Link></p>
+          </div>
+        </div>
+
         <section className={styles.section}>
           <h2>{t('intro.title')}</h2>
           <p>{t('intro.text')}</p>
@@ -123,12 +143,6 @@ export default async function TermsPage({ params }: Props) {
         <section className={styles.section}>
           <h2>{t('governingLaw.title')}</h2>
           <p>{t('governingLaw.text')}</p>
-        </section>
-
-        <section className={styles.section}>
-          <h2>{t('contact.title')}</h2>
-          <p>{t('contact.text')}</p>
-          <p><Link href={`/${locale}/kontakt`} className={styles.link}>{t('contact.link')}</Link></p>
         </section>
       </main>
     </div>

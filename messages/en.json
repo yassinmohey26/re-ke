@@ -137,8 +137,8 @@
     "childDiscountTitle": "Child Discounts",
     "childDiscountAge": "Age",
     "childDiscountPrice": "Price",
-    "childAge04": "0–4 years",
-    "childAge511": "5–10 years",
+    "childAge04": "0–2 years",
+    "childAge511": "3–10 years",
     "childAge12": "11+ years",
     "childPriceFree": "Free",
     "childPriceDiscount": "Discounted",
@@ -305,9 +305,9 @@
     "adults": "Adults",
     "adultsAge": "Age 11+",
     "children": "Children",
-    "childrenAge": "Age 5 – 10",
+    "childrenAge": "Age 3 – 10",
     "infant": "Infant",
-    "infantAge": "Age 0 – 4",
+    "infantAge": "Age 0 – 2",
     "minGuestsRequired": "Minimum 2 guests required",
     "extrasLabel": "Extras",
     "priceBreakdownAdults": "(Adults)",
@@ -569,7 +569,7 @@
     },
     "governingLaw": {
       "title": "9. Governing Law and Jurisdiction",
-      "text": "Austrian law applies. Place of jurisdiction is Vienna, provided the customer is a merchant, legal entity under public law, or public-law special fund."
+      "text": "Slovak law applies. Place of jurisdiction is Bratislava, provided the customer is a merchant, legal entity under public law, or public-law special fund."
     },
     "severability": {
       "title": "10. Severability Clause",
@@ -579,7 +579,7 @@
       "title": "Contact",
       "text": "For questions regarding these T&C, please contact us:",
       "email": "info@hurghada-reiseplaner.at",
-      "address": "Hurghada Travel Planner, Hurghada, Red Sea, Egypt",
+      "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Bratislava – District Rača, 831 52, Slovakia",
       "link": "Contact us"
     },
     "privacy": {

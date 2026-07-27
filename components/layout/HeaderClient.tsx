@@ -24,28 +24,17 @@ export default function HeaderClient() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   const navLinks = [
     { href: '/', label: t('home') },
-    {
-      href: '/touren',
-      label: t('tours'),
-      children: [
-        { href: '/touren', label: t('allTours') },
-        { href: '/touren/ganztagstouren', label: t('fullDay') },
-        { href: '/touren/halbtagstouren', label: t('halfDay') },
-        { href: '/touren/wassersport', label: t('waterSports') },
-        { href: '/touren/wuesten-safari', label: t('desert') },
-      ],
-    },
+    { href: '/touren', label: t('tours') },
     { href: '/airport-transfer', label: t('airportTransfer') },
     { href: '/blog', label: t('blog') },
     { href: '/kontakt', label: t('contact') },
     { href: '/terms', label: t('terms') },
-  ];
+  ] as const;
 
   const isHome = pathname === '/';
 
@@ -59,13 +48,11 @@ export default function HeaderClient() {
 
   useEffect(() => {
     setMobileOpen(false);
-    setOpenDropdown(null);
   }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setOpenDropdown(null);
         setLangOpen(false);
       }
     };
@@ -111,53 +98,19 @@ export default function HeaderClient() {
             {navLinks.map((link) => (
               <li
                 key={link.href}
-                className={[
-                  styles.navItem,
-                  link.children ? styles.hasDropdown : '',
-                  openDropdown === link.href ? styles.dropdownOpen : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                className={styles.navItem}
               >
-                {link.children ? (
-                  <>
-                    <button
-                      className={styles.navLink}
-                      onClick={() =>
-                        setOpenDropdown(
-                          openDropdown === link.href ? null : link.href
-                        )
-                      }
-                      aria-expanded={openDropdown === link.href}
-                    >
-                      {link.label}
-                      <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    </button>
-                    <ul className={styles.dropdown} role="menu">
-                      {link.children.map((child) => (
-                        <li key={child.href} role="menuitem">
-                          <Link href={child.href} className={styles.dropdownLink}>
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className={[
-                      styles.navLink,
-                      pathname === link.href ? styles.active : '',
-                    ]
-                      .filter(Boolean)
-                      .join(' ')}
-                  >
-                    {link.label}
-                  </Link>
-                )}
+                <Link
+                  href={link.href}
+                  className={[
+                    styles.navLink,
+                    pathname === link.href ? styles.active : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -221,44 +174,9 @@ export default function HeaderClient() {
           <ul>
             {navLinks.map((link) => (
               <li key={link.href} className={styles.mobileNavItem}>
-                {link.children ? (
-                  <>
-                    <button
-                      className={styles.mobileNavLink}
-                      onClick={() =>
-                        setOpenDropdown(
-                          openDropdown === link.href ? null : link.href
-                        )
-                      }
-                    >
-                      {link.label}
-                      <svg
-                        width="12" height="7" viewBox="0 0 12 7" fill="none"
-                        style={{
-                          transform: openDropdown === link.href ? 'rotate(180deg)' : 'none',
-                          transition: 'transform 0.2s',
-                        }}
-                      >
-                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    </button>
-                    {openDropdown === link.href && (
-                      <ul className={styles.mobileDropdown}>
-                        {link.children.map((child) => (
-                          <li key={child.href}>
-                            <Link href={child.href} className={styles.mobileDropdownLink}>
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                ) : (
-                  <Link href={link.href} className={styles.mobileNavLink}>
-                    {link.label}
-                  </Link>
-                )}
+                <Link href={link.href} className={styles.mobileNavLink}>
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>

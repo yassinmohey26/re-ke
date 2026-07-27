@@ -1,9 +1,5 @@
 .section {}
 
-.section :global(.section-title) {
-  color: #FAA32E;
-}
-
 .inner {
   display: grid;
   grid-template-columns: 1fr 1.6fr;

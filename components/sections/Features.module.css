@@ -51,7 +51,7 @@
   width: 56px;
   height: 56px;
   margin-bottom: var(--space-5);
-  color: var(--color-accent);
+  color: #FAA32E;
   transition: transform var(--transition-base);
 }
 
@@ -68,7 +68,7 @@
   font-family: var(--font-heading);
   font-size: 19px;
   font-weight: 600;
-  color: var(--color-accent);
+  color: #FAA32E;
   margin-bottom: var(--space-3);
   line-height: 1.3;
 }
