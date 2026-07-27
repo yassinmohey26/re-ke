@@ -75,7 +75,7 @@ export default async function TourDetailPage({ params }: Props) {
   const [relatedToursRaw, catLabel, extras] = await Promise.all([
     getToursByCategory(tour.category, locale).then((list) => list.filter((t) => t.slug !== tour.slug).slice(0, 3)),
     getLocalizedCategoryLabel(tour.category, locale),
-    getTourExtras(tour.id),
+    getTourExtras(tour.id, locale),
   ]);
 
   const relatedTours = relatedToursRaw;

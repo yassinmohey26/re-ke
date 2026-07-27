@@ -73,7 +73,7 @@ export function TourBookingProvider({
     const pricePerPerson = getPriceForGuests(pricingTiers, price, guestsForPricing);
     const extrasTotal = extras
       .filter((e) => selected.includes(e.id))
-      .reduce((sum, e) => sum + e.price, 0);
+      .reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
     // Adults: full price, Children: half price, Infants: free
     const total = pricePerPerson != null
       ? pricePerPerson * adults + (pricePerPerson / 2) * childrenCount + extrasTotal

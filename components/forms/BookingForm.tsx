@@ -146,7 +146,7 @@ export default function BookingForm({
   }
 
   const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
-  const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0);
+  const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
 
   // Price calculation: adults full, children half, infants free
   const totalPrice = dynamicPricePerPerson != null
@@ -343,7 +343,7 @@ export default function BookingForm({
                 checked={selectedExtraIds.includes(extra.id)}
                 onChange={() => toggleExtra(extra.id)}
               />
-              <span>{extra.name} (+{extra.price.toFixed(2)} EUR)</span>
+              <span>{extra.name} (+{extra.price.toFixed(2)} EUR / {t('perPerson')})</span>
             </label>
           ))}
         </div>

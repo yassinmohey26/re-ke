@@ -31,7 +31,7 @@ export default function TourExtrasSection() {
                 <span className={styles.extraDesc}>{extra.description}</span>
               )}
             </div>
-            <span className={styles.extraPrice}>+{extra.price.toFixed(0)} EUR</span>
+            <span className={styles.extraPrice}>+{extra.price.toFixed(0)} EUR / {t('perPerson')}</span>
           </label>
         ))}
       </div>

@@ -374,7 +374,7 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
                           <circle cx="12" cy="12" r="10" />
                           <polyline points="12 6 12 12 16 14" />
                         </svg>
-                        {tour.durationHours || tour.duration} {t.hours}
+                        {tour.duration || `${tour.durationHours} ${t.hours}`}
                       </span>
                       <span className={styles.metaItem}>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

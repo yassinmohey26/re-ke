@@ -63,6 +63,12 @@ function parseArr(val: unknown, fallback: string[]): string[] {
 
 function parseItin(val: unknown, fallback: { title: string; content: string }[]): { title: string; content: string }[] {
   if (Array.isArray(val)) return val as { title: string; content: string }[];
+  if (typeof val === 'string') {
+    try {
+      const parsed = JSON.parse(val);
+      if (Array.isArray(parsed)) return parsed as { title: string; content: string }[];
+    } catch {}
+  }
   return fallback;
 }
 
@@ -176,7 +182,7 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     highlights: unique(parseArr(tr?.highlights, row.highlights ?? [])),
     included: unique(parseArr(tr?.included, row.included ?? [])),
     notIncluded: unique(parseArr(tr?.not_included, row.not_included ?? [])),
-    itinerary: parseItin(tr?.itinerary, row.itinerary ?? []),
+    itinerary: parseItin(tr?.itinerary ?? tr?.content, row.itinerary ?? []),
     faqs: parseFaqs(tr?.faqs, row.faqs ?? []),
     image: row.image ?? '',
     meetingPoint: parseStr(tr?.meeting_point, row.meeting_point ?? ''),
@@ -296,7 +302,7 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   return mergeTranslation(row, tr);
 }
 
-export async function getTourExtras(tourId: string): Promise<TourExtra[]> {
+export async function getTourExtras(tourId: string, locale: string = 'de'): Promise<TourExtra[]> {
   const { data } = await db
     .from('tour_extras')
     .select('*')
@@ -304,12 +310,28 @@ export async function getTourExtras(tourId: string): Promise<TourExtra[]> {
     .eq('active', true)
     .order('sort_order', { ascending: true });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (data ?? []).map((row: any) => ({
-    id: row.id,
-    name: row.name,
-    description: row.description ?? '',
-    price: Number(row.price),
-  }));
+  return (data ?? []).map((row: any) => {
+    let name = row.name;
+    let description = row.description ?? '';
+    try {
+      const translations = JSON.parse(row.description);
+      if (translations[locale]) {
+        name = translations[locale].name || name;
+        description = translations[locale].description || '';
+      } else if (translations['en']) {
+        name = translations['en'].name || name;
+        description = translations['en'].description || '';
+      }
+    } catch {
+      // description is plain text (old format)
+    }
+    return {
+      id: row.id,
+      name,
+      description,
+      price: Number(row.price),
+    };
+  });
 }
 
 export async function getToursByCategory(category: Tour['category'], locale: string = 'de'): Promise<Tour[]> {

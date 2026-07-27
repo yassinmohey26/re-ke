@@ -8,10 +8,11 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
+  const locale = request.nextUrl.searchParams.get('locale') || 'de';
   const tour = await getTourBySlug(slug);
   if (!tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
-  const extras = await getTourExtras(tour.id);
+  const extras = await getTourExtras(tour.id, locale);
 
   return NextResponse.json({
     id: tour.id,

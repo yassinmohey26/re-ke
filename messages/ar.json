@@ -138,8 +138,8 @@
     "childDiscountAge": "العمر",
     "childDiscountPrice": "السعر",
     "childAge04": "0–4 سنوات",
-    "childAge511": "5–11 سنة",
-    "childAge12": "12+ سنة",
+    "childAge511": "5–10 سنة",
+    "childAge12": "11+ سنة",
     "childPriceFree": "مجاني",
     "childPriceDiscount": "مخفض",
     "childPriceFull": "السعر الكامل",
@@ -305,9 +305,9 @@
     "adults": "البالغون",
     "adultsAge": "العمر 11+",
     "children": "الأطفال",
-    "childrenAge": "العمر 3 – 10",
+    "childrenAge": "العمر 5 – 10",
     "infant": "رضيع",
-    "infantAge": "العمر 0 – 2",
+    "infantAge": "العمر 0 – 4",
     "minGuestsRequired": "الحد الأدنى 2 أشخاص",
     "extrasLabel": "إضافات",
     "priceBreakdownAdults": "(بالغون)",
@@ -324,7 +324,8 @@
     "payFullDesc": "دفع المبلغ الإجمالي الآن بالبطاقة",
     "payDeposit": "دفع 30% مقدم",
     "payDepositDesc": "ادفع 30% الآن، والباقي في الموقع",
-    "payOnSite": "في الموقع"
+    "payOnSite": "في الموقع",
+    "perPerson": "للشخص"
   },
   "datenschutz": {
     "pageTitle": "سياسة الخصوصية",

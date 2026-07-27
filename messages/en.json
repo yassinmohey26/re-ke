@@ -138,8 +138,8 @@
     "childDiscountAge": "Age",
     "childDiscountPrice": "Price",
     "childAge04": "0–4 years",
-    "childAge511": "5–11 years",
-    "childAge12": "12+ years",
+    "childAge511": "5–10 years",
+    "childAge12": "11+ years",
     "childPriceFree": "Free",
     "childPriceDiscount": "Discounted",
     "childPriceFull": "Full Price",
@@ -305,9 +305,9 @@
     "adults": "Adults",
     "adultsAge": "Age 11+",
     "children": "Children",
-    "childrenAge": "Age 3 – 10",
+    "childrenAge": "Age 5 – 10",
     "infant": "Infant",
-    "infantAge": "Age 0 – 2",
+    "infantAge": "Age 0 – 4",
     "minGuestsRequired": "Minimum 2 guests required",
     "extrasLabel": "Extras",
     "priceBreakdownAdults": "(Adults)",
@@ -326,7 +326,8 @@
     "payDepositDesc": "Pay 30% now, rest on site",
     "payOnSite": "on site",
     "subtotalLabel": "Deposit (30%)",
-    "remainingLabel": "Remaining"
+    "remainingLabel": "Remaining",
+    "perPerson": "per person"
   },
   "datenschutz": {
     "pageTitle": "Privacy Policy",

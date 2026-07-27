@@ -138,8 +138,8 @@
     "childDiscountAge": "Возраст",
     "childDiscountPrice": "Цена",
     "childAge04": "0–4 года",
-    "childAge511": "5–11 лет",
-    "childAge12": "12+ лет",
+    "childAge511": "5–10 лет",
+    "childAge12": "11+ лет",
     "childPriceFree": "Бесплатно",
     "childPriceDiscount": "Со скидкой",
     "childPriceFull": "Полная цена",
@@ -305,9 +305,9 @@
     "adults": "Взрослые",
     "adultsAge": "Возраст 11+",
     "children": "Дети",
-    "childrenAge": "Возраст 3 – 10",
+    "childrenAge": "Возраст 5 – 10",
     "infant": "Младенец",
-    "infantAge": "Возраст 0 – 2",
+    "infantAge": "Возраст 0 – 4",
     "minGuestsRequired": "Минимум 2 участника",
     "extrasLabel": "Дополнительно",
     "priceBreakdownAdults": "(Взрослые)",
@@ -324,7 +324,8 @@
     "payFullDesc": "Оплатить полную сумму сейчас картой",
     "payDeposit": "Оплатить 30% предоплату",
     "payDepositDesc": "Заплатить 30% сейчас, остальное на месте",
-    "payOnSite": "на месте"
+    "payOnSite": "на месте",
+    "perPerson": "на человека"
   },
   "datenschutz": {
     "pageTitle": "Политика конфиденциальности",

@@ -172,7 +172,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
                 className={css.bookingExtraCheck}
               />
               <span className={css.bookingExtraName}>{extra.name}</span>
-              <span className={css.bookingExtraPrice}>+{extra.price.toFixed(0)} EUR</span>
+              <span className={css.bookingExtraPrice}>+{extra.price.toFixed(0)} EUR / {t('perPerson')}</span>
             </label>
           ))}
         </div>

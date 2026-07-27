@@ -62,7 +62,8 @@ function BookingContent() {
       setLoadingTour(false);
       return;
     }
-    fetch(`/api/tours/${tourSlug}`)
+    const locale = window.location.pathname.split('/')[1] || 'de';
+    fetch(`/api/tours/${tourSlug}?locale=${locale}`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => setTourInfo(data))
       .finally(() => setLoadingTour(false));
