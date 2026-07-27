@@ -63,7 +63,7 @@
 .galleryAllPhotos {
   position: absolute;
   bottom: var(--space-4);
-  right: var(--space-4);
+  inset-inline-end: var(--space-4);
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -108,7 +108,7 @@
 .lightboxClose {
   position: absolute;
   top: var(--space-4);
-  right: var(--space-4);
+  inset-inline-end: var(--space-4);
   background: none;
   border: none;
   color: #fff;
@@ -140,12 +140,12 @@
   transition: background var(--transition-fast);
 }
 .lightboxPrev:hover, .lightboxNext:hover { background: rgba(255,255,255,0.3); }
-.lightboxPrev { left: var(--space-4); }
-.lightboxNext { right: var(--space-4); }
+.lightboxPrev { inset-inline-start: var(--space-4); }
+.lightboxNext { inset-inline-end: var(--space-4); }
 .lightboxCounter {
   position: absolute;
   bottom: var(--space-4);
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   color: #fff;
   font-size: 14px;
@@ -232,10 +232,10 @@
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  border-right: 1px solid rgba(255,255,255,0.15);
+  border-inline-end: 1px solid rgba(255,255,255,0.15);
 }
 .description table th:last-child {
-  border-right: none;
+  border-inline-end: none;
 }
 .description table td {
   padding: var(--space-3) var(--space-4);
@@ -250,6 +250,67 @@
 }
 .description table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* --- Interactive Pricing Table --- */
+.pricingTableWrapper {
+  margin-bottom: var(--space-6);
+}
+.interactivePricingTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  font-size: 14px;
+}
+.interactivePricingTable th {
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.interactivePricingTable td {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-4);
+  color: var(--color-text-2);
+}
+.pricingRow {
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+}
+.pricingRow:nth-child(even) {
+  background: var(--color-bg-light);
+}
+.pricingRow:hover {
+  background: var(--color-accent-light);
+}
+.pricingRowActive {
+  background: var(--color-accent-light) !important;
+  box-shadow: inset 4px 0 0 var(--color-accent);
+  font-weight: 600;
+}
+.pricingRowActive .pricingCellPrice {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 16px;
+}
+.pricingCellGuests {
+  font-weight: 500;
+}
+.pricingCellPrice {
+  white-space: nowrap;
+}
+.pricingActiveLabel {
+  margin-inline-start: var(--space-3);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 /* --- Price Table --- */
@@ -548,6 +609,30 @@
 }
 
 /* --- Guest Picker --- */
+.bookingGuestRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-4);
+}
+.bookingGuestRow:last-child {
+  border-bottom: none;
+}
+.bookingGuestInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bookingGuestLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-1);
+}
+.bookingGuestSubtitle {
+  font-size: 12px;
+  color: var(--color-text-5);
+}
 .bookingGuestPicker {
   display: flex;
   align-items: center;

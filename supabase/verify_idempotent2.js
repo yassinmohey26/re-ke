@@ -1,0 +1,11 @@
+const fs=require('fs');
+const sql=fs.readFileSync('migrations/003v2_fix_ar_content_translations_idempotent.sql','utf8');
+console.log('Has BEGIN:', sql.includes('BEGIN;'));
+console.log('Has COMMIT:', sql.includes('COMMIT;'));
+console.log('Has DELETE:', sql.includes("DELETE FROM content_translations WHERE locale = 'ar'"));
+const insertLines=sql.split('\n').filter(l=>l.trim().startsWith('INSERT INTO'));
+console.log('INSERT statements:', insertLines.length);
+const conflictCount=sql.split('ON CONFLICT').length-1;
+console.log('ON CONFLICT clauses:', conflictCount);
+console.log('DO UPDATE SET clauses:', sql.split('DO UPDATE SET').length-1);
+console.log('Unique index creation:', sql.includes('CREATE UNIQUE INDEX IF NOT EXISTS'));

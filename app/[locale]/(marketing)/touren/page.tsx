@@ -7,9 +7,39 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const tMeta = await getTranslations('metadata');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+  const title = tMeta('toursTitle');
+  const description = tMeta('toursDescription');
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: tMeta('toursTitle'),
-    description: tMeta('toursDescription'),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/touren`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/og-default.jpg`],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/touren`,
+      languages: {
+        'de': `${baseUrl}/de/touren`,
+        'en': `${baseUrl}/en/touren`,
+        'ru': `${baseUrl}/ru/touren`,
+        'ar': `${baseUrl}/ar/touren`,
+        'fr': `${baseUrl}/fr/touren`,
+        'hu': `${baseUrl}/hu/touren`,
+      },
+    },
   };
 }
 
@@ -18,7 +48,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
 
   const t = await getTranslations('tours');
-  const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations()]);
+  const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale)]);
   const destinationOptions = destinations.map(d => ({ slug: d.slug, name: d.name }));
 
   const translations = {

@@ -1,7 +1,7 @@
 .button {
   position: fixed;
   bottom: 28px;
-  right: 28px;
+  inset-inline-end: 28px;
   z-index: 999;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
 
 .tooltip {
   position: absolute;
-  right: calc(100% + 12px);
+  inset-inline-end: calc(100% + 12px);
   top: 50%;
   transform: translateY(-50%);
   background: var(--color-text-1);
@@ -42,11 +42,11 @@
 .tooltip::after {
   content: '';
   position: absolute;
-  left: 100%;
+  inset-inline-start: 100%;
   top: 50%;
   transform: translateY(-50%);
   border: 6px solid transparent;
-  border-left-color: var(--color-text-1);
+  border-inline-start-color: var(--color-text-1);
 }
 
 .button:hover .tooltip {

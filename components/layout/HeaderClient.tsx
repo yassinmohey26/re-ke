@@ -10,6 +10,9 @@ const LOCALES = [
   { code: 'de', label: 'DE' },
   { code: 'en', label: 'EN' },
   { code: 'ru', label: 'RU' },
+  { code: 'ar', label: 'AR' },
+  { code: 'fr', label: 'FR' },
+  { code: 'hu', label: 'HU' },
 ] as const;
 
 export default function HeaderClient() {
@@ -41,6 +44,7 @@ export default function HeaderClient() {
     { href: '/airport-transfer', label: t('airportTransfer') },
     { href: '/blog', label: t('blog') },
     { href: '/kontakt', label: t('contact') },
+    { href: '/terms', label: t('terms') },
   ];
 
   const isHome = pathname === '/';
@@ -71,7 +75,7 @@ export default function HeaderClient() {
 
   function switchLocale(newLocale: string) {
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
-    const pathWithoutLocale = pathname.replace(/^\/(de|en|ru)/, '') || '/';
+    const pathWithoutLocale = pathname.replace(/^\/(de|en|ru|ar|fr|hu)/, '') || '/';
     window.location.href = `/${newLocale}${pathWithoutLocale}`;
     setLangOpen(false);
   }

@@ -9,7 +9,7 @@ import { useAdminLocale } from '../../../AdminLanguageContext';
 export default function EditTourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
-  const { t } = useAdminLocale();
+  const { t, locale } = useAdminLocale();
   const [tour, setTour] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -23,10 +23,11 @@ export default function EditTourPage({ params }: { params: Promise<{ id: string 
 
   async function handleSave(data: any) {
     setSaving(true);
+    const payload = { ...data, locale };
     const res = await fetch(`/api/admin/tours/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
     if (res.ok) {
       router.push('/ZAIMOZ/tours');

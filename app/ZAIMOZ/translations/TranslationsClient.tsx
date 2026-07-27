@@ -6,6 +6,9 @@ const LOCALES = [
   { code: 'de', label: '🇩🇪 Deutsch', flag: '🇩🇪' },
   { code: 'en', label: '🇬🇧 English', flag: '🇬🇧' },
   { code: 'ru', label: '🇷🇺 Русский', flag: '🇷🇺' },
+  { code: 'ar', label: '🇪🇬 العربية', flag: '🇪🇬' },
+  { code: 'fr', label: '🇫🇷 Français', flag: '🇫🇷' },
+  { code: 'hu', label: '🇭🇺 Magyar', flag: '🇭🇺' },
 ] as const;
 
 const NAMESPACES = [

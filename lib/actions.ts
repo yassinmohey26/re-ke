@@ -91,6 +91,7 @@ export async function submitBooking(formData: FormData) {
       guests: Number(formData.get('guests')),
       message: formData.get('message'),
       totalPrice: totalPriceRaw ? Number(totalPriceRaw) : undefined,
+      paymentOption: formData.get('paymentOption') || 'full',
       extrasJson: extrasJsonRaw ? String(extrasJsonRaw) : undefined,
     };
 
@@ -125,6 +126,7 @@ export async function submitBooking(formData: FormData) {
         guests: data.guests,
         status: 'PENDING',
         total_price: data.totalPrice ?? null,
+        payment_option: data.paymentOption || 'full',
         extras,
       })
       .select('id')
@@ -132,58 +134,110 @@ export async function submitBooking(formData: FormData) {
 
     if (error) throw error;
 
-    try {
-      if (process.env.RESEND_API_KEY) {
-        const resend = new Resend(process.env.RESEND_API_KEY);
+    if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
 
-        // Customer confirmation email
-        await resend.emails.send({
-          from: process.env.EMAIL_FROM!,
-          to: data.email,
-          subject: `Buchungsanfrage erhalten — ${data.tourName}`,
-          html: `
-            <h2>Vielen Dank für Ihre Buchungsanfrage!</h2>
-            <p>Liebe/r ${data.firstName} ${data.lastName},</p>
-            <p>Wir haben Ihre Anfrage für <strong>${data.tourName}</strong> erhalten
-               und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
-            <hr/>
-            <h3>Ihre Buchungsdetails:</h3>
-            <p><strong>Tour:</strong> ${data.tourName}</p>
-            <p><strong>Datum:</strong> ${new Date(data.date).toLocaleDateString('de-AT')}</p>
-            <p><strong>Personen:</strong> ${data.guests}</p>
-            <p><strong>Buchungs-ID:</strong> #${booking.id}</p>
-            <hr/>
-            <p>Mit freundlichen Grüßen,<br/>Ihr Hurghada Reiseplaner Team</p>
-          `,
-        });
+      const dateStr = new Date(data.date).toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+      const extrasHtml = extras.length
+        ? `<tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Extras</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#374151">${extras.map(e => e.name).join(', ')}</td></tr>`
+        : '';
+      const priceHtml = data.totalPrice
+        ? `<tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Total Price</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:700;font-size:18px">€${data.totalPrice}</td></tr>`
+        : '';
 
-        // Admin notification email
-        const adminEmail = process.env.EMAIL_TO || process.env.EMAIL_FROM;
-        if (adminEmail) {
+      const adminHtml = `
+        <h2>Neue Buchungsanfrage</h2>
+        <table style="border-collapse:collapse;width:100%;max-width:600px">
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Tour</td><td style="padding:8px;border:1px solid #ddd">${data.tourName}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Kunde</td><td style="padding:8px;border:1px solid #ddd">${data.firstName} ${data.lastName}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">E-Mail</td><td style="padding:8px;border:1px solid #ddd"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Telefon</td><td style="padding:8px;border:1px solid #ddd">${data.phone || '—'}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Datum</td><td style="padding:8px;border:1px solid #ddd">${dateStr}</td></tr>
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Personen</td><td style="padding:8px;border:1px solid #ddd">${data.guests}</td></tr>
+          ${extras.length ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Extras</td><td style="padding:8px;border:1px solid #ddd">${extras.map(e => e.name).join(', ')}</td></tr>` : ''}
+          ${data.totalPrice ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Gesamtpreis</td><td style="padding:8px;border:1px solid #ddd">€${data.totalPrice}</td></tr>` : ''}
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Buchungs-ID</td><td style="padding:8px;border:1px solid #ddd">#${booking.id}</td></tr>
+        </table>
+        <p style="margin-top:16px"><a href="${siteUrl}/ZAIMOZ/bookings" style="background:#0057b8;color:#fff;padding:10px 20px;text-decoration:none;border-radius:6px">Im Admin anzeigen</a></p>
+      `;
+
+      const customerHtml = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"/></head>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:'Helvetica Neue',Arial,sans-serif">
+  <div style="max-width:600px;margin:0 auto;background:#ffffff">
+    <div style="background:linear-gradient(135deg,#0057b8 0%,#003d82 100%);padding:32px 24px;text-align:center">
+      <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700">Hurghada Reiseplaner</h1>
+      <p style="margin:8px 0 0;color:rgba(255,255,255,0.85);font-size:14px">Your Egypt Adventure Starts Here</p>
+    </div>
+    <div style="padding:32px 24px">
+      <p style="margin:0 0 16px;color:#374151;font-size:15px">Liebe/r ${data.firstName} ${data.lastName},</p>
+      <h2 style="margin:0 0 8px;color:#111827;font-size:20px">Vielen Dank für Ihre Buchung!</h2>
+      <p style="margin:0 0 24px;color:#6b7280;font-size:14px">Wir haben Ihre Anfrage für <strong>${data.tourName}</strong> erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+      <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 24px"/>
+      <p style="margin:0 0 16px;color:#374151;font-size:15px">Dear ${data.firstName} ${data.lastName},</p>
+      <h2 style="margin:0 0 8px;color:#111827;font-size:20px">Thank you for your booking!</h2>
+      <p style="margin:0 0 24px;color:#6b7280;font-size:14px">We have received your request for <strong>${data.tourName}</strong> and will get back to you within 24 hours.</p>
+      <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 24px"/>
+      <p style="margin:0 0 16px;color:#374151;font-size:15px">Уважаемый(ая) ${data.firstName} ${data.lastName},</p>
+      <h2 style="margin:0 0 8px;color:#111827;font-size:20px">Спасибо за ваше бронирование!</h2>
+      <p style="margin:0 0 24px;color:#6b7280;font-size:14px">Мы получили ваш запрос на <strong>${data.tourName}</strong> и свяжемся с вами в течение 24 часов.</p>
+      <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 24px"/>
+      <h3 style="margin:0 0 12px;color:#111827;font-size:16px">Booking Details / Buchungsdaten / Данные бронирования</h3>
+      <table style="border-collapse:collapse;width:100%;margin-bottom:24px;border:1px solid #e5e7eb">
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151;width:40%">Tour</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827">${data.tourName}</td></tr>
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Name</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827">${data.firstName} ${data.lastName}</td></tr>
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">E-Mail</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827">${data.email}</td></tr>
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Phone / Telefon / Телефон</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827">${data.phone || '—'}</td></tr>
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Date / Datum / Дата</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827;font-weight:600">${dateStr}</td></tr>
+        <tr><td style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Guests / Personen / Гости</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#111827;font-weight:600">${data.guests}</td></tr>
+        ${extrasHtml}
+        ${priceHtml}
+        <tr><td style="padding:12px 16px;background:#f9fafb;font-weight:600;color:#374151">Booking ID / Buchungs-ID / ID бронирования</td><td style="padding:12px 16px;color:#0057b8;font-weight:700">#${booking.id}</td></tr>
+      </table>
+      <div style="text-align:center;margin-bottom:24px">
+        <a href="${siteUrl}" style="display:inline-block;background:#0057b8;color:#ffffff;padding:14px 32px;text-decoration:none;border-radius:8px;font-weight:600;font-size:15px">Visit Hurghada Reiseplaner</a>
+      </div>
+      <div style="background:#f9fafb;padding:20px 24px;border-radius:8px;text-align:center">
+        <p style="margin:0 0 4px;color:#6b7280;font-size:13px">Hurghada Reiseplaner — Your trusted partner for Egypt travel</p>
+        <p style="margin:0 0 4px;color:#9ca3af;font-size:12px">+43 681 81140099 | info@hurghada-reiseplaner.at</p>
+        <p style="margin:0;color:#9ca3af;font-size:12px"><a href="${siteUrl}" style="color:#0057b8;text-decoration:none">hurghada-reiseplaner.at</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      // Admin notification email (sends to your own email — always works with onboarding@resend.dev)
+      const adminEmail = process.env.EMAIL_TO || process.env.EMAIL_FROM;
+      if (adminEmail) {
+        try {
           await resend.emails.send({
             from: process.env.EMAIL_FROM!,
             to: adminEmail,
-            subject: `🔔 Neue Buchungsanfrage — ${data.tourName}`,
-            html: `
-              <h2>Neue Buchungsanfrage</h2>
-              <table style="border-collapse:collapse;width:100%;max-width:600px">
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Tour</td><td style="padding:8px;border:1px solid #ddd">${data.tourName}</td></tr>
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Kunde</td><td style="padding:8px;border:1px solid #ddd">${data.firstName} ${data.lastName}</td></tr>
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">E-Mail</td><td style="padding:8px;border:1px solid #ddd"><a href="mailto:${data.email}">${data.email}</a></td></tr>
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Telefon</td><td style="padding:8px;border:1px solid #ddd">${data.phone || '—'}</td></tr>
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Datum</td><td style="padding:8px;border:1px solid #ddd">${new Date(data.date).toLocaleDateString('de-AT')}</td></tr>
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Personen</td><td style="padding:8px;border:1px solid #ddd">${data.guests}</td></tr>
-                ${extras.length ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Extras</td><td style="padding:8px;border:1px solid #ddd">${extras.map(e => e.name).join(', ')}</td></tr>` : ''}
-                ${data.totalPrice ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Gesamtpreis</td><td style="padding:8px;border:1px solid #ddd">€${data.totalPrice}</td></tr>` : ''}
-                <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Buchungs-ID</td><td style="padding:8px;border:1px solid #ddd">#${booking.id}</td></tr>
-              </table>
-              <p style="margin-top:16px"><a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at'}/ZAIMOZ/bookings" style="background:#0057b8;color:#fff;padding:10px 20px;text-decoration:none;border-radius:6px">Im Admin anzeigen</a></p>
-            `,
+            subject: `Neue Buchungsanfrage — ${data.tourName}`,
+            html: adminHtml,
           });
+          console.log('[BOOKING] Admin email sent to:', adminEmail);
+        } catch (e) {
+          console.error('[BOOKING] Admin email failed:', e);
         }
       }
-    } catch (e) {
-      console.error('Booking email error (non-fatal):', e);
+
+      // Customer confirmation email (requires domain verification for external recipients)
+      try {
+        await resend.emails.send({
+          from: process.env.EMAIL_FROM!,
+          to: data.email,
+          subject: `Booking Confirmation — ${data.tourName}`,
+          html: customerHtml,
+        });
+        console.log('[BOOKING] Customer email sent to:', data.email);
+      } catch (e) {
+        console.error('[BOOKING] Customer email failed (domain verification needed for external recipients):', e);
+      }
     }
 
     revalidatePath('/ZAIMOZ/bookings');

@@ -12,9 +12,21 @@ export async function GET(
   }
   const { id } = await params;
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase.from('tours').select('*').eq('id', id).single();
-  if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  return NextResponse.json(data);
+  const { data: tour, error } = await supabase.from('tours').select('*').eq('id', id).single();
+  if (error || !tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+
+  const { data: translations } = await supabase
+    .from('content_translations')
+    .select('*')
+    .eq('table_name', 'tours')
+    .eq('row_id', id);
+
+  const trMap: Record<string, any> = {};
+  for (const tr of translations ?? []) {
+    trMap[tr.locale] = tr;
+  }
+
+  return NextResponse.json({ ...tour, translations: trMap });
 }
 
 export async function PUT(
@@ -29,28 +41,18 @@ export async function PUT(
   try {
     const body = await request.json();
     const supabase = getSupabaseAdmin();
+    const locale = body.locale || 'de';
 
-    const row: Record<string, unknown> = {
+    const tourRow: Record<string, unknown> = {
       slug: body.slug,
-      name: body.name,
-      short_description: body.shortDescription || '',
-      description: body.description || '',
       price: body.price ?? null,
-      duration: body.duration || '',
       duration_hours: body.durationHours || 0,
       max_guests: body.maxGuests || 8,
       difficulty: body.difficulty || 'leicht',
       min_age: body.minAge || 4,
       destination: body.destination || '',
       category: body.category || 'halbtag',
-      category_label: body.categoryLabel || '',
-      highlights: body.highlights || [],
-      included: body.included || [],
-      not_included: body.notIncluded || [],
-      itinerary: body.itinerary || [],
-      faqs: body.faqs || [],
       image: body.image || '',
-      meeting_point: body.meetingPoint || '',
       featured: body.featured || false,
       active: body.active !== false,
       updated_at: new Date().toISOString(),
@@ -62,25 +64,50 @@ export async function PUT(
         .select('slug')
         .eq('slug', body.destinationSlug)
         .single();
-      if (dest) row.destination_slug = dest.slug;
-      else row.destination_slug = null;
+      if (dest) tourRow.destination_slug = dest.slug;
+      else tourRow.destination_slug = null;
     } else {
-      row.destination_slug = null;
+      tourRow.destination_slug = null;
     }
 
-    const { data, error } = await supabase
+    const { data: tour, error: tourError } = await supabase
       .from('tours')
-      .update(row)
+      .update(tourRow)
       .eq('id', id)
       .select()
       .single();
 
-    if (error) {
-      console.error('Tour update error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+    if (tourError) {
+      console.error('Tour update error:', tourError);
+      return NextResponse.json({ error: tourError.message }, { status: 500 });
     }
 
-    return NextResponse.json(data);
+    const trRow = {
+      table_name: 'tours',
+      row_id: id,
+      locale,
+      name: body.name || '',
+      short_description: body.shortDescription || '',
+      description: body.description || '',
+      category_label: body.categoryLabel || '',
+      highlights: body.highlights || [],
+      included: body.included || [],
+      not_included: body.notIncluded || [],
+      itinerary: body.itinerary || [],
+      faqs: body.faqs || [],
+      meeting_point: body.meetingPoint || '',
+      duration: body.duration || '',
+    };
+
+    const { error: trError } = await supabase
+      .from('content_translations')
+      .upsert(trRow, { onConflict: 'table_name,row_id,locale' });
+
+    if (trError) {
+      console.error('Tour translation upsert error:', trError);
+    }
+
+    return NextResponse.json(tour);
   } catch (e) {
     console.error('Tour update catch:', e);
     return NextResponse.json({ error: 'Failed to update tour' }, { status: 500 });
@@ -97,6 +124,8 @@ export async function DELETE(
   }
   const { id } = await params;
   const supabase = getSupabaseAdmin();
+
+  await supabase.from('content_translations').delete().eq('table_name', 'tours').eq('row_id', id);
   const { error } = await supabase.from('tours').delete().eq('id', id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ success: true });

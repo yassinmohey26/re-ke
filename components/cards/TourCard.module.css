@@ -33,7 +33,7 @@
 .categoryBadge {
   position: absolute;
   top: var(--space-3);
-  left: var(--space-3);
+  inset-inline-start: var(--space-3);
   background: var(--color-accent);
   color: #fff;
   font-size: 12px;

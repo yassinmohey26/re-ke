@@ -1,0 +1,15 @@
+const fs=require('fs');
+const sql=fs.readFileSync('migrations/003v2_fix_ar_content_translations_idempotent.sql','utf8');
+console.log('Has BEGIN:', sql.includes('BEGIN;'));
+console.log('Has COMMIT:', sql.includes('COMMIT;'));
+console.log('Has DELETE:', sql.includes("DELETE FROM content_translations WHERE locale = 'ar'"));
+const insertLines=sql.split('\n').filter(l=>l.trim().startsWith('INSERT INTO'));
+console.log('INSERT statements:', insertLines.length);
+console.log('First INSERT has ON CONFLICT:', insertLines[0].includes('ON CONFLICT'));
+console.log('Sample ON CONFLICT clause:');
+const firstInsert=insertLines[0];
+const conflictIdx=firstInsert.indexOf('ON CONFLICT');
+if(conflictIdx>=0) console.log(firstInsert.substring(conflictIdx, conflictIdx+120));
+console.log('...');
+const updateIdx=firstInsert.indexOf('DO UPDATE SET');
+if(updateIdx>=0) console.log(firstInsert.substring(updateIdx, updateIdx+120));

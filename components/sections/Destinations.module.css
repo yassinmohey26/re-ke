@@ -43,7 +43,7 @@
 .cardName {
   position: absolute;
   top: 16px;
-  left: 16px;
+  inset-inline-start: 16px;
   z-index: 2;
   color: #fff;
   font-family: var(--font-body);

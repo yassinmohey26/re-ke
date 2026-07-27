@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 export default function TourGallery({ images, name }: { images: string[]; name: string }) {
+  const t = useTranslations('tours');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
 
@@ -27,7 +29,7 @@ export default function TourGallery({ images, name }: { images: string[]; name: 
           <Image src={hero} alt={name} fill className={styles.galleryImg} priority sizes="(max-width: 768px) 100vw, 60vw" />
           <span className={styles.galleryAllPhotos}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-            {validImages.length} Fotos
+            {validImages.length} {t('photos')}
           </span>
         </button>
         {thumbs.length > 0 && (
@@ -43,7 +45,7 @@ export default function TourGallery({ images, name }: { images: string[]; name: 
 
       {lightboxOpen && (
         <div className={styles.lightbox} onClick={() => setLightboxOpen(false)}>
-          <button className={styles.lightboxClose} onClick={() => setLightboxOpen(false)} aria-label="Close">
+          <button className={styles.lightboxClose} onClick={() => setLightboxOpen(false)} aria-label={t('closeGallery')}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
@@ -51,10 +53,10 @@ export default function TourGallery({ images, name }: { images: string[]; name: 
             {validImages.length > 1 && (
               <>
                 <button className={styles.lightboxPrev} onClick={() => setActiveIdx((activeIdx - 1 + validImages.length) % validImages.length)}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="rtl-flip"><polyline points="15 18 9 12 15 6"/></svg>
                 </button>
                 <button className={styles.lightboxNext} onClick={() => setActiveIdx((activeIdx + 1) % validImages.length)}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="rtl-flip"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
                 <span className={styles.lightboxCounter}>{activeIdx + 1} / {validImages.length}</span>
               </>

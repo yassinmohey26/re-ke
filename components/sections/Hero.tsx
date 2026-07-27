@@ -1,7 +1,6 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
 import { KineticText } from '@/components/ui/kinetic-text';
 import styles from './Hero.module.css';
@@ -11,8 +10,23 @@ interface TrustStat {
   label: string;
 }
 
-export default function Hero({ trustStats = [] }: { trustStats?: TrustStat[] }) {
-  const t = useTranslations('hero');
+interface HeroProps {
+  trustStats?: TrustStat[];
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  secondary: string;
+  check1: string;
+  check2: string;
+  check3: string;
+  benefits: string;
+}
+
+export default function Hero({
+  trustStats = [],
+  eyebrow, title, subtitle, cta, secondary, check1, check2, check3, benefits,
+}: HeroProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -37,13 +51,13 @@ export default function Hero({ trustStats = [] }: { trustStats?: TrustStat[] }) 
       </div>
       <div className={styles.content}>
         <div className={styles.textBlock}>
-          <span className={styles.eyebrow}>{t('eyebrow')}</span>
+          <span className={styles.eyebrow}>{eyebrow}</span>
           <h1 className={styles.headline}>
-            <KineticText text={t('title')} as="span" />
+            <KineticText text={title} as="span" />
           </h1>
-          <p className={styles.subtext}>{t('subtitle')}</p>
-          <ul className={styles.checklist} aria-label={t('benefits')}>
-            {[t('check1'), t('check2'), t('check3')].map((item) => (
+          <p className={styles.subtext}>{subtitle}</p>
+          <ul className={styles.checklist} aria-label={benefits}>
+            {[check1, check2, check3].map((item) => (
               <li key={item} className={styles.checkItem}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <polyline points="20 6 9 17 4 12" />
@@ -53,9 +67,9 @@ export default function Hero({ trustStats = [] }: { trustStats?: TrustStat[] }) 
             ))}
           </ul>
           <div className={styles.actions}>
-            <Link href="/touren" className="btn btn--primary btn--lg">{t('cta')}</Link>
+            <Link href="/touren" className="btn btn--primary btn--lg">{cta}</Link>
             <Link href="/kontakt" className={styles.ghostBtn}>
-              {t('secondary')}
+              {secondary}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

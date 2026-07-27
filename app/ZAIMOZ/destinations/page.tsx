@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ImageUpload from '@/components/admin/ImageUpload';
 import { useAdminLocale } from '../AdminLanguageContext';
+import LocalePicker from '@/components/admin/LocalePicker';
 import styles from './page.module.css';
 
 interface Destination {
@@ -12,7 +14,6 @@ interface Destination {
   tagline: string;
   description: string;
   image: string;
-  created_at: string;
 }
 
 const EMPTY_FORM = { name: '', slug: '', tagline: '', description: '', image: '' };
@@ -28,6 +29,7 @@ function slugify(text: string): string {
 
 export default function AdminDestinationsPage() {
   const { t } = useAdminLocale();
+  const router = useRouter();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -35,6 +37,7 @@ export default function AdminDestinationsPage() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
   const [autoSlug, setAutoSlug] = useState(true);
+  const [duplicateId, setDuplicateId] = useState<string | null>(null);
 
   useEffect(() => { fetchDestinations(); }, []);
 
@@ -105,8 +108,7 @@ export default function AdminDestinationsPage() {
           body: JSON.stringify(payload),
         });
         if (res.ok) {
-          const updated = await res.json();
-          setDestinations(destinations.map(d => d.id === editingId ? { ...d, ...updated } : d));
+          await fetchDestinations();
         }
       } else {
         const res = await fetch('/api/admin/destinations', {
@@ -133,6 +135,22 @@ export default function AdminDestinationsPage() {
       if (res.ok) setDestinations(destinations.filter(d => d.id !== id));
     } catch (e) {
       console.error('Failed to delete destination:', e);
+    }
+  }
+
+  async function handleDuplicate(dupLocale: string) {
+    if (!duplicateId) return;
+    const res = await fetch('/api/admin/duplicate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table: 'destinations', id: duplicateId, locale: dupLocale }),
+    });
+    setDuplicateId(null);
+    if (res.ok) {
+      router.push(`/ZAIMOZ/destinations`);
+    } else {
+      const err = await res.json();
+      alert(err.error || 'Duplicate failed');
     }
   }
 
@@ -246,6 +264,9 @@ export default function AdminDestinationsPage() {
                       <button className={styles.editBtn} onClick={() => openEdit(dest)}>
                         {t('edit')}
                       </button>
+                      <button className={styles.editBtn} onClick={() => setDuplicateId(dest.id)}>
+                        {t('duplicateBtn')}
+                      </button>
                       <button className={styles.deleteBtn} onClick={() => handleDelete(dest.id)}>
                         {t('delete')}
                       </button>
@@ -257,6 +278,13 @@ export default function AdminDestinationsPage() {
           </tbody>
         </table>
       </div>
+
+      {duplicateId && (
+        <LocalePicker
+          onSelect={handleDuplicate}
+          onCancel={() => setDuplicateId(null)}
+        />
+      )}
     </div>
   );
 }

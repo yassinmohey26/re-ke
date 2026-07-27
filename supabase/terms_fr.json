@@ -1,0 +1,86 @@
+{
+  "pageTitle": "Conditions Générales d'Utilisation",
+  "title": "Conditions Générales d'Utilisation (CGU)",
+  "lastUpdated": "Dernière mise à jour : {date}",
+  "intro": {
+    "title": "1. Champ d'application",
+    "text": "Ces Conditions Générales d'Utilisation (ci-après \"CGU\") régissent les relations contractuelles entre Hurghada Travel Planner (ci-après \"l'Organisateur\") et le client (ci-après \"le Participant\") pour la réservation et l'exécution de visites, excursions et autres prestations touristiques en Égypte. Les conditions divergentes du Participant ne sont pas reconnues, sauf si l'Organisateur accepte expressément leur validité par écrit."
+  },
+  "booking": {
+    "title": "2. Réservation et Conclusion du Contrat",
+    "text": "Les réservations s'effectuent via notre site web, par e-mail, WhatsApp ou téléphone. Le contrat est conclu dès la confirmation écrite (e-mail/WhatsApp) par l'Organisateur. La réservation est contraignante pour les deux parties.",
+    "points": {
+      "confirmation": "La confirmation de réservation contient toutes les informations essentielles : visite, date, heure, point de rencontre, prix et modalités de paiement.",
+      "payment": "Lors de la réservation, selon le mode de paiement choisi, soit le montant total, soit un acompte de 30% est dû.",
+      "cancellation": "Les conditions d'annulation figurent à la section 4.",
+      "modification": "Les modifications de réservation (date, nombre de participants, visite) sont possibles gratuitement jusqu'à 24 heures avant le début de la visite, sous réserve de disponibilité."
+    }
+  },
+  "payment": {
+    "title": "3. Conditions de Paiement",
+    "text": "L'Organisateur accepte les modes de paiement suivants : carte de crédit (Visa, MasterCard), PayPal, virement bancaire, paiement en espèces sur place. Les paiements en ligne sont traités de manière sécurisée via Stripe.",
+    "points": {
+      "methods": "Carte de crédit (Visa, MasterCard), PayPal, virement bancaire, espèces.",
+      "deposit": "En cas d'acompte : 30% du prix total à la réservation, solde sur place en espèces (EUR, USD, EGP) ou par carte.",
+      "balance": "Le solde est exigible au plus tard au début de la visite. Sans paiement intégral, il n'y a pas de droit à la participation.",
+      "currency": "Tous les prix s'entendent en Euro (EUR). Les paiements dans d'autres devises se font au taux de change du jour."
+    }
+  },
+  "cancellation": {
+    "title": "4. Annulation et Modifications",
+    "text": "Les annulations et modifications doivent être faites par écrit (e-mail/WhatsApp). L'arrivée chez l'Organisateur fait foi.",
+    "points": {
+      "free24h": "Jusqu'à 24 heures avant le début de la visite : Annulation gratuite, remboursement intégral.",
+      "late": "Moins de 24 heures avant le début de la visite : 50% du prix total comme frais d'annulation.",
+      "noshow": "En cas de non-présentation (No-Show) : 100% du prix total.",
+      "forceMajeure": "En cas de force majeure (catastrophes naturelles, troubles politiques, pandémies, injonctions officielles) — annulation gratuite ou report sans frais."
+    }
+  },
+  "services": {
+    "title": "5. Description des Prestations et Modifications",
+    "text": "L'étendue exacte des prestations résulte de la description de la visite sur le site web et de la confirmation de réservation. L'Organisateur se réserve le droit d'adapter le programme pour des raisons importantes (météo, sécurité, ordonnances officielles). Aucune responsabilité pour les points de programme modifiés ou omis, sauf si l'Organisateur a fait preuve de dol ou de négligence grave.",
+    "points": {
+      "transfer": "Transferts (hôtel-hôtel/aéroport) en véhicules climatisés.",
+      "guide": "Guides licenciés parlant français/anglais/allemand/russe/arabe.",
+      "equipment": "Équipement pour sports nautiques (masque, tuba, palmes, gilet de sauvetage).",
+      "meals": "Repas selon la description (petit-déjeuner, déjeuner, boissons).",
+      "insurance": "Assurance voyage non incluse – nous recommandons une assurance annulation et une assurance maladie internationale."
+    }
+  },
+  "liability": {
+    "title": "6. Responsabilité",
+    "text": "L'Organisateur répond sans limite des dommages basés sur l'intention ou la négligence grave. Pour négligence simple, l'Organisateur ne répond qu'en cas de violation d'obligations contractuelles essentielles (obligations cardinales) et limité au dommage prévisible, typique du contrat.",
+    "points": {
+      "personal": "En cas d'atteinte à la vie, au corps, à la santé, l'Organisateur répond sans limite.",
+      "property": "Pour les dommages matériels, la responsabilité est limitée au triple du prix du voyage.",
+      "forceMajeure": "En cas de force majeure (catastrophes naturelles, attentats terroristes, pandémies, mesures officielles), la responsabilité est entièrement exclue.",
+      "maxLiability": "La responsabilité totale est limitée au triple du prix du voyage, sauf dol ou négligence grave."
+    }
+  },
+  "intellectualProperty": {
+    "title": "7. Propriété Intellectuelle",
+    "text": "Tous les contenus de ce site (textes, images, graphiques, logos) sont protégés par le droit d'auteur. Toute reproduction, distribution ou représentation publique nécessite notre accord écrit préalable."
+  },
+  "stripe": {
+    "title": "8. Traitement des Paiements via Stripe",
+    "text": "Le traitement des paiements est géré par Stripe (Stripe Inc., 510 Townsend St, San Francisco, CA 94103, USA). Les Conditions d'Utilisation de Stripe (https://stripe.com/legal) et la Politique de Confidentialité (https://stripe.com/privacy) s'appliquent. Nous ne stockons aucune donnée de carte de crédit sur nos serveurs."
+  },
+  "dataProtection": {
+    "title": "8. Protection des Données",
+    "text": "Le traitement des données personnelles est effectué conformément à notre Politique de Confidentialité et au RGPD. Les données sont utilisées exclusivement pour l'exécution du contrat et la communication. Une transmission à des tiers n'a lieu que pour l'exécution du contrat (ex: hôtel, partenaires de transfert) ou sur obligation légale."
+  },
+  "governingLaw": {
+    "title": "9. Droit Applicable et Juridiction",
+    "text": "Le droit autrichien s'applique. Le tribunal compétent est Vienne, dans la mesure où le client est un commerçant, une personne morale de droit public ou un fonds spécial de droit public."
+  },
+  "severability": {
+    "title": "10. Clause de Divisibilité",
+    "text": "Si une disposition de ces CGU est ou devient invalide, la validité des autres dispositions n'en est pas affectée. La disposition invalide est remplacée par la disposition légale applicable qui se rapproche le plus de l'objectif économique de la disposition invalide."
+  },
+  "contact": {
+    "title": "Contact",
+    "text": "Pour toute question concernant ces CGU, veuillez nous contacter :",
+    "email": "info@hurghada-reiseplaner.at",
+    "address": "Hurghada Travel Planner, Hurghada, Mer Rouge, Égypte"
+  }
+}

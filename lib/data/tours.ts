@@ -1,5 +1,4 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { translateTour, translateAllTours, translateDestination, translateCategory } from './translate';
 
 const db = getSupabaseAdmin();
 
@@ -52,15 +51,120 @@ export interface TourExtra {
   price: number;
 }
 
-function mapTour(row: any): Tour {
+function parseStr(val: unknown, fallback: string): string {
+  if (typeof val === 'string') return val;
+  return fallback;
+}
+
+function parseArr(val: unknown, fallback: string[]): string[] {
+  if (Array.isArray(val)) return val.filter((v): v is string => typeof v === 'string');
+  return fallback;
+}
+
+function parseItin(val: unknown, fallback: { title: string; content: string }[]): { title: string; content: string }[] {
+  if (Array.isArray(val)) return val as { title: string; content: string }[];
+  return fallback;
+}
+
+function parseFaqs(val: unknown, fallback: { question: string; answer: string }[]): { question: string; answer: string }[] {
+  if (!Array.isArray(val)) return fallback;
+  return val.map(item => {
+    if (item.question && item.answer) return item;
+    if (item.q && item.a) return { question: item.q, answer: item.a };
+    return { question: '', answer: '' };
+  }).filter(item => item.question || item.answer);
+}
+
+function parseEavJoinedString(tr: any): any {
+  if (!tr) return tr;
+  if (tr.name && typeof tr.name === 'string' && tr.name.includes('---')) {
+    const parts = tr.name.split(/---\s*تسيب\s*---/).map((p: string) => p.trim()).filter(Boolean);
+    if (parts.length <= 1) return tr;
+
+    tr.name = parts[0];
+    tr.short_description = parts[1] || tr.short_description;
+
+    let nextIdx = 2;
+
+    // 1. Detect Category Label (typically very short, e.g. "الثقافة ومشاهدة المعالم السياحية", "الغطس وغوص", "Kultur & Sightseeing")
+    if (parts[nextIdx] && parts[nextIdx].length < 60 && 
+        (parts[nextIdx].includes('الثقافة') || parts[nextIdx].includes('الغطس') || parts[nextIdx].includes('مغامرة') || parts[nextIdx].includes('سفاري') || parts[nextIdx].includes('رياضة') || parts[nextIdx].includes('Kultur') || parts[nextIdx].includes('Ausflug') || parts[nextIdx].includes('Safari') || parts[nextIdx].includes('Wassersport') || parts[nextIdx].includes('Sightseeing'))) {
+      tr.category_label = parts[nextIdx];
+      nextIdx++;
+    }
+
+    // 2. Detect Meeting Point (e.g. "الغردقة - البحر الأحمر - مصر", "Hurghada - Rotes Meer")
+    if (parts[nextIdx] && (parts[nextIdx].includes('الغردقة') || parts[nextIdx].includes('مصر') || parts[nextIdx].includes('البحر') || parts[nextIdx].includes('Hurghada') || parts[nextIdx].includes('Meer') || parts[nextIdx].includes('Aegypten') || parts[nextIdx].includes('Red Sea') || parts[nextIdx].includes('El Gouna') || parts[nextIdx].includes('الجونة'))) {
+      tr.meeting_point = parts[nextIdx];
+      nextIdx++;
+    }
+
+    // 3. Detect Duration (e.g. "14 ساعة", "3 ساعات", "يوم واحد", "14h", "3h", "Tag", "Stunde", "Stunden")
+    if (parts[nextIdx] && (parts[nextIdx].includes('ساعة') || parts[nextIdx].includes('ساعات') || parts[nextIdx].includes('يوم') || parts[nextIdx].includes('Stunden') || parts[nextIdx].includes('Tag') || /^\d+\s*h$/i.test(parts[nextIdx]) || parts[nextIdx].includes('h') || parts[nextIdx].includes('Stunde') || parts[nextIdx].includes('Tage') || parts[nextIdx].includes('أيام') || parts[nextIdx].includes('مساءً'))) {
+      tr.duration = parts[nextIdx];
+      nextIdx++;
+    }
+
+    // 4. Detect Description (contains HTML tables or is long text)
+    if (parts[nextIdx] && (parts[nextIdx].includes('<table') || parts[nextIdx].length > 100 || parts[nextIdx].includes('<p>') || parts[nextIdx].includes('<div>') || parts[nextIdx].includes('\n'))) {
+      tr.description = parts[nextIdx];
+      nextIdx++;
+    }
+
+    // 5. Gather remaining array parts (highlights, included, notIncluded, extra arrays)
+    const arrays = [];
+    while (nextIdx < parts.length) {
+      if (parts[nextIdx].includes('---تقسيم---') || parts[nextIdx].includes('\n')) {
+        const items = parts[nextIdx].split(/---\s*تقسيم\s*---/).map((s: string) => s.trim()).filter(Boolean);
+        if (items.length > 0) {
+          arrays.push(items);
+        }
+      } else {
+        arrays.push([parts[nextIdx]]);
+      }
+      nextIdx++;
+    }
+
+    if (arrays[0]) tr.highlights = arrays[0];
+    if (arrays[1]) tr.included = arrays[1];
+    if (arrays[2]) tr.not_included = arrays[2];
+
+    if (arrays[3] && arrays[4]) {
+      const faqs = [];
+      const qs = arrays[3];
+      const as = arrays[4];
+      for (let i = 0; i < Math.max(qs.length, as.length); i++) {
+        faqs.push({ question: qs[i] || '', answer: as[i] || '' });
+      }
+      tr.faqs = faqs;
+    }
+  }
+  return tr;
+}
+
+function parseDestinationEav(tr: any): any {
+  if (!tr) return tr;
+  if (tr.name && typeof tr.name === 'string' && tr.name.includes('---')) {
+    const mainParts = tr.name.split(/---\s*تسيب\s*---/);
+    if (mainParts.length > 1) {
+      tr.name = mainParts[0].trim();
+      tr.description = mainParts[1]?.trim() || tr.description;
+    }
+  }
+  return tr;
+}
+
+function mergeTranslation(row: any, trRaw: any): Tour {
+  const tr = parseEavJoinedString(trRaw);
+  const unique = (arr: string[]) => [...new Set(arr)];
   return {
     id: row.id,
     slug: row.slug,
-    name: row.name,
-    shortDescription: row.short_description ?? '',
-    description: row.description ?? '',
+    name: parseStr(tr?.name, row.name),
+    shortDescription: parseStr(tr?.short_description, row.short_description ?? ''),
+    description: parseStr(tr?.description, row.description ?? ''),
     price: row.price,
-    duration: row.duration ?? '',
+    duration: parseStr(tr?.duration, row.duration ?? ''),
     durationHours: row.duration_hours ?? 0,
     maxGuests: row.max_guests ?? 8,
     difficulty: row.difficulty ?? 'leicht',
@@ -68,45 +172,128 @@ function mapTour(row: any): Tour {
     destination: row.destination ?? '',
     destinationSlug: row.destination_slug ?? '',
     category: row.category ?? 'ganztag',
-    categoryLabel: row.category_label ?? '',
-    highlights: row.highlights ?? [],
-    included: row.included ?? [],
-    notIncluded: row.not_included ?? [],
-    itinerary: row.itinerary ?? [],
-    faqs: row.faqs ?? [],
+    categoryLabel: parseStr(tr?.category_label, row.category_label ?? ''),
+    highlights: unique(parseArr(tr?.highlights, row.highlights ?? [])),
+    included: unique(parseArr(tr?.included, row.included ?? [])),
+    notIncluded: unique(parseArr(tr?.not_included, row.not_included ?? [])),
+    itinerary: parseItin(tr?.itinerary, row.itinerary ?? []),
+    faqs: parseFaqs(tr?.faqs, row.faqs ?? []),
     image: row.image ?? '',
-    meetingPoint: row.meeting_point ?? '',
+    meetingPoint: parseStr(tr?.meeting_point, row.meeting_point ?? ''),
     featured: row.featured ?? false,
   };
 }
 
-function mapDestination(row: any): Destination {
+function mergeDestinationTranslation(row: any, trRaw: any): Destination {
+  const tr = parseDestinationEav(trRaw);
   return {
     slug: row.slug,
-    name: row.name,
-    tagline: row.tagline ?? '',
-    description: row.description ?? '',
+    name: parseStr(tr?.name, row.name),
+    tagline: parseStr(tr?.tagline, row.tagline ?? ''),
+    description: parseStr(tr?.description, row.description ?? ''),
     image: row.image ?? '',
   };
 }
 
-function mapCategory(row: any): TourCategory {
-  return {
-    slug: row.slug,
-    label: row.label,
-    category: row.category,
-    description: row.description ?? '',
-  };
+async function getTranslationsMap(
+  tableName: string,
+  rowIds: string[],
+  locale: string,
+): Promise<Map<string, any>> {
+  if (rowIds.length === 0) return new Map();
+
+  const map = new Map<string, any>();
+
+  // Try requested locale first
+  const { data } = await db
+    .from('content_translations')
+    .select('*')
+    .eq('table_name', tableName)
+    .eq('locale', locale)
+    .in('row_id', rowIds);
+
+  if (data) {
+    for (const row of data) {
+      map.set(row.row_id, row);
+    }
+  }
+
+  // Fill in missing with 'de' fallback
+  const missingIds = rowIds.filter(id => !map.has(id));
+  if (missingIds.length > 0 && locale !== 'de') {
+    const { data: deData } = await db
+      .from('content_translations')
+      .select('*')
+      .eq('table_name', tableName)
+      .eq('locale', 'de')
+      .in('row_id', missingIds);
+
+    if (deData) {
+      for (const row of deData) {
+        map.set(row.row_id, row);
+      }
+    }
+  }
+
+  return map;
 }
 
-export async function getTours(): Promise<Tour[]> {
-  const { data } = await db.from('tours').select('*').order('created_at', { ascending: false });
-  return (data ?? []).map(mapTour);
+async function getSingleTranslation(
+  tableName: string,
+  rowId: string,
+  locale: string,
+): Promise<any> {
+  if (locale === 'de') {
+    const { data } = await db
+      .from('content_translations')
+      .select('*')
+      .eq('table_name', tableName)
+      .eq('row_id', rowId)
+      .eq('locale', 'de')
+      .limit(1)
+      .maybeSingle();
+    return data ?? null;
+  }
+
+  // Try requested locale
+  const { data } = await db
+    .from('content_translations')
+    .select('*')
+    .eq('table_name', tableName)
+    .eq('row_id', rowId)
+    .eq('locale', locale)
+    .limit(1)
+    .maybeSingle();
+
+  if (data) return data;
+
+  // Fallback to de
+  const { data: deData } = await db
+    .from('content_translations')
+    .select('*')
+    .eq('table_name', tableName)
+    .eq('row_id', rowId)
+    .eq('locale', 'de')
+    .limit(1)
+    .maybeSingle();
+
+  return deData ?? null;
 }
 
-export async function getTourBySlug(slug: string): Promise<Tour | undefined> {
-  const { data } = await db.from('tours').select('*').eq('slug', slug).single();
-  return data ? mapTour(data) : undefined;
+export async function getTours(locale: string = 'de'): Promise<Tour[]> {
+  const { data: rows } = await db.from('tours').select('*').order('created_at', { ascending: false });
+  if (!rows || rows.length === 0) return [];
+
+  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
+}
+
+export async function getTourBySlug(slug: string, locale: string = 'de'): Promise<Tour | undefined> {
+  const { data: row } = await db.from('tours').select('*').eq('slug', slug).single();
+  if (!row) return undefined;
+
+  const tr = await getSingleTranslation('tours', row.id, locale);
+  return mergeTranslation(row, tr);
 }
 
 export async function getTourExtras(tourId: string): Promise<TourExtra[]> {
@@ -125,50 +312,67 @@ export async function getTourExtras(tourId: string): Promise<TourExtra[]> {
   }));
 }
 
-export async function getToursByCategory(category: Tour['category']): Promise<Tour[]> {
-  const { data } = await db.from('tours').select('*').eq('category', category).order('created_at', { ascending: false });
-  return (data ?? []).map(mapTour);
+export async function getToursByCategory(category: Tour['category'], locale: string = 'de'): Promise<Tour[]> {
+  const { data: rows } = await db.from('tours').select('*').eq('category', category).order('created_at', { ascending: false });
+  if (!rows || rows.length === 0) return [];
+
+  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
 }
 
-export async function getToursByDestination(destinationSlug: string): Promise<Tour[]> {
-  const { data } = await db.from('tours').select('*').eq('destination_slug', destinationSlug).order('created_at', { ascending: false });
-  return (data ?? []).map(mapTour);
+export async function getToursByDestination(destinationSlug: string, locale: string = 'de'): Promise<Tour[]> {
+  const { data: rows } = await db.from('tours').select('*').eq('destination_slug', destinationSlug).order('created_at', { ascending: false });
+  if (!rows || rows.length === 0) return [];
+
+  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
 }
 
-export async function getFeaturedTours(): Promise<Tour[]> {
-  const { data } = await db.from('tours').select('*').eq('featured', true).order('created_at', { ascending: false });
-  return (data ?? []).map(mapTour);
+export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
+  const { data: rows } = await db.from('tours').select('*').eq('featured', true).order('created_at', { ascending: false });
+  if (!rows || rows.length === 0) return [];
+
+  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
 }
 
-export async function getDestinations(): Promise<Destination[]> {
-  const { data } = await db.from('destinations').select('*').order('created_at', { ascending: true });
-  return (data ?? []).map(mapDestination);
+export async function getDestinations(locale: string = 'de'): Promise<Destination[]> {
+  const { data: rows } = await db.from('destinations').select('*').order('created_at', { ascending: true });
+  if (!rows || rows.length === 0) return [];
+
+  const trMap = await getTranslationsMap('destinations', rows.map(r => r.id), locale);
+  return rows.map(row => mergeDestinationTranslation(row, trMap.get(row.id) ?? null));
 }
 
-export async function getDestinationBySlug(slug: string): Promise<Destination | undefined> {
-  const { data } = await db.from('destinations').select('*').eq('slug', slug).single();
-  return data ? mapDestination(data) : undefined;
+export async function getDestinationBySlug(slug: string, locale: string = 'de'): Promise<Destination | undefined> {
+  const { data: row } = await db.from('destinations').select('*').eq('slug', slug).single();
+  if (!row) return undefined;
+
+  const tr = await getSingleTranslation('destinations', row.id, locale);
+  return mergeDestinationTranslation(row, tr);
 }
 
 export async function getTourCategories(): Promise<TourCategory[]> {
   const { data } = await db.from('tour_categories').select('*').order('created_at', { ascending: true });
-  return (data ?? []).map(mapCategory);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (data ?? []).map((row: any) => ({
+    slug: row.slug,
+    label: row.label,
+    category: row.category,
+    description: row.description ?? '',
+  }));
 }
 
 export async function getLocalizedTourName(slug: string, locale: string): Promise<string> {
-  const tour = await getTourBySlug(slug);
+  const tour = await getTourBySlug(slug, locale);
   if (!tour) return slug;
-  if (locale === 'de') return tour.name;
-  const tr = await translateTour(tour, locale);
-  return tr.name;
+  return tour.name;
 }
 
 export async function getLocalizedTourShortDescription(slug: string, locale: string): Promise<string> {
-  const tour = await getTourBySlug(slug);
+  const tour = await getTourBySlug(slug, locale);
   if (!tour) return '';
-  if (locale === 'de') return tour.shortDescription;
-  const tr = await translateTour(tour, locale);
-  return tr.shortDescription;
+  return tour.shortDescription;
 }
 
 export async function getLocalizedDestinationData(
@@ -176,73 +380,22 @@ export async function getLocalizedDestinationData(
   locale: string,
 ): Promise<{ tagline: string; description: string; name: string }> {
   if (locale === 'de') return { tagline: dest.tagline, description: dest.description, name: dest.name };
-  return translateDestination(dest, locale);
+  const localized = await getDestinationBySlug(dest.slug, locale);
+  if (localized) return { tagline: localized.tagline, description: localized.description, name: localized.name };
+  return { tagline: dest.tagline, description: dest.description, name: dest.name };
 }
 
 export async function getLocalizedCategoryLabel(slug: string, locale: string): Promise<string> {
   const cats = await getTourCategories();
   const cat = cats.find((c) => c.slug === slug);
   if (!cat) return slug;
-  if (locale === 'de') return cat.label;
-  const tr = await translateCategory(cat, locale);
-  return tr.label;
+  return cat.label;
 }
 
 export async function getLocalizedTour(slug: string, locale: string): Promise<Tour | undefined> {
-  const tour = await getTourBySlug(slug);
-  if (!tour) return undefined;
-  if (locale === 'de') return tour;
-
-  const tr = await translateTour(tour, locale);
-  return {
-    ...tour,
-    name: tr.name,
-    shortDescription: tr.shortDescription,
-    description: tr.description,
-    categoryLabel: tr.categoryLabel,
-    highlights: tr.highlights,
-    included: tr.included,
-    notIncluded: tr.notIncluded,
-    itinerary: tr.itinerary,
-    faqs: tr.faqs,
-    meetingPoint: tr.meetingPoint,
-    duration: tr.duration,
-  };
+  return getTourBySlug(slug, locale);
 }
 
 export async function getLocalizedAllTours(locale: string): Promise<Tour[]> {
-  const tours = await getTours();
-  if (locale === 'de') return tours;
-
-  const bulk = await translateAllTours(
-    tours.map((t) => ({
-      name: t.name,
-      shortDescription: t.shortDescription,
-      description: t.description,
-      categoryLabel: t.categoryLabel,
-      highlights: t.highlights,
-      included: t.included,
-      notIncluded: t.notIncluded,
-      itinerary: t.itinerary,
-      faqs: t.faqs,
-      meetingPoint: t.meetingPoint,
-      duration: t.duration,
-    })),
-    locale,
-  );
-
-  return tours.map((tour, i) => ({
-    ...tour,
-    name: bulk[i].name,
-    shortDescription: bulk[i].shortDescription,
-    description: bulk[i].description,
-    categoryLabel: bulk[i].categoryLabel,
-    highlights: bulk[i].highlights,
-    included: bulk[i].included,
-    notIncluded: bulk[i].notIncluded,
-    itinerary: bulk[i].itinerary,
-    faqs: bulk[i].faqs,
-    meetingPoint: bulk[i].meetingPoint,
-    duration: bulk[i].duration,
-  }));
+  return getTours(locale);
 }

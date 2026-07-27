@@ -18,6 +18,7 @@ export async function GET(
     slug: tour.slug,
     name: tour.name,
     price: tour.price,
+    maxGuests: tour.maxGuests,
     pricingTiers: parsePricingTiers(tour.description),
     extras,
   });

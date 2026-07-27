@@ -17,13 +17,24 @@ interface TourExtra {
 interface TourInfo {
   name: string;
   price: number | null;
+  maxGuests: number;
   pricingTiers: { minGuests: number; maxGuests: number; pricePerPerson: number }[];
   extras: TourExtra[];
 }
 
-function getInitialGuestCount(value: string | null): number {
-  const guests = Number(value);
-  return Number.isInteger(guests) && guests >= 1 && guests <= 20 ? guests : 1;
+function getInitialAdults(value: string | null): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= 0 ? n : 2;
+}
+
+function getInitialChildren(value: string | null): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= 0 ? n : 0;
+}
+
+function getInitialInfants(value: string | null): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= 0 ? n : 0;
 }
 
 function getInitialDate(value: string | null): string {
@@ -40,7 +51,9 @@ function BookingContent() {
   const extrasParam = searchParams.get('extras') ?? '';
   const initialSelectedExtraIds = extrasParam ? extrasParam.split(',').filter(Boolean) : [];
   const initialDate = getInitialDate(searchParams.get('date'));
-  const initialGuests = getInitialGuestCount(searchParams.get('guests'));
+  const initialAdults = getInitialAdults(searchParams.get('adults'));
+  const initialChildren = getInitialChildren(searchParams.get('children'));
+  const initialInfants = getInitialInfants(searchParams.get('infants'));
   const [tourInfo, setTourInfo] = useState<TourInfo | null>(null);
   const [loadingTour, setLoadingTour] = useState(true);
 
@@ -97,11 +110,14 @@ function BookingContent() {
           tourSlug={tourSlug}
           tourName={tourName}
           pricePerPerson={tourInfo?.price ?? undefined}
+          maxGuests={tourInfo?.maxGuests ?? 8}
           pricingTiers={tourInfo?.pricingTiers ?? []}
           extras={tourInfo?.extras ?? []}
           initialSelectedExtraIds={initialSelectedExtraIds}
           initialDate={initialDate}
-          initialGuests={initialGuests}
+          initialAdults={initialAdults}
+          initialChildren={initialChildren}
+          initialInfants={initialInfants}
         />
       </div>
     </div>

@@ -3,16 +3,41 @@ import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import PageHeader from '@/components/layout/PageHeader';
-import { getDestinations, getLocalizedDestinationData } from '@/lib/data/tours';
+import { getDestinations } from '@/lib/data/tours';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+  const title = tMeta('destinationsTitle');
+  const description = tMeta('destinationsDescription');
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: tMeta('destinationsTitle'),
-    description: tMeta('destinationsDescription'),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/destinationen`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [`${baseUrl}/og-default.jpg`] },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/destinationen`,
+      languages: {
+        'de': `${baseUrl}/de/destinationen`,
+        'en': `${baseUrl}/en/destinationen`,
+        'ru': `${baseUrl}/ru/destinationen`,
+        'ar': `${baseUrl}/ar/destinationen`,
+        'fr': `${baseUrl}/fr/destinationen`,
+        'hu': `${baseUrl}/hu/destinationen`,
+      },
+    },
   };
 }
 
@@ -20,14 +45,7 @@ export default async function DestinationenPage({ params }: { params: Promise<{ 
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'destinations' });
-  const rawDestinations = await getDestinations();
-
-  const destinations = await Promise.all(
-    rawDestinations.map(async (dest) => {
-      const loc = await getLocalizedDestinationData(dest, locale);
-      return { ...dest, name: loc.name, tagline: loc.tagline, description: loc.description };
-    })
-  );
+  const destinations = await getDestinations(locale);
 
   return (
     <>

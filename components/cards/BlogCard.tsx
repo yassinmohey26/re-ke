@@ -14,7 +14,7 @@ export interface BlogPost {
 }
 
 function formatDate(dateStr: string, locale: string = 'de'): string {
-  const localeMap: Record<string, string> = { de: 'de-AT', en: 'en-US', ru: 'ru-RU' };
+  const localeMap: Record<string, string> = { de: 'de-AT', en: 'en-US', ru: 'ru-RU', ar: 'ar-EG', fr: 'fr-FR', hu: 'hu-HU' };
   return new Date(dateStr).toLocaleDateString(localeMap[locale] || 'de-AT', {
     day: 'numeric',
     month: 'long',

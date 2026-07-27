@@ -11,9 +11,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   return {
     title: tMeta('airportTransferTitle'),
     description: tMeta('airportTransferDescription'),
+    alternates: {
+      canonical: `${baseUrl}/${locale}/airport-transfer`,
+      languages: {
+        'de': `${baseUrl}/de/airport-transfer`,
+        'en': `${baseUrl}/en/airport-transfer`,
+        'ru': `${baseUrl}/ru/airport-transfer`,
+        'ar': `${baseUrl}/ar/airport-transfer`,
+        'fr': `${baseUrl}/fr/airport-transfer`,
+        'hu': `${baseUrl}/hu/airport-transfer`,
+      },
+    },
   };
 }
 

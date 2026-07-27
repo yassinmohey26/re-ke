@@ -22,20 +22,31 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const supabase = getSupabaseAdmin();
 
-    const { data, error } = await supabase
+    const { data: dest, error: destError } = await supabase
       .from('destinations')
       .insert({
-        name: body.name,
         slug: body.slug || body.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-        tagline: body.tagline || '',
-        description: body.description || '',
         image: body.image || '',
       })
       .select()
       .single();
 
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json(data, { status: 201 });
+    if (destError) return NextResponse.json({ error: destError.message }, { status: 500 });
+
+    const { error: trError } = await supabase
+      .from('content_translations')
+      .insert({
+        table_name: 'destinations',
+        row_id: dest.id,
+        locale: 'de',
+        name: body.name || '',
+        tagline: body.tagline || '',
+        description: body.description || '',
+      });
+
+    if (trError) console.error('Destination translation insert error:', trError);
+
+    return NextResponse.json(dest, { status: 201 });
   } catch {
     return NextResponse.json({ error: 'Failed to create destination' }, { status: 500 });
   }

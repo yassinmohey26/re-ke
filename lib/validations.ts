@@ -57,16 +57,19 @@ export const bookingSchema = z.object({
     .string()
     .refine((d) => {
       const date = new Date(d);
-      return !isNaN(date.getTime()) && date > new Date();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return !isNaN(date.getTime()) && date >= today;
     }, 'Datum muss in der Zukunft liegen'),
   guests: z
     .number()
     .int()
-    .min(1, 'Mindestens 1 Person')
-    .max(20, 'Maximal 20 Personen'),
+    .min(2, 'Mindestens 2 Personen')
+    .max(8, 'Maximal 8 Personen'),
   message: z.string().max(2000).optional().or(z.literal('')),
   totalPrice: z.number().optional(),
   extrasJson: z.string().optional(),
+  paymentOption: z.enum(['full', 'deposit']).transform(val => val ?? 'full'),
 });
 
 export interface BookingValidationMessages {
@@ -109,10 +112,11 @@ export function createBookingSchema(messages: BookingValidationMessages) {
       today.setHours(0, 0, 0, 0);
       return selectedDate >= today;
     }, messages.dateInvalid),
-    guests: z.number().int().min(1, messages.guestsMin).max(20, messages.guestsMax),
+    guests: z.number().int().min(2, messages.guestsMin).max(8, messages.guestsMax),
     message: z.string().max(2000, messages.messageMax).optional().or(z.literal('')),
     totalPrice: z.number().optional(),
     extrasJson: z.string().optional(),
+paymentOption: z.enum(['full', 'deposit']).transform(val => val ?? 'full'),
   });
 }
 

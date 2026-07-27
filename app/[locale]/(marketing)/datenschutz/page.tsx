@@ -7,9 +7,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   return {
     title: tMeta('datenschutzTitle'),
     description: tMeta('datenschutzDescription'),
+    alternates: {
+      canonical: `${baseUrl}/${locale}/datenschutz`,
+      languages: {
+        'de': `${baseUrl}/de/datenschutz`,
+        'en': `${baseUrl}/en/datenschutz`,
+        'ru': `${baseUrl}/ru/datenschutz`,
+        'ar': `${baseUrl}/ar/datenschutz`,
+        'fr': `${baseUrl}/fr/datenschutz`,
+        'hu': `${baseUrl}/hu/datenschutz`,
+      },
+    },
   };
 }
 

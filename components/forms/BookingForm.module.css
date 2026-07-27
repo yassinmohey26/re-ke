@@ -67,6 +67,60 @@
   border-top: 1px solid var(--color-border-4);
 }
 
+/* --- Guest Category Pickers --- */
+.guestRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-4);
+}
+.guestRow:last-of-type {
+  border-bottom: none;
+}
+.guestInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.guestLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-1);
+}
+.guestSubtitle {
+  font-size: 12px;
+  color: var(--color-text-5);
+}
+.guestPicker {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.guestBtn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-light);
+  border: none;
+  font-size: 20px;
+  color: var(--color-text-2);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.guestBtn:hover:not(:disabled) { background: var(--color-accent-light); }
+.guestBtn:disabled { opacity: 0.3; cursor: default; }
+.guestCount {
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 /* --- Success State --- */
 .success {
   text-align: center;
@@ -85,3 +139,123 @@
   color: var(--color-text-2);
   margin-bottom: var(--space-4);
 }
+
+/* --- Payment Options --- */
+.paymentOption {
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border-4);
+}
+.paymentOption .label {
+  margin-bottom: var(--space-3);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-2);
+}
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* --- Payment Card --- */
+.paymentCard {
+  display: block;
+  padding: var(--space-4);
+  border: 1.5px solid var(--color-border-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--color-bg-body);
+}
+.paymentCard:hover {
+  border-color: var(--color-border-5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.paymentCardActive {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+/* --- Card Header (Radio + Title + Price) --- */
+.paymentCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.paymentRadio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-5);
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.paymentRadioActive {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: inset 0 0 0 3px var(--color-bg-body);
+}
+.paymentCardTitleGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.paymentCardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-1);
+}
+.paymentCardDesc {
+  font-size: 12px;
+  color: var(--color-text-5);
+  line-height: 1.4;
+}
+.paymentCardAmount {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Breakdown (Deposit Option) --- */
+.paymentBreakdown {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-4);
+}
+.paymentBreakdownRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--color-text-2);
+  padding: 3px 0;
+}
+.paymentBreakdownValue {
+  font-weight: 500;
+  color: var(--color-text-3);
+}
+.paymentBreakdownTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--color-text-1);
+  font-weight: 600;
+  padding-top: var(--space-2);
+  margin-top: var(--space-2);
+  border-top: 1px dashed var(--color-border-4);
+}
+.paymentBreakdownTotalValue {
+  font-weight: 700;
+  color: var(--color-accent);
+  font-size: 14px;
+}
+

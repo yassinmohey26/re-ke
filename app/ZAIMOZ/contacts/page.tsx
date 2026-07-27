@@ -17,7 +17,7 @@ interface ContactMessage {
 
 export default function AdminContactsPage() {
   const { t, locale } = useAdminLocale();
-  const dateLocale = locale === 'en' ? 'en-GB' : 'de-AT';
+  const dateLocale = locale === 'en' ? 'en-GB' : locale === 'ar' ? 'ar-EG' : locale === 'fr' ? 'fr-FR' : locale === 'hu' ? 'hu-HU' : locale === 'ru' ? 'ru-RU' : 'de-AT';
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
 

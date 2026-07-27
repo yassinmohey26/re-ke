@@ -4,7 +4,8 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
-import { getBlogPostBySlug, getAllBlogPosts, getLocalizedBlogPost, getLocalizedAllBlogPosts } from '@/lib/data/posts';
+import { getLocalizedBlogPost, getLocalizedAllBlogPosts } from '@/lib/data/posts';
+import JsonLd from '@/components/seo/JsonLd';
 import styles from './page.module.css';
 
 type Props = {
@@ -13,9 +14,41 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   const post = await getLocalizedBlogPost(slug, locale);
-  if (!post) return { title: 'Not found' };
-  return { title: post.title, description: post.excerpt };
+  if (!post) return { title: (await getTranslations({ locale, namespace: 'metadata' }))('notFound') };
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
+  const ogImage = post.image || `${baseUrl}/og-default.jpg`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `${baseUrl}/${locale}/blog/${slug}`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/blog/${slug}`,
+      languages: {
+        'de': `${baseUrl}/de/blog/${slug}`,
+        'en': `${baseUrl}/en/blog/${slug}`,
+        'ru': `${baseUrl}/ru/blog/${slug}`,
+        'ar': `${baseUrl}/ar/blog/${slug}`,
+        'fr': `${baseUrl}/fr/blog/${slug}`,
+        'hu': `${baseUrl}/hu/blog/${slug}`,
+      },
+    },
+  };
 }
 
 export function generateStaticParams() {
@@ -24,7 +57,8 @@ export function generateStaticParams() {
 export const dynamicParams = true;
 
 function formatDate(dateStr: string, locale: string): string {
-  return new Date(dateStr).toLocaleDateString(locale === 'de' ? 'de-AT' : locale === 'ru' ? 'ru-RU' : 'en-US', {
+  const localeMap: Record<string, string> = { de: 'de-AT', en: 'en-US', ru: 'ru-RU', ar: 'ar-EG', fr: 'fr-FR', hu: 'hu-HU' };
+  return new Date(dateStr).toLocaleDateString(localeMap[locale] || 'de-AT', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -44,9 +78,46 @@ export default async function BlogPostPage({ params }: Props) {
     .slice(0, 2);
 
   const hasHeroImage = post.image && post.image.startsWith('http');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: hasHeroImage ? post.image : `${baseUrl}/og-default.jpg`,
+    datePublished: post.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Hurghada Reiseplaner',
+      url: baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Hurghada Reiseplaner',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+      },
+    },
+    url: `${baseUrl}/${locale}/blog/${slug}`,
+    inLanguage: locale,
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${baseUrl}/${locale}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title },
+    ],
+  };
 
   return (
     <>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {/* Hero Image */}
       <div className={styles.hero}>
         {hasHeroImage ? (

@@ -15,7 +15,7 @@ interface Subscriber {
 
 export default function AdminNewsletterPage() {
   const { t, locale } = useAdminLocale();
-  const dateLocale = locale === 'en' ? 'en-GB' : 'de-AT';
+  const dateLocale = locale === 'en' ? 'en-GB' : locale === 'ar' ? 'ar-EG' : locale === 'fr' ? 'fr-FR' : locale === 'hu' ? 'hu-HU' : locale === 'ru' ? 'ru-RU' : 'de-AT';
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -103,14 +103,14 @@ export default function AdminNewsletterPage() {
         </div>
         <div className={styles.statCard}>
           <span className={styles.statValue}>{stats.thisMonth}</span>
-          <span className={styles.statLabel}>{locale === 'en' ? 'This Month' : locale === 'ru' ? 'В этом месяце' : 'Diesen Monat'}</span>
+          <span className={styles.statLabel}>{locale === 'en' ? 'This Month' : locale === 'ru' ? 'В этом месяце' : locale === 'fr' ? 'Ce mois-ci' : locale === 'hu' ? 'Ebben a hónapban' : 'Diesen Monat'}</span>
         </div>
       </div>
 
       <div className={styles.filters}>
         <input
           type="text"
-          placeholder={locale === 'en' ? 'Search by email, name...' : locale === 'ru' ? 'Поиск по email, имени...' : 'Suche nach E-Mail, Name...'}
+          placeholder={locale === 'en' ? 'Search by email, name...' : locale === 'ru' ? 'Поиск по email, имени...' : locale === 'fr' ? 'Rechercher par email, nom...' : locale === 'hu' ? 'Keresés email, név szerint...' : 'Suche nach E-Mail, Name...'}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className={styles.searchInput}

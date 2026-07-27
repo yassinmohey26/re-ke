@@ -5,7 +5,8 @@ import { Link } from '@/i18n/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import TourCard from '@/components/cards/TourCard';
 import { getLocalizedTour, getToursByCategory, getLocalizedCategoryLabel, getLocalizedAllTours, getTourExtras } from '@/lib/data/tours';
-import { parsePricingTiers } from '@/lib/pricing-table';
+import { parsePricingTiers, hasPricingTable, stripPricingTable } from '@/lib/pricing-table';
+import InteractivePricingTable from '@/components/tours/InteractivePricingTable';
 import { TourBookingProvider } from '@/components/tours/TourBookingContext';
 import TourGallery from '@/components/tours/TourGallery';
 import TourBookingSidebar from '@/components/tours/TourBookingSidebar';
@@ -14,6 +15,7 @@ import TourPriceTable from '@/components/tours/TourPriceTable';
 import TourDiscountTable from '@/components/tours/TourDiscountTable';
 import CancellationPolicy from '@/components/tours/CancellationPolicy';
 import TrustBox from '@/components/tours/TrustBox';
+import JsonLd from '@/components/seo/JsonLd';
 import styles from './page.module.css';
 
 type Props = { params: Promise<{ slug: string; locale: string }> };
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: tourUrl,
       siteName: 'Hurghada Reiseplaner',
       images: [{ url: ogImage, width: 1200, height: 630, alt: tour.name }],
-      locale: locale === 'de' ? 'de_AT' : locale === 'ru' ? 'ru_RU' : 'en_US',
+      locale: locale === 'de' ? 'de_AT' : locale === 'ru' ? 'ru_RU' : locale === 'ar' ? 'ar_EG' : locale === 'fr' ? 'fr_FR' : locale === 'hu' ? 'hu_HU' : 'en_US',
       type: 'website',
     },
     twitter: {
@@ -51,6 +53,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'de': `${baseUrl}/de/touren/${slug}`,
         'en': `${baseUrl}/en/touren/${slug}`,
         'ru': `${baseUrl}/ru/touren/${slug}`,
+        'ar': `${baseUrl}/ar/touren/${slug}`,
+        'fr': `${baseUrl}/fr/touren/${slug}`,
+        'hu': `${baseUrl}/hu/touren/${slug}`,
       },
     },
   };
@@ -68,14 +73,12 @@ export default async function TourDetailPage({ params }: Props) {
   const t = await getTranslations('tours');
 
   const [relatedToursRaw, catLabel, extras] = await Promise.all([
-    getToursByCategory(tour.category).then((list) => list.filter((t) => t.slug !== tour.slug).slice(0, 3)),
+    getToursByCategory(tour.category, locale).then((list) => list.filter((t) => t.slug !== tour.slug).slice(0, 3)),
     getLocalizedCategoryLabel(tour.category, locale),
     getTourExtras(tour.id),
   ]);
 
-  const relatedTours = locale !== 'de'
-    ? (await getLocalizedAllTours(locale)).filter((t) => t.slug !== tour.slug && t.category === tour.category).slice(0, 3)
-    : relatedToursRaw;
+  const relatedTours = relatedToursRaw;
 
   const galleryImages = tour.image ? [tour.image] : [];
 
@@ -88,7 +91,7 @@ export default async function TourDetailPage({ params }: Props) {
     description: tour.shortDescription,
     url: `${baseUrl}/${locale}/touren/${slug}`,
     image: tour.image || `${baseUrl}/og-default.jpg`,
-    touristType: 'Leisure traveler',
+    touristType: t('touristType'),
     itinerary: {
       '@type': 'ItemList',
       numberOfItems: tour.duration,
@@ -107,13 +110,20 @@ export default async function TourDetailPage({ params }: Props) {
     },
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: catLabel, item: `${baseUrl}/${locale}/touren/${tour.category}` },
+      { '@type': 'ListItem', position: 3, name: tour.name },
+    ],
+  };
+
   return (
     <>
-      {/* JSON-LD structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
 
       {/* Breadcrumb */}
       <div className="container" style={{ paddingTop: 'var(--space-4)' }}>
@@ -122,7 +132,7 @@ export default async function TourDetailPage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 'var(--space-4)' }}>
         <div className="container">
-          <TourBookingProvider slug={tour.slug} price={tour.price} pricingTiers={parsePricingTiers(tour.description)} extras={extras}>
+          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={parsePricingTiers(tour.description)} extras={extras}>
             {/* Title */}
             <h1 className={styles.tourTitle}>{tour.name}</h1>
             {tour.meetingPoint && (
@@ -187,9 +197,14 @@ export default async function TourDetailPage({ params }: Props) {
                     <h2 className={styles.sectionTitle}>{t('overview')}</h2>
                     <div
                       className={styles.description}
-                      dangerouslySetInnerHTML={{ __html: tour.description }}
+                      dangerouslySetInnerHTML={{ __html: hasPricingTable(tour.description) ? stripPricingTable(tour.description) : tour.description }}
                     />
                   </div>
+                )}
+
+                {/* Interactive Pricing Table (linked to booking context) */}
+                {hasPricingTable(tour.description) && (
+                  <InteractivePricingTable />
                 )}
 
                 {/* Price Table */}

@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { DM_Sans, Outfit, Marcellus } from 'next/font/google';
+import { DM_Sans, Outfit, Marcellus, Noto_Sans_Arabic } from 'next/font/google';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
 
@@ -29,6 +29,13 @@ const marcellus = Marcellus({
   display: 'swap',
 });
 
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-noto-arabic',
+  display: 'swap',
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -37,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${dmSans.variable} ${outfit.variable} ${marcellus.variable}`}
+      className={`${dmSans.variable} ${outfit.variable} ${marcellus.variable} ${notoSansArabic.variable}`}
     >
       <body>{children}</body>
     </html>

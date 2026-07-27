@@ -54,7 +54,7 @@
   padding: 8px 16px;
 }
 .searchField:not(:first-child) {
-  border-left: 1px solid var(--color-border-4);
+  border-inline-start: 1px solid var(--color-border-4);
 }
 .searchLabel {
   font-size: 11px;
@@ -77,7 +77,7 @@
 }
 select.searchInput {
   cursor: pointer;
-  padding-right: 16px;
+  padding-inline-end: 16px;
   background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 4px center;
@@ -211,7 +211,7 @@ select.searchInput {
 .checkboxInput:checked + .checkboxMark::after {
   content: '';
   position: absolute;
-  left: 4px;
+  inset-inline-start: 4px;
   top: 1px;
   width: 6px;
   height: 10px;
@@ -319,7 +319,7 @@ select.searchInput {
 .heartBtn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  inset-inline-end: 10px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -467,11 +467,11 @@ select.searchInput {
   .filterSection {
     min-width: 180px;
     border-bottom: none;
-    border-right: 1px solid var(--color-border-4);
-    padding-right: var(--space-4);
+    border-inline-end: 1px solid var(--color-border-4);
+    padding-inline-end: var(--space-4);
   }
   .filterSection:last-child {
-    border-right: none;
+    border-inline-end: none;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -491,7 +491,7 @@ select.searchInput {
     gap: 8px;
   }
   .searchField {
-    border-left: none !important;
+    border-inline-start: none !important;
     border-bottom: 1px solid var(--color-border-4);
     padding: 8px;
   }

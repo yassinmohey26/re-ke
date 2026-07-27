@@ -41,6 +41,7 @@
   --font-body:        'DM Sans', system-ui, sans-serif;
   --font-heading:     'Outfit', sans-serif;
   --font-serif:       'Marcellus', Georgia, serif;
+  --font-arabic:      var(--font-noto-arabic), 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
   --font-weight-body: 400;
   --font-size-body:   16px;
   --line-height-body: 1.6;
@@ -414,4 +415,94 @@ p:last-child { margin-bottom: 0; }
   :root {
     --space-20: 40px;
   }
+}
+
+/* ============================================================
+   RTL Support for Arabic
+   ============================================================ */
+
+/* Arabic font override */
+[dir="rtl"],
+.rtl {
+  --font-body: var(--font-arabic);
+  --font-heading: var(--font-arabic);
+}
+
+[dir="rtl"] body,
+.rtl body {
+  font-family: var(--font-arabic);
+}
+
+/* Force text alignment for RTL */
+[dir="rtl"] .text-left,
+.rtl .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right,
+.rtl .text-right {
+  text-align: left;
+}
+
+/* Reverse flex directions for RTL */
+[dir="rtl"] .flex-row-reverse,
+.rtl .flex-row-reverse {
+  flex-direction: row;
+}
+
+/* Arrow / chevron flip for RTL — only explicit .rtl-flip class */
+[dir="rtl"] svg.rtl-flip,
+.rtl svg.rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Form inputs: swap padding for RTL text alignment */
+[dir="rtl"] .form-input,
+[dir="rtl"] .form-textarea,
+[dir="rtl"] .form-select,
+.rtl .form-input,
+.rtl .form-textarea,
+.rtl .form-select {
+  text-align: right;
+}
+
+/* Dropdown positioning for RTL */
+[dir="rtl"] .dropdown,
+.rtl .dropdown {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%) translateY(8px);
+}
+
+[dir="rtl"] .dropdownOpen .dropdown,
+[dir="rtl"] .hasDropdown:hover .dropdown,
+.rtl .dropdownOpen .dropdown,
+.rtl .hasDropdown:hover .dropdown {
+  transform: translateX(50%) translateY(0);
+}
+
+/* Table cell alignment for RTL */
+[dir="rtl"] table th,
+[dir="rtl"] table td,
+.rtl table th,
+.rtl table td {
+  text-align: right;
+}
+
+/* Checklist/bullet alignment for RTL */
+[dir="rtl"] ul li,
+.rtl ul li {
+  padding-left: 0;
+  padding-right: inherit;
+}
+
+/* Page transition animation direction for RTL */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+[dir="rtl"] .animate-slideInLeft,
+.rtl .animate-slideInLeft {
+  animation-name: slideInRight;
 }

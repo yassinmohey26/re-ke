@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAdminLocale } from '../AdminLanguageContext';
+import LocalePicker from '@/components/admin/LocalePicker';
 import styles from './page.module.css';
 
 interface Tour {
@@ -10,20 +12,20 @@ interface Tour {
   slug: string;
   name: string;
   category: string;
-  category_label: string;
   price: number | null;
   destination: string;
   featured: boolean;
   active: boolean;
-  created_at: string;
 }
 
 export default function AdminToursPage() {
   const { t } = useAdminLocale();
+  const router = useRouter();
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
+  const [duplicateId, setDuplicateId] = useState<string | null>(null);
 
   useEffect(() => { fetchTours(); }, []);
 
@@ -56,6 +58,22 @@ export default function AdminToursPage() {
       body: JSON.stringify({ active: !current }),
     });
     if (res.ok) setTours(tours.map(tour => tour.id === id ? { ...tour, active: !current } : tour));
+  }
+
+  async function handleDuplicate(locale: string) {
+    if (!duplicateId) return;
+    const res = await fetch('/api/admin/duplicate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table: 'tours', id: duplicateId, locale }),
+    });
+    setDuplicateId(null);
+    if (res.ok) {
+      router.push(`/ZAIMOZ/tours/edit/${duplicateId}`);
+    } else {
+      const err = await res.json();
+      alert(err.error || 'Duplicate failed');
+    }
   }
 
   const categoryMap: Record<string, string> = {
@@ -146,6 +164,9 @@ export default function AdminToursPage() {
                   <td>
                     <div className={styles.actions}>
                       <Link href={`/ZAIMOZ/tours/edit/${tour.id}`} className={styles.editBtn}>{t('edit')}</Link>
+                      <button className={styles.editBtn} onClick={() => setDuplicateId(tour.id)}>
+                        {t('duplicateBtn')}
+                      </button>
                       <button
                         className={styles.deleteBtn}
                         onClick={() => handleDelete(tour.id)}
@@ -164,6 +185,13 @@ export default function AdminToursPage() {
             </tbody>
           </table>
         </div>
+      )}
+
+      {duplicateId && (
+        <LocalePicker
+          onSelect={handleDuplicate}
+          onCancel={() => setDuplicateId(null)}
+        />
       )}
     </div>
   );

@@ -1,0 +1,86 @@
+{
+  "pageTitle": "Általános Szerződési Feltételek",
+  "title": "Általános Szerződési Feltételek (ÁSZF)",
+  "lastUpdated": "Utolsó frissítés: {date}",
+  "intro": {
+    "title": "1. Hatálykör",
+    "text": "Ezek az Általános Szerződési Feltételek (a továbbiakban: \"ÁSZF\") szabályozzák a Hurghada Utazásszervező (a továbbiakban: \"Szervező\") és az ügyfél (a továbbiakban: \"Résztvevő\") közötti szerződési kapcsolatokat a túrák, kirándulások és egyéb turisztikai szolgáltatások előfizetéséhez és megvalósításához Égyptomban. Az eltérő feltételeket a Résztvevő nem fogadjuk el, hacsak a Szervező kifejezetten írásosan nem hagyja jóvá."
+  },
+  "booking": {
+    "title": "2. Foglalás és Szerződéskötés",
+    "text": "A foglalás a weboldalunkon, e-mailben, WhatsApp-en vagy telefonon történik. A szerződés írásos megerősítésünkkel (e-mail/WhatsApp) jön létre. A foglalás mindkét fél számára kötelező.",
+    "points": {
+      "confirmation": "A foglalás megerősítése tartalmazza az összes lényeges információt: túra, dátum, idő, találkozóhely, ár és fizetési mód.",
+      "payment": "Foglaláskor a választott fizetési mód alapján jöhet a teljes összeg vagy 30% előleg.",
+      "cancellation": "A lemondási feltételek a 4. pontban találhatók.",
+      "modification": "A foglalás módosításai (dátum, résztvevők száma, túra) 24 órával a túra indulása előtt ingyenesen lehetségesek, rendelkezésre állás alapján."
+    }
+  },
+  "payment": {
+    "title": "3. Fizetési Feltételek",
+    "text": "A Szervező a következő fizetési módokat fogadja el: bankkártya (Visa, MasterCard), PayPal, banki átutalás, készpénzfizetés helyben. Az online fizetés biztonságos Stripe-on keresztül történik.",
+    "points": {
+      "methods": "Bankkártya (Visa, MasterCard), PayPal, banki átutalás, készpénz.",
+      "deposit": "Előleg esetén: a teljes ár 30% a foglaláskor, a maradék részlet helyszínen készpénzben (EUR, USD, EGP) vagy kártyával.",
+      "balance": "A fennmaradó összeg a túra indulásakor legkésőbb esedékes. Teljes fizetés nélkül nincs részvételi jog.",
+      "currency": "Minden ár euróban (EUR) értendő. Egyéb devizákban történő fizetés a napi árfolyamon történik."
+    }
+  },
+  "cancellation": {
+    "title": "4. Lemondás és Átírás",
+    "text": "A lemondások és átírások írásban (e-mail/WhatsApp) kell, hogy történjenek. Hatályos a Szervezőnél történő beérkezés.",
+    "points": {
+      "free24h": "A túra indulásáig 24 óráig: ingyenes lemondás, teljes visszatérítés.",
+      "late": "Kevesebb mint 24 óra a túra indulása előtt: a teljes ár 50%-a mint lemondási díj.",
+      "noshow": "Nem megjelenés (No-Show) esetén: a teljes ár 100%-a.",
+      "forceMajeure": "Kényszermajor (természeti katasztrófák, politikai görcsök, járványok, hatósági rendelkezés) esetén ingyenes lemondás vagy átrendezés díjmentesen."
+    }
+  },
+  "services": {
+    "title": "5. Szolgáltatásleírás és Módosítások",
+    "text": "A pontos szolgáltatáskör a weboldalon lévő túraleírásból és a foglalási megerősítésből következik. A Szervező fenntartja a jogot a program rövid távon, fontos okokból (időjárás, biztonság, hatósági rendelkezés) módosítására. Nem vállalunk felelősséget módosult vagy kihagyott programpontokért, hacsak a Szervező nem cselekszett szándékosan vagy groban tiszteletlenül.",
+    "points": {
+      "transfer": "Transzferek (szálloda-szálloda/repülőtér) klímázott járművekkel.",
+      "guide": "Német/angol/francia/orosz/arab nyelvű, engedélyezett utazásszervezők.",
+      "equipment": "Vízi sport felszerelés (sznorchel, maszk, úszóláb, mentőköntös).",
+      "meals": "Étkezés leírás szerint (reggeli, ebéd, italok).",
+      "insurance": "Utazásbiztosítás nem tartozik – javasoljuk a lemondási és külföldi betegségbiztosítás megkötését."
+    }
+  },
+  "liability": {
+    "title": "6. Felelősség",
+    "text": "A Szervező a szándékos vagy groban tiszteletlen cselekvésből eredő károkért korlátlanul felel. Enyhén tiszteletlen cselekvés esetén csak a szerződés alapvető kötelezettségeinek (kardinalis kötelezettségek) megszegése esetén, és a szerződés jellegéből adódóan előre látható kárig felel.",
+    "points": {
+      "personal": "Élet, test, egészség sérülése esetén korlátlan felelősség.",
+      "property": "Anyagi károk esetén a felelősség a háromszoros utazási árra van korlátozva.",
+      "forceMajeure": "Kényszermajor (természeti katasztrófák, terrorcselekvők, járványok, hatósági intézkedések) esetén a felelősség teljesen kizárt.",
+      "maxLiability": "Az összefeleősség a háromszoros utazási árra van korlátozva, hacsak nem szándékos vagy groban tiszteletlen cselekvés áll fenn."
+    }
+  },
+  "intellectualProperty": {
+    "title": "7. Szellemi Tulajdonjog",
+    "text": "Az oldalon lévő minden tartalom (szövegek, képek, grafikák, logók) szerzői jogvédelem alatt áll. Bármilyen sokszorosítás, terjesztés vagy nyilvános återadás előzetes írásos hozzájárulásunkat igényli."
+  },
+  "stripe": {
+    "title": "7. Fizetéskezelés Stripe-on keresztül",
+    "text": "A fizetéskezelést a Stripe (Stripe Inc., 510 Townsend St, San Francisco, CA 94103, USA) végzi. A Stripe Használati Feltételei (https://stripe.com/legal) és Adatvédelmi Szabályzata (https://stripe.com/privacy) érvényesek. Nem tárolunk bankkártya-adatokat a szervereinken."
+  },
+  "dataProtection": {
+    "title": "8. Adatvédelem",
+    "text": "A személyes adatok feldolgozása az Adatvédelmi Szabályzatunk és a GDPR szerint történik. Adatok kizárólag a szerződés teljesítésére és kommunikációra szolgálnak. Harmadik felekkel csak a szerződés teljesítéséhez (pl. szálloda, transzfer-partnerek) vagy jogi kötelezettség esetén osztunk meg."
+  },
+  "governingLaw": {
+    "title": "9. Alkalmazandó Jog és Hivatalos Hely",
+    "text": "Magyar jog érvényes. A hatóságos bíróság Budapest, ha a vásárló vállalkozó, közjogi személy vagy köz jogi különvermögen."
+  },
+  "severability": {
+    "title": "10. Salvatorikus Klausula",
+    "text": "Ha egy rendelkezés érvénytelen vagy érvénytelen lesz, a többi rendelkezés érvényessége érintetlen marad. Az érvénytelen rendelkezést a megfelelő jogszabályi szabályozás pótolja, ami leginkább megfelel az érvénytelen rendelkezés gazdasági céljának."
+  },
+  "contact": {
+    "title": "Kapcsolat",
+    "text": "Kérdésekkel ezen ÁSZF-fel kapcsolatban forduljon hozzánk:",
+    "email": "info@hurghada-reiseplaner.at",
+    "address": "Hurghada Utazásszervező, Hurghada, Vörös-tenger, Egyiptom"
+  }
+}

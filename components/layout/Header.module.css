@@ -414,3 +414,51 @@
   .hamburger { display: flex; }
   .mobileOpen .mobileMenu { display: block; }
 }
+
+/* ── RTL Overrides ────────────────────────────────────────── */
+[dir="rtl"] .langDropdown,
+.rtl .langDropdown {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .mobileNavLink,
+.rtl .mobileNavLink {
+  text-align: right;
+}
+
+[dir="rtl"] .mobileDropdown,
+.rtl .mobileDropdown {
+  padding-left: 0;
+  padding-right: var(--space-4);
+}
+
+[dir="rtl"] .dropdown,
+.rtl .dropdown {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%) translateY(8px);
+}
+
+[dir="rtl"] .dropdownOpen .dropdown,
+[dir="rtl"] .hasDropdown:hover .dropdown,
+.rtl .dropdownOpen .dropdown,
+.rtl .hasDropdown:hover .dropdown {
+  transform: translateX(50%) translateY(0);
+}
+
+[dir="rtl"] .navLink,
+.rtl .navLink {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .langOption,
+.rtl .langOption {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+[dir="rtl"] .langOptionLabel,
+.rtl .langOptionLabel {
+  text-align: right;
+}

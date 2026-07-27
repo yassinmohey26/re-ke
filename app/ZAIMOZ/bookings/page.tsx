@@ -14,13 +14,13 @@ interface Booking {
   phone: string;
   date: string;
   guests: number;
-  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED' | 'REFUNDED';
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED' | 'REFUNDED' | 'PAYMENT_FAILED';
   created_at: string;
 }
 
 export default function AdminBookingsPage() {
   const { t, locale } = useAdminLocale();
-  const dateLocale = locale === 'en' ? 'en-GB' : 'de-AT';
+  const dateLocale = locale === 'en' ? 'en-GB' : locale === 'ar' ? 'ar-EG' : locale === 'fr' ? 'fr-FR' : locale === 'hu' ? 'hu-HU' : locale === 'ru' ? 'ru-RU' : 'de-AT';
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,6 +36,7 @@ export default function AdminBookingsPage() {
     CONFIRMED: { label: t('statusConfirmed'), color: '#10b981' },
     CANCELLED: { label: t('statusCancelled'), color: '#ef4444' },
     COMPLETED: { label: t('statusCompleted'), color: '#6b7280' },
+    PAYMENT_FAILED: { label: t('statusPaymentFailed'), color: '#ef4444' },
     REFUNDED: { label: t('statusRefunded'), color: '#8b5cf6' },
   };
 
@@ -115,6 +116,8 @@ export default function AdminBookingsPage() {
                           <option value="CONFIRMED">{t('statusConfirmed')}</option>
                           <option value="CANCELLED">{t('statusCancelled')}</option>
                           <option value="COMPLETED">{t('statusCompleted')}</option>
+                          <option value="PAYMENT_FAILED">{t('statusPaymentFailed')}</option>
+                          <option value="REFUNDED">{t('statusRefunded')}</option>
                         </select>
                         <button className={styles.deleteBtn} onClick={() => handleDelete(booking.id)}>
                           {t('delete')}

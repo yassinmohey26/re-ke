@@ -12,9 +12,21 @@ export async function GET(
   }
   const { id } = await params;
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).single();
-  if (error || !data) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  return NextResponse.json(data);
+  const { data: post, error } = await supabase.from('blog_posts').select('*').eq('id', id).single();
+  if (error || !post) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+
+  const { data: translations } = await supabase
+    .from('content_translations')
+    .select('*')
+    .eq('table_name', 'blog_posts')
+    .eq('row_id', id);
+
+  const trMap: Record<string, any> = {};
+  for (const tr of translations ?? []) {
+    trMap[tr.locale] = tr;
+  }
+
+  return NextResponse.json({ ...post, translations: trMap });
 }
 
 export async function PUT(
@@ -29,18 +41,14 @@ export async function PUT(
   try {
     const body = await request.json();
     const supabase = getSupabaseAdmin();
-    const { data, error } = await supabase
+    const locale = body.locale || 'de';
+
+    const { data: post, error: postError } = await supabase
       .from('blog_posts')
       .update({
         slug: body.slug,
-        title: body.title,
-        excerpt: body.excerpt || '',
-        content: body.content || '',
         image: body.image || '',
-        category: body.category || '',
         date: body.date,
-        read_time: body.readTime || '5 Min',
-        tags: body.tags || [],
         author: body.author || 'Reiseplaner Team',
         published: body.published !== false,
         featured: body.featured || false,
@@ -49,8 +57,26 @@ export async function PUT(
       .eq('id', id)
       .select()
       .single();
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-    return NextResponse.json(data);
+
+    if (postError) return NextResponse.json({ error: postError.message }, { status: 500 });
+
+    const { error: trError } = await supabase
+      .from('content_translations')
+      .upsert({
+        table_name: 'blog_posts',
+        row_id: id,
+        locale,
+        title: body.title || '',
+        excerpt: body.excerpt || '',
+        content: body.content || '',
+        category: body.category || '',
+        read_time: body.readTime || '5 Min',
+        tags: body.tags || [],
+      }, { onConflict: 'table_name,row_id,locale' });
+
+    if (trError) console.error('Post translation upsert error:', trError);
+
+    return NextResponse.json(post);
   } catch {
     return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
   }
@@ -66,6 +92,8 @@ export async function DELETE(
   }
   const { id } = await params;
   const supabase = getSupabaseAdmin();
+
+  await supabase.from('content_translations').delete().eq('table_name', 'blog_posts').eq('row_id', id);
   const { error } = await supabase.from('blog_posts').delete().eq('id', id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ success: true });

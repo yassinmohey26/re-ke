@@ -1,0 +1,86 @@
+{
+  "pageTitle": "Allgemeine Geschäftsbedingungen",
+  "title": "Allgemeine Geschäftsbedingungen (AGB)",
+  "lastUpdated": "Letzte Aktualisierung: {date}",
+  "intro": {
+    "title": "1. Geltungsbereich",
+    "text": "Diese Allgemeinen Geschäftsbedingungen (nachfolgend \"AGB\") regeln die vertraglichen Beziehungen zwischen Hurghada Reiseplaner (nachfolgend \"Veranstalter\") und dem Kunden (nachfolgend \"Teilnehmer\") für die Buchung und Durchführung von Touren, Ausflügen und weiteren touristischen Leistungen in Ägypten. Abweichende Bedingungen des Teilnehmers werden nicht anerkannt, es sei denn, der Veranstalter stimmt ihrer Geltung ausdrücklich schriftlich zu."
+  },
+  "booking": {
+    "title": "2. Buchung und Vertragsschluss",
+    "text": "Die Buchung erfolgt über unsere Website, per E-Mail, WhatsApp oder telefonisch. Der Vertrag kommt mit der schriftlichen Bestätigung (E-Mail/WhatsApp) durch den Veranstalter zustande. Die Buchung ist für beide Seiten verbindlich.",
+    "points": {
+      "confirmation": "Die Buchungsbestätigung enthält alle wesentlichen Informationen: Tour, Datum, Uhrzeit, Treffpunkt, Preis und Zahlungsmodalitäten.",
+      "payment": "Bei Buchung wird je nach gewählter Zahlungsart entweder der Gesamtbetrag oder eine Anzahlung von 30% fällig.",
+      "cancellation": "Stornierungsbedingungen finden Sie in Abschnitt 4.",
+      "modification": "Änderungen der Buchung (Datum, Teilnehmerzahl, Tour) sind bis 24 Stunden vor Tourbeginn kostenfrei möglich, sofern verfügbar."
+    }
+  },
+  "payment": {
+    "title": "3. Zahlungsbedingungen",
+    "text": "Der Veranstalter akzeptiert folgende Zahlungsarten: Kreditkarte (Visa, MasterCard), PayPal, Banküberweisung, Barzahlung vor Ort. Bei Online-Zahlung erfolgt die Abwicklung sicher über Stripe.",
+    "points": {
+      "methods": "Kreditkarte (Visa, MasterCard), PayPal, Banküberweisung, Barzahlung.",
+      "deposit": "Bei Wahl der Anzahlung: 30% des Gesamtpreises bei Buchung, Restbetrag vor Ort in bar (EUR, USD, EGP) oder per Karte.",
+      "balance": "Der Restbetrag ist spätestens bei Tourbeginn fällig. Ohne vollständige Bezahlung besteht kein Anspruch auf Teilnahme.",
+      "currency": "Alle Preise verstehen sich in Euro (EUR). Zahlungen in anderen Währungen erfolgen zum Tageskurs."
+    }
+  },
+  "cancellation": {
+    "title": "4. Stornierung und Umbuchung",
+    "text": "Stornierungen und Umbuchungen müssen schriftlich (E-Mail/WhatsApp) erfolgen. Maßgeblich ist der Eingang beim Veranstalter.",
+    "points": {
+      "free24h": "Bis 24 Stunden vor Tourbeginn: Kostenlose Stornierung, volle Rückerstattung.",
+      "late": "Weniger als 24 Stunden vor Tourbeginn: 50% des Gesamtpreises als Stornogebühr.",
+      "noshow": "Bei Nichtantritt (No-Show): 100% des Gesamtpreises.",
+      "forceMajeure": "Bei höherer Gewalt (Naturkatastrophen, politische Unruhen, Pandemien, behördliche Anordnungen) erfolgt kostenlose Stornierung oder Umbuchung ohne Gebühren."
+    }
+  },
+  "services": {
+    "title": "5. Leistungsbeschreibung und Änderungen",
+    "text": "Der genaue Leistungsumfang ergibt sich aus der jeweiligen Tourbeschreibung auf der Website und der Buchungsbestätigung. Der Veranstalter behält sich vor, den Ablauf aus wichtigen Gründen (Wetter, Sicherheitslage, behördliche Anordnungen) kurzfristig anzupassen. Eine Haftung für veränderte oder entfallene Programmpunkte besteht nicht, soweit der Veranstalter keinen Vorsatz oder grobe Fahrlässigkeit trifft.",
+    "points": {
+      "transfer": "Transfers (Hotel-Hotel/Airport) in klimatisierten Fahrzeugen.",
+      "guide": "Deutsch/Englisch/Französisch/Russisch/Arabisch sprechende, lizenzierte Reiseleiter.",
+      "equipment": "Ausrüstung für Wassersport (Schnorchel, Maske, Flossen, Schwimmweste).",
+      "meals": "Mahlzeiten laut Beschreibung (Frühstück, Mittagessen, Getränke).",
+      "insurance": "Reiseversicherung nicht inklusive – wir empfehlen den Abschluss einer Reise-Rücktritts- und Auslandskrankenversicherung."
+    }
+  },
+  "liability": {
+    "title": "6. Haftung",
+    "text": "Der Veranstalter haftet für Schäden, die auf Vorsatz oder grober Fahrlässigkeit beruhen, unbegrenzt. Für einfache Fahrlässigkeit haftet der Veranstalter nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und beschränkt auf den vertragstypischen, vorhersehbaren Schaden.",
+    "points": {
+      "personal": "Bei Verletzung von Leben, Körper, Gesundheit haftet der Veranstalter unbeschränkt.",
+      "property": "Für Sachschäden wird die Haftung auf den dreifachen Reisepreis begrenzt.",
+      "forceMajeure": "Bei höherer Gewalt (Naturkatastrophen, Terroranschläge, Pandemien, behördliche Maßnahmen) entfällt die Haftung vollständig.",
+      "maxLiability": "Die Gesamthaftung ist auf den dreifachen Reisepreis begrenzt, soweit nicht Vorsatz oder grobe Fahrlässigkeit vorliegt."
+    }
+  },
+  "intellectualProperty": {
+    "title": "7. Urheberrecht",
+    "text": "Alle Inhalte dieser Website (Texte, Bilder, Grafiken, Logos) sind urheberrechtlich geschützt. Jede Vervielfältigung, Verbreitung oder öffentliche Wiedergabe bedarf der vorherigen schriftlichen Zustimmung des Veranstalters."
+  },
+  "stripe": {
+    "title": "8. Zahlungsabwicklung über Stripe",
+    "text": "Die Zahlungsabwicklung erfolgt über Stripe (Stripe Inc., 510 Townsend St, San Francisco, CA 94103, USA). Es gelten die Stripe-Nutzungsbedingungen (https://stripe.com/de/legal) und die Datenschutzerklärung (https://stripe.com/de/privacy). Der Veranstalter speichert keine Kreditkartendaten auf seinen Servern."
+  },
+  "dataProtection": {
+    "title": "9. Datenschutz",
+    "text": "Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung und der DSGVO. Daten werden ausschließlich zur Vertragserfüllung und Kommunikation verwendet. Eine Weitergabe an Dritte erfolgt nur zur Vertragserfüllung (z.B. Hotel, Transferpartner) oder auf gesetzliche Verpflichtung."
+  },
+  "governingLaw": {
+    "title": "10. Anwendbares Recht und Gerichtsstand",
+    "text": "Es gilt österreichisches Recht. Gerichtsstand ist Wien, soweit der Teilnehmer Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist."
+  },
+  "severability": {
+    "title": "11. Salvatorische Klausel",
+    "text": "Sollte eine Bestimmung dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Die unwirksame Bestimmung wird durch die gesetzliche Regelung ersetzt, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "text": "Bei Fragen zu diesen AGB kontaktieren Sie uns:",
+    "email": "info@hurghada-reiseplaner.at",
+    "address": "Hurghada Reiseplaner, Hurghada, Rotes Meer, Ägypten"
+  }
+}

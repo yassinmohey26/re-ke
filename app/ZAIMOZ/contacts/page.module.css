@@ -37,13 +37,13 @@
 }
 
 .messageCard.unread {
-  border-left: 3px solid var(--color-accent);
+  border-inline-start: 3px solid var(--color-accent);
 }
 
 .unreadDot {
   position: absolute;
   top: var(--space-4);
-  right: var(--space-4);
+  inset-inline-end: var(--space-4);
   width: 10px;
   height: 10px;
   background: var(--color-accent);

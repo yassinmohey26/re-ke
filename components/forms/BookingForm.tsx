@@ -1,13 +1,17 @@
-'use client';
-
 import { useMemo, useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { createBookingSchema, type BookingFormData } from '@/lib/validations';
 import { submitBooking } from '@/lib/actions';
 import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
+import CheckoutButton from '@/components/checkout/CheckoutButton';
 import styles from './BookingForm.module.css';
+
+// Extend BookingFormData to make paymentOption required
+type BookingFormDataWithPayment = Omit<BookingFormData, 'paymentOption'> & {
+  paymentOption: 'full' | 'deposit';
+};
 
 function getTodayLocalDate() {
   const today = new Date();
@@ -27,29 +31,78 @@ interface BookingFormProps {
   tourSlug: string;
   tourName: string;
   pricePerPerson?: number | null;
+  maxGuests?: number;
   pricingTiers?: PricingTier[];
   extras?: Extra[];
   initialSelectedExtraIds?: string[];
   initialDate?: string;
-  initialGuests?: number;
+  initialAdults?: number;
+  initialChildren?: number;
+  initialInfants?: number;
+}
+
+function GuestCounter({
+  label,
+  subtitle,
+  count,
+  min,
+  max,
+  onIncrease,
+  onDecrease,
+  css,
+}: {
+  label: string;
+  subtitle: string;
+  count: number;
+  min: number;
+  max: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+  css: typeof styles;
+}) {
+  return (
+    <div className={css.guestRow}>
+      <div className={css.guestInfo}>
+        <span className={css.guestLabel}>{label}</span>
+        <span className={css.guestSubtitle}>{subtitle}</span>
+      </div>
+      <div className={css.guestPicker}>
+        <button type="button" className={css.guestBtn} onClick={onDecrease} disabled={count <= min}>−</button>
+        <span className={css.guestCount}>{count}</span>
+        <button type="button" className={css.guestBtn} onClick={onIncrease} disabled={count >= max}>+</button>
+      </div>
+    </div>
+  );
 }
 
 export default function BookingForm({
   tourSlug,
   tourName,
   pricePerPerson,
+  maxGuests = 8,
   pricingTiers = [],
   extras = [],
   initialSelectedExtraIds = [],
   initialDate = '',
-  initialGuests = 1,
+  initialAdults = 2,
+  initialChildren = 0,
+  initialInfants = 0,
 }: BookingFormProps) {
   const t = useTranslations('booking');
+  const locale = useLocale();
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState('');
   const [selectedExtraIds, setSelectedExtraIds] = useState<string[]>(initialSelectedExtraIds);
+  const [adults, setAdults] = useState(initialAdults);
+  const [childrenCount, setChildrenCount] = useState(initialChildren);
+  const [infants, setInfants] = useState(initialInfants);
+  const [paymentOption, setPaymentOption] = useState<'full' | 'deposit'>('full');
   const minimumDate = getTodayLocalDate();
+
+  const guestsTotal = adults + childrenCount + infants;
+  const guestsForPricing = adults + childrenCount;
+
   const bookingSchema = useMemo(
     () => createBookingSchema({
       firstNameMin: t('validation.firstNameMin'),
@@ -73,18 +126,18 @@ export default function BookingForm({
     reset,
     watch,
     formState: { errors },
-  } = useForm<BookingFormData>({
+  } = useForm<BookingFormDataWithPayment>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
       tourSlug,
       tourName,
       date: initialDate,
-      guests: initialGuests,
+      guests: guestsTotal,
+      paymentOption: 'full',
     },
   });
 
-  const guests = watch('guests') || 1;
-  const dynamicPricePerPerson = getPriceForGuests(pricingTiers, pricePerPerson ?? null, guests);
+  const dynamicPricePerPerson = getPriceForGuests(pricingTiers, pricePerPerson ?? null, guestsForPricing);
 
   function toggleExtra(id: string) {
     setSelectedExtraIds((prev) =>
@@ -94,9 +147,20 @@ export default function BookingForm({
 
   const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
   const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0);
-  const totalPrice = dynamicPricePerPerson != null ? dynamicPricePerPerson * guests + extrasTotal : null;
 
-  const onSubmit = (data: BookingFormData) => {
+  // Price calculation: adults full, children half, infants free
+  const totalPrice = dynamicPricePerPerson != null
+    ? dynamicPricePerPerson * adults + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal
+    : null;
+
+  const depositAmount = totalPrice != null ? Math.round(totalPrice * 0.3 * 100) / 100 : null;
+  const remainingAmount = totalPrice != null && depositAmount != null ? totalPrice - depositAmount : null;
+
+  const adultsMax = maxGuests - childrenCount - infants;
+  const childrenMax = maxGuests - adults - infants;
+  const infantsMax = maxGuests - adults - childrenCount;
+
+  const onSubmit = (data: BookingFormDataWithPayment) => {
     setServerError('');
     startTransition(async () => {
       const fd = new FormData();
@@ -105,7 +169,15 @@ export default function BookingForm({
       });
       fd.append('tourSlug', tourSlug);
       fd.append('tourName', tourName);
-      fd.append('extrasJson', JSON.stringify(selectedExtras));
+      fd.append('guests', String(guestsTotal));
+      // Store guest breakdown in extras
+      const guestBreakdown = [
+        { id: '_adults', name: `Erwachsene (${adults})`, price: 0 },
+        ...(childrenCount > 0 ? [{ id: '_children', name: `Kinder (${childrenCount})`, price: 0 }] : []),
+        ...(infants > 0 ? [{ id: '_infants', name: `Kleinkind (${infants})`, price: 0 }] : []),
+      ];
+      const allExtras = [...guestBreakdown, ...selectedExtras];
+      fd.append('extrasJson', JSON.stringify(allExtras));
       if (totalPrice != null) fd.append('totalPrice', String(totalPrice));
       const result = await submitBooking(fd);
       if (result.success) {
@@ -145,7 +217,7 @@ export default function BookingForm({
           id="booking-firstName"
           type="text"
           autoComplete="given-name"
-          placeholder="Max"
+          placeholder={t('placeholderFirstName')}
           className={`${styles.input} ${errors.firstName ? styles.error : ''}`}
           {...register('firstName')}
         />
@@ -160,7 +232,7 @@ export default function BookingForm({
           id="booking-lastName"
           type="text"
           autoComplete="family-name"
-          placeholder="Mustermann"
+          placeholder={t('placeholderLastName')}
           className={`${styles.input} ${errors.lastName ? styles.error : ''}`}
           {...register('lastName')}
         />
@@ -175,7 +247,7 @@ export default function BookingForm({
           id="booking-email"
           type="email"
           autoComplete="email"
-          placeholder="max@beispiel.at"
+          placeholder={t('placeholderEmail')}
           className={`${styles.input} ${errors.email ? styles.error : ''}`}
           {...register('email')}
         />
@@ -197,35 +269,57 @@ export default function BookingForm({
         {errors.phone && <span className={styles.errorText}>{errors.phone.message}</span>}
       </div>
 
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label htmlFor="booking-date" className={styles.label}>
-            {t('date')} <span aria-hidden>*</span>
-          </label>
-          <input
-            id="booking-date"
-            type="date"
-            min={minimumDate}
-            className={`${styles.input} ${errors.date ? styles.error : ''}`}
-            {...register('date')}
-          />
-          {errors.date && <span className={styles.errorText}>{errors.date.message}</span>}
-        </div>
+      <div className={styles.field}>
+        <label htmlFor="booking-date" className={styles.label}>
+          {t('date')} <span aria-hidden>*</span>
+        </label>
+        <input
+          id="booking-date"
+          type="date"
+          min={minimumDate}
+          className={`${styles.input} ${errors.date ? styles.error : ''}`}
+          {...register('date')}
+        />
+        {errors.date && <span className={styles.errorText}>{errors.date.message}</span>}
+      </div>
 
-        <div className={styles.field}>
-          <label htmlFor="booking-guests" className={styles.label}>
-            {t('guests')} <span aria-hidden>*</span>
-          </label>
-          <input
-            id="booking-guests"
-            type="number"
-            min={1}
-            max={20}
-            className={`${styles.input} ${errors.guests ? styles.error : ''}`}
-            {...register('guests', { valueAsNumber: true })}
-          />
-          {errors.guests && <span className={styles.errorText}>{errors.guests.message}</span>}
-        </div>
+      {/* Guest Category Pickers */}
+      <div className={styles.field}>
+        <label className={styles.label}>{t('guests')} ({guestsTotal}/{maxGuests})</label>
+        <GuestCounter
+          label={t('adults')}
+          subtitle={t('adultsAge')}
+          count={adults}
+          min={0}
+          max={adultsMax}
+          onIncrease={() => setAdults(Math.min(maxGuests, adults + 1))}
+          onDecrease={() => setAdults(Math.max(0, adults - 1))}
+          css={styles}
+        />
+        <GuestCounter
+          label={t('children')}
+          subtitle={t('childrenAge')}
+          count={childrenCount}
+          min={0}
+          max={childrenMax}
+          onIncrease={() => setChildrenCount(Math.min(maxGuests, childrenCount + 1))}
+          onDecrease={() => setChildrenCount(Math.max(0, childrenCount - 1))}
+          css={styles}
+        />
+        <GuestCounter
+          label={t('infant')}
+          subtitle={t('infantAge')}
+          count={infants}
+          min={0}
+          max={infantsMax}
+          onIncrease={() => setInfants(Math.min(maxGuests, infants + 1))}
+          onDecrease={() => setInfants(Math.max(0, infants - 1))}
+          css={styles}
+        />
+        {guestsTotal < 2 && (
+          <span className={styles.errorText}>{t('minGuestsRequired')}</span>
+        )}
+        <input type="hidden" {...register('guests')} value={guestsTotal} />
       </div>
 
       <div className={styles.field}>
@@ -241,7 +335,7 @@ export default function BookingForm({
 
       {extras.length > 0 && (
         <div className={styles.field}>
-          <label className={styles.label}>Extras</label>
+          <label className={styles.label}>{t('extrasLabel')}</label>
           {extras.map((extra) => (
             <label key={extra.id} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
               <input
@@ -257,28 +351,123 @@ export default function BookingForm({
 
       {serverError && <span className={styles.errorText}>{serverError}</span>}
 
+      {/* Payment Option */}
+      {totalPrice != null && totalPrice > 0 && (
+        <div className={styles.paymentOption}>
+          <label className={styles.label}>{t('paymentMethod')}</label>
+          <div className={styles.paymentOptions}>
+            <label
+              className={`${styles.paymentCard} ${paymentOption === 'full' ? styles.paymentCardActive : ''}`}
+              onClick={() => setPaymentOption('full')}
+            >
+              <div className={styles.paymentCardHeader}>
+                <div className={`${styles.paymentRadio} ${paymentOption === 'full' ? styles.paymentRadioActive : ''}`} />
+                <div className={styles.paymentCardTitleGroup}>
+                  <span className={styles.paymentCardTitle}>{t('payFull')}</span>
+                  <span className={styles.paymentCardDesc}>{t('payFullDesc')}</span>
+                </div>
+                <div className={styles.paymentCardAmount}>
+                  {totalPrice.toFixed(2)} €
+                </div>
+              </div>
+            </label>
+            <label
+              className={`${styles.paymentCard} ${paymentOption === 'deposit' ? styles.paymentCardActive : ''}`}
+              onClick={() => setPaymentOption('deposit')}
+            >
+              <div className={styles.paymentCardHeader}>
+                <div className={`${styles.paymentRadio} ${paymentOption === 'deposit' ? styles.paymentRadioActive : ''}`} />
+                <div className={styles.paymentCardTitleGroup}>
+                  <span className={styles.paymentCardTitle}>{t('payDeposit')}</span>
+                  <span className={styles.paymentCardDesc}>{t('payDepositDesc')}</span>
+                </div>
+                <div className={styles.paymentCardAmount}>
+                  {depositAmount != null ? depositAmount.toFixed(2) : '0.00'} €
+                </div>
+              </div>
+              <div className={styles.paymentBreakdown}>
+                <div className={styles.paymentBreakdownRow}>
+                  <span>{t('subtotalLabel')}</span>
+                  <span className={styles.paymentBreakdownValue}>{depositAmount != null ? depositAmount.toFixed(2) : '0.00'} €</span>
+                </div>
+                <div className={styles.paymentBreakdownRow}>
+                  <span>{t('remainingLabel')}</span>
+                  <span className={styles.paymentBreakdownValue}>{remainingAmount != null ? remainingAmount.toFixed(2) : '0.00'} €</span>
+                </div>
+                <div className={styles.paymentBreakdownTotal}>
+                  <span>{t('totalLabel')}</span>
+                  <span className={styles.paymentBreakdownTotalValue}>{totalPrice.toFixed(2)} €</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      )}
+
+      {serverError && <span className={styles.errorText}>{serverError}</span>}
+
+      {/* Price Breakdown */}
       {dynamicPricePerPerson != null && (
         <div className={styles.priceDisplay}>
-          {dynamicPricePerPerson !== pricePerPerson && pricePerPerson != null && (
-            <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginRight: 8 }}>
-              {t('pricePerPerson', { price: pricePerPerson })}
-            </span>
+          <div style={{ marginBottom: 4 }}>
+            {dynamicPricePerPerson !== pricePerPerson && pricePerPerson != null && (
+              <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginRight: 8 }}>
+                {t('pricePerPerson', { price: pricePerPerson })}
+              </span>
+            )}
+            {t('pricePerPerson', { price: dynamicPricePerPerson })}
+          </div>
+          {adults > 0 && (
+            <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
+              {adults} × {dynamicPricePerPerson} € {t('priceBreakdownAdults')}
+              {childrenCount > 0 && <span> + {childrenCount} × {(dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}</span>}
+              {infants > 0 && <span> + {infants} × 0 € {t('priceBreakdownInfant')}</span>}
+            </div>
           )}
-          {t('pricePerPerson', { price: dynamicPricePerPerson })}
+          {adults === 0 && childrenCount > 0 && (
+            <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
+              {childrenCount} × {(dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}
+              {infants > 0 && <span> + {infants} × 0 € {t('priceBreakdownInfant')}</span>}
+            </div>
+          )}
+          {extrasTotal > 0 && (
+            <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
+              + {extrasTotal.toFixed(2)} € Extras
+            </div>
+          )}
+          {totalPrice != null && (
+            <div style={{ fontWeight: 700, fontSize: 16, marginTop: 4 }}>
+              {t('totalLabel')}{totalPrice.toFixed(2)} EUR
+            </div>
+          )}
         </div>
       )}
 
-      {totalPrice != null && guests > 1 && (
-        <div className={styles.priceDisplay}>
-          {guests} × {dynamicPricePerPerson} EUR + {extrasTotal.toFixed(2)} EUR extras = <strong>{totalPrice.toFixed(2)} EUR</strong>
-        </div>
+      {totalPrice != null && totalPrice > 0 ? (
+        <CheckoutButton
+          tourSlug={tourSlug}
+          tourName={tourName}
+          firstName={watch('firstName') || ''}
+          lastName={watch('lastName') || ''}
+          email={watch('email') || ''}
+          phone={watch('phone') || ''}
+          date={watch('date') || ''}
+          guests={guestsTotal}
+          totalPrice={paymentOption === 'deposit' && depositAmount != null ? depositAmount : totalPrice}
+          paymentOption={paymentOption}
+          extrasJson={JSON.stringify([...selectedExtras, { id: '_adults', name: `Erwachsene: ${adults}`, price: 0 }, ...(childrenCount > 0 ? [{ id: '_children', name: `Kinder: ${childrenCount}`, price: 0 }] : []), ...(infants > 0 ? [{ id: '_infants', name: `Kleinkind: ${infants}`, price: 0 }] : [])])}
+          locale={typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : undefined}
+          disabled={isPending || guestsTotal < 2}
+        />
+      ) : (
+        <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%' }} disabled={isPending || guestsTotal < 2}>
+          {isPending ? t('sending') : t('submitRequest')}
+        </button>
       )}
-
-      <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%' }} disabled={isPending}>
-        {isPending ? t('sending') : t('submitRequest')}
-      </button>
       <p className={styles.disclaimer}>
-        {t('noDeposit')}
+        {totalPrice != null && totalPrice > 0
+          ? t('stripeDisclaimer')
+          : t('noDeposit')}
       </p>
     </form>
   );

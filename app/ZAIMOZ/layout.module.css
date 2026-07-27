@@ -6,7 +6,7 @@
 
 .adminMain {
   flex: 1;
-  margin-left: 260px;
+  margin-inline-start: 260px;
   padding: var(--space-8);
   min-height: 100vh;
 }
@@ -18,7 +18,7 @@
 
 @media (max-width: 768px) {
   .adminMain {
-    margin-left: 0;
+    margin-inline-start: 0;
     padding: var(--space-4);
   }
 }

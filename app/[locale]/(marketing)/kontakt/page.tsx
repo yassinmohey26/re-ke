@@ -1,15 +1,46 @@
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ContactForm from '@/components/forms/ContactForm';
+import JsonLd from '@/components/seo/JsonLd';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const tMeta = await getTranslations('metadata');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+  const title = tMeta('contactTitle');
+  const description = tMeta('contactDescription');
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: tMeta('contactTitle'),
-    description: tMeta('contactDescription'),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/kontakt`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/og-default.jpg`],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/kontakt`,
+      languages: {
+        'de': `${baseUrl}/de/kontakt`,
+        'en': `${baseUrl}/en/kontakt`,
+        'ru': `${baseUrl}/ru/kontakt`,
+        'ar': `${baseUrl}/ar/kontakt`,
+        'fr': `${baseUrl}/fr/kontakt`,
+        'hu': `${baseUrl}/hu/kontakt`,
+      },
+    },
   };
 }
 
@@ -26,7 +57,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           <polyline points="22,6 12,13 2,6"/>
         </svg>
       ),
-      label: 'E-Mail',
+      label: t('email'),
       value: 'info@hurghada-reiseplaner.at',
       href: 'mailto:info@hurghada-reiseplaner.at',
     },
@@ -37,7 +68,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           <path d="M12 2a10 10 0 0 0-8.527 15.256L2 22l4.744-1.473A10 10 0 1 0 12 2z"/>
         </svg>
       ),
-      label: 'WhatsApp',
+      label: t('whatsapp'),
       value: '+43 664 1234567',
       href: 'https://wa.me/4368181140099',
     },
@@ -67,6 +98,31 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   return (
     <>
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'TravelAgency',
+        name: 'Hurghada Reiseplaner',
+        url: process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at',
+        telephone: '+43-681-81140099',
+        email: 'info@hurghada-reiseplaner.at',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Hurghada',
+          addressRegion: 'Red Sea',
+          addressCountry: 'EG',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 27.2579,
+          longitude: 33.8116,
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '09:00',
+          closes: '21:00',
+        },
+      }} />
       {/* Page header */}
       <div className={styles.pageHeader}>
         <div className="container">

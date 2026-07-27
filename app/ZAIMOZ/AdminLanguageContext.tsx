@@ -16,7 +16,7 @@ export function AdminLanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('admin-locale') as AdminLocale | null;
-    if (saved === 'de' || saved === 'en' || saved === 'ru') setLocaleState(saved);
+    if (saved === 'de' || saved === 'en' || saved === 'ru' || saved === 'ar' || saved === 'fr' || saved === 'hu') setLocaleState(saved);
   }, []);
 
   function setLocale(l: AdminLocale) {

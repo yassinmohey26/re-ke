@@ -13,16 +13,82 @@ function getTodayLocalDate() {
   return `${today.getFullYear()}-${month}-${day}`;
 }
 
+function GuestCounter({
+  label,
+  subtitle,
+  count,
+  min,
+  max,
+  onIncrease,
+  onDecrease,
+  css,
+}: {
+  label: string;
+  subtitle: string;
+  count: number;
+  min: number;
+  max: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+  css: Record<string, string>;
+}) {
+  return (
+    <div className={css.bookingGuestRow}>
+      <div className={css.bookingGuestInfo}>
+        <span className={css.bookingGuestLabel}>{label}</span>
+        <span className={css.bookingGuestSubtitle}>{subtitle}</span>
+      </div>
+      <div className={css.bookingGuestPicker}>
+        <button
+          className={css.bookingGuestBtn}
+          onClick={onDecrease}
+          disabled={count <= min}
+        >−</button>
+        <span className={css.bookingGuestCount}>{count}</span>
+        <button
+          className={css.bookingGuestBtn}
+          onClick={onIncrease}
+          disabled={count >= max}
+        >+</button>
+      </div>
+    </div>
+  );
+}
+
 export default function TourBookingSidebar({ styles: css }: { styles: Record<string, string> }) {
   const t = useTranslations('tours');
-  const { price, pricePerPerson, guests, setGuests, pricingTiers, extras, selected, toggle, extrasTotal, total, bookingHref } = useTourBooking();
+  const tb = useTranslations('booking');
+  const {
+    price, pricePerPerson, adults, children: childrenCount, infants,
+    guests, maxGuests, setAdults, setChildren, setInfants,
+    pricingTiers, extras, selected, toggle, extrasTotal, total, bookingHref,
+  } = useTourBooking();
   const [date, setDate] = useState('');
 
   const displayPrice = pricePerPerson ?? price ?? 0;
-  const displayTotal = total ?? displayPrice * guests;
   const minimumDate = getTodayLocalDate();
 
-  const bookingHrefWithSelection = `${bookingHref}${date ? `&date=${encodeURIComponent(date)}` : ''}&guests=${guests}`;
+  const adultsMax = maxGuests - childrenCount - infants;
+  const childrenMax = maxGuests - adults - infants;
+  const infantsMax = maxGuests - adults - childrenCount;
+
+  // Build price breakdown line
+  let breakdown = null;
+  if (pricePerPerson != null) {
+    const parts: string[] = [];
+    if (adults > 0) parts.push(`${adults} × ${pricePerPerson} €`);
+    if (childrenCount > 0) parts.push(`${childrenCount} × ${(pricePerPerson / 2).toFixed(0)} €`);
+    if (infants > 0) parts.push(`${infants} × 0 €`);
+    if (parts.length > 1 && total != null) {
+      breakdown = (
+        <span className={css.bookingTotalLine}>
+          {parts.join(' + ')} = <strong>{total.toFixed(2)} EUR</strong>
+        </span>
+      );
+    }
+  }
+
+  const bookingHrefWithSelection = `${bookingHref}${date ? `&date=${encodeURIComponent(date)}` : ''}`;
 
   return (
     <div className={css.bookingCard}>
@@ -33,9 +99,10 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
           )}
           <span className={css.bookingCurrentPrice}>{displayPrice} EUR</span>
           <span className={css.bookingPricePer}>{t('perPerson')}</span>
-          {guests > 1 && pricePerPerson != null && (
+          {breakdown}
+          {guests > 1 && total != null && !breakdown && (
             <span className={css.bookingTotalLine}>
-              {guests} × {displayPrice} EUR = <strong>{displayTotal} EUR</strong>
+              {guests} × {displayPrice} EUR = <strong>{total.toFixed(2)} EUR</strong>
             </span>
           )}
         </div>
@@ -57,22 +124,39 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
         />
       </div>
 
-      {/* Guest Picker */}
+      {/* Guest Category Pickers */}
       <div className={css.bookingField}>
-        <label className={css.bookingLabel}>{t('guests')}</label>
-        <div className={css.bookingGuestPicker}>
-          <button
-            className={css.bookingGuestBtn}
-            onClick={() => setGuests(Math.max(1, guests - 1))}
-            disabled={guests <= 1}
-          >−</button>
-          <span className={css.bookingGuestCount}>{guests}</span>
-          <button
-            className={css.bookingGuestBtn}
-            onClick={() => setGuests(Math.min(20, guests + 1))}
-            disabled={guests >= 20}
-          >+</button>
-        </div>
+        <label className={css.bookingLabel}>{t('guests')} ({guests}/{maxGuests})</label>
+        <GuestCounter
+          label={tb('adults')}
+          subtitle={tb('adultsAge')}
+          count={adults}
+          min={0}
+          max={adultsMax}
+          onIncrease={() => setAdults(Math.min(maxGuests, adults + 1))}
+          onDecrease={() => setAdults(Math.max(0, adults - 1))}
+          css={css}
+        />
+        <GuestCounter
+          label={tb('children')}
+          subtitle={tb('childrenAge')}
+          count={childrenCount}
+          min={0}
+          max={childrenMax}
+          onIncrease={() => setChildren(Math.min(maxGuests, childrenCount + 1))}
+          onDecrease={() => setChildren(Math.max(0, childrenCount - 1))}
+          css={css}
+        />
+        <GuestCounter
+          label={tb('infant')}
+          subtitle={tb('infantAge')}
+          count={infants}
+          min={0}
+          max={infantsMax}
+          onIncrease={() => setInfants(Math.min(maxGuests, infants + 1))}
+          onDecrease={() => setInfants(Math.max(0, infants - 1))}
+          css={css}
+        />
       </div>
 
       {/* Extras */}

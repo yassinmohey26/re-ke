@@ -2,29 +2,60 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from '@/app/[locale]/(marketing)/touren/ToursClient';
-import { getDestinationBySlug, getLocalizedAllTours, getLocalizedDestinationData } from '@/lib/data/tours';
+import { getDestinationBySlug, getLocalizedAllTours } from '@/lib/data/tours';
+import JsonLd from '@/components/seo/JsonLd';
 
 type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   setRequestLocale(locale);
-  const dest = await getDestinationBySlug(slug);
+  const dest = await getDestinationBySlug(slug, locale);
   if (!dest) return { title: (await getTranslations({ locale, namespace: 'common' }))('noResults') };
-  const { name, tagline } = await getLocalizedDestinationData(dest, locale);
-  return { title: `${name} – Touren`, description: tagline };
+  const tMeta = await getTranslations({ locale, namespace: 'metadata' });
+  const title = `${dest.name} – ${tMeta('toursTitle')}`;
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
+  const ogImage = dest.image || `${baseUrl}/og-default.jpg`;
+  return {
+    title,
+    description: dest.tagline,
+    openGraph: {
+      title,
+      description: dest.tagline,
+      url: `${baseUrl}/${locale}/destinationen/${slug}`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: dest.name }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: dest.tagline,
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/destinationen/${slug}`,
+      languages: {
+        'de': `${baseUrl}/de/destinationen/${slug}`,
+        'en': `${baseUrl}/en/destinationen/${slug}`,
+        'ru': `${baseUrl}/ru/destinationen/${slug}`,
+        'ar': `${baseUrl}/ar/destinationen/${slug}`,
+        'fr': `${baseUrl}/fr/destinationen/${slug}`,
+        'hu': `${baseUrl}/hu/destinationen/${slug}`,
+      },
+    },
+  };
 }
 
 export default async function DestinationDetailPage({ params }: Props) {
   const { slug, locale } = await params;
   setRequestLocale(locale);
-  const dest = await getDestinationBySlug(slug);
+  const dest = await getDestinationBySlug(slug, locale);
   if (!dest) notFound();
 
-  const [localizedDest, allTours] = await Promise.all([
-    getLocalizedDestinationData(dest, locale),
-    getLocalizedAllTours(locale),
-  ]);
+  const allTours = await getLocalizedAllTours(locale);
   const tours = allTours.filter((t) => t.destinationSlug === slug);
   const t = await getTranslations('tours');
 
@@ -73,13 +104,26 @@ export default async function DestinationDetailPage({ params }: Props) {
     favorite: await (await getTranslations('a11y'))('favorite'),
   };
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+
   return (
-    <ToursClient
-      tours={tours}
-      locale={locale}
-      heroTitle={localizedDest.name}
-      heroImage={dest.image || undefined}
-      translations={translations}
-    />
+    <>
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
+          { '@type': 'ListItem', position: 2, name: 'Destinations', item: `${baseUrl}/${locale}/destinationen` },
+          { '@type': 'ListItem', position: 3, name: dest.name },
+        ],
+      }} />
+      <ToursClient
+        tours={tours}
+        locale={locale}
+        heroTitle={dest.name}
+        heroImage={dest.image || undefined}
+        translations={translations}
+      />
+    </>
   );
 }

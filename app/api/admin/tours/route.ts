@@ -22,27 +22,16 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const supabase = getSupabaseAdmin();
 
-    const row: Record<string, unknown> = {
+    const tourRow: Record<string, unknown> = {
       slug: body.slug,
-      name: body.name,
-      short_description: body.shortDescription || '',
-      description: body.description || '',
       price: body.price ?? null,
-      duration: body.duration || '',
       duration_hours: body.durationHours || 0,
       max_guests: body.maxGuests || 8,
       difficulty: body.difficulty || 'leicht',
       min_age: body.minAge || 4,
       destination: body.destination || '',
       category: body.category || 'halbtag',
-      category_label: body.categoryLabel || '',
-      highlights: body.highlights || [],
-      included: body.included || [],
-      not_included: body.notIncluded || [],
-      itinerary: body.itinerary || [],
-      faqs: body.faqs || [],
       image: body.image || '',
-      meeting_point: body.meetingPoint || '',
       featured: body.featured || false,
       active: body.active !== false,
     };
@@ -53,21 +42,46 @@ export async function POST(request: NextRequest) {
         .select('slug')
         .eq('slug', body.destinationSlug)
         .single();
-      if (dest) row.destination_slug = dest.slug;
+      if (dest) tourRow.destination_slug = dest.slug;
     }
 
-    const { data, error } = await supabase
+    const { data: tour, error: tourError } = await supabase
       .from('tours')
-      .insert(row)
+      .insert(tourRow)
       .select()
       .single();
 
-    if (error) {
-      console.error('Tour insert error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+    if (tourError) {
+      console.error('Tour insert error:', tourError);
+      return NextResponse.json({ error: tourError.message }, { status: 500 });
     }
 
-    return NextResponse.json(data, { status: 201 });
+    const trRow = {
+      table_name: 'tours',
+      row_id: tour.id,
+      locale: 'de',
+      name: body.name || '',
+      short_description: body.shortDescription || '',
+      description: body.description || '',
+      category_label: body.categoryLabel || '',
+      highlights: body.highlights || [],
+      included: body.included || [],
+      not_included: body.notIncluded || [],
+      itinerary: body.itinerary || [],
+      faqs: body.faqs || [],
+      meeting_point: body.meetingPoint || '',
+      duration: body.duration || '',
+    };
+
+    const { error: trError } = await supabase
+      .from('content_translations')
+      .insert(trRow);
+
+    if (trError) {
+      console.error('Tour translation insert error:', trError);
+    }
+
+    return NextResponse.json(tour, { status: 201 });
   } catch (e) {
     console.error('Tour create catch:', e);
     return NextResponse.json({ error: 'Failed to create tour' }, { status: 500 });

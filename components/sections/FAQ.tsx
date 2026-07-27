@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import styles from './FAQ.module.css';
 
 interface FAQItem {
@@ -65,12 +66,9 @@ export default function FAQ({ faqs }: { faqs: FAQItem[] }) {
               {t('description')}
             </p>
             <div className={styles.contactActions}>
-              <a href="https://wa.me/4368181140099" target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-                {t('whatsappBtn')}
-              </a>
-              <a href="mailto:info@hurghada-reiseplaner.at" className="btn btn--outline">
-                {t('emailBtn')}
-              </a>
+              <Link href="/kontakt" className="btn btn--primary">
+                {t('contactBtn')}
+              </Link>
             </div>
           </div>
           <div className={styles.right}>

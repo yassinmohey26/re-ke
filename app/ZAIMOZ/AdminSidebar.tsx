@@ -68,6 +68,24 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
           >
             🇷🇺 RU
           </button>
+          <button
+            className={`${styles.langBtn} ${locale === 'ar' ? styles.langActive : ''}`}
+            onClick={() => setLocale('ar')}
+          >
+            🇪🇬 AR
+          </button>
+          <button
+            className={`${styles.langBtn} ${locale === 'fr' ? styles.langActive : ''}`}
+            onClick={() => setLocale('fr')}
+          >
+            🇫🇷 FR
+          </button>
+          <button
+            className={`${styles.langBtn} ${locale === 'hu' ? styles.langActive : ''}`}
+            onClick={() => setLocale('hu')}
+          >
+            🇭🇺 HU
+          </button>
         </div>
         <Link href="/" className={styles.navItem} target="_blank" rel="noopener noreferrer">
           <span className={styles.navIcon}>↗</span>

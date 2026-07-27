@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 import { useAdminLocale } from '../AdminLanguageContext';
+import LocalePicker from '@/components/admin/LocalePicker';
 import styles from './page.module.css';
 
 interface FAQ {
@@ -17,21 +18,23 @@ const EMPTY_FORM = { question: '', answer: '', sort_order: 0 };
 
 export default function AdminFAQsPage() {
   const { t, locale } = useAdminLocale();
+  const router = useRouter();
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [duplicateId, setDuplicateId] = useState<number | null>(null);
 
   useEffect(() => { fetchFaqs(); }, []);
 
   async function fetchFaqs() {
-    const { data } = await supabase
-      .from('faqs')
-      .select('*')
-      .order('sort_order');
-    setFaqs(data ?? []);
+    const res = await fetch('/api/admin/faqs');
+    if (res.ok) {
+      const data = await res.json();
+      setFaqs(Array.isArray(data) ? data : []);
+    }
     setLoading(false);
   }
 
@@ -58,21 +61,23 @@ export default function AdminFAQsPage() {
     setSaving(true);
 
     if (editingId !== null) {
-      const { error } = await supabase
-        .from('faqs')
-        .update({ question: form.question, answer: form.answer, sort_order: form.sort_order })
-        .eq('id', editingId);
-      if (!error) {
+      const res = await fetch(`/api/admin/faqs/${editingId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
         setFaqs(faqs.map(f => f.id === editingId ? { ...f, ...form } : f));
       }
     } else {
-      const { data, error } = await supabase
-        .from('faqs')
-        .insert({ question: form.question, answer: form.answer, sort_order: form.sort_order })
-        .select()
-        .single();
-      if (!error && data) {
-        setFaqs([...faqs, data].sort((a, b) => a.sort_order - b.sort_order));
+      const res = await fetch('/api/admin/faqs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        const newFaq = await res.json();
+        setFaqs([...faqs, newFaq].sort((a, b) => a.sort_order - b.sort_order));
       }
     }
 
@@ -81,16 +86,32 @@ export default function AdminFAQsPage() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Are you sure you want to delete this FAQ?')) return;
-    const { error } = await supabase.from('faqs').delete().eq('id', id);
-    if (!error) setFaqs(faqs.filter(f => f.id !== id));
+    if (!confirm(t('confirmDeleteTour'))) return;
+    const res = await fetch(`/api/admin/faqs/${id}`, { method: 'DELETE' });
+    if (res.ok) setFaqs(faqs.filter(f => f.id !== id));
+  }
+
+  async function handleDuplicate(dupLocale: string) {
+    if (!duplicateId) return;
+    const res = await fetch('/api/admin/duplicate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table: 'faqs', id: duplicateId, locale: dupLocale }),
+    });
+    setDuplicateId(null);
+    if (res.ok) {
+      router.refresh();
+    } else {
+      const err = await res.json();
+      alert(err.error || 'Duplicate failed');
+    }
   }
 
   return (
     <div>
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>FAQs</h1>
+          <h1 className={styles.title}>{t('blogTitle')}</h1>
           <p className={styles.subtitle}>{faqs.length} {locale === 'de' ? 'Einträge' : 'entries'}</p>
         </div>
         {!showForm && (
@@ -178,6 +199,9 @@ export default function AdminFAQsPage() {
                       <button className={styles.editBtn} onClick={() => openEdit(faq)}>
                         {locale === 'de' ? 'Bearbeiten' : 'Edit'}
                       </button>
+                      <button className={styles.editBtn} onClick={() => setDuplicateId(faq.id)}>
+                        {locale === 'de' ? 'Duplizieren' : 'Duplicate'}
+                      </button>
                       <button className={styles.deleteBtn} onClick={() => handleDelete(faq.id)}>
                         {locale === 'de' ? 'Löschen' : 'Delete'}
                       </button>
@@ -189,6 +213,13 @@ export default function AdminFAQsPage() {
           </tbody>
         </table>
       </div>
+
+      {duplicateId && (
+        <LocalePicker
+          onSelect={handleDuplicate}
+          onCancel={() => setDuplicateId(null)}
+        />
+      )}
     </div>
   );
 }

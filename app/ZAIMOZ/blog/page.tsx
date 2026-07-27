@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAdminLocale } from '../AdminLanguageContext';
+import LocalePicker from '@/components/admin/LocalePicker';
 import styles from './page.module.css';
 
 interface Post {
@@ -18,9 +20,11 @@ interface Post {
 
 export default function AdminBlogPage() {
   const { t, locale } = useAdminLocale();
+  const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [duplicateId, setDuplicateId] = useState<string | null>(null);
 
   useEffect(() => { fetchPosts(); }, []);
 
@@ -55,12 +59,28 @@ export default function AdminBlogPage() {
     if (res.ok) setPosts(posts.map(p => p.id === id ? { ...p, featured: !current } : p));
   }
 
+  async function handleDuplicate(dupLocale: string) {
+    if (!duplicateId) return;
+    const res = await fetch('/api/admin/duplicate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table: 'blog_posts', id: duplicateId, locale: dupLocale }),
+    });
+    setDuplicateId(null);
+    if (res.ok) {
+      router.push(`/ZAIMOZ/blog/edit/${duplicateId}`);
+    } else {
+      const err = await res.json();
+      alert(err.error || 'Duplicate failed');
+    }
+  }
+
   const filtered = posts.filter(p =>
     p.title.toLowerCase().includes(search.toLowerCase()) ||
     p.category.toLowerCase().includes(search.toLowerCase())
   );
 
-  const dateLocale = locale === 'en' ? 'en-GB' : 'de-AT';
+  const dateLocale = locale === 'en' ? 'en-GB' : locale === 'ar' ? 'ar-EG' : locale === 'fr' ? 'fr-FR' : locale === 'hu' ? 'hu-HU' : locale === 'ru' ? 'ru-RU' : 'de-AT';
 
   return (
     <div>
@@ -118,6 +138,9 @@ export default function AdminBlogPage() {
                   <td>
                     <div className={styles.actions}>
                       <Link href={`/ZAIMOZ/blog/edit/${post.id}`} className={styles.editBtn}>{t('edit')}</Link>
+                      <button className={styles.editBtn} onClick={() => setDuplicateId(post.id)}>
+                        {t('duplicateBtn')}
+                      </button>
                       <button className={styles.deleteBtn} onClick={() => handleDelete(post.id)}>{t('delete')}</button>
                     </div>
                   </td>
@@ -129,6 +152,13 @@ export default function AdminBlogPage() {
             </tbody>
           </table>
         </div>
+      )}
+
+      {duplicateId && (
+        <LocalePicker
+          onSelect={handleDuplicate}
+          onCancel={() => setDuplicateId(null)}
+        />
       )}
     </div>
   );

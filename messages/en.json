@@ -22,6 +22,7 @@
     "airportTransfer": "Airport Transfer",
     "blog": "Blog",
     "contact": "Contact",
+    "terms": "Terms",
     "bookTours": "Book tours",
     "fullDay": "Full-day tours",
     "halfDay": "Half-day tours",
@@ -51,7 +52,7 @@
     "from": "From",
     "perPerson": "per person",
     "duration": "Duration",
-    "guests": "Max. guests",
+    "guests": "Guests",
     "difficulty": "Difficulty",
     "age": "Min. age",
     "hours": "hours",
@@ -126,8 +127,8 @@
     "maxGroupSize": "Max Group Size",
     "tourType": "Tour Type",
     "selectDate": "Select Date",
-    "guests": "Guests",
     "submitRequest": "Submit a Request",
+    "stripeDisclaimer": "You will be redirected to Stripe Checkout to complete payment securely.",
     "priceTableTitle": "Trip Details",
     "priceTablePrice": "Price",
     "priceTableType": "Travel Type",
@@ -150,7 +151,15 @@
     "trust2": "Safe and certified boats & equipment",
     "trust3": "Hotel pickup included",
     "trust4": "Flexible cancellation policies",
-    "trust5": "24/7 WhatsApp support"
+    "trust5": "24/7 WhatsApp support",
+    "pricingTitle": "Price Overview",
+    "participants": "Participants",
+    "pricePerPersonCol": "Price per Person",
+    "free": "Free",
+    "yourPrice": "← Your Price",
+    "photos": "Photos",
+    "closeGallery": "Close",
+    "touristType": "Traveler"
   },
   "destinations": {
     "pageTitle": "Destinations",
@@ -231,7 +240,9 @@
     "imprint": "Imprint",
     "toursLabel": "Tours & Excursions",
     "destinationsLabel": "Destinations",
-    "infoLabel": "Information"
+    "infoLabel": "Information",
+    "faq": "FAQ",
+    "whatsapp": "WhatsApp"
   },
   "faq": {
     "pageTitle": "FAQ",
@@ -240,8 +251,7 @@
     "title": "Your Questions — Our Answers",
     "description": "Find quick answers to the most common questions about our tours, booking and more.",
     "noFaqs": "No FAQs available yet.",
-    "whatsappBtn": "Write on WhatsApp",
-    "emailBtn": "Send email"
+    "contactBtn": "Contact us"
   },
   "homeFaq": {
     "description": "Still have questions? Contact us anytime via WhatsApp or email — we reply within 2 hours."
@@ -291,7 +301,32 @@
       "messageMax": "Message is too long."
     },
     "pricePerPerson": "From {price} EUR / person",
-    "noDeposit": "No deposit required. We will contact you."
+    "noDeposit": "No deposit required. We will contact you.",
+    "adults": "Adults",
+    "adultsAge": "Age 11+",
+    "children": "Children",
+    "childrenAge": "Age 3 – 10",
+    "infant": "Infant",
+    "infantAge": "Age 0 – 2",
+    "minGuestsRequired": "Minimum 2 guests required",
+    "extrasLabel": "Extras",
+    "priceBreakdownAdults": "(Adults)",
+    "priceBreakdownChildren": "(Children)",
+    "priceBreakdownInfant": "(Infant)",
+    "extrasTotal": "Extras",
+    "totalLabel": "Total",
+    "stripeDisclaimer": "You will be redirected to Stripe Checkout to complete payment securely.",
+    "placeholderFirstName": "Max",
+    "placeholderLastName": "Mustermann",
+    "placeholderEmail": "max@example.at",
+    "paymentMethod": "Payment method",
+    "payFull": "Pay full amount",
+    "payFullDesc": "Pay the full amount now by card",
+    "payDeposit": "Pay 30% deposit",
+    "payDepositDesc": "Pay 30% now, rest on site",
+    "payOnSite": "on site",
+    "subtotalLabel": "Deposit (30%)",
+    "remainingLabel": "Remaining"
   },
   "datenschutz": {
     "pageTitle": "Privacy Policy",
@@ -369,7 +404,25 @@
     "title": "Your dream vacation in Hurghada awaits",
     "desc": "Let our team help you find the perfect tour for your needs. Free and without obligation.",
     "primary": "Explore all tours",
-    "secondary": "Free consultation"
+    "secondary": "Free consultation",
+    "trustQuote": "We stand for reliability, punctuality and personal care.",
+    "trustMotto": "„Quality over quantity — unforgettable experiences over mass tourism.“",
+    "ariaLabel": "Trust",
+    "imageAlt": "Red Sea Hurghada"
+  },
+  "checkout": {
+    "payWithCard": "Pay with Card — ",
+    "redirecting": "Redirecting…",
+    "errorInvalidPrice": "Invalid price",
+    "errorFailed": "Failed to create checkout session",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "payDeposit": "Pay 30% deposit",
+    "payFull": "Pay full amount",
+    "payFullDesc": "Pay the full amount now by card",
+    "payDepositDesc": "Pay 30% now, rest on site",
+    "subtotalLabel": "Deposit (30%)",
+    "remainingLabel": "Remaining",
+    "totalLabel": "Total"
   },
   "destDetail": {
     "about": "About {name}",
@@ -406,7 +459,11 @@
     "bookingCancelledTitle": "Booking cancelled",
     "bookingCancelledDescription": "The booking was not completed.",
     "airportTransferTitle": "Airport Transfer",
-    "airportTransferDescription": "Comfortable and reliable airport transfer to and from Hurghada Airport."
+    "airportTransferDescription": "Comfortable and reliable airport transfer to and from Hurghada Airport.",
+    "notFound": "Not found",
+    "touristType": "Traveler",
+    "termsTitle": "Terms and Conditions",
+    "termsDescription": "Terms and Conditions for tours and excursions in Hurghada."
   },
   "airportTransfer": {
     "heroTitle": "Airport Transfer",
@@ -436,5 +493,102 @@
   "whatsapp": {
     "defaultMessage": "Hello! I am interested in your tours in Hurghada.",
     "ariaLabel": "Contact via WhatsApp"
+  },
+  "terms": {
+    "pageTitle": "Terms and Conditions",
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last updated: {date}",
+    "intro": {
+      "title": "1. Scope",
+      "text": "These General Terms and Conditions (hereinafter \"T&C\") govern the contractual relationships between Hurghada Travel Planner (hereinafter \"Organizer\") and the customer (hereinafter \"Participant\") for the booking and execution of tours, excursions, and other tourist services in Egypt. Deviating conditions of the Participant shall not be recognized unless the Organizer expressly agrees to their validity in writing."
+    },
+    "booking": {
+      "title": "2. Booking and Contract Formation",
+      "text": "Bookings are made via our website, email, WhatsApp, or telephone. The contract is concluded upon written confirmation (email/WhatsApp) by the Organizer. The booking is binding for both parties.",
+      "points": {
+        "confirmation": "The booking confirmation contains all essential information: tour, date, time, meeting point, price, and payment terms.",
+        "payment": "Upon booking, either the full amount or a 30% deposit is due depending on the chosen payment method.",
+        "cancellation": "Cancellation conditions are found in Section 4.",
+        "modification": "Booking changes (date, number of participants, tour) are free of charge up to 24 hours before tour start, subject to availability."
+      }
+    },
+    "payment": {
+      "title": "3. Payment Terms",
+      "text": "The Organizer accepts the following payment methods: Credit card (Visa, MasterCard), PayPal, bank transfer, cash payment on site. Online payments are processed securely via Stripe.",
+      "points": {
+        "methods": "Credit card (Visa, MasterCard), PayPal, bank transfer, cash.",
+        "deposit": "With deposit option: 30% of total price at booking, balance on-site in cash (EUR, USD, EGP) or by card.",
+        "balance": "The remaining balance is due at the latest at tour start. Without full payment, there is no entitlement to participate.",
+        "currency": "All prices are in Euro (EUR). Payments in other currencies are at the daily exchange rate."
+      }
+    },
+    "cancellation": {
+      "title": "4. Cancellation and Changes",
+      "text": "Cancellations and changes must be made in writing (email/WhatsApp). The decisive factor is receipt by the Organizer.",
+      "points": {
+        "free24h": "Up to 24 hours before tour start: Free cancellation, full refund.",
+        "late": "Less than 24 hours before tour start: 50% of total price as cancellation fee.",
+        "noshow": "No-show: 100% of total price.",
+        "forceMajeure": "In case of force majeure (natural disasters, political unrest, pandemics, official orders), free cancellation or rebooking without fees."
+      }
+    },
+    "services": {
+      "title": "5. Service Description and Changes",
+      "text": "The exact scope of services results from the respective tour description on the website and the booking confirmation. The Organizer reserves the right to adjust the itinerary at short notice for important reasons (weather, safety, official orders). No liability for changed or omitted program items, unless the Organizer is guilty of intent or gross negligence.",
+      "points": {
+        "transfer": "Transfers (hotel-hotel/airport) in air-conditioned vehicles.",
+        "guide": "Licensed guides speaking German/English/French/Russian/Arabic.",
+        "equipment": "Water sports equipment (snorkel, mask, fins, life vest).",
+        "meals": "Meals as per description (breakfast, lunch, drinks).",
+        "insurance": "Travel insurance not included – we recommend purchasing travel cancellation and international health insurance."
+      }
+    },
+    "liability": {
+      "title": "6. Liability",
+      "text": "The Organizer is liable for damages based on intent or gross negligence without limitation. For slight negligence, the Organizer is liable only for breach of essential contractual obligations (cardinal duties) and limited to the foreseeable, typically occurring damage.",
+      "points": {
+        "personal": "In case of injury to life, body, health, the Organizer is liable without limitation.",
+        "property": "For property damage, liability is limited to three times the tour price.",
+        "forceMajeure": "In case of force majeure (natural disasters, terrorist attacks, pandemics, official measures), liability is excluded entirely.",
+        "maxLiability": "Total liability is limited to three times the tour price, unless intent or gross negligence is present."
+      }
+    },
+    "intellectualProperty": {
+      "title": "7. Copyright",
+      "text": "All content on this website (texts, images, graphics, logos) is protected by copyright. Any reproduction, distribution, or public reproduction requires our prior written consent."
+    },
+    "stripe": {
+      "title": "7. Payment Processing via Stripe",
+      "text": "Payment processing is handled by Stripe (Stripe Inc., 510 Townsend St, San Francisco, CA 94103, USA). Stripe Terms of Service (https://stripe.com/legal) and Privacy Policy (https://stripe.com/privacy) apply. We do not store credit card data on our servers.",
+      "agreement": "By continuing, you agree to Stripe Terms of Service (https://stripe.com/legal) and Privacy Policy (https://stripe.com/privacy)."
+    },
+    "dataProtection": {
+      "title": "9. Data Protection",
+      "text": "Personal data processing is carried out in accordance with our Privacy Policy and GDPR. Data is used exclusively for contract fulfillment and communication. Disclosure to third parties occurs only for contract fulfillment (e.g., hotel, transfer partners) or legal obligation."
+    },
+    "governingLaw": {
+      "title": "9. Governing Law and Jurisdiction",
+      "text": "Austrian law applies. Place of jurisdiction is Vienna, provided the customer is a merchant, legal entity under public law, or public-law special fund."
+    },
+    "severability": {
+      "title": "10. Severability Clause",
+      "text": "Should a provision of these T&C be or become invalid, the validity of the remaining provisions shall remain unaffected. The invalid provision shall be replaced by the applicable statutory provision that comes closest to the economic purpose of the invalid provision."
+    },
+    "contact": {
+      "title": "Contact",
+      "text": "For questions regarding these T&C, please contact us:",
+      "email": "info@hurghada-reiseplaner.at",
+      "address": "Hurghada Travel Planner, Hurghada, Red Sea, Egypt",
+      "link": "Contact us"
+    },
+    "privacy": {
+      "title": "8. Data Protection",
+      "text": "Personal data processing is carried out in accordance with our Privacy Policy and GDPR. Data is used exclusively for contract fulfillment and communication. Disclosure to third parties occurs only for contract fulfillment (e.g., hotel, transfer partners) or legal obligation.",
+      "policyLink": "Privacy Policy"
+    },
+    "forceMajeure": {
+      "title": "5. Force Majeure",
+      "text": "In case of force majeure (natural disasters, political unrest, pandemics, official orders), tours may be cancelled or postponed without liability for damages. Amounts already paid will be refunded or offered as credit for a future tour."
+    }
   }
 }
