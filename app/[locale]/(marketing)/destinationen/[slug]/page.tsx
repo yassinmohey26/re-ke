@@ -6,6 +6,8 @@ import ToursClient from '@/app/[locale]/(marketing)/touren/ToursClient';
 import { getDestinationBySlug, getLocalizedAllTours } from '@/lib/data/tours';
 import JsonLd from '@/components/seo/JsonLd';
 
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

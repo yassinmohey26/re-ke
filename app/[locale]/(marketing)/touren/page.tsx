@@ -4,6 +4,8 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from './ToursClient';
 import { getLocalizedAllTours, getDestinations } from '@/lib/data/tours';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

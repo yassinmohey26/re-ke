@@ -65,6 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export function generateStaticParams() { return []; }
 export const dynamicParams = true;
+export const dynamic = 'force-dynamic';
 
 export default async function TourDetailPage({ params }: Props) {
   const { slug, locale } = await params;

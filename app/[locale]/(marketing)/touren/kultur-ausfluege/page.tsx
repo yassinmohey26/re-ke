@@ -5,6 +5,8 @@ import TourCard from '@/components/cards/TourCard';
 import { getLocalizedAllTours } from '@/lib/data/tours';
 import styles from '../page.module.css';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
