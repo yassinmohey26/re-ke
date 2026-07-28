@@ -33,12 +33,5 @@ export default function LoginLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html
-      lang="de"
-      className={`${dmSans.variable} ${outfit.variable} ${marcellus.variable}`}
-    >
-      <body>{children}</body>
-    </html>
-  );
+  return <div className={`${dmSans.variable} ${outfit.variable} ${marcellus.variable}`}>{children}</div>;
 }

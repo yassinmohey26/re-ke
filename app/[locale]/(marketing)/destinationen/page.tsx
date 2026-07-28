@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'ar': `${baseUrl}/ar/destinationen`,
         'fr': `${baseUrl}/fr/destinationen`,
         'hu': `${baseUrl}/hu/destinationen`,
+        'x-default': `${baseUrl}/de/destinationen`,
       },
     },
   };

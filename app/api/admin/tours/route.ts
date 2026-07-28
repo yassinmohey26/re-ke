@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       featured: body.featured || false,
       active: body.active !== false,
     };
+    if (body.discount !== undefined) tourRow.discount = body.discount;
 
     if (body.destinationSlug) {
       const { data: dest } = await supabase
@@ -67,7 +68,6 @@ export async function POST(request: NextRequest) {
       highlights: body.highlights || [],
       included: body.included || [],
       not_included: body.notIncluded || [],
-      itinerary: body.itinerary || [],
       faqs: body.faqs || [],
       meeting_point: body.meetingPoint || '',
       duration: body.duration || '',

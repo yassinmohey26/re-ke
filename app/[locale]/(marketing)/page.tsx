@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'ar': `${baseUrl}/ar`,
         'fr': `${baseUrl}/fr`,
         'hu': `${baseUrl}/hu`,
+        'x-default': `${baseUrl}/de`,
       },
     },
   };

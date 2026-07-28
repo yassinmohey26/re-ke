@@ -64,7 +64,7 @@ export const bookingSchema = z.object({
   guests: z
     .number()
     .int()
-    .min(2, 'Mindestens 2 Personen')
+    .min(1, 'Mindestens 1 Person')
     .max(8, 'Maximal 8 Personen'),
   message: z.string().max(2000).optional().or(z.literal('')),
   totalPrice: z.number().optional(),
@@ -112,7 +112,7 @@ export function createBookingSchema(messages: BookingValidationMessages) {
       today.setHours(0, 0, 0, 0);
       return selectedDate >= today;
     }, messages.dateInvalid),
-    guests: z.number().int().min(2, messages.guestsMin).max(8, messages.guestsMax),
+    guests: z.number().int().min(1, messages.guestsMin).max(8, messages.guestsMax),
     message: z.string().max(2000, messages.messageMax).optional().or(z.literal('')),
     totalPrice: z.number().optional(),
     extrasJson: z.string().optional(),

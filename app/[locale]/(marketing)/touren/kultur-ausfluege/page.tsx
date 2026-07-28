@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('tours');
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
-  const title = t('categoryFullDay');
-  const description = t('categoryFullDayDesc');
+  const title = t('categoryCulture');
+  const description = t('categoryCultureDesc');
   const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
     title,
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/touren/ganztagstouren`,
+      url: `${baseUrl}/${locale}/touren/kultur-ausfluege`,
       siteName: 'Hurghada Reiseplaner',
       images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
       locale: localeMap[locale] || 'de_AT',
@@ -27,14 +27,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: { card: 'summary_large_image', title, description, images: [`${baseUrl}/og-default.jpg`] },
     alternates: {
-      canonical: `${baseUrl}/${locale}/touren/ganztagstouren`,
+      canonical: `${baseUrl}/${locale}/touren/kultur-ausfluege`,
       languages: {
-        'de': `${baseUrl}/de/touren/ganztagstouren`,
-        'en': `${baseUrl}/en/touren/ganztagstouren`,
-        'ru': `${baseUrl}/ru/touren/ganztagstouren`,
-        'ar': `${baseUrl}/ar/touren/ganztagstouren`,
-        'fr': `${baseUrl}/fr/touren/ganztagstouren`,
-        'hu': `${baseUrl}/hu/touren/ganztagstouren`,
+        'de': `${baseUrl}/de/touren/kultur-ausfluege`,
+        'en': `${baseUrl}/en/touren/kultur-ausfluege`,
+        'ru': `${baseUrl}/ru/touren/kultur-ausfluege`,
+        'ar': `${baseUrl}/ar/touren/kultur-ausfluege`,
+        'fr': `${baseUrl}/fr/touren/kultur-ausfluege`,
+        'hu': `${baseUrl}/hu/touren/kultur-ausfluege`,
+        'x-default': `${baseUrl}/de/touren/kultur-ausfluege`,
       },
     },
   };
@@ -44,20 +45,20 @@ export function generateStaticParams() {
   return [];
 }
 
-export default async function GanztagstourenPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function KulturAusfluegePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const tours = await getLocalizedAllTours(locale);
-  const catTours = tours.filter(t => t.category === 'ganztag');
+  const catTours = tours.filter(t => t.category === 'kultur');
   const t = await getTranslations('tours');
 
   return (
     <>
       <PageHeader
-        eyebrow={t('categoryFullDay')}
-        title={t('categoryFullDayTitle')}
-        description={t('categoryFullDayDesc')}
+        eyebrow={t('categoryCulture')}
+        title={t('categoryCultureTitle')}
+        description={t('categoryCultureDesc')}
       />
       <section className="section">
         <div className="container">

@@ -66,12 +66,11 @@
     "bookTour": "Tour buchen",
     "requestOnly": "Auf Anfrage",
     "relatedTours": "Ähnliche Touren",
-    "categoryFullDay": "Ganztagstouren",
-    "categoryHalfDay": "Halbtagstouren",
-    "categoryWater": "Wassersport",
-    "categoryDesert": "Wüsten-Safari",
+    "categoryCulture": "Kultur Ausflüge",
+    "categorySnorkel": "Schnorchel Touren",
+    "categoryDesert": "Safari-Ausflüge",
     "overview": "Überblick",
-    "meetingPoint": "Treffpunkt",
+    "meetingPoint": "Abholung",
     "tourItinerary": "Ablauf der Tour",
     "persons": "Personen",
     "noTours": "Noch keine Touren verfügbar.",
@@ -79,16 +78,16 @@
     "allToursDesc": "Wählen Sie aus unserer vielfältigen Auswahl an Touren und Ausflügen.",
     "allDestinations": "Alle Destinationen",
     "inquiry": "Anfrage",
-    "categoryFullDayTitle": "Tagesausflüge in Ägypten",
-    "categoryFullDayDesc": "Erleben Sie die Highlights Ägyptens bei einem ganztägigen Ausflug.",
-    "categoryHalfDayTitle": "Kurze Ausflüge & Entdeckungen",
-    "categoryHalfDayDesc": "Für alle, die nicht den ganzen Tag unterwegs sein möchten.",
-    "categoryWaterTitle": "Erlebnisse auf dem Roten Meer",
-    "categoryWaterDesc": "Das Rote Meer bietet eine der schönsten Unterwasserwelten der Welt.",
+    "categoryCultureTitle": "Kultur Ausflüge",
+    "categoryCultureDesc": "Entdecken Sie die faszinierende Geschichte und Kultur Ägyptens.",
+    "categorySnorkelTitle": "Schnorchel Touren",
+    "categorySnorkelDesc": "Die schönsten Unterwasserwelten des Roten Meeres erwarten Sie.",
     "categoryDesertTitle": "Abenteuer in der Wüste",
     "categoryDesertDesc": "Erleben Sie die Weite der ägyptischen Wüste.",
     "heroTitle": "Touren",
     "searchWhere": "Wohin?",
+    "searchWhereLabel": "Wo?",
+    "searchWherePlaceholder": "Ort eingeben...",
     "searchDate": "Datum",
     "searchGuests": "Gäste",
     "searchBtn": "Suchen",
@@ -111,9 +110,13 @@
     "page": "Seite",
     "prev": "Zurück",
     "next": "Weiter",
-    "typeCultural": "Kulturausflüge",
-    "typeSnorkel": "Schnorcheltouren",
+    "typeCultural": "Kultur Ausflüge",
+    "typeSnorkel": "Schnorchel Touren",
     "typeSafari": "Safari-Ausflüge",
+    "categoryCulturalDesc": "Von den Pyramiden bis zu den Tempeln – die Highlights Ägyptens entdecken",
+    "categorySnorkelDesc": "Unterwasserwelt, Delfine und Korallenriffe erleben",
+    "categorySafariDesc": "Abenteuer durch die Wüste mit Quads, Kamelen & Sternenhimmel",
+    "viewTours": "Touren ansehen",
     "activityFamily": "Familienausflüge",
     "activityWellness": "Wellness & Entspannung",
     "activityLuxury": "Luxus & Premium",
@@ -124,8 +127,8 @@
     "timeEvening": "Abends",
     "extras": "Zusatzleistungen",
     "extrasDescription": "Wählen Sie zusätzliche Leistungen für Ihre Buchung:",
-    "maxGroupSize": "Max. Gruppengröße",
-    "tourType": "Touren-Typ",
+    "maxGroupSize": "Reisende",
+    "tourType": "Tour-Typ",
     "selectDate": "Datum wählen",
     "submitRequest": "Anfrage stellen",
     "stripeDisclaimer": "Sie werden zu Stripe Checkout weitergeleitet, um die Zahlung sicher abzuschließen.",
@@ -141,17 +144,20 @@
     "childAge511": "3–10 Jahre",
     "childAge12": "11+ Jahre",
     "childPriceFree": "Kostenlos",
-    "childPriceDiscount": "Ermäßigt",
+    "childPriceDiscount": "50% Ermäßigung",
     "childPriceFull": "Vollpreis",
     "cancellationTitle": "Stornierungsbedingungen",
-    "cancellationText1": "Kostenlose Stornierung bis 24 Stunden vor dem Start der Exkursion für eine volle Rückerstattung.",
-    "cancellationText2": "Bei Stornierung weniger als 24 Stunden vor Abfahrt oder bei Nichterscheinen wird keine Rückerstattung gewährt.",
-    "trustTitle": "Warum bei uns buchen?",
-    "trust1": "Lokaler Reiseveranstalter mit langjähriger Erfahrung",
-    "trust2": "Sichere und zertifizierte Boote und Ausrüstung",
-    "trust3": "Holen Sie sich von Ihrem Hotel ab",
-    "trust4": "Flexible Stornierungsrichtlinien",
-    "trust5": "24/7 WhatsApp-Support",
+    "cancellationText1": "Ihre Pläne haben sich geändert? Kein Problem! <strong>Bis 24 Stunden vor Beginn können Sie kostenlos stornieren und erhalten den vollen Betrag zurück.</strong>",
+    "cancellationText2": "Bitte beachten Sie: <strong>Ab 24 Stunden vor dem Erlebnis ist eine Rückerstattung leider nicht mehr möglich.</strong>",
+    "trustTitle": "🌟 Warum mit Hurghada Reiseplaner reisen?",
+    "trust1": "Individuelle und private Ausflüge, flexibel nach Ihren Wünschen",
+    "trust2": "Kostenlose Stornierung für sorgenfreie Planung",
+    "trust3": "Faire und transparente Preise ohne versteckte Gebühren",
+    "trust4": "Lokale Expertinnen und Experten für authentische Erlebnisse",
+    "trust5": "Bequeme Bezahlung in Euro, Dollar oder per Überweisung",
+    "trust6": "Abholung direkt von Ihrem Hotel",
+    "trust7": "Deutschsprachige Reiseleitung und 24/7 Kundenservice",
+    "trust8": "Versicherung und Steuern bereits inklusive",
     "pricingTitle": "Preisübersicht",
     "participants": "Teilnehmer",
     "pricePerPersonCol": "Preis pro Person",
@@ -159,7 +165,10 @@
     "yourPrice": "← Ihr Preis",
     "photos": "Fotos",
     "closeGallery": "Schließen",
-    "touristType": "Urlauber"
+    "touristType": "Urlauber",
+    "seeMore": "Mehr anzeigen",
+    "moreSteps": "weitere Schritte",
+    "seeLess": "Weniger anzeigen"
   },
   "destinations": {
     "pageTitle": "Destinationen",
@@ -239,6 +248,7 @@
     "privacy": "Datenschutz",
     "imprint": "Impressum",
     "toursLabel": "Touren & Ausflüge",
+    "categoriesLabel": "Kategorien",
     "destinationsLabel": "Destinationen",
     "infoLabel": "Informationen",
     "faq": "FAQ",
@@ -308,7 +318,7 @@
     "childrenAge": "Alter 3 – 10",
     "infant": "Kleinkind",
     "infantAge": "Alter 0 – 2",
-    "minGuestsRequired": "Mindestens 2 Personen erforderlich",
+    "minGuestsRequired": "Mindestens 1 Person erforderlich",
     "extrasLabel": "Extras",
     "priceBreakdownAdults": "(Erwachsene)",
     "priceBreakdownChildren": "(Kinder)",
@@ -327,7 +337,22 @@
     "payOnSite": "vor Ort",
     "subtotalLabel": "Anzahlung (30%)",
     "remainingLabel": "Restbetrag",
-    "perPerson": "pro Person"
+    "perPerson": "pro Person",
+    "transferTitle": "Transfer / Hotelregion",
+    "hotelName": "Hotelname",
+    "hotelRegion": "Hotelregion",
+    "hotelNamePlaceholder": "z.B. Steigenberger Aqua Magic",
+    "hotelRegionPlaceholder": "Region wählen...",
+    "allRegions": "Alle Regionen",
+    "regionHurghada": "Hurghada – 0 € pro Person",
+    "regionMakadiBay": "Makadi Bay – 5 € pro Person",
+    "regionSahlHasheesh": "Sahl Hasheesh – 5 € pro Person",
+    "regionElGouna": "El Gouna – 10 € pro Person",
+    "regionSomaBay": "Soma Bay – 10 € pro Person",
+    "regionSafaga": "Safaga – 10 € pro Person",
+    "regionElQuseir": "El Quseir – 35 € pro Person",
+    "regionMarsaAlam": "Marsa Alam – 50 € pro Person",
+    "transferSurcharge": "Transferzuschlag"
   },
   "datenschutz": {
     "pageTitle": "Datenschutz",
@@ -478,18 +503,54 @@
     "contactQuote": "Wir sind für Sie da — kontaktieren Sie uns für individuelle Anfragen und maßgeschneiderte Angebote.",
     "contactButton": "Kontakt",
     "faqs": [
-      { "q": "Wie buche ich meinen Flughafen-Transfer mit Hurghada Reiseplaner?", "a": "Die Buchung ist einfach und unkompliziert. Senden Sie uns Ihre Flugdaten, die Anzahl der Personen sowie Ihr Hotel oder Reiseziel per WhatsApp, E-Mail oder über unser Kontaktformular. Anschließend erhalten Sie von uns eine Buchungsbestätigung mit allen wichtigen Informationen zu Ihrem Transfer." },
-      { "q": "Was passiert, wenn mein Flug Verspätung hat?", "a": "Kein Problem. Wir überwachen die Ankunftszeiten Ihres Fluges und passen die Abholzeit entsprechend an. Ihr Fahrer wartet auf Sie, auch wenn sich Ihr Flug verspätet." },
-      { "q": "Sind die Transferpreise pro Person oder pro Fahrzeug?", "a": "Alle angegebenen Preise gelten pro Fahrzeug, nicht pro Person. So reisen Sie komfortabel und ohne zusätzliche Kosten für weitere Mitreisende innerhalb der Fahrzeugkapazität." },
-      { "q": "Werden wir direkt am Flughafen abgeholt?", "a": "Ja. Unser Fahrer erwartet Sie am Flughafen Hurghada nach Ihrer Ankunft und bringt Sie sicher und bequem direkt zu Ihrem Hotel oder Ihrer Unterkunft." },
-      { "q": "Kann ich einen Transfer auch kurzfristig buchen?", "a": "Ja, kurzfristige Buchungen sind je nach Verfügbarkeit möglich. Kontaktieren Sie uns einfach per WhatsApp, Telefon oder E-Mail, und wir prüfen die schnellstmögliche Abholung für Sie." },
-      { "q": "Gibt es versteckte Kosten?", "a": "Nein. Bei uns erhalten Sie transparente Festpreise ohne versteckte Gebühren. Der vereinbarte Preis ist der Endpreis." },
-      { "q": "Kann ich Hin- und Rücktransfer gleichzeitig buchen?", "a": "Ja. Gerne organisieren wir sowohl Ihren Transfer vom Flughafen zum Hotel als auch Ihre Rückfahrt zum Flughafen. Teilen Sie uns einfach Ihre Flugdaten mit." },
-      { "q": "Wie buche ich meine Reise mit Hurghada Reiseplaner?", "a": "Wählen Sie Ihre gewünschte Tour oder Aktivität und senden Sie uns Ihre Anfrage über unser Formular, WhatsApp oder E-Mail. Zur Bestätigung und Sicherung Ihrer Plätze ist eine Anzahlung von 30 % erforderlich. Nach Zahlungseingang erhalten Sie eine verbindliche Buchungsbestätigung mit allen Details." },
-      { "q": "Was passiert, wenn ich meine Buchung ändern muss?", "a": "Umbuchungen sind bei uns unkompliziert möglich. Eine Änderung kann bis zu 48 Stunden vor dem Reisedatum vorgenommen werden. Kontaktieren Sie uns einfach – wir prüfen die Verfügbarkeit und passen Ihre Buchung entsprechend an. Ihre geleistete 30 % Anzahlung bleibt für die neue Buchung gültig." },
-      { "q": "Bietet Hurghada Reiseplaner Unterstützung während meiner Reise?", "a": "Ja, selbstverständlich. Unser erfahrenes, deutschsprachiges Team in Hurghada steht Ihnen während Ihres gesamten Aufenthalts zur Seite. Ob bei Fragen, kurzfristigen Änderungen oder organisatorischer Hilfe – wir sind jederzeit erreichbar." },
-      { "q": "Sind Ihre Reisen familienfreundlich?", "a": "Ja, viele unserer Touren und Ausflüge in Hurghada sind ideal für Familien mit Kindern. Wir legen Wert auf Sicherheit, Komfort und Spaß für alle Altersgruppen." },
-      { "q": "Kann ich meine Reiseroute individuell anpassen?", "a": "Ja, natürlich. Wir erstellen für Sie maßgeschneiderte Reiseprogramme, die perfekt zu Ihren Interessen passen. Ob Sie mehr Zeit zum Entspannen wünschen, kulturelle Highlights wie Luxor oder Kairo erleben möchten oder private Touren bevorzugen – wir gestalten alles flexibel nach Ihren Vorstellungen." }
+      {
+        "q": "Wie buche ich meinen Flughafen-Transfer mit Hurghada Reiseplaner?",
+        "a": "Die Buchung ist einfach und unkompliziert. Senden Sie uns Ihre Flugdaten, die Anzahl der Personen sowie Ihr Hotel oder Reiseziel per WhatsApp, E-Mail oder über unser Kontaktformular. Anschließend erhalten Sie von uns eine Buchungsbestätigung mit allen wichtigen Informationen zu Ihrem Transfer."
+      },
+      {
+        "q": "Was passiert, wenn mein Flug Verspätung hat?",
+        "a": "Kein Problem. Wir überwachen die Ankunftszeiten Ihres Fluges und passen die Abholzeit entsprechend an. Ihr Fahrer wartet auf Sie, auch wenn sich Ihr Flug verspätet."
+      },
+      {
+        "q": "Sind die Transferpreise pro Person oder pro Fahrzeug?",
+        "a": "Alle angegebenen Preise gelten pro Fahrzeug, nicht pro Person. So reisen Sie komfortabel und ohne zusätzliche Kosten für weitere Mitreisende innerhalb der Fahrzeugkapazität."
+      },
+      {
+        "q": "Werden wir direkt am Flughafen abgeholt?",
+        "a": "Ja. Unser Fahrer erwartet Sie am Flughafen Hurghada nach Ihrer Ankunft und bringt Sie sicher und bequem direkt zu Ihrem Hotel oder Ihrer Unterkunft."
+      },
+      {
+        "q": "Kann ich einen Transfer auch kurzfristig buchen?",
+        "a": "Ja, kurzfristige Buchungen sind je nach Verfügbarkeit möglich. Kontaktieren Sie uns einfach per WhatsApp, Telefon oder E-Mail, und wir prüfen die schnellstmögliche Abholung für Sie."
+      },
+      {
+        "q": "Gibt es versteckte Kosten?",
+        "a": "Nein. Bei uns erhalten Sie transparente Festpreise ohne versteckte Gebühren. Der vereinbarte Preis ist der Endpreis."
+      },
+      {
+        "q": "Kann ich Hin- und Rücktransfer gleichzeitig buchen?",
+        "a": "Ja. Gerne organisieren wir sowohl Ihren Transfer vom Flughafen zum Hotel als auch Ihre Rückfahrt zum Flughafen. Teilen Sie uns einfach Ihre Flugdaten mit."
+      },
+      {
+        "q": "Wie buche ich meine Reise mit Hurghada Reiseplaner?",
+        "a": "Wählen Sie Ihre gewünschte Tour oder Aktivität und senden Sie uns Ihre Anfrage über unser Formular, WhatsApp oder E-Mail. Zur Bestätigung und Sicherung Ihrer Plätze ist eine Anzahlung von 30 % erforderlich. Nach Zahlungseingang erhalten Sie eine verbindliche Buchungsbestätigung mit allen Details."
+      },
+      {
+        "q": "Was passiert, wenn ich meine Buchung ändern muss?",
+        "a": "Umbuchungen sind bei uns unkompliziert möglich. Eine Änderung kann bis zu 48 Stunden vor dem Reisedatum vorgenommen werden. Kontaktieren Sie uns einfach – wir prüfen die Verfügbarkeit und passen Ihre Buchung entsprechend an. Ihre geleistete 30 % Anzahlung bleibt für die neue Buchung gültig."
+      },
+      {
+        "q": "Bietet Hurghada Reiseplaner Unterstützung während meiner Reise?",
+        "a": "Ja, selbstverständlich. Unser erfahrenes, deutschsprachiges Team in Hurghada steht Ihnen während Ihres gesamten Aufenthalts zur Seite. Ob bei Fragen, kurzfristigen Änderungen oder organisatorischer Hilfe – wir sind jederzeit erreichbar."
+      },
+      {
+        "q": "Sind Ihre Reisen familienfreundlich?",
+        "a": "Ja, viele unserer Touren und Ausflüge in Hurghada sind ideal für Familien mit Kindern. Wir legen Wert auf Sicherheit, Komfort und Spaß für alle Altersgruppen."
+      },
+      {
+        "q": "Kann ich meine Reiseroute individuell anpassen?",
+        "a": "Ja, natürlich. Wir erstellen für Sie maßgeschneiderte Reiseprogramme, die perfekt zu Ihren Interessen passen. Ob Sie mehr Zeit zum Entspannen wünschen, kulturelle Highlights wie Luxor oder Kairo erleben möchten oder private Touren bevorzugen – wir gestalten alles flexibel nach Ihren Vorstellungen."
+      }
     ]
   },
   "homeFeatured": {

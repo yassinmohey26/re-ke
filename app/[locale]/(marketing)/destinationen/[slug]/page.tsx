@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from '@/app/[locale]/(marketing)/touren/ToursClient';
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'ar': `${baseUrl}/ar/destinationen/${slug}`,
         'fr': `${baseUrl}/fr/destinationen/${slug}`,
         'hu': `${baseUrl}/hu/destinationen/${slug}`,
+        'x-default': `${baseUrl}/de/destinationen/${slug}`,
       },
     },
   };
@@ -62,6 +64,8 @@ export default async function DestinationDetailPage({ params }: Props) {
   const translations = {
     heroTitle: await t('heroTitle'),
     searchWhere: await t('searchWhere'),
+    searchWhereLabel: await t('searchWhereLabel'),
+    searchWherePlaceholder: await t('searchWherePlaceholder'),
     searchDate: await t('searchDate'),
     searchGuests: await t('searchGuests'),
     searchBtn: await t('searchBtn'),
@@ -121,13 +125,15 @@ export default async function DestinationDetailPage({ params }: Props) {
           { '@type': 'ListItem', position: 3, name: dest.name },
         ],
       }} />
-      <ToursClient
-        tours={tours}
-        locale={locale}
-        heroTitle={dest.name}
-        heroImage={dest.image || undefined}
-        translations={translations}
-      />
+      <Suspense>
+        <ToursClient
+          tours={tours}
+          locale={locale}
+          heroTitle={dest.name}
+          heroImage={dest.image || undefined}
+          translations={translations}
+        />
+      </Suspense>
     </>
   );
 }

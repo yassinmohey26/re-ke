@@ -10,6 +10,9 @@ export default async function TrustBox() {
     t('trust3'),
     t('trust4'),
     t('trust5'),
+    t('trust6'),
+    t('trust7'),
+    t('trust8'),
   ];
 
   return (

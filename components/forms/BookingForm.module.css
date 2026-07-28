@@ -259,3 +259,39 @@
   font-size: 14px;
 }
 
+/* --- Transfer / Hotelregion Card --- */
+.transferCard {
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  background: var(--color-bg-light, #f9fafb);
+}
+.transferCardTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-1);
+  margin-bottom: var(--space-3);
+}
+.transferCardIcon {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.transferCardFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.transferCardRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+@media (max-width: 480px) {
+  .transferCardRow {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -64,9 +64,8 @@
     "bookTour": "Túra foglalása",
     "requestOnly": "Kérésre",
     "relatedTours": "Hasonló túrák",
-    "categoryFullDay": "Egész napos túrák",
-    "categoryHalfDay": "Fél napos túrák",
-    "categoryWater": "Vízi sportok",
+    "categoryCulture": "Kulturális túrák",
+    "categorySnorkel": "Sznorkelezés",
     "categoryDesert": "Sivatagi szafari",
     "allTours": "Összes túra",
     "toursCount": "elérhető túra",
@@ -79,16 +78,16 @@
     "allToursDesc": "Válasszon sokszínű túra- és kiránduláskínálatunkból.",
     "allDestinations": "Összes úti cél",
     "inquiry": "Érdeklődés",
-    "categoryFullDayTitle": "Egész napos kirándulások Egyiptomban",
-    "categoryFullDayDesc": "Tapasztalja meg Egyiptom legjavát egy egész napos kiránduláson.",
-    "categoryHalfDayTitle": "Rövid kirándulások és felfedezések",
-    "categoryHalfDayDesc": "Rövid túrák, amelyek a legjobbat nyújtják kompakt formában.",
-    "categoryWaterTitle": "Élmények a Vörös-tengeren",
-    "categoryWaterDesc": "A Vörös-tenger az egyik legszebb víz alatti világot kínálja.",
+    "categoryCultureTitle": "Kulturális túrák",
+    "categoryCultureDesc": "Fedezze fel Egyiptom lenyűgöző történelmét és kultúráját.",
+    "categorySnorkelTitle": "Sznorkelező túrák",
+    "categorySnorkelDesc": "Fedezze fel a Vörös-tenger gyönyörű víz alatti világát.",
     "categoryDesertTitle": "Kaland a sivatagban",
     "categoryDesertDesc": "Tapasztalja meg az egyiptomi sivatag végtelenségét.",
     "heroTitle": "Túrák",
     "searchWhere": "Hol?",
+    "searchWhereLabel": "Hol?",
+    "searchWherePlaceholder": "Hely megadása...",
     "searchDate": "Dátum",
     "searchGuests": "Vendégek",
     "searchBtn": "Keresés",
@@ -114,6 +113,10 @@
     "typeCultural": "Kulturális kirándulások",
     "typeSnorkel": "Snorkelozós túrák",
     "typeSafari": "Szafari kirándulások",
+    "categoryCulturalDesc": "A piramisoktól a templomokig – fedezze fel Egyiptom legjobbjait",
+    "categorySnorkelDesc": "Merüljön el a víz alatti világban, delfinek és korallzátonyok között",
+    "categorySafariDesc": "Sivatagi kaland quadokon, tevékkel és csillagnézéssel",
+    "viewTours": "Túrák megtekintése",
     "activityFamily": "Családi programok",
     "activityWellness": "Wellness és pihenés",
     "activityLuxury": "Luxus és prémium túrák",
@@ -146,12 +149,15 @@
     "cancellationTitle": "Lemondási feltételek",
     "cancellationText1": "Ingyenes lemondás a kirándulás kezdete előtt legfeljebb 24 órával a teljes visszatérítéshez.",
     "cancellationText2": "Az indulás előtt 24 órán belül tett lemondások vagy a meg nem jelenések nem visszatéríthetők.",
-    "trustTitle": "Miért minket válasszon?",
-    "trust1": "Helyi túraszervező évek tapasztalatával",
-    "trust2": "Biztonságos és tanúsított hajók és felszerelések",
-    "trust3": "Szállodai transzfer benne van",
-    "trust4": "Rugalmas lemondási feltételek",
-    "trust5": "24/7 WhatsApp támogatás",
+    "trustTitle": "🌟 Miért utazzon a Hurghada Reiseplaner-rel?",
+    "trust1": "Egyéni és privát kirándulások, rugalmasan az Ön kívánságai szerint",
+    "trust2": "Ingyenes lemondás a gondtalan tervezésért",
+    "trust3": "Igazságos és átlátható árak rejtett költségek nélkül",
+    "trust4": "Helyi szakértők autentikus élményekért",
+    "trust5": "Kényelmes fizetés euróban, dollárban vagy átutalással",
+    "trust6": "Fuvar közvetlenül a szállodájából",
+    "trust7": "Német nyelvű idegenvezető és 24/7 ügyfélszolgálat",
+    "trust8": "Biztosítás és adók már benne vannak",
     "pricingTitle": "Árak áttekintése",
     "participants": "Résztvevők",
     "pricePerPersonCol": "Ár személyenként",
@@ -159,7 +165,10 @@
     "yourPrice": "← Az ön ára",
     "photos": "Fotók",
     "closeGallery": "Bezárás",
-    "touristType": "Utazó"
+    "touristType": "Utazó",
+    "seeMore": "Több mutatása",
+    "moreSteps": "további lépés",
+    "seeLess": "Kevesebb mutatása"
   },
   "destinations": {
     "pageTitle": "Úti célok",
@@ -239,6 +248,7 @@
     "privacy": "Adatvédelmi szabályzat",
     "imprint": "Impresszum",
     "toursLabel": "Túrák és kirándulások",
+    "categoriesLabel": "Kategóriák",
     "destinationsLabel": "Úti célok",
     "infoLabel": "Információ",
     "faq": "GYIK",
@@ -308,7 +318,7 @@
     "childrenAge": "Életkor 3 – 10",
     "infant": "Csecsemő",
     "infantAge": "Életkor 0 – 2",
-    "minGuestsRequired": "Minimum 2 fő szükséges",
+    "minGuestsRequired": "Minimum 1 fő szükséges",
     "extrasLabel": "Kiegészítők",
     "priceBreakdownAdults": "(Felnőttek)",
     "priceBreakdownChildren": "(Gyermekek)",
@@ -325,7 +335,22 @@
     "payDeposit": "30% előleg kifizetése",
     "payDepositDesc": "Most 30%-ot fizet, a többit helyszínen",
     "payOnSite": "helyszínen",
-    "perPerson": "főnként"
+    "perPerson": "főnként",
+    "transferTitle": "Transzfer / Szállodai régió",
+    "hotelName": "Szálloda neve",
+    "hotelRegion": "Szállodai régió",
+    "hotelNamePlaceholder": "pl. Steigenberger Aqua Magic",
+    "hotelRegionPlaceholder": "Válassza ki a régiót...",
+    "allRegions": "Összes régió",
+    "regionHurghada": "Hurghada – 0 €/fő",
+    "regionMakadiBay": "Makadi Bay – 5 €/fő",
+    "regionSahlHasheesh": "Sahl Hasheesh – 5 €/fő",
+    "regionElGouna": "El Gouna – 10 €/fő",
+    "regionSomaBay": "Soma Bay – 10 €/fő",
+    "regionSafaga": "Safaga – 10 €/fő",
+    "regionElQuseir": "El Quseir – 35 €/fő",
+    "regionMarsaAlam": "Marsa Alam – 50 €/fő",
+    "transferSurcharge": "Transzfer felár"
   },
   "datenschutz": {
     "pageTitle": "Adatvédelmi szabályzat",
@@ -470,18 +495,54 @@
     "contactQuote": "Önért vagyunk — vegye fel velünk a kapcsolatot egyéni kérésekkel és egyedi ajánlatokkal kapcsolatban.",
     "contactButton": "Kapcsolat",
     "faqs": [
-      { "q": "Hogyan foglalhatom le a repülőtéri transzfert a Hurghada Reiseplaner-nél?", "a": "A foglalás egyszerű és bonyolult. Küldje el nekünk járatadatait, a személyek számát, valamint a szállodáját vagy úti célját WhatsApp, e-mail vagy a kapcsolatfelvételi űrlapunkon keresztül. Ezután foglalási visszaigazolást kap az összes fontos információval a transzferrel kapcsolatban." },
-      { "q": "Mi történik, ha a járatom késik?", "a": "Semmi probléma. Nyomon követjük járata érkezési idejét, és ennek megfelelően módosítjuk az átvételi időpontot. A sofőrje megvárja Önt, még ha a járata késik is." },
-      { "q": "A transzferárak személyenkénti vagy járművenkénti árak?", "a": "Minden feltüntetett ár járművenkénti, nem személyenkénti. Így kényelmesen utazik és nincsenek további költségei a többi utas számára a jármű kapacitásán belül." },
-      { "q": "Közvetlenül a reptéren vesznek fel minket?", "a": "Igen. A sofőrje a hurghadai reptéren várja Önt érkezése után, és biztonságosan, kényelmesen egyenesen a szállodájába vagy szállására viszi." },
-      { "q": "Lehet-e az utolsó pillanatban transzfert foglalni?", "a": "Igen, az utolsó pillanatban történő foglalás szabad helyek függvényében lehetséges. Egyszerűen vegye fel velünk a kapcsolatot WhatsApp, telefon vagy e-mail segítségével, és ellenőrizzük a lehető leggyorsabb átvételt az Ön számára." },
-      { "q": "Vannak-e rejtett költségek?", "a": "Nem. Átlátható, rögzített árakat kap rejtett díjak nélkül. A megállapodott ár a végleges ár." },
-      { "q": "Foglalhatok-e oda-vissza transzfert egyszerre?", "a": "Természetesen. Szervezzük mind a reptérről a szállodába történő transzfert, mind a visszautat a reptérre. Egyszerűen közölje velünk járata adatait." },
-      { "q": "Hogyan foglalhatom le az utazásomat a Hurghada Reiseplaner-nél?", "a": "Válassza ki a kívánt túrát vagy tevékenységet, és küldje el nekünk a kérését a űrlapunkon, WhatsApp-on vagy e-mailben. A foglalás megerősítéséhez és a helyek biztosításához 30% előleg szükséges. Fizetés után kötelező visszaigazolást kap az összes részlettel." },
-      { "q": "Mi történik, ha módosítanom kell a foglalásomat?", "a": "Az átfoglalások egyszerűek nálunk. A módosítás az utazás előtt legfeljebb 48 órával lehetséges extra költség nélkül. Egyszerűen vegye fel velünk a kapcsolatot, és alkalmazkodunk a foglalásához. Az Ön által befizetett 30% előleg érvényes marad az új foglaláshoz." },
-      { "q": "A Hurghada Reiseplaner támogatást nyújt az utazásom során?", "a": "Igen, támogatást nyújtunk az egész tartózkodása alatt. Tapasztalt, német nyelvű csapatunk Hurghadában bármikor elérhető a segítségnyújtásra — legyen szó kérdésekről, utolsó pillanatbeli változtatásokról vagy szervezési segítségről." },
-      { "q": "Az utazásai családbarátok?", "a": "Természetesen! Sok túránk és kirándulásunk Hurghadában ideális családok számára gyermekekkel. Ügyelünk a biztonságra, a kényelemre és a szórakozásra minden korosztály számára." },
-      { "q": "Testreszabhatom-e az útvonalamat?", "a": "Persze. Személyre szabott utazási programokat készítünk, amelyek tökéletesen illnek az érdeklődéséhez. Szeretne-e több időt pihenni, kulturális látnivalókat felfedezni, mint pl. Luxor vagy Kairó, vagy inkább privát túrákat részesít előnyben — mindent rugalmasan alakítunk az Ön kívánságai szerint." }
+      {
+        "q": "Hogyan foglalhatom le a repülőtéri transzfert a Hurghada Reiseplaner-nél?",
+        "a": "A foglalás egyszerű és bonyolult. Küldje el nekünk járatadatait, a személyek számát, valamint a szállodáját vagy úti célját WhatsApp, e-mail vagy a kapcsolatfelvételi űrlapunkon keresztül. Ezután foglalási visszaigazolást kap az összes fontos információval a transzferrel kapcsolatban."
+      },
+      {
+        "q": "Mi történik, ha a járatom késik?",
+        "a": "Semmi probléma. Nyomon követjük járata érkezési idejét, és ennek megfelelően módosítjuk az átvételi időpontot. A sofőrje megvárja Önt, még ha a járata késik is."
+      },
+      {
+        "q": "A transzferárak személyenkénti vagy járművenkénti árak?",
+        "a": "Minden feltüntetett ár járművenkénti, nem személyenkénti. Így kényelmesen utazik és nincsenek további költségei a többi utas számára a jármű kapacitásán belül."
+      },
+      {
+        "q": "Közvetlenül a reptéren vesznek fel minket?",
+        "a": "Igen. A sofőrje a hurghadai reptéren várja Önt érkezése után, és biztonságosan, kényelmesen egyenesen a szállodájába vagy szállására viszi."
+      },
+      {
+        "q": "Lehet-e az utolsó pillanatban transzfert foglalni?",
+        "a": "Igen, az utolsó pillanatban történő foglalás szabad helyek függvényében lehetséges. Egyszerűen vegye fel velünk a kapcsolatot WhatsApp, telefon vagy e-mail segítségével, és ellenőrizzük a lehető leggyorsabb átvételt az Ön számára."
+      },
+      {
+        "q": "Vannak-e rejtett költségek?",
+        "a": "Nem. Átlátható, rögzített árakat kap rejtett díjak nélkül. A megállapodott ár a végleges ár."
+      },
+      {
+        "q": "Foglalhatok-e oda-vissza transzfert egyszerre?",
+        "a": "Természetesen. Szervezzük mind a reptérről a szállodába történő transzfert, mind a visszautat a reptérre. Egyszerűen közölje velünk járata adatait."
+      },
+      {
+        "q": "Hogyan foglalhatom le az utazásomat a Hurghada Reiseplaner-nél?",
+        "a": "Válassza ki a kívánt túrát vagy tevékenységet, és küldje el nekünk a kérését a űrlapunkon, WhatsApp-on vagy e-mailben. A foglalás megerősítéséhez és a helyek biztosításához 30% előleg szükséges. Fizetés után kötelező visszaigazolást kap az összes részlettel."
+      },
+      {
+        "q": "Mi történik, ha módosítanom kell a foglalásomat?",
+        "a": "Az átfoglalások egyszerűek nálunk. A módosítás az utazás előtt legfeljebb 48 órával lehetséges extra költség nélkül. Egyszerűen vegye fel velünk a kapcsolatot, és alkalmazkodunk a foglalásához. Az Ön által befizetett 30% előleg érvényes marad az új foglaláshoz."
+      },
+      {
+        "q": "A Hurghada Reiseplaner támogatást nyújt az utazásom során?",
+        "a": "Igen, támogatást nyújtunk az egész tartózkodása alatt. Tapasztalt, német nyelvű csapatunk Hurghadában bármikor elérhető a segítségnyújtásra — legyen szó kérdésekről, utolsó pillanatbeli változtatásokról vagy szervezési segítségről."
+      },
+      {
+        "q": "Az utazásai családbarátok?",
+        "a": "Természetesen! Sok túránk és kirándulásunk Hurghadában ideális családok számára gyermekekkel. Ügyelünk a biztonságra, a kényelemre és a szórakozásra minden korosztály számára."
+      },
+      {
+        "q": "Testreszabhatom-e az útvonalamat?",
+        "a": "Persze. Személyre szabott utazási programokat készítünk, amelyek tökéletesen illnek az érdeklődéséhez. Szeretne-e több időt pihenni, kulturális látnivalókat felfedezni, mint pl. Luxor vagy Kairó, vagy inkább privát túrákat részesít előnyben — mindent rugalmasan alakítunk az Ön kívánságai szerint."
+      }
     ]
   },
   "homeFeatured": {

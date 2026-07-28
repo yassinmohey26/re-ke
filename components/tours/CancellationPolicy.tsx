@@ -8,8 +8,8 @@ export default async function CancellationPolicy() {
     <div className={styles.section}>
       <h2 className={styles.sectionTitle}>{t('cancellationTitle')}</h2>
       <div className={styles.cancellationText}>
-        <p>{t('cancellationText1')}</p>
-        <p>{t('cancellationText2')}</p>
+        <p>{t.rich('cancellationText1', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
+        <p>{t.rich('cancellationText2', { strong: (chunks) => <strong>{chunks}</strong> })}</p>
       </div>
     </div>
   );

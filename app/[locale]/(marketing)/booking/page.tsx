@@ -56,6 +56,15 @@ function BookingContent() {
   const initialInfants = getInitialInfants(searchParams.get('infants'));
   const [tourInfo, setTourInfo] = useState<TourInfo | null>(null);
   const [loadingTour, setLoadingTour] = useState(true);
+  const [destinations, setDestinations] = useState<{ slug: string; name: string }[]>([]);
+
+  useEffect(() => {
+    const locale = window.location.pathname.split('/')[1] || 'de';
+    fetch(`/api/destinations?locale=${locale}`)
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setDestinations(data))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (!tourSlug) {
@@ -114,6 +123,7 @@ function BookingContent() {
           maxGuests={tourInfo?.maxGuests ?? 8}
           pricingTiers={tourInfo?.pricingTiers ?? []}
           extras={tourInfo?.extras ?? []}
+          destinations={destinations}
           initialSelectedExtraIds={initialSelectedExtraIds}
           initialDate={initialDate}
           initialAdults={initialAdults}

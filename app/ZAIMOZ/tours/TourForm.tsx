@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useAdminLocale } from '../AdminLanguageContext';
-import ImageUpload from '@/components/admin/ImageUpload';
+import GalleryUpload from '@/components/admin/GalleryUpload';
 import ExtrasManager from './ExtrasManager';
+import { parsePricingTiers, stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
+import type { PricingTier } from '@/lib/pricing-table';
+import type { Discount } from '@/lib/data/tours';
 import styles from './TourForm.module.css';
 
 interface TourFormProps {
@@ -13,31 +16,72 @@ interface TourFormProps {
   saving: boolean;
 }
 
+function parseImageField(val: unknown): string[] {
+  if (!val) return [];
+  if (Array.isArray(val)) return val.filter(v => typeof v === 'string' && v.startsWith('http'));
+  if (typeof val === 'string') {
+    if (!val) return [];
+    try {
+      const parsed = JSON.parse(val);
+      if (Array.isArray(parsed)) return parsed.filter(v => typeof v === 'string' && v.startsWith('http'));
+    } catch {}
+    return val.startsWith('http') ? [val] : [];
+  }
+  return [];
+}
+
+const EMPTY_TIER: PricingTier = { minGuests: 1, maxGuests: 1, pricePerPerson: 0 };
+
 export default function TourForm({ initialData, onSave, saving }: TourFormProps) {
-  const { t } = useAdminLocale();
+  const { t, locale } = useAdminLocale();
+
+  function tr(field: string): any {
+    return initialData?.translations?.[locale]?.[field] ?? initialData?.[field] ?? initialData?.[field.replace(/_/g, '')] ?? '';
+  }
 
   const [form, setForm] = useState({
     slug: initialData?.slug || '',
-    name: initialData?.name || '',
-    shortDescription: initialData?.shortDescription || initialData?.short_description || '',
-    description: initialData?.description || '',
+    name: tr('name') || '',
+    shortDescription: tr('short_description') || '',
+    description: tr('description') || '',
     price: initialData?.price ?? '',
-    duration: initialData?.duration || '',
+    duration: tr('duration') || '',
     durationHours: initialData?.durationHours || initialData?.duration_hours || 4,
     maxGuests: initialData?.maxGuests || initialData?.max_guests || 8,
     difficulty: initialData?.difficulty || 'leicht',
     minAge: initialData?.minAge || initialData?.min_age || 4,
     destination: initialData?.destination || '',
     destinationSlug: initialData?.destinationSlug || initialData?.destination_slug || 'hurghada',
-    category: initialData?.category || 'halbtag',
-    categoryLabel: initialData?.categoryLabel || initialData?.category_label || '',
-    highlights: (initialData?.highlights || []).join('\n'),
-    included: (initialData?.included || []).join('\n'),
-    notIncluded: (initialData?.notIncluded || initialData?.not_included || []).join('\n'),
-    image: initialData?.image || '',
-    meetingPoint: initialData?.meetingPoint || initialData?.meeting_point || '',
+    category: initialData?.category || 'kultur',
+    categoryLabel: tr('category_label') || '',
+    highlights: (tr('highlights') || []).join('\n'),
+    included: (tr('included') || []).join('\n'),
+    notIncluded: (tr('not_included') || []).join('\n'),
+    meetingPoint: tr('meeting_point') || '',
     featured: initialData?.featured || false,
     active: initialData?.active !== false,
+  });
+
+  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>(() => {
+    const desc = tr('description') || '';
+    const parsed = parsePricingTiers(desc);
+    return parsed.length > 0 ? parsed : [];
+  });
+
+  function parseDiscountInit(val: unknown): Discount {
+    if (!val) return { active: false, percentage: 0 };
+    if (typeof val === 'object' && val !== null) {
+      const d = val as Discount;
+      return { active: d.active === true, percentage: d.percentage ?? 0, tierPrices: d.tierPrices };
+    }
+    return { active: false, percentage: 0 };
+  }
+
+  const [discount, setDiscount] = useState<Discount>(() => parseDiscountInit(initialData?.discount));
+  const [showDiscount, setShowDiscount] = useState(() => discount.active);
+
+  const [images, setImages] = useState<string[]>(() => {
+    return parseImageField(initialData?.image);
   });
 
   function update(key: string, value: any) {
@@ -52,17 +96,42 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
     update('slug', slug);
   }
 
+  function updateTier(index: number, field: keyof PricingTier, value: number) {
+    setPricingTiers(prev => {
+      const next = [...prev];
+      next[index] = { ...next[index], [field]: value };
+      return next;
+    });
+  }
+
+  function addTier() {
+    setPricingTiers(prev => [...prev, { ...EMPTY_TIER, minGuests: prev.length > 0 ? prev[prev.length - 1].maxGuests + 1 : 1 }]);
+  }
+
+  function removeTier(index: number) {
+    setPricingTiers(prev => prev.filter((_, i) => i !== index));
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    let description = stripPricingTable(form.description);
+    if (pricingTiers.length > 0) {
+      description = description + '\n' + buildPricingTable(pricingTiers);
+    }
+
     const data = {
       ...form,
+      description,
       price: form.price === '' || form.price === null ? null : Number(form.price),
+      discount: showDiscount && discount.active ? discount : null,
       durationHours: Number(form.durationHours),
       maxGuests: Number(form.maxGuests),
       minAge: Number(form.minAge),
       highlights: form.highlights.split('\n').filter((s: string) => s.trim()),
       included: form.included.split('\n').filter((s: string) => s.trim()),
       notIncluded: form.notIncluded.split('\n').filter((s: string) => s.trim()),
+      image: images.length > 0 ? JSON.stringify(images) : '',
       gallery: initialData?.gallery || [],
       itinerary: initialData?.itinerary || [],
       faqs: initialData?.faqs || [],
@@ -135,10 +204,9 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
           <div className={styles.field}>
             <label className={styles.label}>{t('tourCategory')}</label>
             <select className={styles.input} value={form.category} onChange={e => update('category', e.target.value)}>
-              <option value="ganztag">{t('catGanztag')}</option>
-              <option value="halbtag">{t('catHalbtag')}</option>
-              <option value="wassersport">{t('catWassersport')}</option>
-              <option value="wuesten-safari">{t('catWuesten')}</option>
+              <option value="kultur">{t('catKultur')}</option>
+              <option value="schnorchel">{t('catSchnorchel')}</option>
+              <option value="safari">{t('catSafari')}</option>
             </select>
           </div>
           <div className={styles.field}>
@@ -153,13 +221,124 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       </div>
 
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>{t('tourImage')}</h2>
+        <h2 className={styles.sectionTitle}>Preise pro Person (Gruppengröße)</h2>
+        <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
+          Lege fest, wie viel pro Person für verschiedene Gruppengrößen gezahlt wird.
+        </p>
+        {pricingTiers.length > 0 && (
+          <div className={styles.pricingTable}>
+            <div className={styles.pricingHeader}>
+              <span>Personen</span>
+              <span>Preis pro Person (€)</span>
+              <span></span>
+            </div>
+            {pricingTiers.map((tier, i) => (
+              <div key={i} className={styles.pricingRow}>
+                <div className={styles.pricingRange}>
+                  <input
+                    type="number"
+                    min="1"
+                    className={styles.pricingInput}
+                    value={tier.minGuests}
+                    onChange={e => updateTier(i, 'minGuests', Math.max(1, parseInt(e.target.value) || 1))}
+                  />
+                  <span className={styles.pricingDash}>–</span>
+                  <input
+                    type="number"
+                    min="1"
+                    className={styles.pricingInput}
+                    value={tier.maxGuests}
+                    onChange={e => updateTier(i, 'maxGuests', Math.max(1, parseInt(e.target.value) || 1))}
+                  />
+                </div>
+                <input
+                  type="number"
+                  min="0"
+                  className={styles.pricingPrice}
+                  value={tier.pricePerPerson}
+                  onChange={e => updateTier(i, 'pricePerPerson', Math.max(0, parseInt(e.target.value) || 0))}
+                />
+                <button type="button" className={styles.removeTierBtn} onClick={() => removeTier(i)}>
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+        <button type="button" className={styles.addTierBtn} onClick={addTier}>
+          + Preisstufe hinzufügen
+        </button>
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>Rabatt / Sale</h2>
+        <label className={styles.checkboxLabel}>
+          <input type="checkbox" checked={showDiscount} onChange={e => { setShowDiscount(e.target.checked); if (!e.target.checked) setDiscount({ active: false, percentage: 0 }); }} />
+          <span>Rabatt aktivieren</span>
+        </label>
+        {showDiscount && (
+          <div className={styles.discountEditor}>
+            <div className={styles.field}>
+              <label className={styles.label}>Rabatt in %</label>
+              <input className={styles.input} type="number" min="0" max="100" value={discount.percentage} onChange={e => setDiscount(prev => ({ ...prev, active: true, percentage: parseInt(e.target.value) || 0 }))} />
+            </div>
+            {pricingTiers.length > 0 && (
+              <>
+                <p style={{ fontSize: '12px', color: 'var(--color-text-3)', margin: 'var(--space-3) 0' }}>
+                  Optional: Überschreibe den reduzierten Preis pro Preisstufe (lassen leer für automatische Berechnung).
+                </p>
+                <div className={styles.pricingTable}>
+                  <div className={styles.pricingHeader}>
+                    <span>Preisstufe</span>
+                    <span>Aktionspreis (€)</span>
+                    <span></span>
+                  </div>
+                  {pricingTiers.map((tier, i) => (
+                    <div key={i} className={styles.pricingRow}>
+                      <span style={{ fontSize: '13px', color: 'var(--color-text-2)' }}>
+                        {tier.minGuests}–{tier.maxGuests} Personen · {tier.pricePerPerson}€
+                      </span>
+                      <input
+                        type="number"
+                        min="0"
+                        className={styles.pricingPrice}
+                        value={discount.tierPrices?.[i] ?? ''}
+                        onChange={e => {
+                          const val = e.target.value === '' ? undefined : parseInt(e.target.value) || 0;
+                          setDiscount(prev => {
+                            const tp = [...(prev.tierPrices ?? [])];
+                            tp[i] = val ?? 0;
+                            return { ...prev, active: true, tierPrices: tp };
+                          });
+                        }}
+                        placeholder="Auto"
+                      />
+                      <button type="button" className={styles.removeTierBtn} onClick={() => {
+                        setDiscount(prev => {
+                          const tp = [...(prev.tierPrices ?? [])];
+                          delete tp[i];
+                          return { ...prev, tierPrices: tp.filter(v => v !== undefined) };
+                        });
+                      }}>
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>{t('tourImage')} / Galerie</h2>
         <div className={styles.field}>
-          <ImageUpload
-            value={form.image}
-            onChange={(url) => update('image', url)}
+          <GalleryUpload
+            values={images}
+            onChange={setImages}
             folder="hurghada-reiseplaner/tours"
-            label={t('tourImageUrl')}
+            label="Bilder (Galerie)"
           />
         </div>
       </div>

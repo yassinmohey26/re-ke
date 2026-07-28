@@ -64,9 +64,8 @@
     "bookTour": "Réserver la visite",
     "requestOnly": "Sur demande",
     "relatedTours": "Visites similaires",
-    "categoryFullDay": "Visites d'une journée",
-    "categoryHalfDay": "Visites de demi-journée",
-    "categoryWater": "Sports nautiques",
+    "categoryCulture": "Visites culturelles",
+    "categorySnorkel": "Snorkeling",
     "categoryDesert": "Safari dans le désert",
     "allTours": "Toutes les visites",
     "toursCount": "visites disponibles",
@@ -79,16 +78,16 @@
     "allToursDesc": "Choisissez parmi notre sélection variée de visites et excursions.",
     "allDestinations": "Toutes les destinations",
     "inquiry": "Demande d'information",
-    "categoryFullDayTitle": "Excursions d'une journée en Égypte",
-    "categoryFullDayDesc": "Découvrez les points forts de l'Égypte lors d'une excursion d'une journée complète.",
-    "categoryHalfDayTitle": "Courtes excursions & découvertes",
-    "categoryHalfDayDesc": "Courtes visites qui offrent le meilleur en format compact.",
-    "categoryWaterTitle": "Expériences sur la mer Rouge",
-    "categoryWaterDesc": "La mer Rouge offre l'un des plus beaux mondes sous-marins.",
+    "categoryCultureTitle": "Visites culturelles",
+    "categoryCultureDesc": "Découvrez l'histoire et la culture fascinantes de l'Égypte.",
+    "categorySnorkelTitle": "Tours de snorkeling",
+    "categorySnorkelDesc": "Explorez le magnifique monde sous-marin de la mer Rouge.",
     "categoryDesertTitle": "Aventure dans le désert",
     "categoryDesertDesc": "Découvrez l'immensité du désert égyptien.",
     "heroTitle": "Visites",
     "searchWhere": "Où ?",
+    "searchWhereLabel": "Où ?",
+    "searchWherePlaceholder": "Saisir le lieu...",
     "searchDate": "Date",
     "searchGuests": "Participants",
     "searchBtn": "Rechercher",
@@ -114,6 +113,10 @@
     "typeCultural": "Excursions culturelles",
     "typeSnorkel": "Visites de snorkeling",
     "typeSafari": "Excursions safari",
+    "categoryCulturalDesc": "Des pyramides aux temples – découvrez les incontournables de l'Égypte",
+    "categorySnorkelDesc": "Découvrez le monde sous-marin, les dauphins et les récifs coralliens",
+    "categorySafariDesc": "Aventure en désert en quad, chameaux & observation des étoiles",
+    "viewTours": "Voir les excursions",
     "activityFamily": "Sorties en famille",
     "activityWellness": "Bien-être & détente",
     "activityLuxury": "Visites de luxe & premium",
@@ -146,12 +149,15 @@
     "cancellationTitle": "Politique d'annulation",
     "cancellationText1": "Annulation gratuite jusqu'à 24 heures avant le début de l'excursion pour un remboursement intégral.",
     "cancellationText2": "Les annulations effectuées moins de 24 heures avant le départ ou les absences ne seront pas remboursées.",
-    "trustTitle": "Pourquoi réserver avec nous ?",
-    "trust1": "Opérateur local avec des années d'expérience",
-    "trust2": "Bateaux & équipements certifiés et sécurisés",
-    "trust3": "Ramassage à l'hôtel inclus",
-    "trust4": "Politiques d'annulation flexibles",
-    "trust5": "Support WhatsApp 24h/24, 7j/7",
+    "trustTitle": "🌟 Pourquoi voyager avec Hurghada Reiseplaner ?",
+    "trust1": "Excursions individuelles et privées, flexibles selon vos souhaits",
+    "trust2": "Annulation gratuite pour une planification sans stress",
+    "trust3": "Prix équitables et transparents sans frais cachés",
+    "trust4": "Experts locaux pour des expériences authentiques",
+    "trust5": "Paiement pratique en euros, dollars ou par virement bancaire",
+    "trust6": "Prise en charge directement à votre hôtel",
+    "trust7": "Guide francophone et service client 24h/24, 7j/7",
+    "trust8": "Assurance et taxes déjà incluses",
     "pricingTitle": "Aperçu des prix",
     "participants": "Participants",
     "pricePerPersonCol": "Prix par personne",
@@ -159,7 +165,10 @@
     "yourPrice": "← Votre prix",
     "photos": "Photos",
     "closeGallery": "Fermer",
-    "touristType": "Voyageur"
+    "touristType": "Voyageur",
+    "seeMore": "Voir plus",
+    "moreSteps": "étapes supplémentaires",
+    "seeLess": "Voir moins"
   },
   "destinations": {
     "pageTitle": "Destinations",
@@ -239,6 +248,7 @@
     "privacy": "Politique de confidentialité",
     "imprint": "Mentions légales",
     "toursLabel": "Visites & Excursions",
+    "categoriesLabel": "Catégories",
     "destinationsLabel": "Destinations",
     "infoLabel": "Informations",
     "faq": "FAQ",
@@ -308,7 +318,7 @@
     "childrenAge": "Âge 3 – 10",
     "infant": "Bébé",
     "infantAge": "Âge 0 – 2",
-    "minGuestsRequired": "Minimum 2 participants requis",
+    "minGuestsRequired": "Minimum 1 participant requis",
     "extrasLabel": "Suppléments",
     "priceBreakdownAdults": "(Adultes)",
     "priceBreakdownChildren": "(Enfants)",
@@ -325,7 +335,22 @@
     "payDeposit": "Payer 30% d'acompte",
     "payDepositDesc": "Payer 30% maintenant, le reste sur place",
     "payOnSite": "sur place",
-    "perPerson": "par personne"
+    "perPerson": "par personne",
+    "transferTitle": "Transfert / Région hôtelière",
+    "hotelName": "Nom de l'hôtel",
+    "hotelRegion": "Région hôtelière",
+    "hotelNamePlaceholder": "ex. Steigenberger Aqua Magic",
+    "hotelRegionPlaceholder": "Choisir la région...",
+    "allRegions": "Toutes les régions",
+    "regionHurghada": "Hurghada – 0 € par personne",
+    "regionMakadiBay": "Makadi Bay – 5 € par personne",
+    "regionSahlHasheesh": "Sahl Hasheesh – 5 € par personne",
+    "regionElGouna": "El Gouna – 10 € par personne",
+    "regionSomaBay": "Soma Bay – 10 € par personne",
+    "regionSafaga": "Safaga – 10 € par personne",
+    "regionElQuseir": "El Quseir – 35 € par personne",
+    "regionMarsaAlam": "Marsa Alam – 50 € par personne",
+    "transferSurcharge": "Supplément transfert"
   },
   "datenschutz": {
     "pageTitle": "Politique de confidentialité",
@@ -470,18 +495,54 @@
     "contactQuote": "Nous sommes là pour vous — contactez-nous pour des demandes individuelles et des offres personnalisées.",
     "contactButton": "Contact",
     "faqs": [
-      { "q": "Comment réserver mon transfert aéroport avec Hurghada Reiseplaner ?", "a": "La réservation est simple et sans tracas. Envoyez-nous vos données de vol, le nombre de personnes ainsi que votre hôtel ou destination par WhatsApp, e-mail ou via notre formulaire de contact. Vous recevrez ensuite une confirmation de réservation avec toutes les informations importantes concernant votre transfert." },
-      { "q": "Que se passe-t-il si mon vol est en retard ?", "a": "Aucun problème. Nous surveillons les heures d'arrivée de votre vol et adaptons l'heure de prise en charge en conséquence. Votre chauffeur vous attendra, même si votre vol est en retard." },
-      { "q": "Les prix de transfert sont-ils par personne ou par véhicule ?", "a": "Tous les prix indiqués sont par véhicule, pas par personne. Ainsi, vous voyagez confortablement et sans coût supplémentaire pour les autres passagers dans la capacité du véhicule." },
-      { "q": "Serez-nous récupérés directement à l'aéroport ?", "a": "Oui. Votre chauffeur vous attend à l'aéroport d'Hurghada à votre arrivée et vous amènera directement et confortablement à votre hôtel ou hébergement." },
-      { "q": "Puis-je réserver un transfert de dernière minute ?", "a": "Oui, les réservations de dernière minute sont possibles sous réserve de disponibilité. Contactez-nous simplement par WhatsApp, téléphone ou e-mail, et nous vérifierons la prise en charge la plus rapide possible pour vous." },
-      { "q": "Y a-t-il des coûts cachés ?", "a": "Non. Vous bénéficiez de prix fixes transparents sans frais cachés. Le prix convenu est le prix final." },
-      { "q": "Puis-je réserver un transfert aller-retour en même temps ?", "a": "Bien sûr. Nous organisons votre transfert de l'aéroport à l'hôtel ainsi que votre retour à l'aéroport. Il vous suffit de nous communiquer vos données de vol." },
-      { "q": "Comment réserver mon voyage avec Hurghada Reiseplaner ?", "a": "Choisissez votre tour ou activité souhaitée et envoyez-nous votre demande via notre formulaire, WhatsApp ou e-mail. Un acompte de 30 % est requis pour confirmer votre réservation. Après réception du paiement, vous recevrez une confirmation engageante avec tous les détails." },
-      { "q": "Que se passe-t-il si je dois modifier ma réservation ?", "a": "Les modifications sont simples chez nous. Vous pouvez modifier votre réservation jusqu'à 48 heures avant la date prévue sans coût supplémentaire. Contactez-nous simplement et nous adapterons votre réservation. Votre acompte de 30 % reste valide pour la nouvelle réservation." },
-      { "q": "Hurghada Reiseplaner offre-t-il un support pendant mon voyage ?", "a": "Oui, nous vous accompagnons tout au long de votre séjour. Notre équipe expérimentée et germanophone à Hurghada est à votre disposition à tout moment — pour des questions, des modifications de dernière minute ou une aide organisationnelle." },
-      { "q": "Vos voyages sont-ils adaptés aux familles ?", "a": "Absolument ! Nombre de nos visites et excursions à Hurghada sont idéales pour les familles avec enfants. Nous accordons une importance particulière à la sécurité, au confort et au plaisir pour tous les âges." },
-      { "q": "Puis-je personnaliser mon itinéraire ?", "a": "Bien sûr. Nous créons des programmes de voyage sur mesure parfaitement adaptés à vos intérêts. Que vous souhaitiez plus de temps pour vous détendre, découvrir des points forts culturels comme Louxor ou Le Caire, ou préférer des visites privées — nous tout concevons flexiblement selon vos envies." }
+      {
+        "q": "Comment réserver mon transfert aéroport avec Hurghada Reiseplaner ?",
+        "a": "La réservation est simple et sans tracas. Envoyez-nous vos données de vol, le nombre de personnes ainsi que votre hôtel ou destination par WhatsApp, e-mail ou via notre formulaire de contact. Vous recevrez ensuite une confirmation de réservation avec toutes les informations importantes concernant votre transfert."
+      },
+      {
+        "q": "Que se passe-t-il si mon vol est en retard ?",
+        "a": "Aucun problème. Nous surveillons les heures d'arrivée de votre vol et adaptons l'heure de prise en charge en conséquence. Votre chauffeur vous attendra, même si votre vol est en retard."
+      },
+      {
+        "q": "Les prix de transfert sont-ils par personne ou par véhicule ?",
+        "a": "Tous les prix indiqués sont par véhicule, pas par personne. Ainsi, vous voyagez confortablement et sans coût supplémentaire pour les autres passagers dans la capacité du véhicule."
+      },
+      {
+        "q": "Serez-nous récupérés directement à l'aéroport ?",
+        "a": "Oui. Votre chauffeur vous attend à l'aéroport d'Hurghada à votre arrivée et vous amènera directement et confortablement à votre hôtel ou hébergement."
+      },
+      {
+        "q": "Puis-je réserver un transfert de dernière minute ?",
+        "a": "Oui, les réservations de dernière minute sont possibles sous réserve de disponibilité. Contactez-nous simplement par WhatsApp, téléphone ou e-mail, et nous vérifierons la prise en charge la plus rapide possible pour vous."
+      },
+      {
+        "q": "Y a-t-il des coûts cachés ?",
+        "a": "Non. Vous bénéficiez de prix fixes transparents sans frais cachés. Le prix convenu est le prix final."
+      },
+      {
+        "q": "Puis-je réserver un transfert aller-retour en même temps ?",
+        "a": "Bien sûr. Nous organisons votre transfert de l'aéroport à l'hôtel ainsi que votre retour à l'aéroport. Il vous suffit de nous communiquer vos données de vol."
+      },
+      {
+        "q": "Comment réserver mon voyage avec Hurghada Reiseplaner ?",
+        "a": "Choisissez votre tour ou activité souhaitée et envoyez-nous votre demande via notre formulaire, WhatsApp ou e-mail. Un acompte de 30 % est requis pour confirmer votre réservation. Après réception du paiement, vous recevrez une confirmation engageante avec tous les détails."
+      },
+      {
+        "q": "Que se passe-t-il si je dois modifier ma réservation ?",
+        "a": "Les modifications sont simples chez nous. Vous pouvez modifier votre réservation jusqu'à 48 heures avant la date prévue sans coût supplémentaire. Contactez-nous simplement et nous adapterons votre réservation. Votre acompte de 30 % reste valide pour la nouvelle réservation."
+      },
+      {
+        "q": "Hurghada Reiseplaner offre-t-il un support pendant mon voyage ?",
+        "a": "Oui, nous vous accompagnons tout au long de votre séjour. Notre équipe expérimentée et germanophone à Hurghada est à votre disposition à tout moment — pour des questions, des modifications de dernière minute ou une aide organisationnelle."
+      },
+      {
+        "q": "Vos voyages sont-ils adaptés aux familles ?",
+        "a": "Absolument ! Nombre de nos visites et excursions à Hurghada sont idéales pour les familles avec enfants. Nous accordons une importance particulière à la sécurité, au confort et au plaisir pour tous les âges."
+      },
+      {
+        "q": "Puis-je personnaliser mon itinéraire ?",
+        "a": "Bien sûr. Nous créons des programmes de voyage sur mesure parfaitement adaptés à vos intérêts. Que vous souhaitiez plus de temps pour vous détendre, découvrir des points forts culturels comme Louxor ou Le Caire, ou préférer des visites privées — nous tout concevons flexiblement selon vos envies."
+      }
     ]
   },
   "homeFeatured": {

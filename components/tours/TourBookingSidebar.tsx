@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useTourBooking } from './TourBookingContext';
+import { applyDiscount } from '@/lib/pricing-table';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 function getTodayLocalDate() {
@@ -59,13 +60,13 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const t = useTranslations('tours');
   const tb = useTranslations('booking');
   const {
-    price, pricePerPerson, adults, children: childrenCount, infants,
+    price, pricePerPerson, salePricePerPerson, hasSale, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
     pricingTiers, extras, selected, toggle, extrasTotal, total, bookingHref,
   } = useTourBooking();
   const [date, setDate] = useState('');
 
-  const displayPrice = pricePerPerson ?? price ?? 0;
+  const displayPrice = salePricePerPerson ?? pricePerPerson ?? price ?? 0;
   const minimumDate = getTodayLocalDate();
 
   const adultsMax = maxGuests - childrenCount - infants;
@@ -73,11 +74,12 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const infantsMax = maxGuests - adults - childrenCount;
 
   // Build price breakdown line
+  const breakdownPrice = salePricePerPerson ?? pricePerPerson;
   let breakdown = null;
-  if (pricePerPerson != null) {
+  if (breakdownPrice != null) {
     const parts: string[] = [];
-    if (adults > 0) parts.push(`${adults} × ${pricePerPerson} €`);
-    if (childrenCount > 0) parts.push(`${childrenCount} × ${(pricePerPerson / 2).toFixed(0)} €`);
+    if (adults > 0) parts.push(`${adults} × ${breakdownPrice} €`);
+    if (childrenCount > 0) parts.push(`${childrenCount} × ${(breakdownPrice / 2).toFixed(0)} €`);
     if (infants > 0) parts.push(`${infants} × 0 €`);
     if (parts.length > 1 && total != null) {
       breakdown = (
@@ -94,10 +96,13 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
     <div className={css.bookingCard}>
       {price != null ? (
         <div className={css.bookingPriceBlock}>
-          {pricePerPerson != null && pricePerPerson !== price && (
+          {hasSale && pricePerPerson != null && (
+            <span className={css.bookingOriginalPrice}>{pricePerPerson} EUR</span>
+          )}
+          {!hasSale && pricePerPerson != null && pricePerPerson !== price && (
             <span className={css.bookingOriginalPrice}>{price} EUR</span>
           )}
-          <span className={css.bookingCurrentPrice}>{displayPrice} EUR</span>
+          <span className={`${css.bookingCurrentPrice} ${hasSale ? css.salePrice : ''}`}>{displayPrice} EUR</span>
           <span className={css.bookingPricePer}>{t('perPerson')}</span>
           {breakdown}
           {guests > 1 && total != null && !breakdown && (

@@ -16,6 +16,26 @@
   display: block;
   position: relative;
 }
+.saleBadge {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-end: var(--space-3);
+  background: #dc2626;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  z-index: 2;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: var(--color-text-4);
+  font-size: 14px;
+  margin-right: var(--space-2);
+}
+
 .imgWrap {
   position: relative;
   width: 100%;

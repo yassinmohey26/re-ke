@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from './ToursClient';
 import { getLocalizedAllTours, getDestinations } from '@/lib/data/tours';
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'ar': `${baseUrl}/ar/touren`,
         'fr': `${baseUrl}/fr/touren`,
         'hu': `${baseUrl}/hu/touren`,
+        'x-default': `${baseUrl}/de/touren`,
       },
     },
   };
@@ -54,6 +56,8 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
   const translations = {
     heroTitle: await t('heroTitle'),
     searchWhere: await t('searchWhere'),
+    searchWhereLabel: await t('searchWhereLabel'),
+    searchWherePlaceholder: await t('searchWherePlaceholder'),
     searchDate: await t('searchDate'),
     searchGuests: await t('searchGuests'),
     searchBtn: await t('searchBtn'),
@@ -89,5 +93,9 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
     favorite: await (await getTranslations('a11y'))('favorite'),
   };
 
-  return <ToursClient tours={tours} locale={locale} destinations={destinationOptions} translations={translations} />;
+  return (
+    <Suspense>
+      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} translations={translations} />
+    </Suspense>
+  );
 }

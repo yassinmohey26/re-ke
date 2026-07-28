@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import cloudinaryLoader from '@/lib/cloudinaryLoader';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 export default function TourGallery({ images, name }: { images: string[]; name: string }) {
@@ -21,6 +22,9 @@ export default function TourGallery({ images, name }: { images: string[]; name: 
 
   const hero = validImages[0];
   const thumbs = validImages.slice(1, 5);
+
+  const imgLoader = (url: string) =>
+    url.includes('cloudinary.com') ? cloudinaryLoader : undefined;
 
   return (
     <>

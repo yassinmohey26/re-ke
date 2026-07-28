@@ -133,6 +133,28 @@
   line-height: 1.6;
 }
 
+.socialLinks {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: var(--color-text-5);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.socialLink:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .inner {

@@ -12,9 +12,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+  const title = tMeta('airportTransferTitle');
+  const description = tMeta('airportTransferDescription');
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: tMeta('airportTransferTitle'),
-    description: tMeta('airportTransferDescription'),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/airport-transfer`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/og-default.jpg`],
+    },
     alternates: {
       canonical: `${baseUrl}/${locale}/airport-transfer`,
       languages: {
@@ -24,6 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'ar': `${baseUrl}/ar/airport-transfer`,
         'fr': `${baseUrl}/fr/airport-transfer`,
         'hu': `${baseUrl}/hu/airport-transfer`,
+        'x-default': `${baseUrl}/de/airport-transfer`,
       },
     },
   };
@@ -45,7 +64,7 @@ export default async function AirportTransferPage({ params }: { params: Promise<
   return (
     <>
       <HeroSection
-        image="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/transfer-hero.avif"
+        image="https://res.cloudinary.com/sx85slkf/image/upload/f_auto,q_auto,w_1920/v1785218112/hurghada-reiseplaner/tours/transfer-hero.avif"
         title={t('heroTitle')}
         subtitle={t('heroSubtitle')}
       />

@@ -35,15 +35,17 @@ function extractItineraryFromHtml(li) {
 
 async function main() {
   const files = fs.readdirSync(PAGES_DIR).filter(f => f.endsWith('.html'));
-  const { data: tours } = await sb.from('tours').select('id,slug').eq('locale', 'de');
-  const slugToId = {};
-  for (const t of tours) slugToId[t.slug] = t.id;
 
-  let updated = 0;
+  // Get all tours with their IDs (no locale filter - itinerary is language-independent)
+  const { data: tours } = await sb.from('tours').select('id,slug,itinerary');
+  const slugToId = {};
+  for (const t of tours) slugToId[t.slug] = { id: t.id, existing: t.itinerary?.length || 0 };
+
+  let updated = 0, skipped = 0;
   for (const file of files) {
     const slug = file.replace('.html', '');
-    const tourId = slugToId[slug];
-    if (!tourId) continue;
+    const tour = slugToId[slug];
+    if (!tour) { console.log(`SKIP: ${slug}: not found in tours table`); skipped++; continue; }
 
     const html = fs.readFileSync(path.join(PAGES_DIR, file), 'utf8');
     const $ = cheerio.load(html);
@@ -57,13 +59,25 @@ async function main() {
       });
     }
 
-    if (itinerary.length > 0) {
-      const { error } = await sb.from('tours').update({ itinerary, updated_at: new Date().toISOString() }).eq('id', tourId);
-      if (error) console.log(`ERROR: ${slug}: ${error.message}`);
-      else { console.log(`OK: ${slug}: ${itinerary.length} steps`); updated++; }
+    if (itinerary.length === 0) {
+      console.log(`SKIP: ${slug}: no itinerary found in HTML`);
+      skipped++;
+      continue;
     }
+
+    if (tour.existing >= itinerary.length) {
+      console.log(`SKIP: ${slug}: already has ${tour.existing} steps (HTML has ${itinerary.length})`);
+      skipped++;
+      continue;
+    }
+
+    const { error } = await sb.from('tours')
+      .update({ itinerary, updated_at: new Date().toISOString() })
+      .eq('id', tour.id);
+    if (error) console.log(`ERROR: ${slug}: ${error.message}`);
+    else { console.log(`OK: ${slug}: ${tour.existing} -> ${itinerary.length} steps`); updated++; }
   }
-  console.log(`\nDone: ${updated} tours updated with fixed itineraries`);
+  console.log(`\nDone: ${updated} tours updated, ${skipped} skipped`);
 }
 
 main().catch(console.error);

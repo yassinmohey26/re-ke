@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('tours');
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
-  const title = t('categoryHalfDay');
-  const description = t('categoryHalfDayDesc');
+  const title = t('categoryDesert');
+  const description = t('categoryDesertDesc');
   const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
     title,
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/touren/halbtagstouren`,
+      url: `${baseUrl}/${locale}/touren/safari-ausfluege`,
       siteName: 'Hurghada Reiseplaner',
       images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
       locale: localeMap[locale] || 'de_AT',
@@ -27,14 +27,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: { card: 'summary_large_image', title, description, images: [`${baseUrl}/og-default.jpg`] },
     alternates: {
-      canonical: `${baseUrl}/${locale}/touren/halbtagstouren`,
+      canonical: `${baseUrl}/${locale}/touren/safari-ausfluege`,
       languages: {
-        'de': `${baseUrl}/de/touren/halbtagstouren`,
-        'en': `${baseUrl}/en/touren/halbtagstouren`,
-        'ru': `${baseUrl}/ru/touren/halbtagstouren`,
-        'ar': `${baseUrl}/ar/touren/halbtagstouren`,
-        'fr': `${baseUrl}/fr/touren/halbtagstouren`,
-        'hu': `${baseUrl}/hu/touren/halbtagstouren`,
+        'de': `${baseUrl}/de/touren/safari-ausfluege`,
+        'en': `${baseUrl}/en/touren/safari-ausfluege`,
+        'ru': `${baseUrl}/ru/touren/safari-ausfluege`,
+        'ar': `${baseUrl}/ar/touren/safari-ausfluege`,
+        'fr': `${baseUrl}/fr/touren/safari-ausfluege`,
+        'hu': `${baseUrl}/hu/touren/safari-ausfluege`,
+        'x-default': `${baseUrl}/de/touren/safari-ausfluege`,
       },
     },
   };
@@ -44,20 +45,20 @@ export function generateStaticParams() {
   return [];
 }
 
-export default async function HalbtagstourenPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function SafariAusfluegePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const tours = await getLocalizedAllTours(locale);
-  const catTours = tours.filter(t => t.category === 'halbtag');
+  const catTours = tours.filter(t => t.category === 'safari');
   const t = await getTranslations('tours');
 
   return (
     <>
       <PageHeader
-        eyebrow={t('categoryHalfDay')}
-        title={t('categoryHalfDayTitle')}
-        description={t('categoryHalfDayDesc')}
+        eyebrow={t('categoryDesert')}
+        title={t('categoryDesertTitle')}
+        description={t('categoryDesertDesc')}
       />
       <section className="section">
         <div className="container">

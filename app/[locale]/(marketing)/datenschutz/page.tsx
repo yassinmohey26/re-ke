@@ -8,9 +8,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
+  const title = tMeta('datenschutzTitle');
+  const description = tMeta('datenschutzDescription');
+  const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: tMeta('datenschutzTitle'),
-    description: tMeta('datenschutzDescription'),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/datenschutz`,
+      siteName: 'Hurghada Reiseplaner',
+      images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
+      locale: localeMap[locale] || 'de_AT',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [`${baseUrl}/og-default.jpg`],
+    },
     alternates: {
       canonical: `${baseUrl}/${locale}/datenschutz`,
       languages: {
@@ -20,6 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'ar': `${baseUrl}/ar/datenschutz`,
         'fr': `${baseUrl}/fr/datenschutz`,
         'hu': `${baseUrl}/hu/datenschutz`,
+        'x-default': `${baseUrl}/de/datenschutz`,
       },
     },
   };

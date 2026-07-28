@@ -2,11 +2,12 @@
 
 import { useTranslations } from 'next-intl';
 import { useTourBooking } from './TourBookingContext';
+import { applyDiscount } from '@/lib/pricing-table';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 export default function InteractivePricingTable() {
   const t = useTranslations('tours');
-  const { pricingTiers, guestsForPricing } = useTourBooking();
+  const { pricingTiers, guestsForPricing, discount } = useTourBooking();
 
   if (pricingTiers.length === 0) return null;
 
@@ -26,24 +27,33 @@ export default function InteractivePricingTable() {
             </tr>
           </thead>
           <tbody>
-            {pricingTiers.map((tier, i) => (
-              <tr
-                key={i}
-                className={`${styles.pricingRow} ${isTierActive(tier.minGuests, tier.maxGuests) ? styles.pricingRowActive : ''}`}
-              >
-                <td className={styles.pricingCellGuests}>
-                  {tier.minGuests === tier.maxGuests
-                    ? `${tier.minGuests} ${tier.minGuests === 1 ? 'Person' : 'Personen'}`
-                    : `${tier.minGuests}–${tier.maxGuests} Personen`}
-                </td>
-                <td className={styles.pricingCellPrice}>
-                  {tier.pricePerPerson === 0 ? t('free') : `${tier.pricePerPerson} €`}
-                  {isTierActive(tier.minGuests, tier.maxGuests) && (
-                    <span className={styles.pricingActiveLabel}>{t('yourPrice')}</span>
-                  )}
-                </td>
-              </tr>
-            ))}
+            {pricingTiers.map((tier, i) => {
+              const salePrice = discount?.active ? applyDiscount(tier.pricePerPerson, discount, i) : null;
+              const hasSale = salePrice != null && salePrice < tier.pricePerPerson;
+              return (
+                <tr
+                  key={i}
+                  className={`${styles.pricingRow} ${isTierActive(tier.minGuests, tier.maxGuests) ? styles.pricingRowActive : ''}`}
+                >
+                  <td className={styles.pricingCellGuests}>
+                    {tier.minGuests === tier.maxGuests
+                      ? `${tier.minGuests} ${tier.minGuests === 1 ? 'Person' : 'Personen'}`
+                      : `${tier.minGuests}–${tier.maxGuests} Personen`}
+                  </td>
+                  <td className={styles.pricingCellPrice}>
+                    {hasSale ? (
+                      <>
+                        <span className={styles.saleOriginalPrice}>{tier.pricePerPerson} €</span>{' '}
+                        <span className={styles.salePrice}>{salePrice} €</span>
+                      </>
+                    ) : tier.pricePerPerson === 0 ? t('free') : `${tier.pricePerPerson} €`}
+                    {isTierActive(tier.minGuests, tier.maxGuests) && (
+                      <span className={styles.pricingActiveLabel}>{t('yourPrice')}</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

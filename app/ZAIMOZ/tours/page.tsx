@@ -77,13 +77,15 @@ export default function AdminToursPage() {
   }
 
   const categoryMap: Record<string, string> = {
-    ganztag: t('catGanztag'),
-    halbtag: t('catHalbtag'),
-    wassersport: t('catWassersport'),
-    snorkel: t('catWassersport'),
-    kultur: t('catGanztag'),
-    cultural: t('catGanztag'),
-    'wuesten-safari': t('catWuesten'),
+    kultur: t('catKultur'),
+    cultural: t('catKultur'),
+    ganztag: t('catKultur'),
+    halbtag: t('catKultur'),
+    schnorchel: t('catSchnorchel'),
+    snorkel: t('catSchnorchel'),
+    wassersport: t('catSchnorchel'),
+    safari: t('catSafari'),
+    'wuesten-safari': t('catSafari'),
   };
 
   const filtered = tours.filter(tour => {
@@ -116,13 +118,9 @@ export default function AdminToursPage() {
           className={styles.filterSelect}
         >
           <option value="all">{t('allCategories')}</option>
-          <option value="ganztag">{t('catGanztag')}</option>
-          <option value="halbtag">{t('catHalbtag')}</option>
-          <option value="wassersport">{t('catWassersport')}</option>
-          <option value="snorkel">Schnorcheltouren</option>
-          <option value="kultur">{t('catGanztag')}</option>
-          <option value="cultural">{t('catGanztag')}</option>
-          <option value="wuesten-safari">{t('catWuesten')}</option>
+          <option value="kultur">{t('catKultur')}</option>
+          <option value="schnorchel">{t('catSchnorchel')}</option>
+          <option value="safari">{t('catSafari')}</option>
         </select>
       </div>
 

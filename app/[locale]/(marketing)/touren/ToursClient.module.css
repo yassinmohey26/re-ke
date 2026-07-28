@@ -378,6 +378,19 @@ select.searchInput {
   transform: translateY(-2px);
 }
 
+.saleBadge {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-start: var(--space-3);
+  background: #dc2626;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  z-index: 2;
+}
+
 .cardImgWrap {
   position: relative;
   width: 100%;
@@ -474,6 +487,16 @@ select.searchInput {
 .priceUnit {
   color: var(--color-text-4);
   font-size: 12px;
+}
+.oldPrice {
+  text-decoration: line-through;
+  color: var(--color-text-4);
+  font-size: 13px;
+}
+.salePrice {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 /* ============ Pagination ============ */

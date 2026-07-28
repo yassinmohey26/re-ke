@@ -15,6 +15,7 @@ import TourPriceTable from '@/components/tours/TourPriceTable';
 import TourDiscountTable from '@/components/tours/TourDiscountTable';
 import CancellationPolicy from '@/components/tours/CancellationPolicy';
 import TrustBox from '@/components/tours/TrustBox';
+import CollapsibleDescription from '@/components/tours/CollapsibleDescription';
 import JsonLd from '@/components/seo/JsonLd';
 import styles from './page.module.css';
 
@@ -56,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'ar': `${baseUrl}/ar/touren/${slug}`,
         'fr': `${baseUrl}/fr/touren/${slug}`,
         'hu': `${baseUrl}/hu/touren/${slug}`,
+        'x-default': `${baseUrl}/de/touren/${slug}`,
       },
     },
   };
@@ -80,7 +82,7 @@ export default async function TourDetailPage({ params }: Props) {
 
   const relatedTours = relatedToursRaw;
 
-  const galleryImages = tour.image ? [tour.image] : [];
+  const galleryImages = tour.images.length > 0 ? tour.images : (tour.image ? [tour.image] : []);
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
 
@@ -132,13 +134,13 @@ export default async function TourDetailPage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 'var(--space-4)' }}>
         <div className="container">
-          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={parsePricingTiers(tour.description)} extras={extras}>
+          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={parsePricingTiers(tour.description)} discount={tour.discount} extras={extras}>
             {/* Title */}
             <h1 className={styles.tourTitle}>{tour.name}</h1>
             {tour.meetingPoint && (
               <p className={styles.tourLocation}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-                {tour.meetingPoint}
+                Hurghada
               </p>
             )}
 
@@ -182,7 +184,7 @@ export default async function TourDetailPage({ params }: Props) {
                   </div>
                   <div className={styles.quickFact}>
                     <div className={styles.quickFactIcon}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="10" r="3"/><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
                     <div>
                       <span className={styles.quickFactLabel}>{t('meetingPoint')}</span>
@@ -195,9 +197,8 @@ export default async function TourDetailPage({ params }: Props) {
                 {tour.description && (
                   <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>{t('overview')}</h2>
-                    <div
-                      className={styles.description}
-                      dangerouslySetInnerHTML={{ __html: hasPricingTable(tour.description) ? stripPricingTable(tour.description) : tour.description }}
+                    <CollapsibleDescription
+                      html={hasPricingTable(tour.description) ? stripPricingTable(tour.description) : tour.description}
                     />
                   </div>
                 )}
@@ -214,6 +215,7 @@ export default async function TourDetailPage({ params }: Props) {
                   meetingPoint={tour.meetingPoint}
                   category={tour.category}
                   categoryLabel={catLabel}
+                  discount={tour.discount}
                 />
 
                 {/* Itinerary */}
@@ -221,15 +223,24 @@ export default async function TourDetailPage({ params }: Props) {
                   <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>{t('tourItinerary')}</h2>
                     <div className={styles.itinerary}>
-                      {tour.itinerary.map((step, i) => (
-                        <div key={i} className={styles.itineraryStep}>
-                          <div className={styles.itineraryNumber}>{i + 1}</div>
-                          <div>
-                            <h3 className={styles.itineraryTitle}>{step.title}</h3>
-                            <p className={styles.itineraryContent}>{step.content}</p>
+                      {tour.itinerary.map((step, i) => {
+                        const prevDay = i > 0 ? tour.itinerary[i - 1].day : undefined;
+                        const showDayHeader = step.day && step.day !== prevDay;
+                        return (
+                          <div key={i}>
+                            {showDayHeader && (
+                              <h3 className={styles.itineraryDayHeader}>{step.day}</h3>
+                            )}
+                            <div className={styles.itineraryStep}>
+                              <div className={styles.itineraryNumber}>{i + 1}</div>
+                              <div>
+                                <h3 className={styles.itineraryTitle}>{step.title}</h3>
+                                <p className={styles.itineraryContent}>{step.content}</p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}

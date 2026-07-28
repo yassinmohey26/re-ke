@@ -313,6 +313,12 @@
   letter-spacing: 0.03em;
 }
 
+.saleOriginalPrice {
+  text-decoration: line-through;
+  color: var(--color-text-4);
+  font-size: 13px;
+}
+
 /* --- Price Table --- */
 .priceTable {
   width: 100%;
@@ -359,6 +365,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+.itineraryDayHeader {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e67e22;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--space-2) 0 var(--space-1);
+  border-bottom: 2px solid #e67e22;
+  margin-bottom: var(--space-2);
 }
 .itineraryStep {
   display: flex;
@@ -688,6 +704,11 @@
   font-weight: 600;
   color: var(--color-accent);
   font-size: 13px;
+}
+
+.salePrice {
+  color: #dc2626 !important;
+  font-weight: 700;
 }
 
 /* --- Related --- */

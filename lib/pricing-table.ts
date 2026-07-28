@@ -172,6 +172,30 @@ export function getPriceForGuests(
   return tiers[tiers.length - 1].pricePerPerson;
 }
 
+export function applyDiscount(
+  price: number,
+  discount: { active: boolean; percentage: number; tierPrices?: number[] } | null,
+  tierIndex?: number,
+): number {
+  if (!discount?.active) return price;
+  if (tierIndex != null && discount.tierPrices?.[tierIndex] != null) {
+    return discount.tierPrices[tierIndex];
+  }
+  return Math.round(price * (1 - discount.percentage / 100));
+}
+
+export function buildPricingTable(tiers: PricingTier[]): string {
+  let html = '<table class="tour-pricing-table"><thead><tr><th>Teilnehmer</th><th>Preis pro Person</th></tr></thead><tbody>';
+  for (const tier of tiers) {
+    const label = tier.minGuests === tier.maxGuests
+      ? `${tier.minGuests} Person`
+      : `${tier.minGuests}–${tier.maxGuests} Personen`;
+    html += `<tr><td>${label}</td><td>${tier.pricePerPerson} € p. P.</td></tr>`;
+  }
+  html += '</tbody></table>';
+  return html;
+}
+
 export function hasPricingTable(html: string): boolean {
   return /<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/i.test(html);
 }

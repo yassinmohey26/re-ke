@@ -57,6 +57,7 @@ export async function PUT(
       active: body.active !== false,
       updated_at: new Date().toISOString(),
     };
+    if (body.discount !== undefined) tourRow.discount = body.discount;
 
     if (body.destinationSlug) {
       const { data: dest } = await supabase
@@ -93,7 +94,6 @@ export async function PUT(
       highlights: body.highlights || [],
       included: body.included || [],
       not_included: body.notIncluded || [],
-      itinerary: body.itinerary || [],
       faqs: body.faqs || [],
       meeting_point: body.meetingPoint || '',
       duration: body.duration || '',
@@ -105,6 +105,30 @@ export async function PUT(
 
     if (trError) {
       console.error('Tour translation upsert error:', trError);
+      return NextResponse.json({ error: trError.message }, { status: 500 });
+    }
+
+    if (locale !== 'de') {
+      const { data: deTr } = await supabase
+        .from('content_translations')
+        .select('description')
+        .eq('table_name', 'tours')
+        .eq('row_id', id)
+        .eq('locale', 'de')
+        .maybeSingle();
+
+      if (deTr?.description) {
+        const deStripped = deTr.description.replace(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/gi, '').trim();
+        const newDesc = deStripped + '\n' + (body.description?.match(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/i)?.[0] ?? '');
+        if (newDesc.trim()) {
+          await supabase
+            .from('content_translations')
+            .update({ description: newDesc })
+            .eq('table_name', 'tours')
+            .eq('row_id', id)
+            .eq('locale', 'de');
+        }
+      }
     }
 
     return NextResponse.json(tour);

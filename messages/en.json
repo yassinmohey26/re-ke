@@ -64,9 +64,8 @@
     "bookTour": "Book tour",
     "requestOnly": "On request",
     "relatedTours": "Similar tours",
-    "categoryFullDay": "Full-day tours",
-    "categoryHalfDay": "Half-day tours",
-    "categoryWater": "Water sports",
+    "categoryCulture": "Cultural Tours",
+    "categorySnorkel": "Snorkelling",
     "categoryDesert": "Desert safari",
     "allTours": "All tours",
     "toursCount": "tours available",
@@ -79,16 +78,16 @@
     "allToursDesc": "Choose from our diverse selection of tours and excursions.",
     "allDestinations": "All destinations",
     "inquiry": "Inquiry",
-    "categoryFullDayTitle": "Day Trips in Egypt",
-    "categoryFullDayDesc": "Experience the highlights of Egypt on a full-day trip.",
-    "categoryHalfDayTitle": "Short Trips & Discoveries",
-    "categoryHalfDayDesc": "Short tours that offer the best in compact form.",
-    "categoryWaterTitle": "Experiences on the Red Sea",
-    "categoryWaterDesc": "The Red Sea offers one of the most beautiful underwater worlds.",
+    "categoryCultureTitle": "Cultural Tours",
+    "categoryCultureDesc": "Discover the fascinating history and culture of Egypt.",
+    "categorySnorkelTitle": "Snorkelling Tours",
+    "categorySnorkelDesc": "Explore the beautiful underwater world of the Red Sea.",
     "categoryDesertTitle": "Adventure in the Desert",
     "categoryDesertDesc": "Experience the vastness of the Egyptian desert.",
     "heroTitle": "Tours",
     "searchWhere": "Where?",
+    "searchWhereLabel": "Where?",
+    "searchWherePlaceholder": "Enter location...",
     "searchDate": "Date",
     "searchGuests": "Guests",
     "searchBtn": "Search",
@@ -114,6 +113,10 @@
     "typeCultural": "Cultural Excursions",
     "typeSnorkel": "Snorkelling Tours",
     "typeSafari": "Safari Excursions",
+    "categoryCulturalDesc": "From the Pyramids to the temples – discover Egypt's highlights",
+    "categorySnorkelDesc": "Experience underwater worlds, dolphins and coral reefs",
+    "categorySafariDesc": "Desert adventures with quads, camels & stargazing",
+    "viewTours": "View Tours",
     "activityFamily": "Family Outings",
     "activityWellness": "Wellness & Relaxation",
     "activityLuxury": "Luxury & Premium Tours",
@@ -146,12 +149,15 @@
     "cancellationTitle": "Cancellation Policy",
     "cancellationText1": "Free cancellation up to 24 hours before the excursion starts for a full refund.",
     "cancellationText2": "Cancellations made less than 24 hours before departure or no-shows will not be refunded.",
-    "trustTitle": "Why Book With Us?",
-    "trust1": "Local tour operator with years of experience",
-    "trust2": "Safe and certified boats & equipment",
-    "trust3": "Hotel pickup included",
-    "trust4": "Flexible cancellation policies",
-    "trust5": "24/7 WhatsApp support",
+    "trustTitle": "🌟 Why travel with Hurghada Reiseplaner?",
+    "trust1": "Individual and private excursions, flexible to your wishes",
+    "trust2": "Free cancellation for worry-free planning",
+    "trust3": "Fair and transparent prices with no hidden fees",
+    "trust4": "Local experts for authentic experiences",
+    "trust5": "Convenient payment in Euros, Dollars or by bank transfer",
+    "trust6": "Pick-up directly from your hotel",
+    "trust7": "German-speaking tour guide and 24/7 customer service",
+    "trust8": "Insurance and taxes already included",
     "pricingTitle": "Price Overview",
     "participants": "Participants",
     "pricePerPersonCol": "Price per Person",
@@ -159,7 +165,10 @@
     "yourPrice": "← Your Price",
     "photos": "Photos",
     "closeGallery": "Close",
-    "touristType": "Traveler"
+    "touristType": "Traveler",
+    "seeMore": "Show more",
+    "moreSteps": "more steps",
+    "seeLess": "Show less"
   },
   "destinations": {
     "pageTitle": "Destinations",
@@ -239,6 +248,7 @@
     "privacy": "Privacy Policy",
     "imprint": "Imprint",
     "toursLabel": "Tours & Excursions",
+    "categoriesLabel": "Categories",
     "destinationsLabel": "Destinations",
     "infoLabel": "Information",
     "faq": "FAQ",
@@ -308,7 +318,7 @@
     "childrenAge": "Age 3 – 10",
     "infant": "Infant",
     "infantAge": "Age 0 – 2",
-    "minGuestsRequired": "Minimum 2 guests required",
+    "minGuestsRequired": "Minimum 1 guest required",
     "extrasLabel": "Extras",
     "priceBreakdownAdults": "(Adults)",
     "priceBreakdownChildren": "(Children)",
@@ -327,7 +337,22 @@
     "payOnSite": "on site",
     "subtotalLabel": "Deposit (30%)",
     "remainingLabel": "Remaining",
-    "perPerson": "per person"
+    "perPerson": "per person",
+    "transferTitle": "Transfer / Hotel Region",
+    "hotelName": "Hotel name",
+    "hotelRegion": "Hotel region",
+    "hotelNamePlaceholder": "e.g. Steigenberger Aqua Magic",
+    "hotelRegionPlaceholder": "Select region...",
+    "allRegions": "All regions",
+    "regionHurghada": "Hurghada – €0 per person",
+    "regionMakadiBay": "Makadi Bay – €5 per person",
+    "regionSahlHasheesh": "Sahl Hasheesh – €5 per person",
+    "regionElGouna": "El Gouna – €10 per person",
+    "regionSomaBay": "Soma Bay – €10 per person",
+    "regionSafaga": "Safaga – €10 per person",
+    "regionElQuseir": "El Quseir – €35 per person",
+    "regionMarsaAlam": "Marsa Alam – €50 per person",
+    "transferSurcharge": "Transfer surcharge"
   },
   "datenschutz": {
     "pageTitle": "Privacy Policy",
@@ -478,18 +503,54 @@
     "contactQuote": "We are here for you — contact us for individual requests and custom offers.",
     "contactButton": "Contact",
     "faqs": [
-      { "q": "How do I book my airport transfer with Hurghada Travel Planner?", "a": "You can book your airport transfer directly through our website by filling out the booking form or contacting us via WhatsApp. Simply provide your flight details, destination, and number of passengers, and we will confirm your transfer within a few hours." },
-      { "q": "What happens if my flight is delayed?", "a": "No problem at all. We monitor all incoming flights and adjust your pickup time accordingly. Your driver will be waiting for you regardless of any delays, and there are no extra charges for flight delays." },
-      { "q": "Are the transfer prices per person or per vehicle?", "a": "All prices listed are per vehicle, not per person. A car accommodates up to 2 persons and a minibus up to 8 persons, so the price stays the same regardless of how many passengers share the ride." },
-      { "q": "Will we be picked up directly at the airport?", "a": "Yes, your driver will meet you at the arrivals hall holding a sign with your name. They will assist you with your luggage and take you directly to your vehicle for a comfortable ride to your hotel." },
-      { "q": "Can I book a transfer at short notice?", "a": "Yes, we accept last-minute bookings subject to availability. We recommend booking at least 24 hours in advance to guarantee availability, but we do our best to accommodate short-notice requests." },
-      { "q": "Are there any hidden costs?", "a": "No, there are absolutely no hidden costs. The price you see is the price you pay. All tolls, fuel, and waiting times at the airport are included in the quoted price." },
-      { "q": "Can I book a round-trip transfer at the same time?", "a": "Absolutely. You can book both your arrival and departure transfers at once. This ensures your return transfer is already arranged, giving you peace of mind throughout your trip." },
-      { "q": "How do I book my trip with the Hurghada travel planner?", "a": "Simply browse our tours and excursions page, select the experiences you are interested in, and fill out the booking form. A 30% deposit is required to confirm your booking. After payment, you will receive a binding confirmation with all details." },
-      { "q": "What happens if I need to change my booking?", "a": "We understand plans can change. You can modify your booking up to 48 hours before the scheduled date at no extra cost. Simply reach out to us and we will adjust your reservation. Your 30% deposit remains valid for the new booking." },
-      { "q": "Does the Hurghada travel planner offer support during my trip?", "a": "Yes, we provide support throughout your entire stay. Our experienced, German-speaking team in Hurghada is available to assist you at any time — whether you have questions, need last-minute changes or organizational help." },
-      { "q": "Are your trips family-friendly?", "a": "Absolutely! Many of our tours and excursions in Hurghada are ideal for families with children. We prioritize safety, comfort and fun for all age groups." },
-      { "q": "Can I customize my itinerary?", "a": "Yes, of course. We create personalized travel programs tailored perfectly to your interests. Whether you want more time to relax, experience cultural highlights like Luxor or Cairo, or prefer private tours — we design everything flexibly according to your wishes." }
+      {
+        "q": "How do I book my airport transfer with Hurghada Travel Planner?",
+        "a": "You can book your airport transfer directly through our website by filling out the booking form or contacting us via WhatsApp. Simply provide your flight details, destination, and number of passengers, and we will confirm your transfer within a few hours."
+      },
+      {
+        "q": "What happens if my flight is delayed?",
+        "a": "No problem at all. We monitor all incoming flights and adjust your pickup time accordingly. Your driver will be waiting for you regardless of any delays, and there are no extra charges for flight delays."
+      },
+      {
+        "q": "Are the transfer prices per person or per vehicle?",
+        "a": "All prices listed are per vehicle, not per person. A car accommodates up to 2 persons and a minibus up to 8 persons, so the price stays the same regardless of how many passengers share the ride."
+      },
+      {
+        "q": "Will we be picked up directly at the airport?",
+        "a": "Yes, your driver will meet you at the arrivals hall holding a sign with your name. They will assist you with your luggage and take you directly to your vehicle for a comfortable ride to your hotel."
+      },
+      {
+        "q": "Can I book a transfer at short notice?",
+        "a": "Yes, we accept last-minute bookings subject to availability. We recommend booking at least 24 hours in advance to guarantee availability, but we do our best to accommodate short-notice requests."
+      },
+      {
+        "q": "Are there any hidden costs?",
+        "a": "No, there are absolutely no hidden costs. The price you see is the price you pay. All tolls, fuel, and waiting times at the airport are included in the quoted price."
+      },
+      {
+        "q": "Can I book a round-trip transfer at the same time?",
+        "a": "Absolutely. You can book both your arrival and departure transfers at once. This ensures your return transfer is already arranged, giving you peace of mind throughout your trip."
+      },
+      {
+        "q": "How do I book my trip with the Hurghada travel planner?",
+        "a": "Simply browse our tours and excursions page, select the experiences you are interested in, and fill out the booking form. A 30% deposit is required to confirm your booking. After payment, you will receive a binding confirmation with all details."
+      },
+      {
+        "q": "What happens if I need to change my booking?",
+        "a": "We understand plans can change. You can modify your booking up to 48 hours before the scheduled date at no extra cost. Simply reach out to us and we will adjust your reservation. Your 30% deposit remains valid for the new booking."
+      },
+      {
+        "q": "Does the Hurghada travel planner offer support during my trip?",
+        "a": "Yes, we provide support throughout your entire stay. Our experienced, German-speaking team in Hurghada is available to assist you at any time — whether you have questions, need last-minute changes or organizational help."
+      },
+      {
+        "q": "Are your trips family-friendly?",
+        "a": "Absolutely! Many of our tours and excursions in Hurghada are ideal for families with children. We prioritize safety, comfort and fun for all age groups."
+      },
+      {
+        "q": "Can I customize my itinerary?",
+        "a": "Yes, of course. We create personalized travel programs tailored perfectly to your interests. Whether you want more time to relax, experience cultural highlights like Luxor or Cairo, or prefer private tours — we design everything flexibly according to your wishes."
+      }
     ]
   },
   "homeFeatured": {

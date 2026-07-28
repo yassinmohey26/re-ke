@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Link } from '@/i18n/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import type { Tour } from '@/lib/data/tours';
+import Image from 'next/image';
+import cloudinaryLoader from '@/lib/cloudinaryLoader';
 import styles from './ToursClient.module.css';
 
 interface DestinationOption {
@@ -19,6 +22,8 @@ interface Props {
   translations: {
     heroTitle: string;
     searchWhere: string;
+    searchWhereLabel: string;
+    searchWherePlaceholder: string;
     searchDate: string;
     searchGuests: string;
     searchBtn: string;
@@ -59,7 +64,7 @@ const PER_PAGE = 12;
 
 const TYPE_MAP: Record<string, string[]> = {
   cultural: ['cultural', 'halbtag', 'ganztag', 'kultur'],
-  snorkel: ['wassersport', 'snorkel'],
+  snorkel: ['wassersport', 'snorkel', 'schnorchel'],
   safari: ['wuesten-safari', 'safari'],
 };
 
@@ -68,31 +73,60 @@ const DURATION_MAP: Record<string, [number, number]> = {
   '7h': [4, 7],
   '8h': [7, 8],
   '12h': [8, 12],
-  '15h': [12, 24],
+  '15h': [12, Infinity],
 };
 
 export default function ToursClient({ tours, locale, heroTitle, heroImage, destinations = [], translations: t }: Props) {
+  const searchParams = useSearchParams();
+  const initialType = searchParams.get('type');
+
   const [draftDestination, setDraftDestination] = useState('');
+  const [draftLocation, setDraftLocation] = useState('');
   const [draftSearch, setDraftSearch] = useState('');
-  const [draftTypes, setDraftTypes] = useState<Set<string>>(new Set());
+  const [draftTypes, setDraftTypes] = useState<Set<string>>(
+    () => initialType && TYPE_MAP[initialType] ? new Set([initialType]) : new Set()
+  );
   const [draftDurations, setDraftDurations] = useState<Set<string>>(new Set());
   const [draftPriceMin, setDraftPriceMin] = useState('');
   const [draftPriceMax, setDraftPriceMax] = useState('');
 
   const [appliedDestination, setAppliedDestination] = useState('');
+  const [appliedLocation, setAppliedLocation] = useState('');
   const [appliedSearch, setAppliedSearch] = useState('');
-  const [appliedTypes, setAppliedTypes] = useState<Set<string>>(new Set());
+  const [appliedTypes, setAppliedTypes] = useState<Set<string>>(
+    () => initialType && TYPE_MAP[initialType] ? new Set([initialType]) : new Set()
+  );
   const [appliedDurations, setAppliedDurations] = useState<Set<string>>(new Set());
   const [appliedPriceMin, setAppliedPriceMin] = useState('');
   const [appliedPriceMax, setAppliedPriceMax] = useState('');
 
+  const router = useRouter();
+
   const [sortBy, setSortBy] = useState('default');
-  const [page, setPage] = useState(1);
+  const [page, setPageState] = useState(() => {
+    const p = Number(searchParams.get('page'));
+    return p > 0 ? p : 1;
+  });
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     price: true,
     types: true,
     duration: true,
   });
+
+  const setPage = useCallback((p: number | ((prev: number) => number)) => {
+    setPageState(p);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (page <= 1) {
+      params.delete('page');
+    } else {
+      params.set('page', String(page));
+    }
+    const qs = params.toString();
+    router.replace(`${window.location.pathname}${qs ? '?' + qs : ''}`, { scroll: false });
+  }, [page, router]);
 
   const toggleSection = useCallback((key: string) => {
     setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
@@ -118,24 +152,27 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
 
   const handleSearch = useCallback(() => {
     setAppliedDestination(draftDestination);
+    setAppliedLocation(draftLocation);
     setAppliedSearch(draftSearch);
     setAppliedTypes(new Set(draftTypes));
     setAppliedDurations(new Set(draftDurations));
     setAppliedPriceMin(draftPriceMin);
     setAppliedPriceMax(draftPriceMax);
     setPage(1);
-  }, [draftDestination, draftSearch, draftTypes, draftDurations, draftPriceMin, draftPriceMax]);
+  }, [draftDestination, draftLocation, draftSearch, draftTypes, draftDurations, draftPriceMin, draftPriceMax]);
 
-  const hasActiveFilters = appliedDestination !== '' || appliedTypes.size > 0 || appliedDurations.size > 0 || appliedSearch.length > 0 || appliedPriceMin !== '' || appliedPriceMax !== '';
+  const hasActiveFilters = appliedDestination !== '' || appliedLocation !== '' || appliedTypes.size > 0 || appliedDurations.size > 0 || appliedSearch.length > 0 || appliedPriceMin !== '' || appliedPriceMax !== '';
 
   const clearAllFilters = useCallback(() => {
     setDraftDestination('');
+    setDraftLocation('');
     setDraftSearch('');
     setDraftTypes(new Set());
     setDraftDurations(new Set());
     setDraftPriceMin('');
     setDraftPriceMax('');
     setAppliedDestination('');
+    setAppliedLocation('');
     setAppliedSearch('');
     setAppliedTypes(new Set());
     setAppliedDurations(new Set());
@@ -149,6 +186,11 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
 
     if (appliedDestination) {
       result = result.filter(tour => tour.destinationSlug === appliedDestination);
+    }
+
+    if (appliedLocation) {
+      const loc = appliedLocation.toLowerCase();
+      result = result.filter(tour => tour.destination.toLowerCase().includes(loc));
     }
 
     if (appliedSearch) {
@@ -222,6 +264,22 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
           <h1 className={styles.heroTitle}>{heroTitle || t.heroTitle}</h1>
           <div className={styles.searchBar}>
             <div className={styles.searchField}>
+              <span className={styles.searchLabel}>{t.searchWhereLabel}</span>
+              <input
+                type="text"
+                className={styles.searchInput}
+                value={draftLocation}
+                onChange={e => setDraftLocation(e.target.value)}
+                placeholder={t.searchWherePlaceholder}
+                list="wo-destinations"
+              />
+              <datalist id="wo-destinations">
+                {destinations.map(d => (
+                  <option key={d.slug} value={d.name} />
+                ))}
+              </datalist>
+            </div>
+            <div className={styles.searchField}>
               <span className={styles.searchLabel}>{t.searchWhere}</span>
               <select
                 className={styles.searchInput}
@@ -266,10 +324,13 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
             className={styles.categoryCard}
             onClick={() => { toggleDraftType('cultural'); handleSearch(); }}
           >
-            <img
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/pyramiden-gizeh.avif"
+            <Image
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784360310/hurghada-reiseplaner/tours/vqqsp7ra8teoydmm6yfn.jpg"
               alt={t.typeCultural}
               className={styles.categoryImg}
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              loader={cloudinaryLoader}
             />
             <div className={styles.categoryOverlay} />
             <div className={styles.categoryContent}>
@@ -282,10 +343,13 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
             className={styles.categoryCard}
             onClick={() => { toggleDraftType('snorkel'); handleSearch(); }}
           >
-            <img
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/marsa-alam-delfine.avif"
+            <Image
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784552895/hurghada-reiseplaner/tours/ittvyyrxy2bdegnpu7x7.jpg"
               alt={t.typeSnorkel}
               className={styles.categoryImg}
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              loader={cloudinaryLoader}
             />
             <div className={styles.categoryOverlay} />
             <div className={styles.categoryContent}>
@@ -298,10 +362,13 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
             className={styles.categoryCard}
             onClick={() => { toggleDraftType('safari'); handleSearch(); }}
           >
-            <img
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/wuestensafari-quads-1.avif"
+            <Image
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784566865/hurghada-reiseplaner/tours/ppnoc8ywf1n43zu4ophl.jpg"
               alt={t.typeSafari}
               className={styles.categoryImg}
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              loader={cloudinaryLoader}
             />
             <div className={styles.categoryOverlay} />
             <div className={styles.categoryContent}>
@@ -408,8 +475,18 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
               {paged.map(tour => (
                 <Link key={tour.slug} href={`/touren/${tour.slug}`} className={styles.card}>
                   <div className={styles.cardImgWrap}>
-                    {tour.image && (
-                      <img src={tour.image} alt={tour.name} className={styles.cardImg} />
+                    {tour.images?.[0] && (
+                      <Image
+                        src={tour.images[0]}
+                        alt={tour.name}
+                        className={styles.cardImg}
+                        fill
+                        sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
+                        loader={tour.images[0].includes('cloudinary.com') ? cloudinaryLoader : undefined}
+                      />
+                    )}
+                    {tour.discount?.active && (
+                      <span className={styles.saleBadge}>-{tour.discount.percentage}%</span>
                     )}
                     <button className={styles.heartBtn} aria-label={t.favorite} onClick={e => e.preventDefault()}>
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -446,11 +523,20 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
                     </div>
                     <div className={styles.cardPrice}>
                       {tour.price != null ? (
-                        <>
-                          <span className={styles.priceLabel}>{t.from} </span>
-                          <span className={styles.priceValue}>€{tour.price.toFixed(2)}</span>
-                          <span className={styles.priceUnit}> /{t.perPerson}</span>
-                        </>
+                        tour.discount?.active ? (
+                          <>
+                            <span className={styles.priceLabel}>{t.from} </span>
+                            <span className={styles.oldPrice}>€{tour.price.toFixed(2)}</span>{' '}
+                            <span className={styles.salePrice}>€{Math.round(tour.price * (1 - tour.discount.percentage / 100)).toFixed(2)}</span>
+                            <span className={styles.priceUnit}> /{t.perPerson}</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className={styles.priceLabel}>{t.from} </span>
+                            <span className={styles.priceValue}>€{tour.price.toFixed(2)}</span>
+                            <span className={styles.priceUnit}> /{t.perPerson}</span>
+                          </>
+                        )
                       ) : (
                         <span className={styles.priceLabel}>{t.from} {t.inquiry}</span>
                       )}

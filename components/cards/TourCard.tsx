@@ -39,6 +39,9 @@ export default async function TourCard({
             <div style={{ position: 'absolute', inset: 0, background: 'var(--color-accent)' }} />
           )}
           <span className={styles.categoryBadge}>{displayCat}</span>
+          {tour.discount?.active && (
+            <span className={styles.saleBadge}>-{tour.discount.percentage}%</span>
+          )}
         </div>
       </Link>
       <div className={styles.body}>
@@ -53,7 +56,16 @@ export default async function TourCard({
         <p className={styles.desc}>{displayDesc}</p>
         <div className={styles.footer}>
           {tour.price ? (
-            <span className={styles.price}>{t('from')} {tour.price} EUR</span>
+            <span className={styles.price}>
+              {tour.discount?.active ? (
+                <>
+                  <span className={styles.oldPrice}>{t('from')} {tour.price} EUR</span>{' '}
+                  <span className={styles.salePrice}>{t('from')} {Math.round(tour.price * (1 - tour.discount.percentage / 100))} EUR</span>
+                </>
+              ) : (
+                <>{t('from')} {tour.price} EUR</>
+              )}
+            </span>
           ) : (
             <span className={styles.price}>{t('requestOnly')}</span>
           )}

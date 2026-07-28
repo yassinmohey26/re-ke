@@ -2,6 +2,16 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 
 const db = getSupabaseAdmin();
 
+function stripZeroMinutes(d: string): string {
+  return d.replace(/\s*0\s*(minutes?|Min\.?|minutes?)\s*/gi, ' ').replace(/\s{2,}/g, ' ').trim();
+}
+
+export interface Discount {
+  active: boolean;
+  percentage: number;
+  tierPrices?: number[];
+}
+
 export interface Tour {
   id: string;
   slug: string;
@@ -16,16 +26,18 @@ export interface Tour {
   minAge: number;
   destination: string;
   destinationSlug: string;
-  category: 'ganztag' | 'halbtag' | 'wassersport' | 'wuesten-safari';
+  category: 'kultur' | 'schnorchel' | 'safari';
   categoryLabel: string;
   highlights: string[];
   included: string[];
   notIncluded: string[];
-  itinerary: { title: string; content: string }[];
+  itinerary: { day?: string; title: string; content: string }[];
   faqs: { question: string; answer: string }[];
   image: string;
+  images: string[];
   meetingPoint: string;
   featured: boolean;
+  discount: Discount | null;
 }
 
 export interface Destination {
@@ -72,11 +84,49 @@ function parseItin(val: unknown, fallback: { title: string; content: string }[])
   return fallback;
 }
 
+function parseImages(val: unknown): string[] {
+  if (Array.isArray(val)) return val.filter(v => typeof v === 'string' && v.startsWith('http'));
+  if (typeof val === 'string') {
+    try {
+      const parsed = JSON.parse(val);
+      if (Array.isArray(parsed)) return parsed.filter(v => typeof v === 'string' && v.startsWith('http'));
+    } catch {}
+    return val.startsWith('http') ? [val] : [];
+  }
+  return [];
+}
+
+function parseDiscount(val: unknown): Discount | null {
+  if (!val) return null;
+  if (typeof val === 'object' && val !== null) {
+    const d = val as Record<string, unknown>;
+    if (d.active === true && typeof d.percentage === 'number') {
+      return {
+        active: true,
+        percentage: d.percentage,
+        tierPrices: Array.isArray(d.tierPrices) ? d.tierPrices.map(Number) : undefined,
+      };
+    }
+    return { active: false, percentage: 0 };
+  }
+  if (typeof val === 'string') {
+    try {
+      const parsed = JSON.parse(val);
+      return parseDiscount(parsed);
+    } catch {}
+  }
+  return null;
+}
+
+function stripEmoji(s: string): string {
+  return s.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}\u200d\uFE0F]/gu, '').trim();
+}
+
 function parseFaqs(val: unknown, fallback: { question: string; answer: string }[]): { question: string; answer: string }[] {
   if (!Array.isArray(val)) return fallback;
   return val.map(item => {
-    if (item.question && item.answer) return item;
-    if (item.q && item.a) return { question: item.q, answer: item.a };
+    if (item.question && item.answer) return { question: stripEmoji(item.question), answer: item.answer };
+    if (item.q && item.a) return { question: stripEmoji(item.q), answer: item.a };
     return { question: '', answer: '' };
   }).filter(item => item.question || item.answer);
 }
@@ -140,7 +190,7 @@ function parseEavJoinedString(tr: any): any {
       const qs = arrays[3];
       const as = arrays[4];
       for (let i = 0; i < Math.max(qs.length, as.length); i++) {
-        faqs.push({ question: qs[i] || '', answer: as[i] || '' });
+        faqs.push({ question: stripEmoji(qs[i] || ''), answer: as[i] || '' });
       }
       tr.faqs = faqs;
     }
@@ -170,14 +220,14 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     shortDescription: parseStr(tr?.short_description, row.short_description ?? ''),
     description: parseStr(tr?.description, row.description ?? ''),
     price: row.price,
-    duration: parseStr(tr?.duration, row.duration ?? ''),
+    duration: stripZeroMinutes(parseStr(tr?.duration, row.duration ?? '')),
     durationHours: row.duration_hours ?? 0,
     maxGuests: row.max_guests ?? 8,
     difficulty: row.difficulty ?? 'leicht',
     minAge: row.min_age ?? 6,
     destination: row.destination ?? '',
     destinationSlug: row.destination_slug ?? '',
-    category: row.category ?? 'ganztag',
+    category: row.category ?? 'kultur',
     categoryLabel: parseStr(tr?.category_label, row.category_label ?? ''),
     highlights: unique(parseArr(tr?.highlights, row.highlights ?? [])),
     included: unique(parseArr(tr?.included, row.included ?? [])),
@@ -185,8 +235,10 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     itinerary: parseItin(tr?.itinerary ?? tr?.content, row.itinerary ?? []),
     faqs: parseFaqs(tr?.faqs, row.faqs ?? []),
     image: row.image ?? '',
+    images: parseImages(row.image ?? ''),
     meetingPoint: parseStr(tr?.meeting_point, row.meeting_point ?? ''),
     featured: row.featured ?? false,
+    discount: parseDiscount(row.discount ?? null),
   };
 }
 
@@ -410,8 +462,12 @@ export async function getLocalizedDestinationData(
 export async function getLocalizedCategoryLabel(slug: string, locale: string): Promise<string> {
   const cats = await getTourCategories();
   const cat = cats.find((c) => c.slug === slug);
-  if (!cat) return slug;
-  return cat.label;
+  if (cat) return cat.label;
+  const fallback: Record<string, Record<string, string>> = {
+    snorkel: { de: 'Schnorchel', en: 'Snorkelling', fr: 'Snorkeling', ru: 'Снорклинг', ar: 'سنوركلينغ', hu: 'Sznorkelezés' },
+    kultur: { de: 'Kultur', en: 'Culture', fr: 'Culture', ru: 'Культура', ar: 'ثقافة', hu: 'Kultúra' },
+  };
+  return fallback[slug]?.[locale] ?? slug;
 }
 
 export async function getLocalizedTour(slug: string, locale: string): Promise<Tour | undefined> {

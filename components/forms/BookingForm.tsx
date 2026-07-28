@@ -34,6 +34,7 @@ interface BookingFormProps {
   maxGuests?: number;
   pricingTiers?: PricingTier[];
   extras?: Extra[];
+  destinations?: { slug: string; name: string }[];
   initialSelectedExtraIds?: string[];
   initialDate?: string;
   initialAdults?: number;
@@ -82,6 +83,7 @@ export default function BookingForm({
   maxGuests = 8,
   pricingTiers = [],
   extras = [],
+  destinations = [],
   initialSelectedExtraIds = [],
   initialDate = '',
   initialAdults = 2,
@@ -98,6 +100,8 @@ export default function BookingForm({
   const [childrenCount, setChildrenCount] = useState(initialChildren);
   const [infants, setInfants] = useState(initialInfants);
   const [paymentOption, setPaymentOption] = useState<'full' | 'deposit'>('full');
+  const [hotelName, setHotelName] = useState('');
+  const [hotelRegion, setHotelRegion] = useState('');
   const minimumDate = getTodayLocalDate();
 
   const guestsTotal = adults + childrenCount + infants;
@@ -148,9 +152,21 @@ export default function BookingForm({
   const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
   const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
 
+  const TRANSFER_SURCHARGES: Record<string, number> = {
+    'hurghada': 0,
+    'makadi-bay': 5,
+    'sahl-hasheesh': 5,
+    'el-gouna': 10,
+    'soma-bay': 10,
+    'safaga': 10,
+    'el-quseir': 35,
+    'marsa-alam': 50,
+  };
+  const transferSurcharge = hotelRegion ? (TRANSFER_SURCHARGES[hotelRegion] ?? 0) * guestsForPricing : 0;
+
   // Price calculation: adults full, children half, infants free
   const totalPrice = dynamicPricePerPerson != null
-    ? dynamicPricePerPerson * adults + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal
+    ? dynamicPricePerPerson * adults + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal + transferSurcharge
     : null;
 
   const depositAmount = totalPrice != null ? Math.round(totalPrice * 0.3 * 100) / 100 : null;
@@ -178,6 +194,8 @@ export default function BookingForm({
       ];
       const allExtras = [...guestBreakdown, ...selectedExtras];
       fd.append('extrasJson', JSON.stringify(allExtras));
+      if (hotelName) fd.append('hotelName', hotelName);
+      if (hotelRegion) fd.append('hotelRegion', hotelRegion);
       if (totalPrice != null) fd.append('totalPrice', String(totalPrice));
       const result = await submitBooking(fd);
       if (result.success) {
@@ -316,7 +334,7 @@ export default function BookingForm({
           onDecrease={() => setInfants(Math.max(0, infants - 1))}
           css={styles}
         />
-        {guestsTotal < 2 && (
+        {guestsTotal < 1 && (
           <span className={styles.errorText}>{t('minGuestsRequired')}</span>
         )}
         <input type="hidden" {...register('guests')} value={guestsTotal} />
@@ -331,6 +349,53 @@ export default function BookingForm({
           className={styles.textarea}
           {...register('message')}
         />
+      </div>
+
+      {/* Transfer / Hotelregion Card */}
+      <div className={styles.transferCard}>
+        <div className={styles.transferCardTitle}>
+          <svg className={styles.transferCardIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 17h1m0 0a2 2 0 104 0m-4 0a2 2 0 114 0m6-1h1m0 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+            <path d="M5 17H3V6a1 1 0 011-1h9v12M14 7h2l3 4v6h-2" />
+            <circle cx="7" cy="17" r="2" />
+            <circle cx="17" cy="17" r="2" />
+          </svg>
+          {t('transferTitle')}
+        </div>
+        <div className={styles.transferCardFields}>
+          <div className={styles.transferCardRow}>
+            <div className={styles.field}>
+              <label htmlFor="booking-hotel-name" className={styles.label}>{t('hotelName')}</label>
+              <input
+                id="booking-hotel-name"
+                type="text"
+                value={hotelName}
+                onChange={e => setHotelName(e.target.value)}
+                placeholder={t('hotelNamePlaceholder')}
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="booking-hotel-region" className={styles.label}>{t('hotelRegion')}</label>
+              <select
+                id="booking-hotel-region"
+                value={hotelRegion}
+                onChange={e => setHotelRegion(e.target.value)}
+                className={styles.input}
+              >
+                <option value="">{t('hotelRegionPlaceholder')}</option>
+                <option value="hurghada">{t('regionHurghada')}</option>
+                <option value="makadi-bay">{t('regionMakadiBay')}</option>
+                <option value="sahl-hasheesh">{t('regionSahlHasheesh')}</option>
+                <option value="el-gouna">{t('regionElGouna')}</option>
+                <option value="soma-bay">{t('regionSomaBay')}</option>
+                <option value="safaga">{t('regionSafaga')}</option>
+                <option value="el-quseir">{t('regionElQuseir')}</option>
+                <option value="marsa-alam">{t('regionMarsaAlam')}</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
       {extras.length > 0 && (
@@ -411,7 +476,7 @@ export default function BookingForm({
         <div className={styles.priceDisplay}>
           <div style={{ marginBottom: 4 }}>
             {dynamicPricePerPerson !== pricePerPerson && pricePerPerson != null && (
-              <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginRight: 8 }}>
+              <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginInlineEnd: 8 }}>
                 {t('pricePerPerson', { price: pricePerPerson })}
               </span>
             )}
@@ -433,6 +498,11 @@ export default function BookingForm({
           {extrasTotal > 0 && (
             <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
               + {extrasTotal.toFixed(2)} € Extras
+            </div>
+          )}
+          {transferSurcharge > 0 && (
+            <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
+              + {transferSurcharge.toFixed(2)} € {t('transferSurcharge')}
             </div>
           )}
           {totalPrice != null && (
@@ -457,10 +527,10 @@ export default function BookingForm({
           paymentOption={paymentOption}
           extrasJson={JSON.stringify([...selectedExtras, { id: '_adults', name: `Erwachsene: ${adults}`, price: 0 }, ...(childrenCount > 0 ? [{ id: '_children', name: `Kinder: ${childrenCount}`, price: 0 }] : []), ...(infants > 0 ? [{ id: '_infants', name: `Kleinkind: ${infants}`, price: 0 }] : [])])}
           locale={typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : undefined}
-          disabled={isPending || guestsTotal < 2}
+          disabled={isPending || guestsTotal < 1}
         />
       ) : (
-        <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%' }} disabled={isPending || guestsTotal < 2}>
+        <button type="submit" className="btn btn--primary btn--lg" style={{ width: '100%' }} disabled={isPending || guestsTotal < 1}>
           {isPending ? t('sending') : t('submitRequest')}
         </button>
       )}

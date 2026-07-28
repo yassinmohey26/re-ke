@@ -1,7 +1,8 @@
 'use client';
 
 import { createContext, useContext, useState, useMemo, type ReactNode } from 'react';
-import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
+import { type PricingTier, getPriceForGuests, applyDiscount } from '@/lib/pricing-table';
+import type { Discount } from '@/lib/data/tours';
 
 interface Extra {
   id: string;
@@ -13,6 +14,8 @@ interface Extra {
 interface TourBookingContextValue {
   price: number | null;
   pricePerPerson: number | null;
+  salePricePerPerson: number | null;
+  hasSale: boolean;
   adults: number;
   children: number;
   infants: number;
@@ -23,6 +26,7 @@ interface TourBookingContextValue {
   setChildren: (n: number) => void;
   setInfants: (n: number) => void;
   pricingTiers: PricingTier[];
+  discount: Discount | null;
   extras: Extra[];
   selected: string[];
   toggle: (id: string) => void;
@@ -44,6 +48,7 @@ export function TourBookingProvider({
   price,
   maxGuests = 8,
   pricingTiers = [],
+  discount = null,
   extras,
   children,
 }: {
@@ -51,6 +56,7 @@ export function TourBookingProvider({
   price: number | null;
   maxGuests?: number;
   pricingTiers?: PricingTier[];
+  discount?: Discount | null;
   extras: Extra[];
   children: ReactNode;
 }) {
@@ -71,12 +77,20 @@ export function TourBookingProvider({
     const guestsTotal = adults + childrenCount + infants;
     const guestsForPricing = adults + childrenCount;
     const pricePerPerson = getPriceForGuests(pricingTiers, price, guestsForPricing);
+    const activeTierIndex = pricingTiers.findIndex(
+      t => guestsForPricing >= t.minGuests && guestsForPricing <= t.maxGuests
+    );
+    const salePricePerPerson = pricePerPerson != null
+      ? applyDiscount(pricePerPerson, discount, activeTierIndex >= 0 ? activeTierIndex : undefined)
+      : null;
+    const hasSale = salePricePerPerson != null && pricePerPerson != null && salePricePerPerson < pricePerPerson;
     const extrasTotal = extras
       .filter((e) => selected.includes(e.id))
       .reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
+    const effectivePrice = salePricePerPerson ?? pricePerPerson;
     // Adults: full price, Children: half price, Infants: free
-    const total = pricePerPerson != null
-      ? pricePerPerson * adults + (pricePerPerson / 2) * childrenCount + extrasTotal
+    const total = effectivePrice != null
+      ? effectivePrice * adults + (effectivePrice / 2) * childrenCount + extrasTotal
       : null;
     const bookingHref =
       `/booking?tour=${slug}&adults=${adults}&children=${childrenCount}&infants=${infants}${selected.length > 0 ? `&extras=${selected.join(',')}` : ''}`;
@@ -84,6 +98,8 @@ export function TourBookingProvider({
     return {
       price,
       pricePerPerson,
+      salePricePerPerson,
+      hasSale,
       adults,
       children: childrenCount,
       infants,
@@ -94,6 +110,7 @@ export function TourBookingProvider({
       setChildren,
       setInfants: setInfants,
       pricingTiers,
+      discount,
       extras,
       selected,
       toggle,
@@ -101,7 +118,7 @@ export function TourBookingProvider({
       total,
       bookingHref,
     };
-  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, slug, extras, selected]);
+  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, slug, extras, selected]);
 
   return <TourBookingContext.Provider value={value}>{children}</TourBookingContext.Provider>;
 }

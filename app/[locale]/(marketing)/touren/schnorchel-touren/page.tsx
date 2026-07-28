@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   const t = await getTranslations('tours');
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
-  const title = t('categoryDesert');
-  const description = t('categoryDesertDesc');
+  const title = t('categorySnorkel');
+  const description = t('categorySnorkelDesc');
   const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
     title,
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale}/touren/wuesten-safari`,
+      url: `${baseUrl}/${locale}/touren/schnorchel-touren`,
       siteName: 'Hurghada Reiseplaner',
       images: [{ url: `${baseUrl}/og-default.jpg`, width: 1200, height: 630, alt: title }],
       locale: localeMap[locale] || 'de_AT',
@@ -27,14 +27,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: { card: 'summary_large_image', title, description, images: [`${baseUrl}/og-default.jpg`] },
     alternates: {
-      canonical: `${baseUrl}/${locale}/touren/wuesten-safari`,
+      canonical: `${baseUrl}/${locale}/touren/schnorchel-touren`,
       languages: {
-        'de': `${baseUrl}/de/touren/wuesten-safari`,
-        'en': `${baseUrl}/en/touren/wuesten-safari`,
-        'ru': `${baseUrl}/ru/touren/wuesten-safari`,
-        'ar': `${baseUrl}/ar/touren/wuesten-safari`,
-        'fr': `${baseUrl}/fr/touren/wuesten-safari`,
-        'hu': `${baseUrl}/hu/touren/wuesten-safari`,
+        'de': `${baseUrl}/de/touren/schnorchel-touren`,
+        'en': `${baseUrl}/en/touren/schnorchel-touren`,
+        'ru': `${baseUrl}/ru/touren/schnorchel-touren`,
+        'ar': `${baseUrl}/ar/touren/schnorchel-touren`,
+        'fr': `${baseUrl}/fr/touren/schnorchel-touren`,
+        'hu': `${baseUrl}/hu/touren/schnorchel-touren`,
+        'x-default': `${baseUrl}/de/touren/schnorchel-touren`,
       },
     },
   };
@@ -44,20 +45,20 @@ export function generateStaticParams() {
   return [];
 }
 
-export default async function WuestenSafariPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function SchnorchelTourenPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const tours = await getLocalizedAllTours(locale);
-  const catTours = tours.filter(t => t.category === 'wuesten-safari');
+  const catTours = tours.filter(t => t.category === 'schnorchel');
   const t = await getTranslations('tours');
 
   return (
     <>
       <PageHeader
-        eyebrow={t('categoryDesert')}
-        title={t('categoryDesertTitle')}
-        description={t('categoryDesertDesc')}
+        eyebrow={t('categorySnorkel')}
+        title={t('categorySnorkelTitle')}
+        description={t('categorySnorkelDesc')}
       />
       <section className="section">
         <div className="container">

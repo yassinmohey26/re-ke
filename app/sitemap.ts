@@ -13,10 +13,9 @@ const FIXED_ROUTES = [
   { path: '/faq', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/datenschutz', priority: 0.2, changeFrequency: 'yearly' as const },
   { path: '/impressum', priority: 0.2, changeFrequency: 'yearly' as const },
-  { path: '/touren/ganztagstouren', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/touren/halbtagstouren', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/touren/wassersport', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/touren/wuesten-safari', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/touren/kultur-ausfluege', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/touren/schnorchel-touren', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/touren/safari-ausfluege', priority: 0.8, changeFrequency: 'weekly' as const },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
