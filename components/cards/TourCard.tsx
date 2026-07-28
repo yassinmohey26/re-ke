@@ -27,9 +27,9 @@ export default async function TourCard({
     <article className={styles.card}>
       <Link href={`/touren/${tour.slug}`} className={styles.imgLink}>
         <div className={styles.imgWrap}>
-          {tour.image && tour.image.startsWith('http') ? (
+          {tour.images?.[0] ? (
             <Image
-              src={tour.image}
+              src={tour.images[0]}
               alt={displayName}
               fill
               className={styles.img}
