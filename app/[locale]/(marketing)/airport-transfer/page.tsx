@@ -36,22 +36,16 @@ export default async function AirportTransferPage({ params }: { params: Promise<
   const t = await getTranslations({ locale, namespace: 'airportTransfer' });
   const db = getSupabaseAdmin();
 
-  const [transfersResult, faqsResult] = await Promise.all([
-    db.from('airport_transfers').select('destination, car_price, minibus_price').order('sort_order', { ascending: true }),
-    db.from('airport_transfer_faqs').select('question, answer').eq('locale', locale).order('sort_order', { ascending: true }),
-  ]);
-
+  const transfersResult = await db.from('airport_transfers').select('destination, car_price, minibus_price').order('sort_order', { ascending: true });
   const transfers = transfersResult.data ?? [];
-  let faqs = faqsResult.data ?? [];
-  if (faqsResult.error && faqsResult.error.message?.includes('locale')) {
-    const fallback = await db.from('airport_transfer_faqs').select('question, answer').order('sort_order', { ascending: true });
-    faqs = fallback.data ?? [];
-  }
+
+  const rawFaqs = t.raw('faqs') as Array<{ q: string; a: string }>;
+  const faqs = (rawFaqs ?? []).map((f) => ({ question: f.q, answer: f.a }));
 
   return (
     <>
       <HeroSection
-        image="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80"
+        image="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/transfer-hero.avif"
         title={t('heroTitle')}
         subtitle={t('heroSubtitle')}
       />

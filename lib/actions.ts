@@ -202,7 +202,7 @@ export async function submitBooking(formData: FormData) {
       </div>
       <div style="background:#f9fafb;padding:20px 24px;border-radius:8px;text-align:center">
         <p style="margin:0 0 4px;color:#6b7280;font-size:13px">Hurghada Reiseplaner — Your trusted partner for Egypt travel</p>
-        <p style="margin:0 0 4px;color:#9ca3af;font-size:12px">+43 681 81140099 | info@hurghada-reiseplaner.at</p>
+        <p style="margin:0 0 4px;color:#9ca3af;font-size:12px">+43 681 811 400 99 | info@hurghada-reiseplaner.at</p>
         <p style="margin:0;color:#9ca3af;font-size:12px"><a href="${siteUrl}" style="color:#0057b8;text-decoration:none">hurghada-reiseplaner.at</a></p>
       </div>
     </div>

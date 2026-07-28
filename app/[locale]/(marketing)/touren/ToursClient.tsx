@@ -48,6 +48,10 @@ interface Props {
     allDestinations: string;
     inquiry: string;
     favorite: string;
+    categoryCulturalDesc: string;
+    categorySnorkelDesc: string;
+    categorySafariDesc: string;
+    viewTours: string;
   };
 }
 
@@ -252,6 +256,60 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
               </svg>
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Category Cards */}
+      <div className={styles.categories}>
+        <div className={styles.categoriesInner}>
+          <button
+            className={styles.categoryCard}
+            onClick={() => { toggleDraftType('cultural'); handleSearch(); }}
+          >
+            <img
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/pyramiden-gizeh.avif"
+              alt={t.typeCultural}
+              className={styles.categoryImg}
+            />
+            <div className={styles.categoryOverlay} />
+            <div className={styles.categoryContent}>
+              <h3 className={styles.categoryTitle}>{t.typeCultural}</h3>
+              <p className={styles.categoryDesc}>{t.categoryCulturalDesc}</p>
+              <span className={styles.categoryBtn}>{t.viewTours}</span>
+            </div>
+          </button>
+          <button
+            className={styles.categoryCard}
+            onClick={() => { toggleDraftType('snorkel'); handleSearch(); }}
+          >
+            <img
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/marsa-alam-delfine.avif"
+              alt={t.typeSnorkel}
+              className={styles.categoryImg}
+            />
+            <div className={styles.categoryOverlay} />
+            <div className={styles.categoryContent}>
+              <h3 className={styles.categoryTitle}>{t.typeSnorkel}</h3>
+              <p className={styles.categoryDesc}>{t.categorySnorkelDesc}</p>
+              <span className={styles.categoryBtn}>{t.viewTours}</span>
+            </div>
+          </button>
+          <button
+            className={styles.categoryCard}
+            onClick={() => { toggleDraftType('safari'); handleSearch(); }}
+          >
+            <img
+              src="https://res.cloudinary.com/sx85slkf/image/upload/v1785218112/hurghada-reiseplaner/tours/wuestensafari-quads-1.avif"
+              alt={t.typeSafari}
+              className={styles.categoryImg}
+            />
+            <div className={styles.categoryOverlay} />
+            <div className={styles.categoryContent}>
+              <h3 className={styles.categoryTitle}>{t.typeSafari}</h3>
+              <p className={styles.categoryDesc}>{t.categorySafariDesc}</p>
+              <span className={styles.categoryBtn}>{t.viewTours}</span>
+            </div>
+          </button>
         </div>
       </div>
 

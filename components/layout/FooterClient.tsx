@@ -14,10 +14,6 @@ export default function FooterClient() {
 
   const TOUR_LINKS = [
     { href: '/touren', label: tTours('allTours') },
-    { href: '/touren/ganztagstouren', label: tNav('fullDay') },
-    { href: '/touren/halbtagstouren', label: tNav('halfDay') },
-    { href: '/touren/wassersport', label: tNav('waterSports') },
-    { href: '/touren/wuesten-safari', label: tNav('desert') },
   ];
 
   return (

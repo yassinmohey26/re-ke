@@ -28,11 +28,13 @@
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin-bottom: var(--space-4);
+  color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.15rem);
   line-height: 1.6;
+  color: #fff;
   opacity: 0.9;
 }

@@ -69,7 +69,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </svg>
       ),
       label: t('whatsapp'),
-      value: '+43 664 1234567',
+      value: '+43 681 811 400 99',
       href: 'https://wa.me/4368181140099',
     },
     {
@@ -103,7 +103,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         '@type': 'TravelAgency',
         name: 'Hurghada Reiseplaner',
         url: process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at',
-        telephone: '+43-681-81140099',
+        telephone: '+43 681 811 400 99',
         email: 'info@hurghada-reiseplaner.at',
         address: {
           '@type': 'PostalAddress',

@@ -124,7 +124,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+43-681-81140099',
+      telephone: '+43 681 811 400 99',
       contactType: 'customer service',
       availableLanguage: ['German', 'English', 'Russian', 'Arabic', 'French', 'Hungarian'],
     },

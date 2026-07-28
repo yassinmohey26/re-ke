@@ -201,7 +201,7 @@
     "responseTimeLabel": "Reaktionszeit",
     "responseTimeValue": "Innerhalb von 24 Stunden",
     "locationLabel": "Standort",
-    "locationValue": "Hurghada, Ägypten & Wien, Österreich",
+    "locationValue": "Hurghada",
     "whyTitle": "Was Sie erwarten können",
     "why1": "Persönliche Beratung auf Deutsch",
     "why2": "Maßgeschneiderte Tourplanung",
@@ -468,15 +468,29 @@
   },
   "airportTransfer": {
     "heroTitle": "Flughafen-Transfer",
-    "heroSubtitle": "Bequemer und sicherer Transfer vom Flughafen Hurghada zu Ihrem Hotel — schnell, zuverlässig und zu fairen Preisen.",
+    "heroSubtitle": "Ihr privater Transfer-Service in Hurghada und Umgebung – stressfrei und pünktlich zu Ihrem Ziel.",
     "tableHeading": "Transfer-Preise — Auto & Minibus",
     "colGoal": "Ziel",
-    "colCar": "Auto (max. 2 Personen)",
+    "colCar": "PKW (max. 2 Personen)",
     "colMinibus": "Minibus (max. 8 Personen)",
     "faqHeading": "Häufige Fragen",
     "contactHeading": "Noch Fragen?",
     "contactQuote": "Wir sind für Sie da — kontaktieren Sie uns für individuelle Anfragen und maßgeschneiderte Angebote.",
-    "contactButton": "Kontakt"
+    "contactButton": "Kontakt",
+    "faqs": [
+      { "q": "Wie buche ich meinen Flughafen-Transfer mit Hurghada Reiseplaner?", "a": "Die Buchung ist einfach und unkompliziert. Senden Sie uns Ihre Flugdaten, die Anzahl der Personen sowie Ihr Hotel oder Reiseziel per WhatsApp, E-Mail oder über unser Kontaktformular. Anschließend erhalten Sie von uns eine Buchungsbestätigung mit allen wichtigen Informationen zu Ihrem Transfer." },
+      { "q": "Was passiert, wenn mein Flug Verspätung hat?", "a": "Kein Problem. Wir überwachen die Ankunftszeiten Ihres Fluges und passen die Abholzeit entsprechend an. Ihr Fahrer wartet auf Sie, auch wenn sich Ihr Flug verspätet." },
+      { "q": "Sind die Transferpreise pro Person oder pro Fahrzeug?", "a": "Alle angegebenen Preise gelten pro Fahrzeug, nicht pro Person. So reisen Sie komfortabel und ohne zusätzliche Kosten für weitere Mitreisende innerhalb der Fahrzeugkapazität." },
+      { "q": "Werden wir direkt am Flughafen abgeholt?", "a": "Ja. Unser Fahrer erwartet Sie am Flughafen Hurghada nach Ihrer Ankunft und bringt Sie sicher und bequem direkt zu Ihrem Hotel oder Ihrer Unterkunft." },
+      { "q": "Kann ich einen Transfer auch kurzfristig buchen?", "a": "Ja, kurzfristige Buchungen sind je nach Verfügbarkeit möglich. Kontaktieren Sie uns einfach per WhatsApp, Telefon oder E-Mail, und wir prüfen die schnellstmögliche Abholung für Sie." },
+      { "q": "Gibt es versteckte Kosten?", "a": "Nein. Bei uns erhalten Sie transparente Festpreise ohne versteckte Gebühren. Der vereinbarte Preis ist der Endpreis." },
+      { "q": "Kann ich Hin- und Rücktransfer gleichzeitig buchen?", "a": "Ja. Gerne organisieren wir sowohl Ihren Transfer vom Flughafen zum Hotel als auch Ihre Rückfahrt zum Flughafen. Teilen Sie uns einfach Ihre Flugdaten mit." },
+      { "q": "Wie buche ich meine Reise mit Hurghada Reiseplaner?", "a": "Wählen Sie Ihre gewünschte Tour oder Aktivität und senden Sie uns Ihre Anfrage über unser Formular, WhatsApp oder E-Mail. Zur Bestätigung und Sicherung Ihrer Plätze ist eine Anzahlung von 30 % erforderlich. Nach Zahlungseingang erhalten Sie eine verbindliche Buchungsbestätigung mit allen Details." },
+      { "q": "Was passiert, wenn ich meine Buchung ändern muss?", "a": "Umbuchungen sind bei uns unkompliziert möglich. Eine Änderung kann bis zu 48 Stunden vor dem Reisedatum vorgenommen werden. Kontaktieren Sie uns einfach – wir prüfen die Verfügbarkeit und passen Ihre Buchung entsprechend an. Ihre geleistete 30 % Anzahlung bleibt für die neue Buchung gültig." },
+      { "q": "Bietet Hurghada Reiseplaner Unterstützung während meiner Reise?", "a": "Ja, selbstverständlich. Unser erfahrenes, deutschsprachiges Team in Hurghada steht Ihnen während Ihres gesamten Aufenthalts zur Seite. Ob bei Fragen, kurzfristigen Änderungen oder organisatorischer Hilfe – wir sind jederzeit erreichbar." },
+      { "q": "Sind Ihre Reisen familienfreundlich?", "a": "Ja, viele unserer Touren und Ausflüge in Hurghada sind ideal für Familien mit Kindern. Wir legen Wert auf Sicherheit, Komfort und Spaß für alle Altersgruppen." },
+      { "q": "Kann ich meine Reiseroute individuell anpassen?", "a": "Ja, natürlich. Wir erstellen für Sie maßgeschneiderte Reiseprogramme, die perfekt zu Ihren Interessen passen. Ob Sie mehr Zeit zum Entspannen wünschen, kulturelle Highlights wie Luxor oder Kairo erleben möchten oder private Touren bevorzugen – wir gestalten alles flexibel nach Ihren Vorstellungen." }
+    ]
   },
   "homeFeatured": {
     "eyebrow": "Highlights",

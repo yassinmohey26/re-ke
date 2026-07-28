@@ -121,7 +121,7 @@ export default function ContactForm() {
             id="phone"
             type="tel"
             autoComplete="tel"
-            placeholder="+43 664 1234567"
+            placeholder="+43 681 811 400 99"
             className="form-input"
             {...register('phone')}
           />

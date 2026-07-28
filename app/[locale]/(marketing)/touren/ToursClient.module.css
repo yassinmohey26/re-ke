@@ -2,6 +2,85 @@
   width: 100%;
 }
 
+/* ============ Category Cards ============ */
+.categories {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-6) 0;
+}
+.categoriesInner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.categoryCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 200px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+.categoryImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.categoryCard:hover .categoryImg {
+  transform: scale(1.08);
+}
+.categoryOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%);
+  transition: background 0.3s;
+}
+.categoryCard:hover .categoryOverlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+}
+.categoryContent {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: #fff;
+}
+.categoryTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.categoryDesc {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.categoryBtn {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 6px 14px;
+  width: fit-content;
+  transition: background 0.2s;
+}
+.categoryCard:hover .categoryBtn {
+  background: rgba(255,255,255,0.3);
+}
+
 /* ============ Hero ============ */
 .hero {
   position: relative;
@@ -475,6 +554,13 @@ select.searchInput {
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .categoriesInner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .categoryCard {
+    height: 160px;
   }
 }
 @media (max-width: 600px) {

@@ -262,7 +262,7 @@ export default function BookingForm({
           id="booking-phone"
           type="tel"
           autoComplete="tel"
-          placeholder="+43 664 1234567"
+          placeholder="+43 681 811 400 99"
           className={`${styles.input} ${errors.phone ? styles.error : ''}`}
           {...register('phone')}
         />

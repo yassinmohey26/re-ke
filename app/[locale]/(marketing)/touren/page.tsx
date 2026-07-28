@@ -82,6 +82,10 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
     persons: await t('persons'),
     allDestinations: await t('allDestinations'),
     inquiry: await t('inquiry'),
+    categoryCulturalDesc: await t('categoryCulturalDesc'),
+    categorySnorkelDesc: await t('categorySnorkelDesc'),
+    categorySafariDesc: await t('categorySafariDesc'),
+    viewTours: await t('viewTours'),
     favorite: await (await getTranslations('a11y'))('favorite'),
   };
 
