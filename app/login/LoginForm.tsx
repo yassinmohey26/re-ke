@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
 export default function LoginForm() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -31,8 +29,7 @@ export default function LoginForm() {
         return;
       }
 
-      router.push('/ZAIMOZ');
-      router.refresh();
+      window.location.href = '/ZAIMOZ';
     } catch {
       setError('Verbindungsfehler');
       setLoading(false);
