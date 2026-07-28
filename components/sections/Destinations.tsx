@@ -9,7 +9,6 @@ interface DestinationItem {
   slug: string;
   name: string;
   image: string;
-  size: 'large' | 'small';
 }
 
 export default function Destinations({ destinations }: { destinations: DestinationItem[] }) {
@@ -35,11 +34,11 @@ export default function Destinations({ destinations }: { destinations: Destinati
           {destinations.length === 0 ? (
             <p>{tDest('noDestinations')}</p>
           ) : (
-            destinations.map((dest) => (
+            destinations.map((dest, i) => (
               <Link
                 key={dest.slug}
                 href={`/destinationen/${dest.slug}`}
-                className={[styles.card, dest.size === 'large' ? styles.cardLarge : styles.cardSmall].join(' ')}
+                className={[styles.card, styles[`pos${i}`]].join(' ')}
                 aria-label={dest.name}
               >
                 {dest.image ? (

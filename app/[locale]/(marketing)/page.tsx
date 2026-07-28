@@ -92,17 +92,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     : allPosts.slice(0, 3);
 
   const bySlug = new Map(destinations.map(d => [d.slug, d]));
-  const ordered = [
-    'hurghada', 'el-gouna', 'safaga',
-    'makadi-bay', 'soma-bay', 'quseir',
-  ].map(slug => bySlug.get(slug)).filter(Boolean) as typeof destinations;
-
-  const destinationCards = ordered.map((d, i) => ({
-    slug: d.slug,
-    name: d.name,
-    image: d.image,
-    size: (i === 0 || i === 3) ? 'large' as const : 'small' as const,
-  }));
+  const slugs = ['hurghada', 'el-gouna', 'safaga', 'makadi-bay', 'soma-bay'];
+  const destinationCards = slugs.map((slug) => {
+    const d = bySlug.get(slug);
+    return {
+      slug: d?.slug ?? slug,
+      name: d?.name ?? slug,
+      image: d?.image ?? '',
+    };
+  });
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });
