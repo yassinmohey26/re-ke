@@ -188,11 +188,6 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
       result = result.filter(tour => tour.destinationSlug === appliedDestination);
     }
 
-    if (appliedLocation) {
-      const loc = appliedLocation.toLowerCase();
-      result = result.filter(tour => tour.destination.toLowerCase().includes(loc));
-    }
-
     if (appliedSearch) {
       const q = appliedSearch.toLowerCase();
       result = result.filter(
@@ -265,19 +260,16 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
           <div className={styles.searchBar}>
             <div className={styles.searchField}>
               <span className={styles.searchLabel}>{t.searchWhereLabel}</span>
-              <input
-                type="text"
+              <select
                 className={styles.searchInput}
                 value={draftLocation}
                 onChange={e => setDraftLocation(e.target.value)}
-                placeholder={t.searchWherePlaceholder}
-                list="wo-destinations"
-              />
-              <datalist id="wo-destinations">
-                {destinations.map(d => (
-                  <option key={d.slug} value={d.name} />
+              >
+                <option value="">{t.allDestinations}</option>
+                {destinations.filter(d => !['Kairo', 'Luxor', 'Marsa Alam', 'El Quseir'].includes(d.name)).map(d => (
+                  <option key={d.slug} value={d.name}>{d.name}</option>
                 ))}
-              </datalist>
+              </select>
             </div>
             <div className={styles.searchField}>
               <span className={styles.searchLabel}>{t.searchWhere}</span>
