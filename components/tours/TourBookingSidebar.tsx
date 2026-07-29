@@ -62,7 +62,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const {
     price, pricePerPerson, salePricePerPerson, hasSale, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
-    pricingTiers, extras, selected, toggle, extrasTotal, total, bookingHref,
+    pricingTiers, discount, extras, selected, toggle, extrasTotal, total, bookingHref,
   } = useTourBooking();
   const [date, setDate] = useState('');
 
@@ -74,13 +74,33 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const infantsMax = maxGuests - adults - childrenCount;
 
   // Build price breakdown line
+  const parsePrice = (s: string) => {
+    const m = s.match(/[\d,.]+/);
+    return m ? parseFloat(m[0].replace(',', '.')) : null;
+  };
+  const childTiers = discount?.childTiers;
+  const hasChildTiers = childTiers && childTiers.length >= 2;
   const breakdownPrice = salePricePerPerson ?? pricePerPerson;
   let breakdown = null;
   if (breakdownPrice != null) {
     const parts: string[] = [];
     if (adults > 0) parts.push(`${adults} × ${breakdownPrice} €`);
-    if (childrenCount > 0) parts.push(`${childrenCount} × ${(breakdownPrice / 2).toFixed(0)} €`);
-    if (infants > 0) parts.push(`${infants} × 0 €`);
+    if (childrenCount > 0) {
+      if (hasChildTiers) {
+        const cp = parsePrice(childTiers[1].price);
+        parts.push(`${childrenCount} × ${cp != null ? cp.toFixed(0) : (breakdownPrice / 2).toFixed(0)} €`);
+      } else {
+        parts.push(`${childrenCount} × ${(breakdownPrice / 2).toFixed(0)} €`);
+      }
+    }
+    if (infants > 0) {
+      if (hasChildTiers) {
+        const ip = parsePrice(childTiers[0].price);
+        parts.push(`${infants} × ${ip != null ? ip.toFixed(0) : '0'} €`);
+      } else {
+        parts.push(`${infants} × 0 €`);
+      }
+    }
     if (parts.length > 1 && total != null) {
       breakdown = (
         <span className={css.bookingTotalLine}>

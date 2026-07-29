@@ -262,7 +262,7 @@ export default async function TourDetailPage({ params }: Props) {
                 )}
 
                 {/* Child Discount */}
-                <TourDiscountTable />
+                <TourDiscountTable discount={tour.discount} />
 
                 {/* Included / Not Included */}
                 <div className={styles.includedGrid}>

@@ -82,6 +82,7 @@ export default async function AirportTransferPage({ params }: { params: Promise<
           <div className={styles.faqGrid}>
             <FaqAccordion
               heading={t('faqHeading')}
+              description={t('faqDescription')}
               items={faqs}
             />
             <FaqContactCard

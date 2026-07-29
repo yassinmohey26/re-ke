@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ContactForm from '@/components/forms/ContactForm';
 import JsonLd from '@/components/seo/JsonLd';
+import PageHeader from '@/components/layout/PageHeader';
+import FaqAccordion from '@/components/sections/airport-transfer/FaqAccordion';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -124,14 +126,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           closes: '21:00',
         },
       }} />
-      {/* Page header */}
-      <div className={styles.pageHeader}>
-        <div className="container">
-          <span className="section-eyebrow">{t('pageHeaderEyebrow')}</span>
-          <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>
-          <p className={styles.pageDesc}>{t('pageDescription')}</p>
-        </div>
-      </div>
+      <PageHeader
+        eyebrow={t('pageHeaderEyebrow')}
+        title={t('pageTitle')}
+        description={t('pageDescription')}
+        backgroundImage="https://res.cloudinary.com/sx85slkf/image/upload/v1785312430/hurghada-reiseplaner/pages/contact-hero.jpg"
+      />
 
       {/* Main content */}
       <section className={`section ${styles.main}`}>
@@ -187,6 +187,29 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </ul>
               </div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ section */}
+      <section className={styles.faqSection}>
+        <div className="container">
+          <div className={styles.faqInner}>
+            <h2 className={styles.faqTitle}>Häufig gestellte Fragen</h2>
+            <p className={styles.faqDesc}>
+              Sie haben weitere Fragen? Kontaktieren Sie uns jederzeit – wir helfen gerne weiter!
+            </p>
+            <FaqAccordion
+              heading=""
+              items={[
+                { question: 'Wie kann ich eine Tour buchen?', answer: 'Sie können Ihre Tour ganz einfach online über unsere Website buchen oder uns telefonisch bzw. per E-Mail kontaktieren.' },
+                { question: 'Gibt es Altersbeschränkungen für die Ausflüge?', answer: 'Einige Ausflüge sind für bestimmte Altersgruppen konzipiert. Bitte prüfen Sie die Hinweise in der Tourbeschreibung oder fragen Sie direkt bei uns nach.' },
+                { question: 'Was ist im Reisepaket enthalten?', answer: 'Unsere Pakete beinhalten in der Regel Unterkunft, Transport, geführte Touren sowie ausgewählte Mahlzeiten. Die genauen Leistungen finden Sie in der jeweiligen Tourbeschreibung.' },
+                { question: 'Was sollte ich für die Tour einpacken?', answer: 'Bequeme Kleidung, wetterfeste Schuhe, Sonnenschutz und persönliche Medikamente werden empfohlen. Eine detaillierte Packliste erhalten Sie nach der Buchung.' },
+                { question: 'Wie lauten die Stornierungsbedingungen?', answer: 'Kostenlose Stornierung ist bis zu 48 Stunden vor Reisebeginn möglich. Danach fallen gestaffelte Gebühren an – Details entnehmen Sie bitte unseren AGB.' },
+                { question: 'Wie kann ich den Kundenservice während der Tour kontaktieren?', answer: 'Unser Team ist rund um die Uhr über eine Notfallnummer oder WhatsApp erreichbar. Die Kontaktdaten erhalten Sie mit Ihren Reiseunterlagen.' },
+              ]}
+            />
           </div>
         </div>
       </section>

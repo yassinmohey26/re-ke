@@ -130,6 +130,9 @@ function addSecurityHeaders(response: NextResponse) {
     'Strict-Transport-Security',
     'max-age=63072000; includeSubDomains; preload'
   );
+
+  // Prevent CDN caching so dashboard edits appear immediately
+  response.headers.set('Cache-Control', 'private, no-cache, no-store, must-revalidate');
 }
 
 export const config = {

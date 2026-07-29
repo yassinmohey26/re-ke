@@ -21,6 +21,7 @@ export async function GET(
     price: tour.price,
     maxGuests: tour.maxGuests,
     pricingTiers: parsePricingTiers(tour.description),
+    discount: tour.discount,
     extras,
   });
 }

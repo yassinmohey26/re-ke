@@ -10,15 +10,17 @@ interface FaqItem {
 
 interface Props {
   heading: string;
+  description?: string;
   items: FaqItem[];
 }
 
-export default function FaqAccordion({ heading, items }: Props) {
+export default function FaqAccordion({ heading, description, items }: Props) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.heading}>{heading}</h2>
+      {heading && <h2 className={styles.heading}>{heading}</h2>}
+      {description && <p className={styles.description}>{description}</p>}
       <div className={styles.list}>
         {items.map((item, i) => {
           const isOpen = openIndex === i;

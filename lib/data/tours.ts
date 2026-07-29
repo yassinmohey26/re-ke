@@ -10,6 +10,7 @@ export interface Discount {
   active: boolean;
   percentage: number;
   tierPrices?: number[];
+  childTiers?: { label: string; price: string }[];
 }
 
 export interface Tour {
@@ -64,7 +65,7 @@ export interface TourExtra {
 }
 
 function parseStr(val: unknown, fallback: string): string {
-  if (typeof val === 'string') return val;
+  if (typeof val === 'string' && val.trim().length > 0) return val;
   return fallback;
 }
 
@@ -105,9 +106,10 @@ function parseDiscount(val: unknown): Discount | null {
         active: true,
         percentage: d.percentage,
         tierPrices: Array.isArray(d.tierPrices) ? d.tierPrices.map(Number) : undefined,
+        childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined,
       };
     }
-    return { active: false, percentage: 0 };
+    return { active: false, percentage: 0, childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined };
   }
   if (typeof val === 'string') {
     try {
@@ -278,7 +280,7 @@ async function getTranslationsMap(
 
   // Fill in missing with 'de' fallback
   const missingIds = rowIds.filter(id => !map.has(id));
-  if (missingIds.length > 0 && locale !== 'de') {
+  if (missingIds.length > 0) {
     const { data: deData } = await db
       .from('content_translations')
       .select('*')
@@ -291,6 +293,11 @@ async function getTranslationsMap(
         map.set(row.row_id, row);
       }
     }
+
+    const stillMissing = missingIds.filter(id => !map.has(id));
+    if (stillMissing.length > 0) {
+      console.warn(`[i18n] Missing ${locale} & de translations (${tableName}): ${stillMissing.length} rows — slugs: ${stillMissing.slice(0, 5).join(', ')}${stillMissing.length > 5 ? '...' : ''}`);
+    }
   }
 
   return map;
@@ -301,18 +308,6 @@ async function getSingleTranslation(
   rowId: string,
   locale: string,
 ): Promise<any> {
-  if (locale === 'de') {
-    const { data } = await db
-      .from('content_translations')
-      .select('*')
-      .eq('table_name', tableName)
-      .eq('row_id', rowId)
-      .eq('locale', 'de')
-      .limit(1)
-      .maybeSingle();
-    return data ?? null;
-  }
-
   // Try requested locale
   const { data } = await db
     .from('content_translations')
@@ -334,6 +329,10 @@ async function getSingleTranslation(
     .eq('locale', 'de')
     .limit(1)
     .maybeSingle();
+
+  if (!deData) {
+    console.warn(`[i18n] Missing translation: table=${tableName} rowId=${rowId} locale=${locale} — falling back to base column values`);
+  }
 
   return deData ?? null;
 }

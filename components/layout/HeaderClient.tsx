@@ -89,7 +89,6 @@ export default function HeaderClient() {
             src="/hurghada-logo.png"
             alt={t('logoAlt')}
             className={styles.logoImg}
-            style={{ width: '200px', height: '200px', borderRadius: '50%', objectFit: 'contain' }}
           />
         </Link>
 

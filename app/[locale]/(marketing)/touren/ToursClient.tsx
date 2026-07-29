@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { Link } from '@/i18n/navigation';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import type { Tour } from '@/lib/data/tours';
 import Image from 'next/image';
 import cloudinaryLoader from '@/lib/cloudinaryLoader';
@@ -77,12 +78,17 @@ const DURATION_MAP: Record<string, [number, number]> = {
 };
 
 export default function ToursClient({ tours, locale, heroTitle, heroImage, destinations = [], translations: t }: Props) {
+  const tBook = useTranslations('booking');
   const searchParams = useSearchParams();
   const initialType = searchParams.get('type');
 
   const [draftDestination, setDraftDestination] = useState('');
   const [draftLocation, setDraftLocation] = useState('');
   const [draftSearch, setDraftSearch] = useState('');
+  const [guestAdults, setGuestAdults] = useState(2);
+  const [guestChildren, setGuestChildren] = useState(0);
+  const [guestOpen, setGuestOpen] = useState(false);
+  const guestRef = useRef<HTMLDivElement>(null);
   const [draftTypes, setDraftTypes] = useState<Set<string>>(
     () => initialType && TYPE_MAP[initialType] ? new Set([initialType]) : new Set()
   );
@@ -127,6 +133,16 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
     const qs = params.toString();
     router.replace(`${window.location.pathname}${qs ? '?' + qs : ''}`, { scroll: false });
   }, [page, router]);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (guestRef.current && !guestRef.current.contains(e.target as Node)) {
+        setGuestOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   const toggleSection = useCallback((key: string) => {
     setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
@@ -291,13 +307,43 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
                 className={styles.searchInput}
               />
             </div>
-            <div className={styles.searchField}>
+            <div className={styles.searchField} ref={guestRef}>
               <span className={styles.searchLabel}>{t.searchGuests}</span>
-              <input
-                type="number"
-                min={1}
-                className={styles.searchInput}
-              />
+              <button
+                type="button"
+                className={styles.guestTrigger}
+                onClick={() => setGuestOpen(!guestOpen)}
+              >
+                <span>{guestAdults + guestChildren} {t.persons}</span>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: guestOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+              </button>
+              {guestOpen && (
+                <div className={styles.guestDropdown}>
+                  <div className={styles.guestRow}>
+                    <span className={styles.guestLabel}>
+                      <span>{tBook('adults')}</span>
+                    </span>
+                    <div className={styles.guestStepper}>
+                      <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(Math.max(1, guestAdults - 1))}>−</button>
+                      <span className={styles.guestValue}>{guestAdults}</span>
+                      <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(guestAdults + 1)}>+</button>
+                    </div>
+                  </div>
+                  <div className={styles.guestRow}>
+                    <span className={styles.guestLabel}>
+                      <span>{tBook('children')}</span>
+                    </span>
+                    <div className={styles.guestStepper}>
+                      <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(Math.max(0, guestChildren - 1))}>−</button>
+                      <span className={styles.guestValue}>{guestChildren}</span>
+                      <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(guestChildren + 1)}>+</button>
+                    </div>
+                  </div>
+                  <button type="button" className={styles.guestDone} onClick={() => setGuestOpen(false)}>Fertig</button>
+                </div>
+              )}
             </div>
             <button className={styles.searchBtn} aria-label={t.searchBtn} onClick={handleSearch}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">

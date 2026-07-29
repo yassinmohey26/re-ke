@@ -27,12 +27,20 @@ interface Extra {
   price: number;
 }
 
+interface Discount {
+  active: boolean;
+  percentage: number;
+  tierPrices?: number[];
+  childTiers?: { label: string; price: string }[];
+}
+
 interface BookingFormProps {
   tourSlug: string;
   tourName: string;
   pricePerPerson?: number | null;
   maxGuests?: number;
   pricingTiers?: PricingTier[];
+  discount?: Discount | null;
   extras?: Extra[];
   destinations?: { slug: string; name: string }[];
   initialSelectedExtraIds?: string[];
@@ -82,6 +90,7 @@ export default function BookingForm({
   pricePerPerson,
   maxGuests = 8,
   pricingTiers = [],
+  discount = null,
   extras = [],
   destinations = [],
   initialSelectedExtraIds = [],
@@ -105,7 +114,8 @@ export default function BookingForm({
   const minimumDate = getTodayLocalDate();
 
   const guestsTotal = adults + childrenCount + infants;
-  const guestsForPricing = adults + childrenCount;
+  const hasFixedChildPricing = discount?.childTiers != null && discount.childTiers.length >= 2;
+  const guestsForPricing = hasFixedChildPricing ? adults : adults + childrenCount;
 
   const bookingSchema = useMemo(
     () => createBookingSchema({
@@ -164,9 +174,25 @@ export default function BookingForm({
   };
   const transferSurcharge = hotelRegion ? (TRANSFER_SURCHARGES[hotelRegion] ?? 0) * guestsForPricing : 0;
 
-  // Price calculation: adults full, children half, infants free
+  const parsePrice = (s: string) => {
+    const m = s.match(/[\d,.]+/);
+    return m ? parseFloat(m[0].replace(',', '.')) : null;
+  };
+  const childTiers = discount?.childTiers;
+  const hasChildTiers = childTiers && childTiers.length >= 2;
   const totalPrice = dynamicPricePerPerson != null
-    ? dynamicPricePerPerson * adults + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal + transferSurcharge
+    ? (() => {
+        const adultTotal = dynamicPricePerPerson * adults;
+        if (hasChildTiers) {
+          const childPrice = parsePrice(childTiers[1].price);
+          const infantPrice = parsePrice(childTiers[0].price);
+          return adultTotal
+            + (childrenCount && childPrice != null ? childPrice * childrenCount : (dynamicPricePerPerson / 2) * childrenCount)
+            + (infants && infantPrice != null ? infantPrice * infants : 0)
+            + extrasTotal + transferSurcharge;
+        }
+        return adultTotal + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal + transferSurcharge;
+      })()
     : null;
 
   const depositAmount = totalPrice != null ? Math.round(totalPrice * 0.3 * 100) / 100 : null;
@@ -485,14 +511,20 @@ export default function BookingForm({
           {adults > 0 && (
             <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
               {adults} × {dynamicPricePerPerson} € {t('priceBreakdownAdults')}
-              {childrenCount > 0 && <span> + {childrenCount} × {(dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}</span>}
-              {infants > 0 && <span> + {infants} × 0 € {t('priceBreakdownInfant')}</span>}
+              {childrenCount > 0 && (
+                <span> + {childrenCount} × {hasChildTiers ? parsePrice(childTiers[1].price)?.toFixed(0) ?? (dynamicPricePerPerson / 2).toFixed(0) : (dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}</span>
+              )}
+              {infants > 0 && (
+                <span> + {infants} × {hasChildTiers ? parsePrice(childTiers[0].price)?.toFixed(0) ?? '0' : '0'} € {t('priceBreakdownInfant')}</span>
+              )}
             </div>
           )}
           {adults === 0 && childrenCount > 0 && (
             <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
-              {childrenCount} × {(dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}
-              {infants > 0 && <span> + {infants} × 0 € {t('priceBreakdownInfant')}</span>}
+              {childrenCount} × {hasChildTiers ? parsePrice(childTiers[1].price)?.toFixed(0) ?? (dynamicPricePerPerson / 2).toFixed(0) : (dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}
+              {infants > 0 && (
+                <span> + {infants} × {hasChildTiers ? parsePrice(childTiers[0].price)?.toFixed(0) ?? '0' : '0'} € {t('priceBreakdownInfant')}</span>
+              )}
             </div>
           )}
           {extrasTotal > 0 && (

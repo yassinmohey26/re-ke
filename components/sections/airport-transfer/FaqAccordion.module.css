@@ -5,14 +5,21 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: #FAA31B;
   margin-bottom: var(--space-6);
 }
 
 .heading::before {
   content: '❓ ';
+}
+.description {
+  font-size: 14px;
+  color: var(--color-text-2);
+  line-height: 1.6;
+  margin-top: -12px;
+  margin-bottom: var(--space-6);
 }
 
 .list {

@@ -43,94 +43,104 @@ export async function PUT(
     const supabase = getSupabaseAdmin();
     const locale = body.locale || 'de';
 
-    const tourRow: Record<string, unknown> = {
-      slug: body.slug,
-      price: body.price ?? null,
-      duration_hours: body.durationHours || 0,
-      max_guests: body.maxGuests || 8,
-      difficulty: body.difficulty || 'leicht',
-      min_age: body.minAge || 4,
-      destination: body.destination || '',
-      category: body.category || 'halbtag',
-      image: body.image || '',
-      featured: body.featured || false,
-      active: body.active !== false,
-      updated_at: new Date().toISOString(),
-    };
+    const tourRow: Record<string, unknown> = {};
+
+    if (body.slug !== undefined) tourRow.slug = body.slug;
+    if (body.price !== undefined) tourRow.price = body.price ?? null;
+    if (body.durationHours !== undefined) tourRow.duration_hours = body.durationHours;
+    if (body.maxGuests !== undefined) tourRow.max_guests = body.maxGuests;
+    if (body.difficulty !== undefined) tourRow.difficulty = body.difficulty;
+    if (body.minAge !== undefined) tourRow.min_age = body.minAge;
+    if (body.destination !== undefined) tourRow.destination = body.destination;
+    if (body.category !== undefined) tourRow.category = body.category;
+    if (body.image !== undefined) tourRow.image = body.image;
+    if (body.featured !== undefined) tourRow.featured = body.featured;
+    if (body.active !== undefined) tourRow.active = body.active;
     if (body.discount !== undefined) tourRow.discount = body.discount;
 
-    if (body.destinationSlug) {
-      const { data: dest } = await supabase
-        .from('destinations')
-        .select('slug')
-        .eq('slug', body.destinationSlug)
-        .single();
-      if (dest) tourRow.destination_slug = dest.slug;
-      else tourRow.destination_slug = null;
-    } else {
-      tourRow.destination_slug = null;
+    if (body.destinationSlug !== undefined) {
+      if (body.destinationSlug) {
+        const { data: dest } = await supabase
+          .from('destinations')
+          .select('slug')
+          .eq('slug', body.destinationSlug)
+          .single();
+        tourRow.destination_slug = dest ? dest.slug : null;
+      } else {
+        tourRow.destination_slug = null;
+      }
     }
 
-    const { data: tour, error: tourError } = await supabase
-      .from('tours')
-      .update(tourRow)
-      .eq('id', id)
-      .select()
-      .single();
+    if (Object.keys(tourRow).length > 0) {
+      tourRow.updated_at = new Date().toISOString();
 
-    if (tourError) {
-      console.error('Tour update error:', tourError);
-      return NextResponse.json({ error: tourError.message }, { status: 500 });
+      const { error: tourError } = await supabase
+        .from('tours')
+        .update(tourRow)
+        .eq('id', id);
+
+      if (tourError) {
+        console.error('Tour update error:', tourError);
+        return NextResponse.json({ error: tourError.message }, { status: 500 });
+      }
     }
 
-    const trRow = {
-      table_name: 'tours',
-      row_id: id,
-      locale,
-      name: body.name || '',
-      short_description: body.shortDescription || '',
-      description: body.description || '',
-      category_label: body.categoryLabel || '',
-      highlights: body.highlights || [],
-      included: body.included || [],
-      not_included: body.notIncluded || [],
-      faqs: body.faqs || [],
-      meeting_point: body.meetingPoint || '',
-      duration: body.duration || '',
-    };
+    const hasTrFields = body.name !== undefined || body.shortDescription !== undefined || body.description !== undefined
+      || body.categoryLabel !== undefined || body.highlights !== undefined || body.included !== undefined
+      || body.notIncluded !== undefined || body.faqs !== undefined || body.meetingPoint !== undefined
+      || body.duration !== undefined;
 
-    const { error: trError } = await supabase
-      .from('content_translations')
-      .upsert(trRow, { onConflict: 'table_name,row_id,locale' });
+    if (hasTrFields) {
+      const trRow: Record<string, unknown> = {
+        table_name: 'tours',
+        row_id: id,
+        locale,
+      };
+      if (body.name !== undefined) trRow.name = body.name;
+      if (body.shortDescription !== undefined) trRow.short_description = body.shortDescription;
+      if (body.description !== undefined) trRow.description = body.description;
+      if (body.categoryLabel !== undefined) trRow.category_label = body.categoryLabel;
+      if (body.highlights !== undefined) trRow.highlights = body.highlights;
+      if (body.included !== undefined) trRow.included = body.included;
+      if (body.notIncluded !== undefined) trRow.not_included = body.notIncluded;
+      if (body.faqs !== undefined) trRow.faqs = body.faqs;
+      if (body.meetingPoint !== undefined) trRow.meeting_point = body.meetingPoint;
+      if (body.duration !== undefined) trRow.duration = body.duration;
 
-    if (trError) {
-      console.error('Tour translation upsert error:', trError);
-      return NextResponse.json({ error: trError.message }, { status: 500 });
-    }
-
-    if (locale !== 'de') {
-      const { data: deTr } = await supabase
+      const { error: trError } = await supabase
         .from('content_translations')
-        .select('description')
-        .eq('table_name', 'tours')
-        .eq('row_id', id)
-        .eq('locale', 'de')
-        .maybeSingle();
+        .upsert(trRow, { onConflict: 'table_name,row_id,locale' });
 
-      if (deTr?.description) {
-        const deStripped = deTr.description.replace(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/gi, '').trim();
-        const newDesc = deStripped + '\n' + (body.description?.match(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/i)?.[0] ?? '');
-        if (newDesc.trim()) {
-          await supabase
-            .from('content_translations')
-            .update({ description: newDesc })
-            .eq('table_name', 'tours')
-            .eq('row_id', id)
-            .eq('locale', 'de');
+      if (trError) {
+        console.error('Tour translation upsert error:', trError);
+        return NextResponse.json({ error: trError.message }, { status: 500 });
+      }
+
+      if (locale !== 'de') {
+        const { data: deTr } = await supabase
+          .from('content_translations')
+          .select('description')
+          .eq('table_name', 'tours')
+          .eq('row_id', id)
+          .eq('locale', 'de')
+          .maybeSingle();
+
+        if (deTr?.description) {
+          const deStripped = deTr.description.replace(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/gi, '').trim();
+          const newDesc = deStripped + '\n' + (body.description?.match(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/i)?.[0] ?? '');
+          if (newDesc.trim()) {
+            await supabase
+              .from('content_translations')
+              .update({ description: newDesc })
+              .eq('table_name', 'tours')
+              .eq('row_id', id)
+              .eq('locale', 'de');
+          }
         }
       }
     }
 
+    const { data: tour } = await supabase.from('tours').select('*').eq('id', id).single();
     return NextResponse.json(tour);
   } catch (e) {
     console.error('Tour update catch:', e);

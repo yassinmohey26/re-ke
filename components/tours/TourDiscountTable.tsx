@@ -1,14 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
+import type { Discount } from '@/lib/data/tours';
 
-export default async function ChildDiscountTable() {
+export default async function ChildDiscountTable({ discount }: { discount: Discount | null }) {
   const t = await getTranslations('tours');
 
-  const tiers = [
-    { age: t('childAge04'), price: t('childPriceFree') },
-    { age: t('childAge511'), price: t('childPriceDiscount') },
-    { age: t('childAge12'), price: t('childPriceFull') },
-  ];
+  if (!discount?.childTiers || discount.childTiers.length === 0) return null;
 
   return (
     <div className={styles.section}>
@@ -21,9 +18,9 @@ export default async function ChildDiscountTable() {
           </tr>
         </thead>
         <tbody>
-          {tiers.map((tier) => (
-            <tr key={tier.age}>
-              <td className={styles.priceTableCell}>{tier.age}</td>
+          {discount.childTiers.map((tier, i) => (
+            <tr key={i}>
+              <td className={styles.priceTableCell}>{tier.label}</td>
               <td className={styles.priceTableCellValue}>{tier.price}</td>
             </tr>
           ))}

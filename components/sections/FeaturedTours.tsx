@@ -1,12 +1,12 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import TourCard from '@/components/cards/TourCard';
-import { getLocalizedAllTours } from '@/lib/data/tours';
+import Carousel from '@/components/ui/Carousel';
+import { getFeaturedTours } from '@/lib/data/tours';
 
 export default async function FeaturedTours({ locale }: { locale: string }) {
   const t = await getTranslations('homeFeatured');
-  const allTours = await getLocalizedAllTours(locale);
-  const tours = allTours.filter((tour) => tour.featured);
+  const tours = await getFeaturedTours(locale);
 
   if (tours.length === 0) return null;
 
@@ -20,15 +20,16 @@ export default async function FeaturedTours({ locale }: { locale: string }) {
               {t('titlePart1')} <span className="text-accent">{t('titleAccent')}</span>
             </h2>
           </div>
+        </div>
+        <Carousel slideshow headerActions={
           <Link href="/touren" className="btn btn--ghost">
             {t('viewAll')}
           </Link>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 'var(--space-6)' }}>
-          {tours.slice(0, 6).map((tour) => (
+        }>
+          {tours.map((tour) => (
             <TourCard key={tour.slug} tour={tour} locale={locale} />
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );

@@ -90,6 +90,36 @@
   border-radius: var(--radius-sm);
 }
 
+.coverBadge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: var(--color-accent, #155fa7);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  z-index: 1;
+}
+
+.setCoverBtn {
+  padding: 4px 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  white-space: nowrap;
+}
+.setCoverBtn:hover {
+  background: var(--color-accent, #155fa7);
+}
+
 .dropzone {
   border: 2px dashed var(--color-border-4);
   border-radius: var(--radius-lg);

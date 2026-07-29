@@ -2,13 +2,15 @@
 
 .header {
   text-align: center;
-  max-width: 560px;
-  margin-inline: auto;
   margin-bottom: var(--space-12);
 }
 
-.header .section-desc {
-  margin-inline: auto;
+.heading {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: #155fa7;
+  margin: 0;
 }
 
 .grid {
@@ -23,36 +25,17 @@
   padding: var(--space-8) var(--space-6);
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  inset-inline: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), #4a9fe8);
-  opacity: 0;
-  transition: opacity var(--transition-base);
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }
 
-.card:hover::before {
-  opacity: 1;
-}
-
 .iconWrap {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   margin-bottom: var(--space-5);
-  color: #FAA32E;
-  transition: transform var(--transition-base);
 }
 
 .iconWrap svg {
@@ -60,23 +43,17 @@
   height: 100%;
 }
 
-.card:hover .iconWrap {
-  transform: scale(1.1) rotate(-3deg);
-}
-
 .cardTitle {
   font-family: var(--font-heading);
-  font-size: 19px;
-  font-weight: 600;
-  color: #FAA32E;
-  margin-bottom: var(--space-3);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px;
   line-height: 1.3;
 }
 
 .cardDesc {
   font-size: 15px;
-  line-height: 1.7;
-  color: var(--color-text-2);
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -85,5 +62,7 @@
 }
 
 @media (max-width: 640px) {
+  .heading { font-size: 26px; }
+
   .grid { grid-template-columns: 1fr; }
 }

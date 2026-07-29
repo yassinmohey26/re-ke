@@ -118,6 +118,7 @@ html {
   font-size: var(--font-size-body);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -408,6 +409,12 @@ p:last-child { margin-bottom: 0; }
     --font-h1: 40px;
     --font-h2: 34px;
     --font-h3: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 70px;
   }
 }
 

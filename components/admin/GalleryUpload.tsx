@@ -114,6 +114,7 @@ export default function GalleryUpload({
         <div className={styles.grid}>
           {values.map((url, i) => (
             <div key={`${url}-${i}`} className={styles.thumb}>
+              {i === 0 && <span className={styles.coverBadge}>Cover</span>}
               <img src={url} alt={`Image ${i + 1}`} className={styles.thumbImg} />
               <div className={styles.thumbOverlay}>
                 <button
@@ -121,15 +122,25 @@ export default function GalleryUpload({
                   className={styles.moveBtn}
                   disabled={i === 0}
                   onClick={() => moveImage(i, i - 1)}
-                  title="Move left"
+                  title="Nach links"
                 >
                   ◀
                 </button>
+                {i > 0 && (
+                  <button
+                    type="button"
+                    className={styles.setCoverBtn}
+                    onClick={() => moveImage(i, 0)}
+                    title="Als Cover festlegen"
+                  >
+                    Als Cover
+                  </button>
+                )}
                 <button
                   type="button"
                   className={styles.removeBtn}
                   onClick={() => removeImage(i)}
-                  title="Remove"
+                  title="Entfernen"
                 >
                   ✕
                 </button>
@@ -138,7 +149,7 @@ export default function GalleryUpload({
                   className={styles.moveBtn}
                   disabled={i === values.length - 1}
                   onClick={() => moveImage(i, i + 1)}
-                  title="Move right"
+                  title="Nach rechts"
                 >
                   ▶
                 </button>

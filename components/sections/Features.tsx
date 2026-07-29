@@ -1,39 +1,40 @@
 'use client';
 
+import { Handshake, Percent, Heart, Gem } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import styles from './Features.module.css';
 
-const FEATURES_ICONS = [
-  (
-    <svg key="f1" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.5 4.5C13.46 4.5 4.5 13.46 4.5 24.5S13.46 44.5 24.5 44.5 44.5 35.54 44.5 24.5 35.54 4.5 24.5 4.5zm0 7a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm7 25.5H17.5v-3h6v-11h-3v-3h6v14h5v3z" fill="currentColor"/>
+const AMBER = '#F59E0B';
+const BLUE = '#155fa7';
+const GREY = '#718096';
+
+function CoffeeFilled() {
+  return (
+    <svg viewBox="0 0 24 24" fill={AMBER} xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.5 8H5.5C4.4 8 3.5 8.9 3.5 10v2c0 3.3 2.7 6 6 6h2c3.3 0 6-2.7 6-6v-2c0-1.1-.9-2-2-2zm0 4c0 2.2-1.8 4-4 4h-2c-2.2 0-4-1.8-4-4v-2h10v2zM5.5 4h2v2h-2zM9.5 4h2v2h-2zM13.5 4h2v2h-2zM18.5 15c-.8 0-1.5.7-1.5 1.5 0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5c0-.8-.7-1.5-1.5-1.5z"/>
+      <path d="M2.5 20h19v2h-19z"/>
     </svg>
-  ),
-  (
-    <svg key="f2" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.5 4L6.5 12v11c0 10.19 7.67 19.73 18 22 10.33-2.27 18-11.81 18-22V12L24.5 4zm0 7l12 5.33V23c0 6.87-5.07 13.39-12 15.6-6.93-2.21-12-8.73-12-15.6v-6.67L24.5 11z" fill="currentColor"/>
+  );
+}
+
+function CustomAStar() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="4" fill={AMBER}/>
+      <text x="12" y="18" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold" fontFamily="sans-serif">A</text>
+      <rect x="26" y="2" width="20" height="20" rx="4" fill={AMBER}/>
+      <path d="M36 6l1.5 4.5H42l-3.5 2.5 1.5 4.5L36 15l-4 2.5 1.5-4.5L30 10.5h4.5L36 6z" fill="white"/>
     </svg>
-  ),
-  (
-    <svg key="f3" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M34.5 14.5h-3v-3c0-3.87-3.13-7-7-7s-7 3.13-7 7v3h-3c-1.93 0-3.5 1.57-3.5 3.5v21c0 1.93 1.57 3.5 3.5 3.5h20c1.93 0 3.5-1.57 3.5-3.5V18c0-1.93-1.57-3.5-3.5-3.5zm-10.5 14a3.5 3.5 0 110-7 3.5 3.5 0 010 7zm-4-14v-3c0-2.21 1.79-4 4-4s4 1.79 4 4v3h-8z" fill="currentColor"/>
-    </svg>
-  ),
-  (
-    <svg key="f4" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.5 4.5c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20zm2 35.5h-4V22.5h4V40zm0-21.5h-4v-4h4v4z" fill="currentColor"/>
-    </svg>
-  ),
-  (
-    <svg key="f5" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.5 4.5L3.17 18.5l3.83 2.3V39.5h35V20.8l3.83-2.3L24.5 4.5zm0 5.6l17.5 10.9-17.5 10.5-17.5-10.5L24.5 10.1zm15.5 12.4v13h-7v-10h-7v10H12v-13l12.5-7.5 12.5 7.5z" fill="currentColor"/>
-    </svg>
-  ),
-  (
-    <svg key="f6" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24.5 4.5c-11.05 0-20 8.95-20 20 0 5.82 2.49 11.06 6.46 14.79L24.5 44.5l13.54-5.21C42.01 35.56 44.5 30.32 44.5 24.5c0-11.05-8.95-20-20-20zm0 36-9.5-3.66A15.94 15.94 0 018.5 24.5C8.5 15.67 15.67 8.5 24.5 8.5s16 7.17 16 16c0 4.69-2.02 8.91-5.23 11.87L24.5 40.5z" fill="currentColor"/>
-    </svg>
-  ),
+  );
+}
+
+const FEATURES = [
+  { icon: Handshake, titleKey: 'f1Title', descKey: 'f1Desc', outline: true },
+  { icon: CoffeeFilled, titleKey: 'f2Title', descKey: 'f2Desc', outline: false },
+  { icon: CustomAStar, titleKey: 'f3Title', descKey: 'f3Desc', outline: false },
+  { icon: Percent, titleKey: 'f4Title', descKey: 'f4Desc', outline: true },
+  { icon: Heart, titleKey: 'f5Title', descKey: 'f5Desc', outline: true },
+  { icon: Gem, titleKey: 'f6Title', descKey: 'f6Desc', outline: true },
 ];
 
 export default function Features() {
@@ -42,26 +43,18 @@ export default function Features() {
   return (
     <section className={`section section--light ${styles.section}`}>
       <div className="container">
-        {/* Header */}
         <div className={styles.header}>
-          <span className="section-eyebrow">{t('eyebrow')}</span>
-          <h2 className="section-title">
-            {t('titlePart1')} <span className="text-accent">{t('titleAccent')}</span>
-          </h2>
-          <p className="section-desc">
-            {t('desc')}
-          </p>
+          <h2 className={styles.heading}>{t('titlePart1')}</h2>
         </div>
 
-        {/* Cards grid */}
         <div className={styles.grid}>
-          {['f1','f2','f3','f4','f5','f6'].map((key, i) => (
-            <div key={key} className={styles.card}>
-              <div className={styles.iconWrap}>
-                {FEATURES_ICONS[i]}
+          {FEATURES.map(({ icon: Icon, titleKey, descKey, outline }) => (
+            <div key={titleKey} className={styles.card}>
+              <div className={styles.iconWrap} style={{ color: AMBER }}>
+                <Icon stroke={outline ? AMBER : undefined} fill={outline ? 'none' : undefined} />
               </div>
-              <h3 className={styles.cardTitle}>{t(`${key}Title`)}</h3>
-              <p className={styles.cardDesc}>{t(`${key}Desc`)}</p>
+              <h3 className={styles.cardTitle} style={{ color: BLUE }}>{t(titleKey)}</h3>
+              <p className={styles.cardDesc} style={{ color: GREY }}>{t(descKey)}</p>
             </div>
           ))}
         </div>

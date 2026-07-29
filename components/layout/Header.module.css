@@ -415,6 +415,13 @@
   .mobileOpen .mobileMenu { display: block; }
 }
 
+@media (max-width: 640px) {
+  .logoImg {
+    width: 60px;
+    height: 60px;
+  }
+}
+
 /* ── RTL Overrides ────────────────────────────────────────── */
 [dir="rtl"] .langDropdown,
 .rtl .langDropdown {

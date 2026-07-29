@@ -14,11 +14,19 @@ interface TourExtra {
   price: number;
 }
 
+interface Discount {
+  active: boolean;
+  percentage: number;
+  tierPrices?: number[];
+  childTiers?: { label: string; price: string }[];
+}
+
 interface TourInfo {
   name: string;
   price: number | null;
   maxGuests: number;
   pricingTiers: { minGuests: number; maxGuests: number; pricePerPerson: number }[];
+  discount: Discount | null;
   extras: TourExtra[];
 }
 
@@ -122,6 +130,7 @@ function BookingContent() {
           pricePerPerson={tourInfo?.price ?? undefined}
           maxGuests={tourInfo?.maxGuests ?? 8}
           pricingTiers={tourInfo?.pricingTiers ?? []}
+          discount={tourInfo?.discount ?? null}
           extras={tourInfo?.extras ?? []}
           destinations={destinations}
           initialSelectedExtraIds={initialSelectedExtraIds}
