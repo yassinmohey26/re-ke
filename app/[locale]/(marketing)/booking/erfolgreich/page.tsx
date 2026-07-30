@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import { retrieveSession } from '@/lib/stripe';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -44,11 +46,30 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function BookingSuccessPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function BookingSuccessPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ session_id?: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'booking' });
   const tNav = await getTranslations({ locale, namespace: 'nav' });
+
+  const { session_id } = await searchParams;
+
+  if (session_id) {
+    try {
+      const session = await retrieveSession(session_id);
+      if (session.payment_status !== 'paid') {
+        redirect(`/${locale}/booking/abgebrochen?reason=unpaid`);
+      }
+    } catch {
+      redirect(`/${locale}/booking/abgebrochen?reason=invalid_session`);
+    }
+  }
 
   return (
     <div className={styles.page}>

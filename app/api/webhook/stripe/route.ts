@@ -93,6 +93,18 @@ export async function POST(request: NextRequest) {
             : session.payment_intent?.id ?? '';
 
         if (bookingId && paymentIntent) {
+          const supabase = getSupabaseAdmin();
+          const { data: existing } = await supabase
+            .from('bookings')
+            .select('status')
+            .eq('id', bookingId)
+            .single();
+
+          if (existing?.status === 'CONFIRMED') {
+            console.log(`[WEBHOOK] Booking #${bookingId} already confirmed, skipping (idempotency)`);
+            break;
+          }
+
           await confirmBookingPayment(bookingId, paymentIntent);
           await sendConfirmationEmail(bookingId);
           console.log(`[WEBHOOK] Booking #${bookingId} confirmed, pi: ${paymentIntent}`);
