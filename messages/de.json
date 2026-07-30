@@ -72,6 +72,7 @@
     "overview": "Überblick",
     "meetingPoint": "Abholung",
     "tourItinerary": "Ablauf der Tour",
+    "person": "Person",
     "persons": "Personen",
     "noTours": "Noch keine Touren verfügbar.",
     "noDeposit": "Keine Anzahlung erforderlich. Wir melden uns bei Ihnen.",
@@ -230,7 +231,21 @@
     "successTitle": "Vielen Dank!",
     "successDesc": "Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
     "privacyLink": "Datenschutzerklärung",
-    "errorDefault": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    "errorDefault": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "faqSectionTitle": "Häufig gestellte Fragen",
+    "faqSectionDesc": "Sie haben weitere Fragen? Kontaktieren Sie uns jederzeit – wir helfen gerne weiter!",
+    "faqQ1": "Wie kann ich eine Tour buchen?",
+    "faqA1": "Sie können Ihre Tour ganz einfach online über unsere Website buchen oder uns telefonisch bzw. per E-Mail kontaktieren.",
+    "faqQ2": "Gibt es Altersbeschränkungen für die Ausflüge?",
+    "faqA2": "Einige Ausflüge sind für bestimmte Altersgruppen konzipiert. Bitte prüfen Sie die Hinweise in der Tourbeschreibung oder fragen Sie direkt bei uns nach.",
+    "faqQ3": "Was ist im Reisepaket enthalten?",
+    "faqA3": "Unsere Pakete beinhalten in der Regel Unterkunft, Transport, geführte Touren sowie ausgewählte Mahlzeiten. Die genauen Leistungen finden Sie in der jeweiligen Tourbeschreibung.",
+    "faqQ4": "Was sollte ich für die Tour einpacken?",
+    "faqA4": "Bequeme Kleidung, wetterfeste Schuhe, Sonnenschutz und persönliche Medikamente werden empfohlen. Eine detaillierte Packliste erhalten Sie nach der Buchung.",
+    "faqQ5": "Wie lauten die Stornierungsbedingungen?",
+    "faqA5": "Kostenlose Stornierung ist bis zu 48 Stunden vor Reisebeginn möglich. Danach fallen gestaffelte Gebühren an – Details entnehmen Sie bitte unseren AGB.",
+    "faqQ6": "Wie kann ich den Kundenservice während der Tour kontaktieren?",
+    "faqA6": "Unser Team ist rund um die Uhr über eine Notfallnummer oder WhatsApp erreichbar. Die Kontaktdaten erhalten Sie mit Ihren Reiseunterlagen."
   },
   "newsletter": {
     "title": "Newsletter",
@@ -655,6 +670,7 @@
       "title": "Kontakt",
       "text": "Bei Fragen zu diesen AGB kontaktieren Sie uns:",
       "email": "info@hurghada-reiseplaner.at",
+      "addressLabel": "Adresse",
       "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Bratislava – Stadtteil Rača, 831 52, Slowakei",
       "link": "Kontaktieren Sie uns"
     },

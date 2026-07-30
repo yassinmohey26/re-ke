@@ -72,6 +72,7 @@
     "overview": "Áttekintés",
     "meetingPoint": "Találkozóhely",
     "tourItinerary": "Túra program",
+    "person": "fő",
     "persons": "személy",
     "noTours": "Még nincsenek elérhető túrák.",
     "noDeposit": "Nem szükséges foglaló. Felvesszük Önnel a kapcsolatot.",
@@ -230,7 +231,21 @@
     "successTitle": "Köszönjük!",
     "successDesc": "Az üzenete sikeresen elküldésre került. 24 órán belül válaszolunk Önnek.",
     "privacyLink": "Adatvédelmi szabályzat",
-    "errorDefault": "Hiba történt. Kérjük, próbálja újra."
+    "errorDefault": "Hiba történt. Kérjük, próbálja újra.",
+    "faqSectionTitle": "Gyakran Ismételt Kérdések",
+    "faqSectionDesc": "További kérdései vannak? Lépjen kapcsolatba velünk bármikor — szívesen segítünk!",
+    "faqQ1": "Hogyan foglalhatok egy túrát?",
+    "faqA1": "Túráját egyszerűen lefoglalhatja online weboldalunkon keresztül, vagy kapcsolatba léphet velünk telefonon vagy e-mailben.",
+    "faqQ2": "Vannak korhatárok a kirándulásokhoz?",
+    "faqA2": "Egyes kirándulások bizonyos korcsoportok számára készültek. Kérjük, ellenőrizze a túra leírásában található információkat, vagy kérdezzen minket közvetlenül.",
+    "faqQ3": "Mit tartalmaz az utazási csomag?",
+    "faqA3": "Csomagjaink általában tartalmazzák a szállást, a szállítást, a vezetett túrákat és a kiválasztott ételeket. A pontos szolgáltatásokat az adott túra leírásában találja.",
+    "faqQ4": "Mit csomagoljak a túrára?",
+    "faqA4": "Kényelmes ruházat, időjárásálló cipő, napvédelem és személyes gyógyszerek ajánlottak. A foglalás után részletes csomagolási listát kap.",
+    "faqQ5": "Mik a lemondási feltételek?",
+    "faqA5": "Az ingyenes lemondás az indulás előtt 48 óráig lehetséges. Ezt követően fokozatos díjak érvényesek — a részletekért kérjük, olvassa el az Általános Szerződési Feltételeinket.",
+    "faqQ6": "Hogyan léphetek kapcsolatba az ügyfélszolgálattal a túra alatt?",
+    "faqA6": "Csapatunk a nap 24 órájában elérhető egy segélyhívó számon vagy WhatsApp-on keresztül. Az elérhetőségeket az utazási dokumentumokkal együtt kapja meg."
   },
   "newsletter": {
     "title": "Hírlevél",
@@ -646,6 +661,7 @@
       "title": "Kapcsolat",
       "text": "Kérdésekkel ezen ÁSZF-fel kapcsolatban forduljon hozzánk:",
       "email": "info@hurghada-reiseplaner.at",
+      "addressLabel": "Cím",
       "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Pozsony – Rača kerület, 831 52, Szlovákia",
       "link": "Kapcsolat"
     },

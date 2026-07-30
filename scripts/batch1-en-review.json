@@ -1,0 +1,959 @@
+[
+  {
+    "slug": "glasbodenboot-hurghada-mit-schnorcheln",
+    "before": {
+      "name": "Glass-Bottom Boat Hurghada with Snorkeling (30 Min.) & Hotel Transfer",
+      "short_description": "Discover the fascinating underwater world of the Red Sea on a glass-bottom boat in Hurghada – without getting wet. Through the large panoramic windows, you can ...",
+      "description": "<p>Discover the fascinating underwater world of the Red Sea on a glass-bottom boat in Hurghada – without getting wet. Through the large panoramic windows, you can observe colorful coral reefs, clownfish, surgeonfish, and many other sea creatures from the comfort of your seat.</p><p>After the boat ride, we dock at a quiet snorkeling spot where you have the opportunity to experience the underwater world firsthand through guided snorkeling. Snorkeling time is approximately 30 minutes and is also excellent for beginners.</p><p>Life vest, snorkel, and mask are already included in the price. Our German-speaking staff ensures you feel safe and comfortable at all times.</p><p>Why this excursion is so popular:</p><p>The glass-bottom boat excursion combines two experiences in one tour: the relaxed observation of the underwater world from the boat and active snorkeling in the Red Sea. The tour is especially popular with families with children, non-swimmers, and guests who want to discover the coral reefs of Hurghada in a safe and comfortable way.</p>",
+      "itinerary": [
+        {
+          "title": "Hotel Pickup",
+          "content": "Pickup from your hotel in Hurghada im air-conditioned vehicle."
+        },
+        {
+          "title": "Transfer to Harbor & Boarding",
+          "content": "Begrüßung, short briefing und Start of the boat tour."
+        },
+        {
+          "title": "Glass-Bottom Boat Ride",
+          "content": "Ride over the coral reefs with a direct view of the underwater world."
+        },
+        {
+          "title": "Schnorchelstopp (30 Minuten)",
+          "content": "Guided snorkeling at a calm reef."
+        },
+        {
+          "title": "Relaxation on Board",
+          "content": "Getränke genießen und Fotos machen."
+        },
+        {
+          "title": "Rückfahrt & Hoteltransfer",
+          "content": "Return to harbor und Transfer zurück zu Ihrem Hotel."
+        }
+      ],
+      "highlights": [
+        "Glass-bottom boat with panoramic view of coral reefs",
+        "30 minutes of snorkeling in the Red Sea",
+        "Popular family excursion in the Red Sea",
+        "Perfect for families & beginners",
+        "Snorkeling equipment included",
+        "Hotel transfer included"
+      ],
+      "included": [
+        "Pickup & return transfer from hotel",
+        "Ride on the glass-bottom boat",
+        "30-minute snorkeling stop",
+        "Snorkeling equipment & life vest",
+        "Mineral water & soft drinks"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Tips (optional)",
+        "Transfer surcharges for certain regions"
+      ],
+      "faqs": [
+        {
+          "answer": "The glass-bottom boat excursion in Hurghada lasts approximately 3 hours in total. Included in the price are the hotel transfer, the boat ride on the Red Sea, and a snorkeling stop at a beautiful coral reef.",
+          "question": "How long does the glass-bottom boat excursion in Hurghada take?"
+        },
+        {
+          "answer": "Yes, pickup and return transfer from your hotel in Hurghada are generally included in the price of the glass-bottom boat excursion. For hotels outside of Hurghada, a small surcharge may apply.",
+          "question": "Is the hotel transfer included in the price?"
+        },
+        {
+          "answer": "Yes, the snorkeling stop is also suitable for beginners. It takes place in calm waters and is accompanied by experienced guides. Life vests and snorkeling equipment are provided.",
+          "question": "Is snorkeling also suitable for beginners?"
+        },
+        {
+          "answer": "Yes, the glass-bottom boat excursion in Hurghada is family-friendly and also well-suited for children. Through the large panoramic windows, even young children can safely observe the fascinating underwater world.",
+          "question": "Is the excursion suitable for children?"
+        },
+        {
+          "answer": "Yes, life vests are available free of charge for adults and children. Safety has the highest priority throughout the entire glass-bottom boat excursion.",
+          "question": "Are life vests provided?"
+        },
+        {
+          "answer": "Yes, mask, snorkel, and life vest are included in the price. You don't need your own snorkeling equipment and can jump straight into the water.",
+          "question": "Is snorkeling equipment provided?"
+        },
+        {
+          "answer": "During the glass-bottom boat excursion in the Red Sea, you can observe colorful coral reefs as well as clownfish, parrotfish, surgeonfish, and many other tropical fish species. The underwater world of Hurghada is among the most beautiful in the Red Sea.",
+          "question": "What fish and coral species can be seen?"
+        },
+        {
+          "answer": "Yes, photography and filming are permitted throughout the entire excursion and are highly recommended. Don't forget to bring a waterproof camera or a smartphone with a protective case.",
+          "question": "Are photos and videos allowed?"
+        },
+        {
+          "answer": "Yes, mineral water and soft drinks are available for guests on board. This way, you can relax and enjoy your glass-bottom boat excursion in Hurghada.",
+          "question": "Are drinks included on board?"
+        },
+        {
+          "answer": "No, non-swimmers can also participate in the glass-bottom boat excursion in Hurghada and observe the underwater world through the large panoramic windows. Those who want to snorkel receive a life vest and are accompanied by experienced guides.",
+          "question": "Do I need to know how to swim to participate?"
+        }
+      ],
+      "faqCount": 10
+    },
+    "after": {
+      "name": "Glasbodenboot Hurghada mit Schnorcheln (30 Min.) & Hoteltransfer",
+      "short_description": "Der Glasbodenboot-Ausflug in Hurghada mit Schnorcheln gehört zu den meistgebuchten Hurghada Ausflügen. Entdecken Sie Korallenriffe und tropische Fische durch den Glasboden und genießen Sie anschließend 30 Minuten Schnorcheln im Roten Meer – inklusive Transfer, Ausrüstung und deutschsprachiger Betreu",
+      "description": "<p>Mit dem Glasbodenboot in Hurghada entdecken Sie die faszinierende Unterwasserwelt des Roten Meeres, ohne nass zu werden. Durch die großen Panoramafenster im Boot beobachten Sie farbenfrohe Korallen...",
+      "itinerary": [
+        {
+          "title": "Hotel Pickup",
+          "content": "Pickup from your hotel in Hurghada in an air-conditioned vehicle."
+        },
+        {
+          "title": "Transfer to Harbor & Boarding",
+          "content": "Welcome, short briefing, and start of the boat tour."
+        },
+        {
+          "title": "Glass-Bottom Boat Ride",
+          "content": "Ride over the coral reefs with a direct view of the underwater world."
+        },
+        {
+          "title": "Snorkeling Stop (30 Minutes)",
+          "content": "Guided snorkeling at a calm reef."
+        },
+        {
+          "title": "Relax On Board",
+          "content": "Enjoy drinks and take photos."
+        },
+        {
+          "title": "Return & Hotel Transfer",
+          "content": "Return to the harbor and transfer back to your hotel."
+        }
+      ],
+      "highlights": [
+        "Glass-bottom boat with panoramic views of coral reefs",
+        "30 minutes of snorkeling in the Red Sea",
+        "Popular family-friendly excursion in the Red Sea",
+        "Perfect for families & beginners",
+        "Snorkeling equipment included",
+        "Hotel transfer included"
+      ],
+      "included": [
+        "Pickup & return transfer from hotel",
+        "Glass-bottom boat ride",
+        "30-minute snorkeling stop",
+        "Snorkeling equipment & life vest",
+        "Mineral water & soft drinks"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Tips (optional)",
+        "Transfer surcharges for certain areas"
+      ],
+      "faqs": [
+        {
+          "question": "How long does the glass-bottom boat excursion in Hurghada ta",
+          "answer": "The glass-bottom boat excursion in Hurghada lasts approximately 3 hours in total..."
+        },
+        {
+          "question": "Is hotel transfer included in the price?",
+          "answer": "Yes, pickup and return transfer from your hotel in Hurghada are included in the ..."
+        },
+        {
+          "question": "Is snorkeling suitable for beginners?",
+          "answer": "Yes, the snorkeling stop is perfect for beginners. It takes place in calm waters..."
+        },
+        {
+          "question": "Is the excursion suitable for children?",
+          "answer": "Yes, the glass-bottom boat excursion is family-friendly and very suitable for ch..."
+        },
+        {
+          "question": "Are life vests provided?",
+          "answer": "Yes, life vests are available free of charge for both adults and children. Safet..."
+        },
+        {
+          "question": "Is snorkeling equipment provided?",
+          "answer": "Yes, mask, snorkel, and life vest are all included. You don't need your own gear..."
+        },
+        {
+          "question": "What fish and coral can I see?",
+          "answer": "During the glass-bottom boat ride, you can see colorful coral reefs as well as c..."
+        },
+        {
+          "question": "Can I take photos and videos?",
+          "answer": "Yes, photography and filming are allowed throughout the excursion and are highly..."
+        },
+        {
+          "question": "Are drinks included on board?",
+          "answer": "Yes, mineral water and soft drinks are provided for all guests on board, so you ..."
+        },
+        {
+          "question": "Do I need to know how to swim?",
+          "answer": "No, non-swimmers can also join and observe the underwater world through the larg..."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "mahmya-insel-ausflug-hurghada",
+    "before": {
+      "name": "Mahmya Island Trip Hurghada with Snorkeling & Lunch",
+      "short_description": "Imagine: soft white sand under your feet, the sea shimmering in every shade of turquoise, the sun glistening on the water surface - welcome to Mahmya Island, on...",
+      "description": "<p>Imagine: soft white sand under your feet, the sea shimmering in every shade of turquoise, the sun glistening on the water surface - welcome to Mahmya Island, one of the most beautiful spots in the Red Sea.</p><p>The Mahmya Island trip in Hurghada is far more than a regular snorkeling excursion. It is a journey to a protected natural paradise, rightfully known as the \"Maldives of Egypt.\"</p><p>Here you will find spectacular coral reefs, crystal-clear water, and an underwater world full of color and life. Away from the hustle and bustle, you can experience tranquility, luxury, and nature in perfect harmony.</p><p>This trip is ideal for guests looking for a high-quality island and snorkeling excursion from Hurghada with comfort, nature, and relaxation.</p><p>Why this trip ranks among the best in Hurghada</p><p>✔ One of the most beautiful snorkeling spots in the Red Sea<br/>✔ Protected national park - unspoiled nature<br/>✔ Dream beach with fine, white sand<br/>✔ High-quality boat tour with professional crew<br/>✔ Lunch at a beach restaurant with sea view<br/>✔ Perfect for couples, families & connoisseurs</p>",
+      "itinerary": [
+        {
+          "title": "Pickup & Transfer to Harbor",
+          "content": "Am frühen Morgen werden Sie directly from your hotel abgeholt und zum Hafen gebracht. Dort begrüßt Sie die freundliche Crew an Bord Ihres komfortablen Bootes."
+        },
+        {
+          "title": "Snorkeling Trip",
+          "content": "After receiving your snorkeling equipment and a short briefing beginnt die Fahrt über das tiefblaue Rote Meer. Schon bald erreichen Sie die ersten Schnorchelplätze mit bunten Fischen, Korallenformationen und mit etwas Glück sogar Meeresschildkröten oder Delfine."
+        },
+        {
+          "title": "Mahmya Island & Lunch",
+          "content": "After arriving at Mahmya Island, enjoy the dreamlike scenery und ein frisch zubereitetes Mittagsbuffet in einem Restaurant direkt am Meer. Der restliche Day gehört ganz Ihnen: Entspannen, Schwimmen, die Island erkunden oder die Ruhe und Sonne genießen."
+        },
+        {
+          "title": "Return to Hotel",
+          "content": "Am Nachmittag kehren Sie entspannt zum Hafen zurück und werden zu Ihrem Hotel gebracht."
+        }
+      ],
+      "highlights": [
+        "Hotel transfer from Hurghada included",
+        "Boat trip to Mahmya Island in the Red Sea",
+        "Snorkeling at colorful coral reefs",
+        "Stay on Mahmya Island",
+        "Beach lunch included",
+        "Free time for swimming, snorkeling & relaxing"
+      ],
+      "included": [
+        "Full-day boat trip to Mahmya Island",
+        "Hotel transfer (round trip)",
+        "Lunch on the island",
+        "Water, soft drinks & fruit",
+        "Experienced snorkeling guide",
+        "Snorkeling equipment"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Tips (voluntary)",
+        "Transfer surcharges for certain regions"
+      ],
+      "faqs": [
+        {
+          "answer": "The Mahmya Island trip is a full-day boat tour from Hurghada to the stunning Mahmya Island in the Giftun National Park. Look forward to snorkeling, white sandy beaches, crystal-clear water, and a delicious lunch right on the Red Sea.",
+          "question": "What is the Mahmya Island trip?"
+        },
+        {
+          "answer": "The Mahmya Island tour lasts approximately 7 hours, including hotel transfer, boat trip, beach stay, and return trip.",
+          "question": "⏰ How long does the trip last?"
+        },
+        {
+          "answer": "The trip includes:\n\n• Boat trip to Mahmya Island\n\n• Snorkeling at colorful coral reefs\n\n• Leisure time on the white sandy beach\n\n• Lunch\n\n• Hotel transfer",
+          "question": "What activities are included?"
+        },
+        {
+          "answer": "No. The Mahmya Island tour is suitable for both beginners and experienced snorkelers. The guides support you at all times and ensure a safe snorkeling experience.",
+          "question": "Do I need snorkeling experience?"
+        },
+        {
+          "answer": "Yes, the island has fine white sandy beaches, restrooms, and showers - perfect for a relaxed day.",
+          "question": "Are there beaches and facilities on Mahmya Island?"
+        },
+        {
+          "answer": "Yes, you can enjoy a hearty lunch buffet with drinks and fruit right on the beach.",
+          "question": "Is lunch included?"
+        },
+        {
+          "answer": "With some luck, you may encounter dolphins, sea turtles, and colorful schools of fish - a highlight for all visitors!",
+          "question": "Can I see dolphins or other sea creatures?"
+        },
+        {
+          "answer": "Yes, the Mahmya Island trip is family-friendly.\n\n• 0-2 years: free\n\n• 3-10 years: 50% discount\n\n• from 11 years: full price",
+          "question": "Is the trip suitable for children?"
+        },
+        {
+          "answer": "We recommend:\n\n• Swimwear\n\n• Towel\n\n• Sunscreen\n\n• Sunglasses\n\n• Sun hat\n\n• Camera or smartphone\n\n• Personal items",
+          "question": "What should I bring for the trip?"
+        },
+        {
+          "answer": "With Hurghada Reise Planer, you benefit from verified quality, fair prices, experienced German-speaking guides, and reliable customer service. We make sure your Mahmya Island trip is safe, comfortable, and unforgettable.",
+          "question": "Why should I book with Hurghada Reise Planer?"
+        }
+      ],
+      "faqCount": 10
+    },
+    "after": {
+      "name": "Mahmya Insel Ausflug Hurghada mit Schnorcheln & Mittagessen",
+      "short_description": "Mahmya Insel Ausflug ab Hurghada mit Schnorcheln, Mittagessen und Bootsfahrt – die „Malediven Ägyptens\" direkt vor Ihrer Tür.",
+      "description": "<p>Stellen Sie sich vor: Weicher, weißer Sand unter Ihren Füßen, das Meer schimmert in allen Türkistönen, die Sonne glitzert auf der Wasseroberfläche – willkommen auf der Mahmya Insel, einem der schön...",
+      "itinerary": [
+        {
+          "title": "Pickup & Transfer to Harbor",
+          "content": "In the early morning, you'll be picked up directly from your hotel and taken to the harbor, where the friendly crew welcomes you aboard your comfortable boat."
+        },
+        {
+          "title": "Snorkeling Trip",
+          "content": "After receiving your snorkeling equipment and a short briefing, the journey across the deep-blue Red Sea begins. Soon you'll reach the first snorkeling spots with colorful fish, coral formations, and — with some luck — even sea turtles or dolphins."
+        },
+        {
+          "title": "Mahmya Island & Lunch",
+          "content": "After arriving at Mahmya Island, enjoy the dreamlike scenery and a freshly prepared lunch buffet at a beachfront restaurant. The rest of the day is yours: relax, swim, explore the island, or simply soak up the sun and serenity."
+        },
+        {
+          "title": "Return to Hotel",
+          "content": "In the afternoon, you'll return relaxed to the harbor and be transferred back to your hotel."
+        }
+      ],
+      "highlights": [
+        "Hotel transfer from Hurghada included",
+        "Boat trip to Mahmya Island in the Red Sea",
+        "Snorkeling at vibrant coral reefs",
+        "Time on Mahmya Island",
+        "Beachfront lunch included",
+        "Free time for swimming, snorkeling & relaxing"
+      ],
+      "included": [
+        "Full-day boat trip to Mahmya Island",
+        "Hotel transfer (round trip)",
+        "Lunch on the island",
+        "Water, soft drinks & fruit",
+        "Experienced snorkeling guide",
+        "Snorkeling equipment"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Tips (voluntary)",
+        "Transfer surcharges for certain areas"
+      ],
+      "faqs": [
+        {
+          "question": "What is the Mahmya Island trip?",
+          "answer": "The Mahmya Island trip is a full-day boat tour from Hurghada to the stunning Mah..."
+        },
+        {
+          "question": "How long does the trip last?",
+          "answer": "The Mahmya Island tour lasts approximately 7 hours, including hotel transfer, bo..."
+        },
+        {
+          "question": "What activities are included?",
+          "answer": "The trip includes:\n\n• Boat trip to Mahmya Island\n• Snorkeling at colorful coral ..."
+        },
+        {
+          "question": "Do I need snorkeling experience?",
+          "answer": "No. The Mahmya Island tour is suitable for both beginners and experienced snorke..."
+        },
+        {
+          "question": "Are there beaches and facilities on Mahmya Island?",
+          "answer": "Yes, the island has fine white sandy beaches, restrooms, and showers — perfect f..."
+        },
+        {
+          "question": "Is lunch included?",
+          "answer": "Yes, you'll enjoy a hearty lunch buffet with drinks and fruit right on the beach..."
+        },
+        {
+          "question": "Can I see dolphins or other marine life?",
+          "answer": "With some luck, you may encounter dolphins, sea turtles, and colorful schools of..."
+        },
+        {
+          "question": "Is the trip suitable for children?",
+          "answer": "Yes, the Mahmya Island trip is family-friendly.\n\n• 0–2 years: free\n• 3–10 years:..."
+        },
+        {
+          "question": "What should I bring?",
+          "answer": "We recommend:\n\n• Swimwear\n• Towel\n• Sunscreen\n• Sunglasses\n• Sun hat\n• Camera or..."
+        },
+        {
+          "question": "Why should I book with Hurghada Travel Planner?",
+          "answer": "With Hurghada Travel Planner, you benefit from verified quality, fair prices, ex..."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "luxor-tagesausflug-heissluftballon-hoteluebernachtung",
+    "before": {
+      "name": "Luxor Day Trip with Hot Air Balloon Ride & Hotel Overnight from Hurghada",
+      "short_description": "Discover one of the most impressive cultural journeys in Egypt with Hurghada Reiseplaner. This 2-day Luxor trip with hot air balloon ride combines history, adve...",
+      "description": "<p>Discover one of the most impressive cultural journeys in Egypt with Hurghada Reiseplaner. This 2-day Luxor trip with hot air balloon ride combines history, adventure, and comfort with an overnight hotel stay in Luxor.</p><p>The tour includes a hot air balloon ride at sunrise, the Valley of the Kings, Hatshepsut Temple, the Colossi of Memnon, Karnak Temple, hotel overnight stay, dinner, breakfast, admission tickets, transfers, and a German-speaking Egyptologist.</p><p>Ideal for guests who want to experience the highlights of the ancient city of Luxor in a relaxed and intensive way, rather than just a brief visit.</p>\n<table class=\"tour-pricing-table\"><thead><tr><th>Participants</th><th>Price per person</th></tr></thead><tbody><tr><td>1 Person</td><td>580 € p. P.</td></tr><tr><td>2 Person</td><td>300 € p. P.</td></tr><tr><td>3–4 Personen</td><td>270 € p. P.</td></tr><tr><td>5–6 Personen</td><td>240 € p. P.</td></tr><tr><td>7–8 Personen</td><td>220 € p. P.</td></tr></tbody></table>",
+      "itinerary": [
+        {
+          "title": "17:00 Uhr – Abholung vom Hotel",
+          "content": "Start von Hurghada, Marsa Alam oder El Quseir in einem air-conditioned private vehicle. Nach approx. 3,5 Stunden erreichen Sie Luxor."
+        },
+        {
+          "title": "Arrival, Dinner & Check-in",
+          "content": "Sie genießen ein entspanntes Dinner und beziehen Ihr ausgewähltes Hotel, bevor die Night zur Vorbereitung auf das morgendliche Abenteuer ruht."
+        },
+        {
+          "title": "Sunrise over Luxor – Hot Air Balloon Ride",
+          "content": "Gegen 4:00 Uhr startet Ihre Heißluftballonfahrt. Während die Sonne langsam das Niltal färbt, schweben Sie über Tempel, Felder und den Westjordan des antiken Theben. Ein Moment, der Ihrem Reisealbum Glanz verleiht."
+        },
+        {
+          "title": "Valley of the Kings – Three Tombs",
+          "content": "Erkunden Sie die Gräber der Pharaonen, deren Wandmalereien seit Jahrtausenden leuchten."
+        },
+        {
+          "title": "Temple of Hatshepsut",
+          "content": "Ein Tempel wie aus einem Fels geschnitten. Würde, Geschichte, klare Linien."
+        },
+        {
+          "title": "Colossi of Memnon – Photo Stop",
+          "content": "Die monumentalen Wächterfiguren des Amenophis III. erwarten Sie bereits."
+        },
+        {
+          "title": "Lunch on the Nile",
+          "content": "Ein reichhaltiges ägyptisches Menü bietet Stärkung für den weiteren Tag."
+        },
+        {
+          "title": "Karnak Temple",
+          "content": "Zum Finale Ihres Ausflugs entdecken Sie den größten Tempelkomplex Ägyptens. Tempel, gewaltige Säulen, Jahrtausende Kultur – ein würdiger Abschluss."
+        },
+        {
+          "title": "Return to Hurghada",
+          "content": "Arrival at your hotel around 8:00 PM."
+        }
+      ],
+      "highlights": [
+        "Hot air balloon ride over Luxor at sunrise – unforgettable panoramic view over the Nile",
+        "Karnak Temple – the largest religious structure of antiquity",
+        "Valley of the Kings – visit three magnificent tombs with original wall paintings",
+        "Hatshepsut Temple – the masterpiece of Egypt’s most powerful woman",
+        "Colossi of Memnon – impressive remains of the Temple of Amenhotep III",
+        "Hotel overnight stay including dinner & breakfast"
+      ],
+      "included": [
+        "German-speaking Egyptologist as guide",
+        "Admission fees for all attractions per the program",
+        "45–60 minute hot air balloon ride over Luxor",
+        "Hotel overnight stay including dinner & breakfast",
+        "All transfers in an air-conditioned vehicle",
+        "All taxes & service fees"
+      ],
+      "not_included": [
+        "Drinks at the restaurant",
+        "Personal expenses",
+        "Transfer surcharge for guests from Marsa Alam: 25 euros per person",
+        "Transfer surcharge for guests from El Quseir: 15 euros per person",
+        "Transfer surcharge from Makadi Bay & Sahl Hasheesh: 5 euros per person",
+        "Transfer surcharge from El Gouna, Safaga & Soma Bay: 10 euros per person",
+        "Foreign-language guide (English, Russian, or French): surcharge 10 euros per person"
+      ],
+      "faqs": [
+        {
+          "answer": "Die Ballonfahrt beginnt noch vor Sonnenaufgang. Nach dem Transfer zur Startstelle erleben Sie einen etwa 45–60-minütigen Flug mit spektakulärem Blick über Luxor, den Nil und die Tempelanlagen.",
+          "question": "🎈Wie läuft die Heißluftballonfahrt in Luxor genau ab?"
+        },
+        {
+          "answer": "Ja, sie wird ausschließlich von staatlich zertifizierten Piloten durchgeführt. Alle Ballons werden täglich gewartet und unterliegen strengen Sicherheitskontrollen.\n\nDie Durchführung erfolgt ausschließlich bei geeigneten Wetterbedingungen.",
+          "question": "🛡️Ist die Ballonfahrt sicher?"
+        },
+        {
+          "answer": "Sie besuchen den Karnak-Tempel, das Tal der Könige, den Tempel der Hatschepsut sowie die Memnon-Kolosse.",
+          "question": "🏛️Welche Orte werden während der Tour besichtigt?"
+        },
+        {
+          "answer": "Rund 27–28 Stunden (Abholung am Vorabend, Rückfahrt am Abend des Folgetages).",
+          "question": "⏳Wie lange dauert die Tour inklusive Anreise und Rückfahrt?"
+        },
+        {
+          "answer": "Ja, inklusive Übernachtung im Hotel mit Abendessen und Frühstück.",
+          "question": "🛏️Ist die Übernachtung inklusive?"
+        },
+        {
+          "answer": "Ja!\n\n0–2 Jahre kostenlos,\n\n3–10 Jahre 50 % Rabatt,\n\nab 11 Jahren voller Preis.",
+          "question": "🧒Gibt es Kinderermäßigungen?"
+        },
+        {
+          "answer": "Bequeme Kleidung, feste Schuhe und im Winter eine leichte Jacke. Für den Ballonstart am Morgen kann es kühl sein.",
+          "question": "👕Welche Kleidung wird empfohlen?"
+        },
+        {
+          "answer": "Die Ballonfahrt verläuft ruhig und sanft. Auch Gäste ohne Vorkenntnisse genießen den Flug problemlos. Bei starker Höhenangst empfehlen wir, uns vor der Buchung zu kontaktieren.",
+          "question": "❓ Muss ich Höhenangst haben oder ist die Ballonfahrt auch für Anfänger geeignet?"
+        },
+        {
+          "answer": "Ja, ein deutschsprachiger Ägyptologe begleitet die gesamte Tour.",
+          "question": "🗣️Gibt es einen deutschsprachigen Reiseleiter?"
+        },
+        {
+          "answer": "Nein. Die Sicherheit steht an erster Stelle. Bei starkem Wind oder schlechten Wetterbedingungen wird der Start verschoben oder eine geeignete Alternative angeboten.",
+          "question": "🌦️Findet die Ballonfahrt bei jedem Wetter statt?"
+        }
+      ],
+      "faqCount": 10
+    },
+    "after": {
+      "name": "Luxor Tagesausflug mit Heißluftballonfahrt & Hotelübernachtung ab Hurghada",
+      "short_description": "Erleben Sie Luxor mit Heißluftballonfahrt, Hotelübernachtung, Tal der Könige, Hatschepsut-Tempel, Memnon-Kolossen und Karnak-Tempel. Inklusive deutschsprachigem Ägyptologen, Eintrittskarten, Transfers und Ballonfahrt bei Sonnenaufgang.",
+      "description": "<p>Entdecken Sie mit Hurghada Reiseplaner eine der beeindruckendsten Kulturreisen Ägyptens. Dieser 2-tägige Luxor-Ausflug mit Heißluftballonfahrt verbindet Geschichte, Abenteuer und Komfort mit einer ...",
+      "itinerary": [
+        {
+          "title": "5:00 PM – Pickup from Hotel",
+          "content": "Departure from Hurghada, Marsa Alam, or El Quseir in an air-conditioned private vehicle. After approximately 3.5 hours, you will arrive in Luxor."
+        },
+        {
+          "title": "Arrival, Dinner & Check-in",
+          "content": "Enjoy a relaxing dinner and check into your selected hotel, as the night prepares you for the morning's adventure ahead."
+        },
+        {
+          "title": "Sunrise Over Luxor – Hot Air Balloon Ride",
+          "content": "Around 4:00 AM, your hot air balloon journey begins. As the sun slowly colors the Nile Valley, you float above temples, fields, and the West Bank of ancient Thebes — a moment that will be the highlight of your travel album."
+        },
+        {
+          "title": "Valley of the Kings – Three Tombs",
+          "content": "Explore the tombs of the pharaohs, whose wall paintings have glowed for millennia."
+        },
+        {
+          "title": "Temple of Hatshepsut",
+          "content": "A temple carved from the rock itself. Dignity, history, clean lines."
+        },
+        {
+          "title": "Colossi of Memnon – Photo Stop",
+          "content": "The monumental guardian statues of Amenhotep III await you."
+        },
+        {
+          "title": "Lunch on the Nile",
+          "content": "A hearty Egyptian meal provides energy for the rest of the day."
+        },
+        {
+          "title": "Karnak Temple",
+          "content": "The grand finale of your trip: discover the largest temple complex in Egypt. Temples, massive columns, millennia of culture — a fitting conclusion."
+        },
+        {
+          "title": "Return to Hurghada",
+          "content": "Arrival at your hotel around 8:00 PM."
+        }
+      ],
+      "highlights": [
+        "Hot air balloon ride over Luxor at sunrise — unforgettable panoramic views over the Nile",
+        "Karnak Temple — the largest religious structure of antiquity",
+        "Valley of the Kings — visit three magnificent tombs with original wall paintings",
+        "Hatshepsut Temple — the masterpiece of Egypt's most powerful queen",
+        "Colossi of Memnon — impressive remains of the Temple of Amenhotep III",
+        "Hotel overnight stay including dinner & breakfast"
+      ],
+      "included": [
+        "Professional Egyptologist guide",
+        "Admission fees for all attractions per the program",
+        "45–60 minute hot air balloon ride over Luxor",
+        "Hotel overnight stay including dinner & breakfast",
+        "All transfers in an air-conditioned vehicle",
+        "All taxes & service fees"
+      ],
+      "not_included": [
+        "Drinks at the restaurant",
+        "Personal expenses",
+        "Transfer surcharge for guests from Marsa Alam: €25 per person",
+        "Transfer surcharge for guests from El Quseir: €15 per person",
+        "Transfer surcharge from Makadi Bay & Sahl Hasheesh: €5 per person",
+        "Transfer surcharge from El Gouna, Safaga & Soma Bay: €10 per person",
+        "Foreign-language guide (English, Russian, or French): surcharge €10 per person"
+      ],
+      "faqs": [
+        {
+          "question": "How does the hot air balloon ride in Luxor work?",
+          "answer": "The balloon ride begins before sunrise. After the transfer to the launch site, y..."
+        },
+        {
+          "question": "Is the balloon ride safe?",
+          "answer": "Yes, it is conducted exclusively by government-certified pilots. All balloons ar..."
+        },
+        {
+          "question": "Which sites are visited during the tour?",
+          "answer": "You will visit Karnak Temple, the Valley of the Kings, Hatshepsut Temple, and th..."
+        },
+        {
+          "question": "How long does the tour last including travel?",
+          "answer": "Approximately 27–28 hours (pickup the evening before, return the following eveni..."
+        },
+        {
+          "question": "Is the overnight stay included?",
+          "answer": "Yes, including hotel accommodation with dinner and breakfast...."
+        },
+        {
+          "question": "Are there child discounts?",
+          "answer": "Yes!\n\n0–2 years: free\n3–10 years: 50% discount\n11 years and up: full price..."
+        },
+        {
+          "question": "What clothing is recommended?",
+          "answer": "Comfortable clothing, sturdy shoes, and a light jacket in winter. It can be cool..."
+        },
+        {
+          "question": "What if I'm afraid of heights? Is the ride suitable for begi",
+          "answer": "The balloon ride is smooth and gentle. Even guests with no prior experience enjo..."
+        },
+        {
+          "question": "Is there a guide on the tour?",
+          "answer": "Yes, a professional Egyptologist guide accompanies the entire tour...."
+        },
+        {
+          "question": "Does the balloon ride take place in all weather?",
+          "answer": "No. Safety comes first. In strong winds or bad weather, the launch will be postp..."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "private-delfin-tour-hurghada",
+    "before": {
+      "name": "Private dolphin trip in Hurghada by speedboat",
+      "short_description": "Private dolphin tour in Hurghada – personal, comfortable and unforgettable.",
+      "description": "Experience one of the most impressive moments of your vacation: swim with wild dolphins, discover colorful coral reefs and relax on a paradisiacal island - all in a single morning.\r\n\r\n\r\n\r\n\r\n\r\nThis high quality private tour is made for travelers who want the best:\r\n\r\n\r\n\r\n\r\n\r\n✔ No mass boats\r\n\r\n\r\n✔ No foreign guests\r\n\r\n\r\n✔ No hassle\r\n\r\n\r\n✔ 100% private & personally looked after\r\n\r\n\r\n\r\n\r\n\r\nWith HurghadaTravel Planner you don't book just any excursion - but an experience that many guests describe as the highlight of their entire Egypt vacation.\r\n\r\n\r\n\r\n\r\n\r\n🐬 Swimming with dolphins in Hurghada – natural, respectful & unforgettable\r\n\r\n\r\n\r\n\r\n\r\nImagine: The speedboat glides over the turquoise water. They jump into the warm sea. Suddenly dolphins appear next to you - curious, elegant, free.\r\n\r\n\r\n\r\n\r\n\r\nOur route leads specifically to the best known dolphin areas off Hurghada. The animals live here in the wild and often seek proximity to the boats themselves.\r\n\r\n\r\n\r\n\r\n\r\nFor many guests, this moment is more emotional than any attraction on land.\r\n\r\n\r\n\r\n\r\n\r\nBut this excursion offers much more:\r\n\r\n\r\n\r\n\r\n\r\nFascinating shipwreck full of marine life\r\n\r\n\r\n\r\n\r\n\r\nRelaxed atmosphere without time pressure\r\n\r\n\r\n\r\n\r\n\r\nEverything perfectly organized – in just 4 hours.\r\n\r\n\r\n\r\n\r\n\r\n Why this tour is one of the most booked private excursions in Hurghada\r\n\r\n\r\n\r\n\r\n\r\n100% private implementation\r\n\r\n\r\n\r\n\r\n\r\nMaximum of 8 people on board\r\n\r\n\r\n\r\n\r\n\r\nVery high dolphin sighting rate\r\n\r\n\r\n\r\n\r\n\r\nModern, safe speedboats\r\n\r\n\r\n\r\n\r\n\r\nExperienced & licensed captains\r\n\r\n\r\n\r\n\r\n\r\nIdeal for couples, families & small groups\r\n\r\n\r\n\r\n\r\n\r\nExcellent value for money\r\n\r\n\r\n\r\n\r\n\r\n🎒 Please bring it with you\r\n\r\n\r\n\r\n\r\n\r\nSwimwear & towel\r\n\r\n\r\n\r\n\r\n\r\nSunscreen & sunglasses\r\n\r\n\r\n\r\n\r\n\r\nHeadgear\r\n\r\n\r\n\r\n\r\n\r\nIn winter: light jacket\n\n<table class=\"tour-pricing-table\">\n<thead>\n<tr>\n<th><span><strong>Participants</strong></span></th>\n<th>Boot</th>\n<th><span><strong>Price per person</strong></span></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td data-label=\"Participants\"><span><strong>1 Person</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>150 € p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participants\"><span><strong>2 Personen</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>80&nbsp; € p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participants\"><span><strong>3 Personen</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>70&nbsp; € p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participants\"><span><strong>4 Personen</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>60&nbsp; € p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participants\"><span><strong>5 Personen</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>55&nbsp; € p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participants\"><span><strong>6 Personen</strong></span></td>\n<td data-label=\"Boot\"><span><strong>Privates Speedboot</strong></span></td>\n<td data-label=\"Preis \"><span><strong>50&nbsp; € p.P.</strong></span></td>\n</tr>\n</tbody>\n</table>",
+      "itinerary": [
+        {
+          "title": "Hotel Pickup",
+          "content": "Pünktliche Direct pickup from your hotel im air-conditioned vehicle."
+        },
+        {
+          "title": "Start an der Marina",
+          "content": "Personal welcome, equipment, short briefing – then your adventure begins."
+        },
+        {
+          "title": "Delfinbegegnung",
+          "content": "Boat ride to the best dolphin spots. With luck you will spot dolphins in the wild and can – if conditions permit – swim with them. Note: Dolphins are wild animals. Sightings cannot be guaranteed, but the success rate is very high."
+        },
+        {
+          "title": "Schnorcheln an Korallenriffen",
+          "content": "Two stops at colorful reefs with impressive underwater world."
+        },
+        {
+          "title": "Schiffswrack",
+          "content": "Discover a fascinating shipwreck with an impressive underwater world full of fish and coral."
+        },
+        {
+          "title": "Return Journey",
+          "content": "Return at around 12:00 PM and transfer to hotel."
+        }
+      ],
+      "highlights": [
+        "Private speedboat excursion from Hurghada",
+        "Watch dolphins in the wild",
+        "Two spectacular coral reefs",
+        "Snorkeling at the sunken shipwreck",
+        "Soft drinks & fresh fruits on board",
+        "Hotel transfer included"
+      ],
+      "included": [
+        "Private speedboat with experienced captain",
+        "Hotel transfer there and back",
+        "Snorkeling equipment",
+        "Dolphin watching in the wild",
+        "Two snorkel stops",
+        "Soft drinks, water & fresh fruits"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Meals",
+        "Transfer surcharges for certain regions"
+      ],
+      "faqs": [],
+      "faqCount": 0
+    },
+    "after": {
+      "name": "Privater Delfin-Ausflug in Hurghada mit Speedboot",
+      "short_description": "Private Delfintour in Hurghada – persönlich, komfortabel und unvergesslich.",
+      "description": "<p>Erleben Sie einen der beeindruckendsten Momente Ihres Urlaubs: Schwimmen Sie mit frei lebenden Delfinen, entdecken Sie farbenprächtige Korallenriffe und entspannen Sie auf einer paradiesischen Inse...",
+      "itinerary": [
+        {
+          "title": "Hotel Pickup",
+          "content": "Punctual direct pickup from your hotel in an air-conditioned vehicle."
+        },
+        {
+          "title": "Start at the Marina",
+          "content": "Personal welcome, equipment handover, and a short briefing — then your adventure begins."
+        },
+        {
+          "title": "Dolphin Encounter",
+          "content": "Boat ride to the best dolphin spots. With luck, you'll spot dolphins in the wild and can — if conditions allow — swim alongside them. Note: Dolphins are wild animals. Sightings cannot be guaranteed, but the success rate is very high."
+        },
+        {
+          "title": "Snorkeling at Coral Reefs",
+          "content": "Two stops at colorful reefs with impressive underwater scenery."
+        },
+        {
+          "title": "Shipwreck",
+          "content": "Discover a fascinating shipwreck teeming with fish and coral."
+        },
+        {
+          "title": "Return Journey",
+          "content": "Return at around 12:00 PM and transfer to your hotel."
+        }
+      ],
+      "highlights": [
+        "Private speedboat excursion from Hurghada",
+        "Watch dolphins in the wild",
+        "Two spectacular coral reefs",
+        "Snorkeling at a sunken shipwreck",
+        "Soft drinks & fresh fruit on board",
+        "Hotel transfer included"
+      ],
+      "included": [
+        "Private speedboat with experienced captain",
+        "Hotel transfer (round trip)",
+        "Snorkeling equipment",
+        "Dolphin watching in the wild",
+        "Two snorkeling stops",
+        "Soft drinks, water & fresh fruit"
+      ],
+      "not_included": [
+        "Personal expenses",
+        "Meals",
+        "Transfer surcharges for certain areas"
+      ],
+      "faqs": [
+        {
+          "question": "Can I be guaranteed to swim with the dolphins?",
+          "answer": "Dolphins are wild animals, so sightings or swimming with dolphins cannot be guar..."
+        },
+        {
+          "question": "Is the tour suitable for children?",
+          "answer": "Yes, children aged 3 and up are welcome. Life vests are provided...."
+        },
+        {
+          "question": "Is hotel transfer included?",
+          "answer": "Yes, pickup and return transfer in an air-conditioned vehicle are included...."
+        },
+        {
+          "question": "What equipment is needed?",
+          "answer": "Full snorkeling equipment is included. Please bring swimwear, a towel, sunscreen..."
+        },
+        {
+          "question": "What happens in bad weather?",
+          "answer": "In strong wind or bad weather, the tour will be rescheduled or canceled for safe..."
+        },
+        {
+          "question": "How many people are on the boat?",
+          "answer": "Maximum 8 people to ensure privacy and comfort...."
+        },
+        {
+          "question": "How long does the tour last?",
+          "answer": "Approximately 4 hours from hotel pickup to return...."
+        },
+        {
+          "question": "Which island do we visit?",
+          "answer": "Depending on weather and sea conditions, we visit a beautiful island in the Red ..."
+        },
+        {
+          "question": "What fish can I see while snorkeling?",
+          "answer": "You can discover clownfish, parrotfish, angelfish, rays, and many other tropical..."
+        },
+        {
+          "question": "What makes this private dolphin tour special?",
+          "answer": "This tour is 100% private — no strangers and no crowded boats. You ride an exclu..."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "kloester-st-antonius-st-paulus",
+    "before": {
+      "name": "Monasteries of St. Antonius & St. Paul from Hurghada – The Oldest Christian Monasteries in the World",
+      "short_description": "Experience two of the oldest monasteries of Christianity on an exclusive private tour from Hurghada. The Monasteries of St. Antonius and St. Paul lie in seclusi...",
+      "description": "<p>Experience two of the oldest monasteries of Christianity on an exclusive private tour from Hurghada. The Monasteries of St. Antonius and St. Paul lie in seclusion in the Eastern Desert and are among the most important spiritual sites of Egypt.</p><p>The Monasteries of St. Antonius and St. Paul are considered the oldest monasteries in the world. St. Antonius was founded in the 4th century, and St. Paul over the cave of Saint Paul, who is venerated as the first Christian hermit.</p><p>Both monasteries offer unique insights into early monasticism and the Coptic tradition of Egypt.</p><p>What makes this excursion so special:</p><p>Unlike the famous temples of Egypt, you experience the spiritual side of the country here. The secluded monasteries in the heart of the Eastern Desert offer a unique combination of history, religion, nature, and tranquility. Monks still live here today following centuries-old traditions.</p><p>Who is this excursion for?</p><p>This excursion is especially suitable for culturally interested travelers, Christians, history enthusiasts, and guests who want to discover the authentic Egypt away from the well-known tourist routes.</p>\n\n<table class=\"tour-pricing-table\">\n<thead>\n<tr>\n<th><span><strong>Participants</strong></span></th>\n<th><span><strong>Vehicle</strong></span></th>\n<th><span><strong>Price per person</strong></span></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td data-label=\"Participantsanzahl\"><strong>1 Person</strong></td>\n<td data-label=\"Vehicle\"><strong>Private Limousine</strong></td>\n<td data-label=\"Preis \"><strong>172 ? p.P.</strong></td>\n</tr>\n<tr>\n<td data-label=\"Participantsanzahl\"><span><strong>2 Personen</strong></span></td>\n<td data-label=\"Vehicle\"><span><strong>Private Limousine</strong></span></td>\n<td data-label=\"Preis \"><span><strong>96€ p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participantsanzahl\"><span><strong>3 – 4 Personen</strong></span></td>\n<td data-label=\"Vehicle\"><span><strong>Privater Minibus</strong></span></td>\n<td data-label=\"Preis \"><span><strong>85€ p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participantsanzahl\"><span><strong>5 – 6 Personen</strong></span></td>\n<td data-label=\"Vehicle\"><span><strong>Privater Minibus</strong></span></td>\n<td data-label=\"Preis \"><span><strong>80€ p.P.</strong></span></td>\n</tr>\n<tr>\n<td data-label=\"Participantsanzahl\"><span><strong>7 – 8 Personen</strong></span></td>\n<td data-label=\"Vehicle\"><span><strong>Privater Minibus</strong></span></td>\n<td data-label=\"Preis \"><span><strong>71€ p.P.</strong></span></td>\n</tr>\n</tbody>\n</table>",
+      "itinerary": [
+        {
+          "title": "Pickup (4:00 AM)",
+          "content": "Direct pickup from your hotel in Hurghada."
+        },
+        {
+          "title": "Drive to St. Anthony's Monastery",
+          "content": "Drive through the Eastern Desert to St. Anthony Monastery."
+        },
+        {
+          "title": "Visit St. Anthony's Monastery",
+          "content": "Visit to the historic churches, frescoes, and manuscripts."
+        },
+        {
+          "title": "Cave of St. Anthony",
+          "content": "Aufstieg zur Höhle des Heiligen Antonius (optional)."
+        },
+        {
+          "title": "Continue to St. Paul's Monastery",
+          "content": "Weiterfahrt zum Kloster St. Paulus."
+        },
+        {
+          "title": "Visit St. Paul's Monastery",
+          "content": "Visit to the monastery and church of St. Paul."
+        },
+        {
+          "title": "Lunch",
+          "content": "Lunch at a local restaurant."
+        },
+        {
+          "title": "Return to Hurghada",
+          "content": "Return to Hurghada. Arrival: approx. 17:00 Uhr."
+        }
+      ],
+      "highlights": [
+        "Visit to the oldest Christian monasteries in the world",
+        "Historic churches, frescoes, and valuable manuscripts",
+        "Ascent to the cave of Saint Antonius (optional)",
+        "Breathtaking desert landscapes of the Red Sea Mountains",
+        "German-speaking expert guide",
+        "Lunch included"
+      ],
+      "included": [
+        "All transfers in air-conditioned vehicles",
+        "German-speaking guide",
+        "Entrance fees per program",
+        "Lunch",
+        "Drinks in the vehicle",
+        "All service charges and taxes"
+      ],
+      "not_included": [
+        "Drinks at the restaurant",
+        "Personal expenses",
+        "Transfer surcharge for guests from Marsa Alam: €25 per person",
+        "Transfer surcharge for guests from El Quseir: €15 per person",
+        "Transfer surcharge from Makadi Bay & Sahl Hasheesh: €5 per person",
+        "Transfer surcharge from El Gouna, Safaga & Soma Bay: €10 per person",
+        "Foreign-language guide (English, Russian or French): surcharge €10 per person"
+      ],
+      "faqs": [
+        {
+          "answer": "This private excursion to the monasteries of St. Antonius and St. Paul from Hurghada combines history, spirituality, and impressive desert landscapes. You visit the oldest Christian monasteries in the world with a German-speaking Egyptologist – far from the usual tourist routes.",
+          "question": "What makes this excursion so special?"
+        },
+        {
+          "answer": "The private monastery excursion from Hurghada lasts approximately 14 hours. Included in the price are the round trip in an air-conditioned vehicle, all sightseeing visits, and lunch.",
+          "question": "⏱ How long does the excursion take?"
+        },
+        {
+          "answer": "Pickup is between 3:30 AM and 4:30 AM depending on your hotel location in Hurghada. We will inform you of the exact time in advance of the excursion.",
+          "question": "What time is the hotel pickup?"
+        },
+        {
+          "answer": "No. The ascent to the cave of Saint Antonius is voluntary. Those who don't want to make the climb can calmly visit the Monastery of St. Antonius or spend time in the monastery grounds.",
+          "question": "Do I have to visit the cave of Saint Antonius?"
+        },
+        {
+          "answer": "Yes. The private monastery excursion is also suitable for families with children. The following discounts apply: 0–2 years: free. 3–10 years: 50% discount. From 11 years: full price.",
+          "question": "Is the excursion suitable for children?"
+        },
+        {
+          "answer": "For visiting the monasteries, we recommend light, comfortable clothing and sturdy footwear. Since these are active monasteries, shoulders and knees should be covered. We also recommend a sun hat, sunscreen, and plenty of water.",
+          "question": "What clothing is recommended?"
+        },
+        {
+          "answer": "Included in the price of the private monastery excursion from Hurghada: transfers in air-conditioned vehicles, German-speaking Egyptologist, all entrance fees, lunch, and drinks during the drive.",
+          "question": "What is included in the price?"
+        },
+        {
+          "answer": "No. All important services such as transfers, entrance fees, German-speaking guide, and lunch are already included in the price. Additional costs only arise for personal expenses or drinks at the restaurant.",
+          "question": "Are there additional costs during the tour?"
+        },
+        {
+          "answer": "Yes. Photography is allowed in most areas of the monasteries. However, flash photography may be prohibited in some churches or chapels. Your German-speaking guide will inform you of the respective rules on site.",
+          "question": "Am I allowed to take photos in the monasteries?"
+        },
+        {
+          "answer": "Yes. The private monastery excursion is accompanied by experienced drivers and a German-speaking guide. The visit to the monasteries is suitable for almost all age groups. Only the ascent to the cave of Saint Antonius requires good physical condition and is voluntary.",
+          "question": "Is the tour safe and suitable for all age groups?"
+        }
+      ],
+      "faqCount": 10
+    },
+    "after": {
+      "name": "Klöster St. Antonius & St. Paulus ab Hurghada – Die ältesten christlichen Klöster der Welt",
+      "short_description": "Entdecken Sie die Klöster St. Antonius und St. Paulus – die ältesten christlichen Klöster der Welt. Ein einzigartiger Tagesausflug ab Hurghada voller Geschichte, Spiritualität und beeindruckender Wüstenlandschaften.",
+      "description": "<p>Erleben Sie zwei der ältesten Klöster des Christentums auf einer exklusiven Privattour ab Hurghada. Die Klöster St. Antonius und St. Paulus liegen abgeschieden in der östlichen Wüste und gehören zu...",
+      "itinerary": [
+        {
+          "title": "Pickup (4:00 AM)",
+          "content": "Direct pickup from your hotel in Hurghada."
+        },
+        {
+          "title": "Drive to St. Anthony's Monastery",
+          "content": "Drive through the Eastern Desert to St. Anthony's Monastery."
+        },
+        {
+          "title": "Visit St. Anthony's Monastery",
+          "content": "Visit the historic churches, frescoes, and manuscripts."
+        },
+        {
+          "title": "Cave of St. Anthony",
+          "content": "Ascent to the Cave of St. Anthony (optional)."
+        },
+        {
+          "title": "Continue to St. Paul's Monastery",
+          "content": "Drive on to St. Paul's Monastery."
+        },
+        {
+          "title": "Visit St. Paul's Monastery",
+          "content": "Visit the monastery and church of St. Paul."
+        },
+        {
+          "title": "Lunch",
+          "content": "Lunch at a local restaurant."
+        },
+        {
+          "title": "Return to Hurghada",
+          "content": "Return to Hurghada. Arrival: approximately 5:00 PM."
+        }
+      ],
+      "highlights": [
+        "Visit the oldest Christian monasteries in the world",
+        "Historic churches, frescoes, and valuable manuscripts",
+        "Ascent to the Cave of St. Anthony (optional)",
+        "Breathtaking desert landscapes of the Red Sea Mountains",
+        "Expert guide",
+        "Lunch included"
+      ],
+      "included": [
+        "All transfers in an air-conditioned vehicle",
+        "Professional guide",
+        "Entrance fees per program",
+        "Lunch",
+        "Drinks in the vehicle",
+        "All service charges and taxes"
+      ],
+      "not_included": [
+        "Drinks at the restaurant",
+        "Personal expenses",
+        "Transfer surcharge for guests from Marsa Alam: €25 per person",
+        "Transfer surcharge for guests from El Quseir: €15 per person",
+        "Transfer surcharge from Makadi Bay & Sahl Hasheesh: €5 per person",
+        "Transfer surcharge from El Gouna, Safaga & Soma Bay: €10 per person",
+        "Foreign-language guide (English, Russian or French): surcharge €10 per person"
+      ],
+      "faqs": [
+        {
+          "question": "What makes this excursion so special?",
+          "answer": "This private excursion to the monasteries of St. Anthony and St. Paul from Hurgh..."
+        },
+        {
+          "question": "How long does the excursion take?",
+          "answer": "The private monastery excursion from Hurghada lasts approximately 14 hours, incl..."
+        },
+        {
+          "question": "What time is pickup?",
+          "answer": "Pickup is between 3:30 AM and 4:30 AM depending on your hotel location in Hurgha..."
+        },
+        {
+          "question": "Do I have to visit the Cave of St. Anthony?",
+          "answer": "No. The ascent to the cave is voluntary. If you prefer not to climb, you can exp..."
+        },
+        {
+          "question": "Is the excursion suitable for children?",
+          "answer": "Yes, the private monastery tour is family-friendly. Discounts:\n\n0–2 years: free\n..."
+        },
+        {
+          "question": "What clothing is recommended?",
+          "answer": "Light, comfortable clothing and sturdy footwear. Since these are active monaster..."
+        },
+        {
+          "question": "What is included in the price?",
+          "answer": "The price includes: transfers in an air-conditioned vehicle, a professional guid..."
+        },
+        {
+          "question": "Are there additional costs during the tour?",
+          "answer": "No. All main services — transfers, entrance fees, guide, and lunch — are include..."
+        },
+        {
+          "question": "Can I take photos in the monasteries?",
+          "answer": "Yes. Photography is allowed in most areas. Flash photography may be prohibited i..."
+        },
+        {
+          "question": "Is the tour safe for all ages?",
+          "answer": "Yes. The tour is accompanied by experienced drivers and a guide. The monasteries..."
+        }
+      ]
+    }
+  }
+]

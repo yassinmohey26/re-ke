@@ -75,7 +75,7 @@ export default async function TermsPage({ params }: Props) {
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
                 <div>
-                  <p className={styles.agencyCardLabel}>{locale === 'de' ? 'Adresse' : locale === 'fr' ? 'Adresse' : locale === 'ru' ? 'Адрес' : locale === 'ar' ? 'العنوان' : locale === 'hu' ? 'Cím' : 'Address'}</p>
+                  <p className={styles.agencyCardLabel}>{t('contact.addressLabel')}</p>
                   <p className={styles.agencyCardValue}>{t('contact.address')}</p>
                 </div>
               </div>

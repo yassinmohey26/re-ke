@@ -72,6 +72,7 @@
     "overview": "Aperçu",
     "meetingPoint": "Point de rencontre",
     "tourItinerary": "Itinéraire de la visite",
+    "person": "personne",
     "persons": "personnes",
     "noTours": "Aucune visite disponible pour le moment.",
     "noDeposit": "Aucun acompte requis. Nous vous contacterons.",
@@ -230,7 +231,21 @@
     "successTitle": "Merci !",
     "successDesc": "Votre message a été envoyé avec succès. Nous vous répondrons dans les 24 heures.",
     "privacyLink": "Politique de confidentialité",
-    "errorDefault": "Une erreur est survenue. Veuillez réessayer."
+    "errorDefault": "Une erreur est survenue. Veuillez réessayer.",
+    "faqSectionTitle": "Foire aux questions",
+    "faqSectionDesc": "Vous avez d'autres questions ? Contactez-nous à tout moment — nous sommes ravis de vous aider !",
+    "faqQ1": "Comment puis-je réserver une excursion ?",
+    "faqA1": "Vous pouvez réserver votre excursion facilement en ligne sur notre site web ou nous contacter par téléphone ou par e-mail.",
+    "faqQ2": "Y a-t-il des restrictions d'âge pour les excursions ?",
+    "faqA2": "Certaines excursions sont conçues pour des groupes d'âge spécifiques. Veuillez vérifier les détails dans la description de l'excursion ou nous demander directement.",
+    "faqQ3": "Qu'est-ce qui est inclus dans le forfait voyage ?",
+    "faqA3": "Nos forfaits incluent généralement l'hébergement, le transport, les visites guidées et certains repas. Vous trouverez les services exacts dans la description de l'excursion concernée.",
+    "faqQ4": "Que dois-je emporter pour l'excursion ?",
+    "faqA4": "Des vêtements confortables, des chaussures adaptées à la météo, une protection solaire et des médicaments personnels sont recommandés. Vous recevrez une liste détaillée après la réservation.",
+    "faqQ5": "Quelles sont les conditions d'annulation ?",
+    "faqA5": "L'annulation gratuite est possible jusqu'à 48 heures avant le départ. Au-delà, des frais échelonnés s'appliquent — veuillez consulter nos conditions générales pour plus de détails.",
+    "faqQ6": "Comment puis-je contacter le service client pendant l'excursion ?",
+    "faqA6": "Notre équipe est disponible 24h/24 et 7j/7 via un numéro d'urgence ou WhatsApp. Vous recevrez les coordonnées avec vos documents de voyage."
   },
   "newsletter": {
     "title": "Newsletter",
@@ -646,6 +661,7 @@
       "title": "Contact",
       "text": "Pour toute question concernant ces CGU, veuillez nous contacter :",
       "email": "info@hurghada-reiseplaner.at",
+      "addressLabel": "Adresse",
       "address": "Hurghada Reiseplaner, Pekná cesta 2459/19, Bratislava – Quartier Rača, 831 52, Slovaquie",
       "link": "Nous contacter"
     },

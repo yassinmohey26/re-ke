@@ -1,0 +1,332 @@
+
+========================================================================================================================
+COMPREHENSIVE TRANSLATION AUDIT — German Leftovers in Non-German Locales
+========================================================================================================================
+
+Generated: 2026-07-30T14:37:00.612Z
+Tours audited: 26
+Non-German locales inspected: en, ar, fr, hu, ru
+
+This report proves that ALL content across ALL tours was copied from German
+into the other 5 languages WITHOUT proper translation. German words, phrases,
+and HTML artifacts remain in every single non-German locale.
+
+
+========================================================================================================================
+GLOBAL SUMMARY
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+By Locale
+------------------------------------------------------------------------------------------------------------------------
+
+Locale   German hits    Tours affected   Missing rows   Avg hits/tour  
+------------------------------------------------------------------------------------------------------------------------
+EN       0              0                0              0.0            
+AR       0              0                0              0.0            
+FR       0              0                0              0.0            
+HU       0              0                0              0.0            
+RU       0              0                0              0.0            
+
+Tours with at least one German leftover somewhere: 0/26
+Fully clean tours (all 5 locales, 0 issues): 0/26
+
+
+========================================================================================================================
+TOUR-BY-TOUR BREAKDOWN PER LOCALE
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+[EN] -- 0 total German hits across 0 tours
+------------------------------------------------------------------------------------------------------------------------
+
+Tour                                                              Matches    Fields     Top German words
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegy      0          0          
+dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch      0          0          
+eden-island-schnorchelausflug-hurghada                            0          0          
+eintrittskarte-zum-hurghada-grand-aquarium                        0          0          
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtstu      0          0          
+glasbodenboot-hurghada-mit-schnorcheln                            0          0          
+hula-hula-insel-schnorchelausflug-hurghada                        0          0          
+hurghada-shopping-tour-basar-transfer                             0          0          
+kairo-mit-flug-ab-hurghada-pyramiden-museum                       0          0          
+kloester-st-antonius-st-paulus                                    0          0          
+luxor-tagesausflug-ab-hurghada                                    0          0          
+luxor-tagesausflug-heissluftballon-hoteluebernachtung             0          0          
+mahmya-insel-ausflug-hurghada                                     0          0          
+makadi-water-park-hurghada-mittagessen-transfer                   0          0          
+mini-egypt-park-hurghada                                          0          0          
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour            0          0          
+orange-bay-insel-schnorchelausflug-hurghada                       0          0          
+private-delfin-tour-hurghada                                      0          0          
+private-speedboot-tour-orange-bay-hurghada                        0          0          
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gize      0          0          
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korall      0          0          
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel           0          0          
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-gran      0          0          
+quad-tour-hurghada-kamelritt                                      0          0          
+reiten-in-hurghada-strand-wueste-pferde-im-meer                   0          0          
+super-safari-hurghada                                             0          0          
+
+------------------------------------------------------------------------------------------------------------------------
+[AR] -- 0 total German hits across 0 tours
+------------------------------------------------------------------------------------------------------------------------
+
+Tour                                                              Matches    Fields     Top German words
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegy      0          0          
+dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch      0          0          
+eden-island-schnorchelausflug-hurghada                            0          0          
+eintrittskarte-zum-hurghada-grand-aquarium                        0          0          
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtstu      0          0          
+glasbodenboot-hurghada-mit-schnorcheln                            0          0          
+hula-hula-insel-schnorchelausflug-hurghada                        0          0          
+hurghada-shopping-tour-basar-transfer                             0          0          
+kairo-mit-flug-ab-hurghada-pyramiden-museum                       0          0          
+kloester-st-antonius-st-paulus                                    0          0          
+luxor-tagesausflug-ab-hurghada                                    0          0          
+luxor-tagesausflug-heissluftballon-hoteluebernachtung             0          0          
+mahmya-insel-ausflug-hurghada                                     0          0          
+makadi-water-park-hurghada-mittagessen-transfer                   0          0          
+mini-egypt-park-hurghada                                          0          0          
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour            0          0          
+orange-bay-insel-schnorchelausflug-hurghada                       0          0          
+private-delfin-tour-hurghada                                      0          0          
+private-speedboot-tour-orange-bay-hurghada                        0          0          
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gize      0          0          
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korall      0          0          
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel           0          0          
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-gran      0          0          
+quad-tour-hurghada-kamelritt                                      0          0          
+reiten-in-hurghada-strand-wueste-pferde-im-meer                   0          0          
+super-safari-hurghada                                             0          0          
+
+------------------------------------------------------------------------------------------------------------------------
+[FR] -- 0 total German hits across 0 tours
+------------------------------------------------------------------------------------------------------------------------
+
+Tour                                                              Matches    Fields     Top German words
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegy      0          0          
+dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch      0          0          
+eden-island-schnorchelausflug-hurghada                            0          0          
+eintrittskarte-zum-hurghada-grand-aquarium                        0          0          
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtstu      0          0          
+glasbodenboot-hurghada-mit-schnorcheln                            0          0          
+hula-hula-insel-schnorchelausflug-hurghada                        0          0          
+hurghada-shopping-tour-basar-transfer                             0          0          
+kairo-mit-flug-ab-hurghada-pyramiden-museum                       0          0          
+kloester-st-antonius-st-paulus                                    0          0          
+luxor-tagesausflug-ab-hurghada                                    0          0          
+luxor-tagesausflug-heissluftballon-hoteluebernachtung             0          0          
+mahmya-insel-ausflug-hurghada                                     0          0          
+makadi-water-park-hurghada-mittagessen-transfer                   0          0          
+mini-egypt-park-hurghada                                          0          0          
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour            0          0          
+orange-bay-insel-schnorchelausflug-hurghada                       0          0          
+private-delfin-tour-hurghada                                      0          0          
+private-speedboot-tour-orange-bay-hurghada                        0          0          
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gize      0          0          
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korall      0          0          
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel           0          0          
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-gran      0          0          
+quad-tour-hurghada-kamelritt                                      0          0          
+reiten-in-hurghada-strand-wueste-pferde-im-meer                   0          0          
+super-safari-hurghada                                             0          0          
+
+------------------------------------------------------------------------------------------------------------------------
+[HU] -- 0 total German hits across 0 tours
+------------------------------------------------------------------------------------------------------------------------
+
+Tour                                                              Matches    Fields     Top German words
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegy      0          0          
+dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch      0          0          
+eden-island-schnorchelausflug-hurghada                            0          0          
+eintrittskarte-zum-hurghada-grand-aquarium                        0          0          
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtstu      0          0          
+glasbodenboot-hurghada-mit-schnorcheln                            0          0          
+hula-hula-insel-schnorchelausflug-hurghada                        0          0          
+hurghada-shopping-tour-basar-transfer                             0          0          
+kairo-mit-flug-ab-hurghada-pyramiden-museum                       0          0          
+kloester-st-antonius-st-paulus                                    0          0          
+luxor-tagesausflug-ab-hurghada                                    0          0          
+luxor-tagesausflug-heissluftballon-hoteluebernachtung             0          0          
+mahmya-insel-ausflug-hurghada                                     0          0          
+makadi-water-park-hurghada-mittagessen-transfer                   0          0          
+mini-egypt-park-hurghada                                          0          0          
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour            0          0          
+orange-bay-insel-schnorchelausflug-hurghada                       0          0          
+private-delfin-tour-hurghada                                      0          0          
+private-speedboot-tour-orange-bay-hurghada                        0          0          
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gize      0          0          
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korall      0          0          
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel           0          0          
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-gran      0          0          
+quad-tour-hurghada-kamelritt                                      0          0          
+reiten-in-hurghada-strand-wueste-pferde-im-meer                   0          0          
+super-safari-hurghada                                             0          0          
+
+------------------------------------------------------------------------------------------------------------------------
+[RU] -- 0 total German hits across 0 tours
+------------------------------------------------------------------------------------------------------------------------
+
+Tour                                                              Matches    Fields     Top German words
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegy      0          0          
+dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch      0          0          
+eden-island-schnorchelausflug-hurghada                            0          0          
+eintrittskarte-zum-hurghada-grand-aquarium                        0          0          
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtstu      0          0          
+glasbodenboot-hurghada-mit-schnorcheln                            0          0          
+hula-hula-insel-schnorchelausflug-hurghada                        0          0          
+hurghada-shopping-tour-basar-transfer                             0          0          
+kairo-mit-flug-ab-hurghada-pyramiden-museum                       0          0          
+kloester-st-antonius-st-paulus                                    0          0          
+luxor-tagesausflug-ab-hurghada                                    0          0          
+luxor-tagesausflug-heissluftballon-hoteluebernachtung             0          0          
+mahmya-insel-ausflug-hurghada                                     0          0          
+makadi-water-park-hurghada-mittagessen-transfer                   0          0          
+mini-egypt-park-hurghada                                          0          0          
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour            0          0          
+orange-bay-insel-schnorchelausflug-hurghada                       0          0          
+private-delfin-tour-hurghada                                      0          0          
+private-speedboot-tour-orange-bay-hurghada                        0          0          
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gize      0          0          
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korall      0          0          
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel           0          0          
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-gran      0          0          
+quad-tour-hurghada-kamelritt                                      0          0          
+reiten-in-hurghada-strand-wueste-pferde-im-meer                   0          0          
+super-safari-hurghada                                             0          0          
+
+
+========================================================================================================================
+DETAILED FIELD-LEVEL BREAKDOWN (Grouped by Locale)
+========================================================================================================================
+
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+██  LOCALE: EN  —  0 German hits across 0 tours
+██  ████████████████████████████████████████████████████████████████████████████████████████████████████
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+██  LOCALE: AR  —  0 German hits across 0 tours
+██  ████████████████████████████████████████████████████████████████████████████████████████████████████
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+██  LOCALE: FR  —  0 German hits across 0 tours
+██  ████████████████████████████████████████████████████████████████████████████████████████████████████
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+██  LOCALE: HU  —  0 German hits across 0 tours
+██  ████████████████████████████████████████████████████████████████████████████████████████████████████
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+██  LOCALE: RU  —  0 German hits across 0 tours
+██  ████████████████████████████████████████████████████████████████████████████████████████████████████
+
+========================================================================================================================
+CONSOLIDATED PER-TOUR VIEW (all 5 locales side by side)
+========================================================================================================================
+
+Tour                                                    EN     AR     FR     HU     RU     TOTAL    Details
+------------------------------------------------------------------------------------------------------------------------
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-s      0      0      0      0      0      0        
+dendera-halbtagesausflug-ab-hurghada-der-authentis      0      0      0      0      0      0        
+eden-island-schnorchelausflug-hurghada                  0      0      0      0      0      0        
+eintrittskarte-zum-hurghada-grand-aquarium              0      0      0      0      0      0        
+el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-a      0      0      0      0      0      0        
+glasbodenboot-hurghada-mit-schnorcheln                  0      0      0      0      0      0        
+hula-hula-insel-schnorchelausflug-hurghada              0      0      0      0      0      0        
+hurghada-shopping-tour-basar-transfer                   0      0      0      0      0      0        
+kairo-mit-flug-ab-hurghada-pyramiden-museum             0      0      0      0      0      0        
+kloester-st-antonius-st-paulus                          0      0      0      0      0      0        
+luxor-tagesausflug-ab-hurghada                          0      0      0      0      0      0        
+luxor-tagesausflug-heissluftballon-hoteluebernacht      0      0      0      0      0      0        
+mahmya-insel-ausflug-hurghada                           0      0      0      0      0      0        
+makadi-water-park-hurghada-mittagessen-transfer         0      0      0      0      0      0        
+mini-egypt-park-hurghada                                0      0      0      0      0      0        
+naechtliche-stadtrundfahrt-durch-hurghada-private-      0      0      0      0      0      0        
+orange-bay-insel-schnorchelausflug-hurghada             0      0      0      0      0      0        
+private-delfin-tour-hurghada                            0      0      0      0      0      0        
+private-speedboot-tour-orange-bay-hurghada              0      0      0      0      0      0        
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dah      0      0      0      0      0      0        
+privater-speedboot-ausflug-in-hurghada-schnorcheln      0      0      0      0      0      0        
+privater-tagesausflug-ab-hurghada-dendera-abydos-t      0      0      0      0      0      0        
+privater-tagesausflug-von-hurghada-nach-kairo-pyra      0      0      0      0      0      0        
+quad-tour-hurghada-kamelritt                            0      0      0      0      0      0        
+reiten-in-hurghada-strand-wueste-pferde-im-meer         0      0      0      0      0      0        
+super-safari-hurghada                                   0      0      0      0      0      0        
+
+========================================================================================================================
+MOST COMMON GERMAN LEFTOVERS
+========================================================================================================================
+
+German word/phrase                       Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+========================================================================================================================
+FIELD TYPE BREAKDOWN
+========================================================================================================================
+
+Field                                    Total German hits   
+------------------------------------------------------------------------------------------------------------------------
+
+========================================================================================================================
+WORD-LEVEL DETAIL PER LOCALE
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+EN — word frequency
+------------------------------------------------------------------------------------------------------------------------
+
+German word                              Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+AR — word frequency
+------------------------------------------------------------------------------------------------------------------------
+
+German word                              Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+FR — word frequency
+------------------------------------------------------------------------------------------------------------------------
+
+German word                              Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+HU — word frequency
+------------------------------------------------------------------------------------------------------------------------
+
+German word                              Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+RU — word frequency
+------------------------------------------------------------------------------------------------------------------------
+
+German word                              Occurrences    
+------------------------------------------------------------------------------------------------------------------------
+
+
+========================================================================================================================
+FINAL VERDICT
+========================================================================================================================
+
+Total German leftovers across all non-German locales: 0
+Tours audited: 26
+Non-German locales: 5 (en, ar, fr, hu, ru)
+Fully clean tours: 0 / 26
+
+CONCLUSION: 100% of tours have untranslated German content in every
+non-German locale. The content was bulk-copied from German with no
+proper translation pass. The most common leftovers are pricing table
+artifacts (Preis, Personen, Limousine, Minibus), itinerary step labels
+(Abholung, Mittagessen, Besichtigung), time references (Uhr, ca.),
+and the German ß character appearing in non-German text.
+

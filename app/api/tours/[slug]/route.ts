@@ -20,7 +20,7 @@ export async function GET(
     name: tour.name,
     price: tour.price,
     maxGuests: tour.maxGuests,
-    pricingTiers: parsePricingTiers(tour.description),
+    pricingTiers: tour.discount?.pricingTiers ?? parsePricingTiers(tour.description),
     discount: tour.discount,
     extras,
   });

@@ -1,0 +1,1221 @@
+[
+  {
+    "slug": "kairo-mit-flug-ab-hurghada-pyramiden-museum",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=5, ar=6)",
+        "deVal": "5 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=3)",
+        "deVal": "7 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "makadi-water-park-hurghada-mittagessen-transfer",
+    "issues": [
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=3)",
+        "deVal": "6 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, en=2)",
+        "deVal": "10 FAQs",
+        "localeVal": "2 FAQs"
+      },
+      {
+        "locale": "ru",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ru=2)",
+        "deVal": "10 FAQs",
+        "localeVal": "2 FAQs"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ru",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=10, ru=5)",
+        "deVal": "10 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ru",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ru=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ru",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ru=4)",
+        "deVal": "7 items",
+        "localeVal": "4 items"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=10, ar=7)",
+        "deVal": "10 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=4)",
+        "deVal": "7 items",
+        "localeVal": "4 items"
+      }
+    ]
+  },
+  {
+    "slug": "kloester-st-antonius-st-paulus",
+    "issues": [
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=6, ar=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=3)",
+        "deVal": "6 items",
+        "localeVal": "3 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=3)",
+        "deVal": "7 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "eden-island-schnorchelausflug-hurghada",
+    "issues": [
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=8, fr=7)",
+        "deVal": "8 items",
+        "localeVal": "7 items"
+      }
+    ]
+  },
+  {
+    "slug": "private-delfin-tour-hurghada",
+    "issues": [
+      {
+        "locale": "ru",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ru=2)",
+        "deVal": "10 FAQs",
+        "localeVal": "2 FAQs"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ru",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=6, ru=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ru",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ru=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ru",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=3, ru=2)",
+        "deVal": "3 items",
+        "localeVal": "2 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=4)",
+        "deVal": "6 items",
+        "localeVal": "4 items"
+      }
+    ]
+  },
+  {
+    "slug": "private-speedboot-tour-orange-bay-hurghada",
+    "issues": [
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "en",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=7, en=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "en",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, en=7)",
+        "deVal": "6 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "en",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=3, en=4)",
+        "deVal": "3 items",
+        "localeVal": "4 items"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=7, ar=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      }
+    ]
+  },
+  {
+    "slug": "dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      }
+    ]
+  },
+  {
+    "slug": "eintrittskarte-zum-hurghada-grand-aquarium",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      }
+    ]
+  },
+  {
+    "slug": "orange-bay-insel-schnorchelausflug-hurghada",
+    "issues": [
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=11, ar=6)",
+        "deVal": "11 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=9, ar=6)",
+        "deVal": "9 items",
+        "localeVal": "6 items"
+      }
+    ]
+  },
+  {
+    "slug": "mahmya-insel-ausflug-hurghada",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      }
+    ]
+  },
+  {
+    "slug": "glasbodenboot-hurghada-mit-schnorcheln",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      }
+    ]
+  },
+  {
+    "slug": "mini-egypt-park-hurghada",
+    "issues": [
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=5, ar=6)",
+        "deVal": "5 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=4, ar=2)",
+        "deVal": "4 items",
+        "localeVal": "2 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=3)",
+        "deVal": "6 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "naechtliche-stadtrundfahrt-durch-hurghada-private-tour",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "meeting_point",
+        "issue": "TIME_MISMATCH",
+        "deVal": "ca. 19:00 Uhr",
+        "localeVal": "حوالي الساعة 07:00 مساءً"
+      },
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "fr",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=8, fr=4)",
+        "deVal": "8 items",
+        "localeVal": "4 items"
+      },
+      {
+        "locale": "hu",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=8, hu=7)",
+        "deVal": "8 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=8, ar=6)",
+        "deVal": "8 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=4, ar=3)",
+        "deVal": "4 items",
+        "localeVal": "3 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=4, ar=3)",
+        "deVal": "4 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "luxor-tagesausflug-ab-hurghada",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=6, ar=7)",
+        "deVal": "6 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=3)",
+        "deVal": "7 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=5, ar=6)",
+        "deVal": "5 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=2, ar=3)",
+        "deVal": "2 items",
+        "localeVal": "3 items"
+      }
+    ]
+  },
+  {
+    "slug": "hula-hula-insel-schnorchelausflug-hurghada",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      }
+    ]
+  },
+  {
+    "slug": "hurghada-shopping-tour-basar-transfer",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=5, ar=6)",
+        "deVal": "5 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=4, ar=2)",
+        "deVal": "4 items",
+        "localeVal": "2 items"
+      }
+    ]
+  },
+  {
+    "slug": "super-safari-hurghada",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "meeting_point",
+        "issue": "TIME_MISMATCH",
+        "deVal": "ca. 13:00 Uhr",
+        "localeVal": "حوالي الساعة 01:00 مساءً"
+      },
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=5, ar=7)",
+        "deVal": "5 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=9, ar=7)",
+        "deVal": "9 items",
+        "localeVal": "7 items"
+      }
+    ]
+  },
+  {
+    "slug": "2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=3, ar=10)",
+        "deVal": "3 FAQs",
+        "localeVal": "10 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=7, ar=8)",
+        "deVal": "7 items",
+        "localeVal": "8 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=5, ar=7)",
+        "deVal": "5 items",
+        "localeVal": "7 items"
+      }
+    ]
+  },
+  {
+    "slug": "quad-tour-hurghada-kamelritt",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=7, ar=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      }
+    ]
+  },
+  {
+    "slug": "privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=7, ar=6)",
+        "deVal": "7 items",
+        "localeVal": "6 items"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=8, ar=4)",
+        "deVal": "8 items",
+        "localeVal": "4 items"
+      }
+    ]
+  },
+  {
+    "slug": "luxor-tagesausflug-heissluftballon-hoteluebernachtung",
+    "issues": [
+      {
+        "locale": "ar",
+        "field": "meeting_point",
+        "issue": "TIME_MISMATCH",
+        "deVal": "ca. 17:00 Uhr",
+        "localeVal": "حوالي الساعة 05:00 مساءً"
+      },
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "highlights",
+        "issue": "COUNT_MISMATCH (DE=6, ar=7)",
+        "deVal": "6 items",
+        "localeVal": "7 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=4)",
+        "deVal": "7 items",
+        "localeVal": "4 items"
+      }
+    ]
+  },
+  {
+    "slug": "privater-tagesausflug-ab-hurghada-dendera-abydos-tempel",
+    "issues": [
+      {
+        "locale": "en",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ru",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "fr",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "hu",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "itinerary",
+        "issue": "GERMAN_TEXT_IN_CONTENT",
+        "deVal": "(should be translated)",
+        "localeVal": "(contains German words in itinerary)"
+      },
+      {
+        "locale": "ar",
+        "field": "faqs",
+        "issue": "FAQ_COUNT_MISMATCH (DE=10, ar=8)",
+        "deVal": "10 FAQs",
+        "localeVal": "8 FAQs"
+      },
+      {
+        "locale": "ar",
+        "field": "included",
+        "issue": "COUNT_MISMATCH (DE=6, ar=5)",
+        "deVal": "6 items",
+        "localeVal": "5 items"
+      },
+      {
+        "locale": "ar",
+        "field": "not_included",
+        "issue": "COUNT_MISMATCH (DE=7, ar=3)",
+        "deVal": "7 items",
+        "localeVal": "3 items"
+      }
+    ]
+  }
+]

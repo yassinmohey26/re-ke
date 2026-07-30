@@ -6,11 +6,19 @@ function stripZeroMinutes(d: string): string {
   return d.replace(/\s*0\s*(minutes?|Min\.?|minutes?)\s*/gi, ' ').replace(/\s{2,}/g, ' ').trim();
 }
 
+export interface PricingTierEntry {
+  min: number;
+  max: number;
+  price: number;
+  vehicle?: 'sedan' | 'minibus' | 'speedboat' | 'boat';
+}
+
 export interface Discount {
   active: boolean;
   percentage: number;
   tierPrices?: number[];
   childTiers?: { label: string; price: string }[];
+  pricingTiers?: PricingTierEntry[];
 }
 
 export interface Tour {
@@ -101,15 +109,19 @@ function parseDiscount(val: unknown): Discount | null {
   if (!val) return null;
   if (typeof val === 'object' && val !== null) {
     const d = val as Record<string, unknown>;
+    const pricingTiers = Array.isArray(d.pricingTiers)
+      ? (d.pricingTiers as PricingTierEntry[])
+      : undefined;
     if (d.active === true && typeof d.percentage === 'number') {
       return {
         active: true,
         percentage: d.percentage,
         tierPrices: Array.isArray(d.tierPrices) ? d.tierPrices.map(Number) : undefined,
         childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined,
+        pricingTiers,
       };
     }
-    return { active: false, percentage: 0, childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined };
+    return { active: false, percentage: 0, childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined, pricingTiers };
   }
   if (typeof val === 'string') {
     try {
@@ -463,8 +475,10 @@ export async function getLocalizedCategoryLabel(slug: string, locale: string): P
   const cat = cats.find((c) => c.slug === slug);
   if (cat) return cat.label;
   const fallback: Record<string, Record<string, string>> = {
-    snorkel: { de: 'Schnorchel', en: 'Snorkelling', fr: 'Snorkeling', ru: 'Снорклинг', ar: 'سنوركلينغ', hu: 'Sznorkelezés' },
+    snorkel: { de: 'Schnorchel', en: 'Snorkeling', fr: 'Snorkeling', ru: 'Снорклинг', ar: 'سنوركلينغ', hu: 'Sznorkelezés' },
+    schnorchel: { de: 'Schnorchel', en: 'Snorkeling', fr: 'Snorkeling', ru: 'Снорклинг', ar: 'سنوركلينغ', hu: 'Sznorkelezés' },
     kultur: { de: 'Kultur', en: 'Culture', fr: 'Culture', ru: 'Культура', ar: 'ثقافة', hu: 'Kultúra' },
+    safari: { de: 'Safari', en: 'Safari', fr: 'Safari', ru: 'Сафари', ar: 'سفاري', hu: 'Szafari' },
   };
   return fallback[slug]?.[locale] ?? slug;
 }

@@ -123,6 +123,15 @@ export default async function TourDetailPage({ params }: Props) {
     ],
   };
 
+  const basePricingTiers = parsePricingTiers(tour.description);
+  const discountTiers = (tour.discount?.pricingTiers ?? []).map(t => ({
+    minGuests: t.min,
+    maxGuests: t.max,
+    pricePerPerson: t.price,
+  }));
+  const pricingTiers = discountTiers.length > 0 ? discountTiers : basePricingTiers;
+  const hasPricing = basePricingTiers.length > 0 || discountTiers.length > 0;
+
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -135,7 +144,7 @@ export default async function TourDetailPage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 'var(--space-4)' }}>
         <div className="container">
-          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={parsePricingTiers(tour.description)} discount={tour.discount} extras={extras}>
+          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={pricingTiers} discount={tour.discount} extras={extras}>
             {/* Title */}
             <h1 className={styles.tourTitle}>{tour.name}</h1>
             {tour.meetingPoint && (
@@ -205,7 +214,7 @@ export default async function TourDetailPage({ params }: Props) {
                 )}
 
                 {/* Interactive Pricing Table (linked to booking context) */}
-                {hasPricingTable(tour.description) && (
+                {hasPricing && (
                   <InteractivePricingTable />
                 )}
 

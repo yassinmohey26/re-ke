@@ -1,0 +1,508 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Pricing Table Preview</title><style>
+    body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+    h1 { font-size: 20px; margin-bottom: 8px; }
+    h2 { font-size: 16px; margin: 30px 0 10px; color: #333; }
+    .tour-name { font-size: 14px; color: #666; margin-bottom: 30px; }
+    .comparison { display: flex; gap: 30px; flex-wrap: wrap; }
+    .column { flex: 1; min-width: 320px; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .column h3 { font-size: 14px; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #eee; }
+    .column.old h3 { color: #c00; border-color: #c00; }
+    .column.new h3 { color: #080; border-color: #080; }
+    .tour-pricing-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .tour-pricing-table th { background: #f0f0f0; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 2px solid #ddd; }
+    .tour-pricing-table td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+    .locale-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-bottom: 12px; }
+    .badge-de { background: #ffd700; color: #000; }
+    .badge-en { background: #0070f3; color: #fff; }
+    .badge-ar { background: #0a0; color: #fff; }
+    .badge-fr { background: #00f; color: #fff; }
+    .badge-hu { background: #c00; color: #fff; }
+    .badge-ru { background: #d52b1e; color: #fff; }
+    table[dir="rtl"] th, table[dir="rtl"] td { text-align: right; }
+    .note { background: #fffbe6; border: 1px solid #ffe58f; padding: 12px 16px; border-radius: 6px; font-size: 13px; margin-top: 24px; }
+  </style></head><body><h1>Pricing Table Migration Preview</h1><div class="tour-name">Test Tour: <strong>Privater Delfin-Ausflug in Hurghada mit Speedboot</strong> (private-delfin-tour-hurghada)</div><h2>Locale: DE (German)</h2><div class="comparison"><div class="column old"><h3>CURRENT (tours.description)</h3><div class="locale-badge badge-de">de</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>Teilnehmer</strong></span></th>
+<th>Boot</th>
+<th><span><strong>Preis pro Person</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Teilnehmer"><span><strong>1 Person</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Teilnehmer"><span><strong>2 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Teilnehmer"><span><strong>3 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Teilnehmer"><span><strong>4 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Teilnehmer"><span><strong>5 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Teilnehmer"><span><strong>6 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-de">de</div><table class="tour-pricing-table">
+<thead>
+<tr>
+  <th>Teilnehmer</th>
+  <th>Fahrzeug</th>
+  <th>Preis pro Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 Person</td>
+  <td>Privates Speedboot</td>
+  <td>150 € p.P.</td>
+</tr>
+<tr>
+  <td>2 Personen</td>
+  <td>Privates Speedboot</td>
+  <td>80 € p.P.</td>
+</tr>
+<tr>
+  <td>3 Personen</td>
+  <td>Privates Speedboot</td>
+  <td>70 € p.P.</td>
+</tr>
+<tr>
+  <td>4 Personen</td>
+  <td>Privates Speedboot</td>
+  <td>60 € p.P.</td>
+</tr>
+<tr>
+  <td>5 Personen</td>
+  <td>Privates Speedboot</td>
+  <td>55 € p.P.</td>
+</tr>
+<tr>
+  <td>6 Personen</td>
+  <td>Privates Speedboot</td>
+  <td>50 € p.P.</td>
+</tr>
+</tbody>
+</table></div></div><h2>Locale: EN (English)</h2><div class="comparison"><div class="column old"><h3>CURRENT (content_translations[en])</h3><div class="locale-badge badge-en">en</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>Participants</strong></span></th>
+<th>Boat</th>
+<th><span><strong>Price per Person</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Participants"><span><strong>1 Person</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>2 Persons</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>3 Persons</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>4 Persons</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>5 Persons</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>6 Persons</strong></span></td>
+<td data-label="Boat"><span><strong>Private Speedboat</strong></span></td>
+<td data-label="Price "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-en">en</div><table class="tour-pricing-table">
+<thead>
+<tr>
+  <th>Participants</th>
+  <th>Vehicle</th>
+  <th>Price per Person</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 Person</td>
+  <td>Private Speedboat</td>
+  <td>150 € p.P.</td>
+</tr>
+<tr>
+  <td>2 Persons</td>
+  <td>Private Speedboat</td>
+  <td>80 € p.P.</td>
+</tr>
+<tr>
+  <td>3 Persons</td>
+  <td>Private Speedboat</td>
+  <td>70 € p.P.</td>
+</tr>
+<tr>
+  <td>4 Persons</td>
+  <td>Private Speedboat</td>
+  <td>60 € p.P.</td>
+</tr>
+<tr>
+  <td>5 Persons</td>
+  <td>Private Speedboat</td>
+  <td>55 € p.P.</td>
+</tr>
+<tr>
+  <td>6 Persons</td>
+  <td>Private Speedboat</td>
+  <td>50 € p.P.</td>
+</tr>
+</tbody>
+</table></div></div><h2>Locale: AR (Arabic)</h2><div class="comparison"><div class="column old"><h3>CURRENT (content_translations[ar])</h3><div class="locale-badge badge-ar">ar</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>المشاركون</strong></span></th>
+<th>Boot</th>
+<th><span><strong>السعر للفرد</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="المشاركون"><span><strong>1 Person</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="المشاركون"><span><strong>2 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="المشاركون"><span><strong>3 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="المشاركون"><span><strong>4 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="المشاركون"><span><strong>5 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="المشاركون"><span><strong>6 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-ar">ar</div><table class="tour-pricing-table" dir="rtl">
+<thead>
+<tr>
+  <th>المشاركون</th>
+  <th>المركبة</th>
+  <th>السعر للفرد</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 شخص</td>
+  <td>زورق سريع خاص</td>
+  <td>150 € للشخص</td>
+</tr>
+<tr>
+  <td>2 أشخاص</td>
+  <td>زورق سريع خاص</td>
+  <td>80 € للشخص</td>
+</tr>
+<tr>
+  <td>3 أشخاص</td>
+  <td>زورق سريع خاص</td>
+  <td>70 € للشخص</td>
+</tr>
+<tr>
+  <td>4 أشخاص</td>
+  <td>زورق سريع خاص</td>
+  <td>60 € للشخص</td>
+</tr>
+<tr>
+  <td>5 أشخاص</td>
+  <td>زورق سريع خاص</td>
+  <td>55 € للشخص</td>
+</tr>
+<tr>
+  <td>6 أشخاص</td>
+  <td>زورق سريع خاص</td>
+  <td>50 € للشخص</td>
+</tr>
+</tbody>
+</table></div></div><h2>Locale: FR (French)</h2><div class="comparison"><div class="column old"><h3>CURRENT (content_translations[fr])</h3><div class="locale-badge badge-fr">fr</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>Participants</strong></span></th>
+<th>Boot</th>
+<th><span><strong>Prix par personne</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Participants"><span><strong>1 Person</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>2 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>3 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>4 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>5 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Participants"><span><strong>6 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-fr">fr</div><table class="tour-pricing-table">
+<thead>
+<tr>
+  <th>Participants</th>
+  <th>Véhicule</th>
+  <th>Prix par personne</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 Personne</td>
+  <td>Hors-bord privé</td>
+  <td>150 € /pers.</td>
+</tr>
+<tr>
+  <td>2 Personnes</td>
+  <td>Hors-bord privé</td>
+  <td>80 € /pers.</td>
+</tr>
+<tr>
+  <td>3 Personnes</td>
+  <td>Hors-bord privé</td>
+  <td>70 € /pers.</td>
+</tr>
+<tr>
+  <td>4 Personnes</td>
+  <td>Hors-bord privé</td>
+  <td>60 € /pers.</td>
+</tr>
+<tr>
+  <td>5 Personnes</td>
+  <td>Hors-bord privé</td>
+  <td>55 € /pers.</td>
+</tr>
+<tr>
+  <td>6 Personnes</td>
+  <td>Hors-bord privé</td>
+  <td>50 € /pers.</td>
+</tr>
+</tbody>
+</table></div></div><h2>Locale: HU (Hungarian)</h2><div class="comparison"><div class="column old"><h3>CURRENT (content_translations[hu])</h3><div class="locale-badge badge-hu">hu</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>Résztvevők</strong></span></th>
+<th>Boot</th>
+<th><span><strong>Ár személyenként</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Résztvevők"><span><strong>1 Person</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Résztvevők"><span><strong>2 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Résztvevők"><span><strong>3 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Résztvevők"><span><strong>4 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Résztvevők"><span><strong>5 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Résztvevők"><span><strong>6 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-hu">hu</div><table class="tour-pricing-table">
+<thead>
+<tr>
+  <th>Résztvevők</th>
+  <th>Jármű</th>
+  <th>Ár személyenként</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>150 € /fő</td>
+</tr>
+<tr>
+  <td>2 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>80 € /fő</td>
+</tr>
+<tr>
+  <td>3 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>70 € /fő</td>
+</tr>
+<tr>
+  <td>4 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>60 € /fő</td>
+</tr>
+<tr>
+  <td>5 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>55 € /fő</td>
+</tr>
+<tr>
+  <td>6 fő</td>
+  <td>Privát motorcsónak</td>
+  <td>50 € /fő</td>
+</tr>
+</tbody>
+</table></div></div><h2>Locale: RU (Russian)</h2><div class="comparison"><div class="column old"><h3>CURRENT (content_translations[ru])</h3><div class="locale-badge badge-ru">ru</div><table class="tour-pricing-table">
+<thead>
+<tr>
+<th><span><strong>Участники</strong></span></th>
+<th>Boot</th>
+<th><span><strong>Цена за человека</strong></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-label="Участники"><span><strong>1 Person</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>150 € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Участники"><span><strong>2 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>80&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Участники"><span><strong>3 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>70&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Участники"><span><strong>4 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>60&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Участники"><span><strong>5 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>55&nbsp; € p.P.</strong></span></td>
+</tr>
+<tr>
+<td data-label="Участники"><span><strong>6 Personen</strong></span></td>
+<td data-label="Boot"><span><strong>Privates Speedboot</strong></span></td>
+<td data-label="Preis "><span><strong>50&nbsp; € p.P.</strong></span></td>
+</tr>
+</tbody>
+</table></div><div class="column new"><h3>NEW (pricing_tiers + pricing_labels)</h3><div class="locale-badge badge-ru">ru</div><table class="tour-pricing-table">
+<thead>
+<tr>
+  <th>Участники</th>
+  <th>Транспорт</th>
+  <th>Цена за человека</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1 чел.</td>
+  <td>Частный катер</td>
+  <td>150 € /чел.</td>
+</tr>
+<tr>
+  <td>2 чел.</td>
+  <td>Частный катер</td>
+  <td>80 € /чел.</td>
+</tr>
+<tr>
+  <td>3 чел.</td>
+  <td>Частный катер</td>
+  <td>70 € /чел.</td>
+</tr>
+<tr>
+  <td>4 чел.</td>
+  <td>Частный катер</td>
+  <td>60 € /чел.</td>
+</tr>
+<tr>
+  <td>5 чел.</td>
+  <td>Частный катер</td>
+  <td>55 € /чел.</td>
+</tr>
+<tr>
+  <td>6 чел.</td>
+  <td>Частный катер</td>
+  <td>50 € /чел.</td>
+</tr>
+</tbody>
+</table></div></div><div class="note">
+    <strong>Note:</strong> The OLD table on the left is the current HTML blob stored per-locale in the database.
+    The NEW table on the right is generated dynamically from <code>pricing_tiers</code> (stored once on the tour) +
+    <code>pricing_labels</code> (stored once per locale). They should look identical except the labels are now
+    properly translated for each locale instead of having leftover German words.
+  </div></body></html>

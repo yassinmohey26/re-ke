@@ -195,19 +195,19 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       <section className={styles.faqSection}>
         <div className="container">
           <div className={styles.faqInner}>
-            <h2 className={styles.faqTitle}>Häufig gestellte Fragen</h2>
+            <h2 className={styles.faqTitle}>{t('faqSectionTitle')}</h2>
             <p className={styles.faqDesc}>
-              Sie haben weitere Fragen? Kontaktieren Sie uns jederzeit – wir helfen gerne weiter!
+              {t('faqSectionDesc')}
             </p>
             <FaqAccordion
               heading=""
               items={[
-                { question: 'Wie kann ich eine Tour buchen?', answer: 'Sie können Ihre Tour ganz einfach online über unsere Website buchen oder uns telefonisch bzw. per E-Mail kontaktieren.' },
-                { question: 'Gibt es Altersbeschränkungen für die Ausflüge?', answer: 'Einige Ausflüge sind für bestimmte Altersgruppen konzipiert. Bitte prüfen Sie die Hinweise in der Tourbeschreibung oder fragen Sie direkt bei uns nach.' },
-                { question: 'Was ist im Reisepaket enthalten?', answer: 'Unsere Pakete beinhalten in der Regel Unterkunft, Transport, geführte Touren sowie ausgewählte Mahlzeiten. Die genauen Leistungen finden Sie in der jeweiligen Tourbeschreibung.' },
-                { question: 'Was sollte ich für die Tour einpacken?', answer: 'Bequeme Kleidung, wetterfeste Schuhe, Sonnenschutz und persönliche Medikamente werden empfohlen. Eine detaillierte Packliste erhalten Sie nach der Buchung.' },
-                { question: 'Wie lauten die Stornierungsbedingungen?', answer: 'Kostenlose Stornierung ist bis zu 48 Stunden vor Reisebeginn möglich. Danach fallen gestaffelte Gebühren an – Details entnehmen Sie bitte unseren AGB.' },
-                { question: 'Wie kann ich den Kundenservice während der Tour kontaktieren?', answer: 'Unser Team ist rund um die Uhr über eine Notfallnummer oder WhatsApp erreichbar. Die Kontaktdaten erhalten Sie mit Ihren Reiseunterlagen.' },
+                { question: t('faqQ1'), answer: t('faqA1') },
+                { question: t('faqQ2'), answer: t('faqA2') },
+                { question: t('faqQ3'), answer: t('faqA3') },
+                { question: t('faqQ4'), answer: t('faqA4') },
+                { question: t('faqQ5'), answer: t('faqA5') },
+                { question: t('faqQ6'), answer: t('faqA6') },
               ]}
             />
           </div>

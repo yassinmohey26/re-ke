@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useCallback, useEffect } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import styles from './Carousel.module.css';
 
@@ -21,6 +21,7 @@ function ArrowIcon() {
 
 export default function Carousel({ children, headerActions, slideshow }: CarouselProps) {
   const locale = useLocale();
+  const t = useTranslations('a11y');
   const isRtl = locale === 'ar';
   const childrenArray = React.Children.toArray(children);
 
@@ -50,7 +51,7 @@ export default function Carousel({ children, headerActions, slideshow }: Carouse
             onClick={() => goTo(currentIndex - 1)}
             disabled={!canGoPrev}
             className={`${styles.slideshowArrow} ${styles.slideshowArrowPrev}`}
-            aria-label={isRtl ? 'Weiter' : 'Zurück'}
+            aria-label={isRtl ? t('nextPage') : t('prevPage')}
           >
             <span style={{ display: 'inline-flex', transform: isRtl ? 'none' : 'scaleX(-1)' }}>
               <ArrowIcon />
@@ -60,7 +61,7 @@ export default function Carousel({ children, headerActions, slideshow }: Carouse
           <div className={styles.slideshowViewport}>
             <div
               className={styles.slideshowTrack}
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              style={{ transform: isRtl ? `translateX(${currentIndex * 100}%)` : `translateX(-${currentIndex * 100}%)` }}
             >
               {childrenArray.map((child, i) => (
                 <div key={i} className={styles.slideshowSlide}>
@@ -74,7 +75,7 @@ export default function Carousel({ children, headerActions, slideshow }: Carouse
             onClick={() => goTo(currentIndex + 1)}
             disabled={!canGoNext}
             className={`${styles.slideshowArrow} ${styles.slideshowArrowNext}`}
-            aria-label={isRtl ? 'Zurück' : 'Weiter'}
+            aria-label={isRtl ? t('prevPage') : t('nextPage')}
           >
             <span style={{ display: 'inline-flex', transform: isRtl ? 'scaleX(-1)' : 'none' }}>
               <ArrowIcon />
@@ -147,7 +148,7 @@ export default function Carousel({ children, headerActions, slideshow }: Carouse
       onClick={() => scroll(dir)}
       disabled={dir === 'prev' ? !canScrollPrev : !canScrollNext}
       className={`${mobile ? styles.mobileArrow : styles.arrow} ${dir === 'prev' ? (mobile ? styles.mobilePrev : styles.arrowPrev) : (mobile ? styles.mobileNext : styles.arrowNext)}`}
-      aria-label={dir === 'prev' ? 'Zurück' : 'Weiter'}
+      aria-label={dir === 'prev' ? t('prevPage') : t('nextPage')}
     >
       <span style={{ display: 'inline-flex', transform: dir === 'prev' ? 'scaleX(-1)' : 'none' }}>
         <ArrowIcon />

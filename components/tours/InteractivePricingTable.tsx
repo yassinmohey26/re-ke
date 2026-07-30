@@ -37,8 +37,8 @@ export default function InteractivePricingTable() {
                 >
                   <td className={styles.pricingCellGuests}>
                     {tier.minGuests === tier.maxGuests
-                      ? `${tier.minGuests} ${tier.minGuests === 1 ? 'Person' : 'Personen'}`
-                      : `${tier.minGuests}–${tier.maxGuests} Personen`}
+                      ? `${tier.minGuests} ${tier.minGuests === 1 ? t('person') : t('persons')}`
+                      : `${tier.minGuests}–${tier.maxGuests} ${t('persons')}`}
                   </td>
                   <td className={styles.pricingCellPrice}>
                     {hasSale ? (
