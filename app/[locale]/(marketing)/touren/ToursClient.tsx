@@ -14,6 +14,20 @@ interface DestinationOption {
   name: string;
 }
 
+const LONG_DISTANCE_SLUGS = [
+  'privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum',
+  'kairo-mit-flug-ab-hurghada-pyramiden-museum',
+  '2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben',
+  'luxor-tagesausflug-ab-hurghada',
+  'luxor-tagesausflug-heissluftballon-hoteluebernachtung',
+  'privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh',
+  'privater-tagesausflug-ab-hurghada-dendera-abydos-tempel',
+  'dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel',
+  'kloester-st-antonius-st-paulus',
+];
+
+const SPECIAL_DEST_SLUGS = new Set(['el-quseir', 'marsa-alam', 'kairo']);
+
 interface Props {
   tours: Tour[];
   locale: string;
@@ -80,35 +94,44 @@ const DURATION_MAP: Record<string, [number, number]> = {
 export default function ToursClient({ tours, locale, heroTitle, heroImage, destinations = [], translations: t }: Props) {
   const tBook = useTranslations('booking');
   const searchParams = useSearchParams();
-  const initialType = searchParams.get('type');
 
-  const [draftDestination, setDraftDestination] = useState('');
-  const [draftLocation, setDraftLocation] = useState('');
-  const [draftSearch, setDraftSearch] = useState('');
+  const router = useRouter();
+
+  function getInitParam(key: string): string {
+    return searchParams.get(key) || '';
+  }
+
+  function getInitSet(key: string): Set<string> {
+    return searchParams.get(key) ? new Set(searchParams.get(key)!.split(',')) : new Set();
+  }
+
+  const paramsDest = getInitParam('destination');
+  const paramsTypes = getInitSet('type');
+  const paramsDurations = getInitSet('duration');
+  const paramsPriceMin = getInitParam('price_min');
+  const paramsPriceMax = getInitParam('price_max');
+  const paramsQ = getInitParam('q');
+  const paramsOrderby = getInitParam('orderby');
+
+  const [draftDestination, setDraftDestination] = useState(paramsDest);
+  const [draftSearch, setDraftSearch] = useState(paramsQ);
   const [guestAdults, setGuestAdults] = useState(2);
   const [guestChildren, setGuestChildren] = useState(0);
   const [guestOpen, setGuestOpen] = useState(false);
   const guestRef = useRef<HTMLDivElement>(null);
-  const [draftTypes, setDraftTypes] = useState<Set<string>>(
-    () => initialType && TYPE_MAP[initialType] ? new Set([initialType]) : new Set()
-  );
-  const [draftDurations, setDraftDurations] = useState<Set<string>>(new Set());
-  const [draftPriceMin, setDraftPriceMin] = useState('');
-  const [draftPriceMax, setDraftPriceMax] = useState('');
+  const [draftTypes, setDraftTypes] = useState<Set<string>>(() => new Set(paramsTypes));
+  const [draftDurations, setDraftDurations] = useState<Set<string>>(() => new Set(paramsDurations));
+  const [draftPriceMin, setDraftPriceMin] = useState(paramsPriceMin);
+  const [draftPriceMax, setDraftPriceMax] = useState(paramsPriceMax);
 
   const [appliedDestination, setAppliedDestination] = useState('');
-  const [appliedLocation, setAppliedLocation] = useState('');
   const [appliedSearch, setAppliedSearch] = useState('');
-  const [appliedTypes, setAppliedTypes] = useState<Set<string>>(
-    () => initialType && TYPE_MAP[initialType] ? new Set([initialType]) : new Set()
-  );
+  const [appliedTypes, setAppliedTypes] = useState<Set<string>>(() => new Set(paramsTypes));
   const [appliedDurations, setAppliedDurations] = useState<Set<string>>(new Set());
   const [appliedPriceMin, setAppliedPriceMin] = useState('');
   const [appliedPriceMax, setAppliedPriceMax] = useState('');
 
-  const router = useRouter();
-
-  const [sortBy, setSortBy] = useState('default');
+  const [sortBy, setSortBy] = useState(paramsOrderby || 'default');
   const [page, setPageState] = useState(() => {
     const p = Number(searchParams.get('page'));
     return p > 0 ? p : 1;
@@ -124,15 +147,18 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   }, []);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (page <= 1) {
-      params.delete('page');
-    } else {
-      params.set('page', String(page));
-    }
+    const params = new URLSearchParams();
+    if (appliedDestination) params.set('destination', appliedDestination);
+    if (appliedTypes.size > 0) params.set('type', [...appliedTypes].join(','));
+    if (appliedDurations.size > 0) params.set('duration', [...appliedDurations].join(','));
+    if (appliedPriceMin) params.set('price_min', appliedPriceMin);
+    if (appliedPriceMax) params.set('price_max', appliedPriceMax);
+    if (appliedSearch) params.set('q', appliedSearch);
+    if (sortBy !== 'default') params.set('orderby', sortBy);
+    if (page > 1) params.set('page', String(page));
     const qs = params.toString();
     router.replace(`${window.location.pathname}${qs ? '?' + qs : ''}`, { scroll: false });
-  }, [page, router]);
+  }, [page, sortBy, appliedDestination, appliedSearch, appliedTypes, appliedDurations, appliedPriceMin, appliedPriceMax, router]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -168,27 +194,24 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
 
   const handleSearch = useCallback(() => {
     setAppliedDestination(draftDestination);
-    setAppliedLocation(draftLocation);
     setAppliedSearch(draftSearch);
     setAppliedTypes(new Set(draftTypes));
     setAppliedDurations(new Set(draftDurations));
     setAppliedPriceMin(draftPriceMin);
     setAppliedPriceMax(draftPriceMax);
     setPage(1);
-  }, [draftDestination, draftLocation, draftSearch, draftTypes, draftDurations, draftPriceMin, draftPriceMax]);
+  }, [draftDestination, draftSearch, draftTypes, draftDurations, draftPriceMin, draftPriceMax]);
 
-  const hasActiveFilters = appliedDestination !== '' || appliedLocation !== '' || appliedTypes.size > 0 || appliedDurations.size > 0 || appliedSearch.length > 0 || appliedPriceMin !== '' || appliedPriceMax !== '';
+  const hasActiveFilters = appliedDestination !== '' || appliedTypes.size > 0 || appliedDurations.size > 0 || appliedSearch.length > 0 || appliedPriceMin !== '' || appliedPriceMax !== '';
 
   const clearAllFilters = useCallback(() => {
     setDraftDestination('');
-    setDraftLocation('');
     setDraftSearch('');
     setDraftTypes(new Set());
     setDraftDurations(new Set());
     setDraftPriceMin('');
     setDraftPriceMax('');
     setAppliedDestination('');
-    setAppliedLocation('');
     setAppliedSearch('');
     setAppliedTypes(new Set());
     setAppliedDurations(new Set());
@@ -200,8 +223,8 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   const filtered = useMemo(() => {
     let result = [...tours];
 
-    if (appliedDestination) {
-      result = result.filter(tour => tour.destinationSlug === appliedDestination);
+    if (SPECIAL_DEST_SLUGS.has(appliedDestination)) {
+      result = result.filter(tour => LONG_DISTANCE_SLUGS.includes(tour.slug));
     }
 
     if (appliedSearch) {
@@ -278,19 +301,6 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
               <span className={styles.searchLabel}>{t.searchWhereLabel}</span>
               <select
                 className={styles.searchInput}
-                value={draftLocation}
-                onChange={e => setDraftLocation(e.target.value)}
-              >
-                <option value="">{t.allDestinations}</option>
-                {destinations.filter(d => !['Kairo', 'Luxor', 'Marsa Alam', 'El Quseir'].includes(d.name)).map(d => (
-                  <option key={d.slug} value={d.name}>{d.name}</option>
-                ))}
-              </select>
-            </div>
-            <div className={styles.searchField}>
-              <span className={styles.searchLabel}>{t.searchWhere}</span>
-              <select
-                className={styles.searchInput}
                 value={draftDestination}
                 onChange={e => setDraftDestination(e.target.value)}
               >
@@ -353,6 +363,31 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
             </button>
           </div>
         </div>
+        {destinations.length > 0 && (
+          <div className={styles.destChips}>
+            {destinations.map(d => {
+              const isActive = appliedDestination === d.slug;
+              return (
+                <button
+                  key={d.slug}
+                  className={`${styles.destChip} ${isActive ? styles.destChipActive : ''}`}
+                  onClick={() => {
+                    if (isActive) {
+                      setDraftDestination('');
+                      setAppliedDestination('');
+                    } else {
+                      setDraftDestination(d.slug);
+                      setAppliedDestination(d.slug);
+                    }
+                    setPage(1);
+                  }}
+                >
+                  {d.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Category Cards */}

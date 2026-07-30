@@ -267,6 +267,40 @@ select.searchInput {
   background: #1543b0;
 }
 
+/* ============ Destination Chips ============ */
+.destChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 720px;
+  margin-top: 12px;
+}
+.destChip {
+  padding: 6px 16px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.destChip:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.6);
+}
+.destChipActive {
+  background: #1B4FD8;
+  border-color: #1B4FD8;
+  color: #fff;
+}
+.destChipActive:hover {
+  background: #1543b0;
+  border-color: #1543b0;
+}
+
 /* ============ Container ============ */
 .container {
   display: flex;
@@ -698,6 +732,15 @@ select.searchInput {
     width: 100%;
     border-radius: 12px;
     height: 44px;
+  }
+  .destChips {
+    max-width: 100%;
+    padding: 0 12px;
+    gap: 6px;
+  }
+  .destChip {
+    font-size: 12px;
+    padding: 4px 12px;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);

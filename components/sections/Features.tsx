@@ -1,6 +1,6 @@
 'use client';
 
-import { Handshake, Percent, Heart, Gem } from 'lucide-react';
+import { Handshake, Percent, Heart, Award } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import styles from './Features.module.css';
 
@@ -34,7 +34,7 @@ const FEATURES = [
   { icon: CustomAStar, titleKey: 'f3Title', descKey: 'f3Desc', outline: false },
   { icon: Percent, titleKey: 'f4Title', descKey: 'f4Desc', outline: true },
   { icon: Heart, titleKey: 'f5Title', descKey: 'f5Desc', outline: true },
-  { icon: Gem, titleKey: 'f6Title', descKey: 'f6Desc', outline: true },
+  { icon: Award, titleKey: 'f6Title', descKey: 'f6Desc', outline: true },
 ];
 
 export default function Features() {
