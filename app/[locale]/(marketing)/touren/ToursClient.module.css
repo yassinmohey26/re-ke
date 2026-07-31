@@ -168,22 +168,39 @@
   align-items: center;
   justify-content: space-between;
 }
+.guestsField {
+  position: relative;
+}
+.guestsFieldOpen {
+  z-index: 1000;
+}
+.guestBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
 .guestDropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
+  min-width: 220px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.15);
   padding: 12px 16px;
-  z-index: 50;
-  margin-top: 4px;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 .guestRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
   padding: 8px 0;
 }
 .guestRow + .guestRow {
@@ -196,21 +213,28 @@
 }
 .guestStepper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 1;
 }
 .guestBtn {
   width: 32px;
   height: 32px;
+  padding: 0;
   border-radius: 50%;
   border: 1px solid var(--color-border-4);
   background: #fff;
   color: var(--color-text-1);
   font-size: 18px;
+  line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: border-color 0.15s;
 }
 .guestBtn:hover {
@@ -221,6 +245,7 @@
   text-align: center;
   font-size: 16px;
   font-weight: 600;
+  line-height: 1;
   color: var(--color-text-1);
 }
 .guestDone {
@@ -732,6 +757,25 @@ select.searchInput {
     width: 100%;
     border-radius: 12px;
     height: 44px;
+  }
+  .guestDropdown {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+  }
+  .guestRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
   .destChips {
     max-width: 100%;

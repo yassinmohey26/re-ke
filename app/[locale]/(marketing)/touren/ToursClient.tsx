@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from '@/i18n/navigation';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -119,6 +120,9 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   const [guestChildren, setGuestChildren] = useState(0);
   const [guestOpen, setGuestOpen] = useState(false);
   const guestRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [guestPos, setGuestPos] = useState<{ top: number; left: number; width: number } | null>(null);
   const [draftTypes, setDraftTypes] = useState<Set<string>>(() => new Set(paramsTypes));
   const [draftDurations, setDraftDurations] = useState<Set<string>>(() => new Set(paramsDurations));
   const [draftPriceMin, setDraftPriceMin] = useState(paramsPriceMin);
@@ -161,14 +165,59 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   }, [page, sortBy, appliedDestination, appliedSearch, appliedTypes, appliedDurations, appliedPriceMin, appliedPriceMax, router]);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (guestRef.current && !guestRef.current.contains(e.target as Node)) {
+      const t = e.target as Node;
+      if (guestRef.current && dropdownRef.current && !guestRef.current.contains(t) && !dropdownRef.current.contains(t)) {
         setGuestOpen(false);
       }
     };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setGuestOpen(false);
+    };
     document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleKey);
+    };
   }, []);
+
+  const toggleGuest = useCallback(() => {
+    if (guestOpen) {
+      setGuestOpen(false);
+      return;
+    }
+    const el = guestRef.current;
+    if (el && !window.matchMedia('(max-width: 600px)').matches) {
+      const r = el.getBoundingClientRect();
+      setGuestPos({ top: r.bottom + 4, left: r.left, width: r.width });
+    } else {
+      setGuestPos(null);
+    }
+    setGuestOpen(true);
+  }, [guestOpen]);
+
+  useEffect(() => {
+    if (!guestOpen || typeof window === 'undefined') return;
+    if (window.matchMedia('(max-width: 600px)').matches) return;
+    const update = () => {
+      const el = guestRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setGuestPos({ top: r.bottom + 4, left: r.left, width: r.width });
+    };
+    update();
+    window.addEventListener('scroll', update, true);
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update, true);
+      window.removeEventListener('resize', update);
+    };
+  }, [guestOpen]);
 
   const toggleSection = useCallback((key: string) => {
     setOpenSections(prev => ({ ...prev, [key]: !prev[key] }));
@@ -193,6 +242,7 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   }, []);
 
   const handleSearch = useCallback(() => {
+    setGuestOpen(false);
     setAppliedDestination(draftDestination);
     setAppliedSearch(draftSearch);
     setAppliedTypes(new Set(draftTypes));
@@ -317,43 +367,24 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
                 className={styles.searchInput}
               />
             </div>
-            <div className={styles.searchField} ref={guestRef}>
+            <div
+              className={`${styles.searchField} ${styles.guestsField}${guestOpen ? ` ${styles.guestsFieldOpen}` : ''}`}
+              ref={guestRef}
+              style={{ position: 'relative' }}
+            >
               <span className={styles.searchLabel}>{t.searchGuests}</span>
               <button
                 type="button"
                 className={styles.guestTrigger}
-                onClick={() => setGuestOpen(!guestOpen)}
+                onClick={toggleGuest}
+                aria-haspopup="dialog"
+                aria-expanded={guestOpen}
               >
                 <span>{guestAdults + guestChildren} {t.persons}</span>
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: guestOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
                   <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
-              {guestOpen && (
-                <div className={styles.guestDropdown}>
-                  <div className={styles.guestRow}>
-                    <span className={styles.guestLabel}>
-                      <span>{tBook('adults')}</span>
-                    </span>
-                    <div className={styles.guestStepper}>
-                      <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(Math.max(1, guestAdults - 1))}>−</button>
-                      <span className={styles.guestValue}>{guestAdults}</span>
-                      <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(guestAdults + 1)}>+</button>
-                    </div>
-                  </div>
-                  <div className={styles.guestRow}>
-                    <span className={styles.guestLabel}>
-                      <span>{tBook('children')}</span>
-                    </span>
-                    <div className={styles.guestStepper}>
-                      <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(Math.max(0, guestChildren - 1))}>−</button>
-                      <span className={styles.guestValue}>{guestChildren}</span>
-                      <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(guestChildren + 1)}>+</button>
-                    </div>
-                  </div>
-                  <button type="button" className={styles.guestDone} onClick={() => setGuestOpen(false)}>Fertig</button>
-                </div>
-              )}
             </div>
             <button className={styles.searchBtn} aria-label={t.searchBtn} onClick={handleSearch}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -362,6 +393,39 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
               </svg>
             </button>
           </div>
+          {mounted && guestOpen && createPortal(
+            <>
+              <div className={styles.guestBackdrop} onClick={() => setGuestOpen(false)} />
+              <div
+                ref={dropdownRef}
+                className={styles.guestDropdown}
+                style={guestPos ? { position: 'fixed', top: guestPos.top, left: guestPos.left, width: guestPos.width } : undefined}
+              >
+                <div className={styles.guestRow}>
+                  <span className={styles.guestLabel}>
+                    <span>{tBook('adults')}</span>
+                  </span>
+                  <div className={styles.guestStepper} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(Math.max(1, guestAdults - 1))}>−</button>
+                    <span className={styles.guestValue}>{guestAdults}</span>
+                    <button type="button" className={styles.guestBtn} onClick={() => setGuestAdults(guestAdults + 1)}>+</button>
+                  </div>
+                </div>
+                <div className={styles.guestRow}>
+                  <span className={styles.guestLabel}>
+                    <span>{tBook('children')}</span>
+                  </span>
+                  <div className={styles.guestStepper} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(Math.max(0, guestChildren - 1))}>−</button>
+                    <span className={styles.guestValue}>{guestChildren}</span>
+                    <button type="button" className={styles.guestBtn} onClick={() => setGuestChildren(guestChildren + 1)}>+</button>
+                  </div>
+                </div>
+                <button type="button" className={styles.guestDone} onClick={() => setGuestOpen(false)}>Fertig</button>
+              </div>
+            </>,
+            document.body
+          )}
         </div>
         {destinations.length > 0 && (
           <div className={styles.destChips}>
