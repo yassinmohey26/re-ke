@@ -169,7 +169,7 @@ export default function TranslationsClient() {
       {/* Controls */}
       <div style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
         {/* Locale selector */}
-        <div style={{ display: 'flex', gap: 4 }}>
+        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', flex: '1 1 100%' }}>
           {LOCALES.map(l => (
             <button
               key={l.code}

@@ -99,59 +99,120 @@ export default function AdminBlogPage() {
       {loading ? (
         <p className={styles.loading}>{t('blogLoading')}</p>
       ) : (
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>{t('blogColTitle')}</th>
-                <th>{t('blogColCategory')}</th>
-                <th>{t('blogColDate')}</th>
-                <th>{t('blogColAuthor')}</th>
-                <th>{t('blogColFeatured')}</th>
-                <th>{t('blogColPublished')}</th>
-                <th>{t('blogColActions')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map(post => (
-                <tr key={post.id}>
-                  <td className={styles.postTitle}>{post.title}</td>
-                  <td><span className={styles.badge}>{post.category}</span></td>
-                  <td>{post.date ? new Date(post.date).toLocaleDateString(dateLocale) : '—'}</td>
-                  <td>{post.author}</td>
-                  <td>
+        <>
+          {/* ── Desktop table ── */}
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('blogColTitle')}</th>
+                  <th>{t('blogColCategory')}</th>
+                  <th>{t('blogColDate')}</th>
+                  <th>{t('blogColAuthor')}</th>
+                  <th>{t('blogColFeatured')}</th>
+                  <th>{t('blogColPublished')}</th>
+                  <th>{t('blogColActions')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map(post => (
+                  <tr key={post.id}>
+                    <td className={styles.postTitle}>{post.title}</td>
+                    <td><span className={styles.badge}>{post.category}</span></td>
+                    <td>{post.date ? new Date(post.date).toLocaleDateString(dateLocale) : '—'}</td>
+                    <td>{post.author}</td>
+                    <td>
+                      <button
+                        className={`${styles.toggleBtn} ${post.featured ? styles.activeToggle : ''}`}
+                        onClick={() => toggleFeatured(post.id, post.featured)}
+                      >
+                        {post.featured ? '★' : '☆'}
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className={`${styles.toggleBtn} ${post.published ? styles.activeToggle : ''}`}
+                        onClick={() => togglePublished(post.id, post.published)}
+                      >
+                        {post.published ? '✓' : '✕'}
+                      </button>
+                    </td>
+                    <td>
+                      <div className={styles.actions}>
+                        <Link href={`/ZAIMOZ/blog/edit/${post.id}`} className={styles.editBtn}>{t('edit')}</Link>
+                        <button className={styles.editBtn} onClick={() => setDuplicateId(post.id)}>
+                          {t('duplicateBtn')}
+                        </button>
+                        <button className={styles.deleteBtn} onClick={() => handleDelete(post.id)}>{t('delete')}</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {filtered.length === 0 && (
+                  <tr><td colSpan={7} className={styles.empty}>{t('blogNoResults')}</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile card list ── */}
+          <div className={styles.mobileCardList}>
+            {filtered.length === 0 && (
+              <p className={styles.empty}>{t('blogNoResults')}</p>
+            )}
+            {filtered.map(post => (
+              <div key={post.id} className={styles.mobileCard}>
+                <p className={styles.mobileCardName}>{post.title}</p>
+
+                <div className={styles.mobileCardMeta}>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('blogColCategory')}</span>
+                    <span className={styles.mobileCardMetaValue}>
+                      <span className={styles.badge}>{post.category}</span>
+                    </span>
+                  </div>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('blogColDate')}</span>
+                    <span className={styles.mobileCardMetaValue}>{post.date ? new Date(post.date).toLocaleDateString(dateLocale) : '—'}</span>
+                  </div>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('blogColAuthor')}</span>
+                    <span className={styles.mobileCardMetaValue}>{post.author}</span>
+                  </div>
+                </div>
+
+                <div className={styles.mobileCardToggles}>
+                  <span className={styles.mobileCardToggleLabel}>
+                    {t('blogColFeatured')}
                     <button
                       className={`${styles.toggleBtn} ${post.featured ? styles.activeToggle : ''}`}
                       onClick={() => toggleFeatured(post.id, post.featured)}
                     >
                       {post.featured ? '★' : '☆'}
                     </button>
-                  </td>
-                  <td>
+                  </span>
+                  <span className={styles.mobileCardToggleLabel}>
+                    {t('blogColPublished')}
                     <button
                       className={`${styles.toggleBtn} ${post.published ? styles.activeToggle : ''}`}
                       onClick={() => togglePublished(post.id, post.published)}
                     >
                       {post.published ? '✓' : '✕'}
                     </button>
-                  </td>
-                  <td>
-                    <div className={styles.actions}>
-                      <Link href={`/ZAIMOZ/blog/edit/${post.id}`} className={styles.editBtn}>{t('edit')}</Link>
-                      <button className={styles.editBtn} onClick={() => setDuplicateId(post.id)}>
-                        {t('duplicateBtn')}
-                      </button>
-                      <button className={styles.deleteBtn} onClick={() => handleDelete(post.id)}>{t('delete')}</button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {filtered.length === 0 && (
-                <tr><td colSpan={7} className={styles.empty}>{t('blogNoResults')}</td></tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                  </span>
+                </div>
+
+                <div className={styles.mobileCardActions}>
+                  <Link href={`/ZAIMOZ/blog/edit/${post.id}`} className={styles.editBtn}>{t('edit')}</Link>
+                  <button className={styles.editBtn} onClick={() => setDuplicateId(post.id)}>
+                    {t('duplicateBtn')}
+                  </button>
+                  <button className={styles.deleteBtn} onClick={() => handleDelete(post.id)}>{t('delete')}</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {duplicateId && (

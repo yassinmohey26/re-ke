@@ -171,48 +171,75 @@ export default function AdminFAQsPage() {
         </div>
       )}
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>{locale === 'de' ? 'Frage' : 'Question'}</th>
-              <th>{locale === 'de' ? 'Antwort' : 'Answer'}</th>
-              <th>{locale === 'de' ? 'Reihenfolge' : 'Sort'}</th>
-              <th>{locale === 'de' ? 'Aktionen' : 'Actions'}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={4}>{locale === 'de' ? 'Laden...' : 'Loading...'}</td></tr>
-            ) : faqs.length === 0 ? (
-              <tr><td colSpan={4} className={styles.empty}>
-                {locale === 'de' ? 'Noch keine FAQs vorhanden.' : 'No FAQs yet.'}
-              </td></tr>
-            ) : (
-              faqs.map(faq => (
-                <tr key={faq.id}>
-                  <td className={styles.questionCell}>{faq.question}</td>
-                  <td className={styles.answerCell}>{faq.answer}</td>
-                  <td className={styles.sortOrder}>{faq.sort_order}</td>
-                  <td>
-                    <div className={styles.actions}>
-                      <button className={styles.editBtn} onClick={() => openEdit(faq)}>
-                        {locale === 'de' ? 'Bearbeiten' : 'Edit'}
-                      </button>
-                      <button className={styles.editBtn} onClick={() => setDuplicateId(faq.id)}>
-                        {locale === 'de' ? 'Duplizieren' : 'Duplicate'}
-                      </button>
-                      <button className={styles.deleteBtn} onClick={() => handleDelete(faq.id)}>
-                        {locale === 'de' ? 'Löschen' : 'Delete'}
-                      </button>
-                    </div>
-                  </td>
+      {loading ? (
+        <p className={styles.empty}>{locale === 'de' ? 'Laden...' : 'Loading...'}</p>
+      ) : faqs.length === 0 ? (
+        <p className={styles.empty}>
+          {locale === 'de' ? 'Noch keine FAQs vorhanden.' : 'No FAQs yet.'}
+        </p>
+      ) : (
+        <>
+          {/* ── Desktop table ── */}
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{locale === 'de' ? 'Frage' : 'Question'}</th>
+                  <th>{locale === 'de' ? 'Antwort' : 'Answer'}</th>
+                  <th>{locale === 'de' ? 'Reihenfolge' : 'Sort'}</th>
+                  <th>{locale === 'de' ? 'Aktionen' : 'Actions'}</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody>
+                {faqs.map(faq => (
+                  <tr key={faq.id}>
+                    <td className={styles.questionCell}>{faq.question}</td>
+                    <td className={styles.answerCell}>{faq.answer}</td>
+                    <td className={styles.sortOrder}>{faq.sort_order}</td>
+                    <td>
+                      <div className={styles.actions}>
+                        <button className={styles.editBtn} onClick={() => openEdit(faq)}>
+                          {locale === 'de' ? 'Bearbeiten' : 'Edit'}
+                        </button>
+                        <button className={styles.editBtn} onClick={() => setDuplicateId(faq.id)}>
+                          {locale === 'de' ? 'Duplizieren' : 'Duplicate'}
+                        </button>
+                        <button className={styles.deleteBtn} onClick={() => handleDelete(faq.id)}>
+                          {locale === 'de' ? 'Löschen' : 'Delete'}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile card list ── */}
+          <div className={styles.mobileCardList}>
+            {faqs.map(faq => (
+              <div key={faq.id} className={styles.mobileCard}>
+                <div className={styles.mobileCardTop}>
+                  <p className={styles.mobileCardQuestion}>{faq.question}</p>
+                  <span className={styles.mobileCardSort}>#{faq.sort_order}</span>
+                </div>
+                <p className={styles.mobileCardAnswer}>{faq.answer}</p>
+                <div className={styles.mobileCardActions}>
+                  <button className={styles.editBtn} onClick={() => openEdit(faq)}>
+                    {locale === 'de' ? 'Bearbeiten' : 'Edit'}
+                  </button>
+                  <button className={styles.editBtn} onClick={() => setDuplicateId(faq.id)}>
+                    {locale === 'de' ? 'Duplizieren' : 'Duplicate'}
+                  </button>
+                  <button className={styles.deleteBtn} onClick={() => handleDelete(faq.id)}>
+                    {locale === 'de' ? 'Löschen' : 'Delete'}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {duplicateId && (
         <LocalePicker

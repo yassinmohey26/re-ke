@@ -26,7 +26,49 @@ export async function GET(
     trMap[tr.locale] = tr;
   }
 
-  return NextResponse.json({ ...tour, translations: trMap });
+  // Compute rawDescription: the field that contains the pricing table HTML.
+  // The table is always in German so we search in order:
+  // 1. DE translation description
+  // 2. Any translation description that contains the table
+  // 3. EAV joined string parts in DE translation (if name contains '---تسيب---')
+  // 4. Base tours.description column
+  function findPricingTableHtml(): string {
+    const TABLE_RE = /tour-pricing-table/;
+
+    // 1. DE translation description directly
+    const deTr = trMap['de'];
+    if (deTr?.description && TABLE_RE.test(deTr.description)) return deTr.description;
+
+    // 2. Any other translation description
+    for (const tr of Object.values(trMap) as any[]) {
+      if (tr?.description && TABLE_RE.test(tr.description)) return tr.description;
+    }
+
+    // 3. EAV joined string — split by separator and search parts
+    if (deTr?.name && typeof deTr.name === 'string' && deTr.name.includes('---')) {
+      const parts = deTr.name.split(/---\s*تسيب\s*---/);
+      for (const part of parts) {
+        if (TABLE_RE.test(part)) return part.trim();
+      }
+    }
+    // Also check any locale's name field
+    for (const tr of Object.values(trMap) as any[]) {
+      if (tr?.name && typeof tr.name === 'string' && tr.name.includes('---')) {
+        const parts = tr.name.split(/---\s*تسيب\s*---/);
+        for (const part of parts) {
+          if (TABLE_RE.test(part)) return part.trim();
+        }
+      }
+    }
+
+    // 4. Base column fallback
+    return tour?.description || '';
+  }
+
+  const rawDescription = findPricingTableHtml();
+
+  return NextResponse.json({ ...tour, translations: trMap, rawDescription });
+
 }
 
 export async function PUT(

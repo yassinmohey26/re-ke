@@ -237,6 +237,10 @@
   border-radius: var(--radius-md);
   background: #fff7ed;
 }
+[data-theme="dark"] .discountEditor {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.5);
+}
 
 .langTabs {
   display: flex;
@@ -267,11 +271,42 @@
 
 .transHint {
   font-size: 12px;
-  color: var(--color-text-4);
+  color: var(--color-text-5);
   margin-bottom: var(--space-3);
   font-style: italic;
 }
 
 @media (max-width: 768px) {
   .row, .row3 { grid-template-columns: 1fr; }
+
+  .section {
+    padding: var(--space-4);
+  }
+
+  .formActions {
+    flex-direction: column-reverse;
+  }
+
+  .formActions .cancelBtn,
+  .formActions .saveBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pricingHeader {
+    grid-template-columns: 1fr 90px 32px;
+  }
+
+  .pricingRow {
+    grid-template-columns: 1fr 90px 32px;
+  }
+
+  .langTabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .langTab {
+    white-space: nowrap;
+  }
 }

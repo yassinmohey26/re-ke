@@ -230,54 +230,93 @@ export default function AdminDestinationsPage() {
         </div>
       )}
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>{t('destColName')}</th>
-              <th>Slug</th>
-              <th>{t('tourImage')}</th>
-              <th>{t('destColTagline')}</th>
-              <th>{t('colActions')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={5}>{t('loading')}</td></tr>
-            ) : destinations.length === 0 ? (
-              <tr><td colSpan={5} className={styles.empty}>{t('destNoResults')}</td></tr>
-            ) : (
-              destinations.map(dest => (
-                <tr key={dest.id}>
-                  <td className={styles.nameCell}>{dest.name}</td>
-                  <td className={styles.slugCell}>{dest.slug}</td>
-                  <td>
-                    {dest.image ? (
-                      <img src={dest.image} alt={dest.name} className={styles.imagePreview} />
-                    ) : (
-                      <span style={{ color: 'var(--color-text-3)', fontSize: 13 }}>—</span>
-                    )}
-                  </td>
-                  <td className={styles.taglineCell}>{dest.tagline || '—'}</td>
-                  <td>
-                    <div className={styles.actions}>
-                      <button className={styles.editBtn} onClick={() => openEdit(dest)}>
-                        {t('edit')}
-                      </button>
-                      <button className={styles.editBtn} onClick={() => setDuplicateId(dest.id)}>
-                        {t('duplicateBtn')}
-                      </button>
-                      <button className={styles.deleteBtn} onClick={() => handleDelete(dest.id)}>
-                        {t('delete')}
-                      </button>
-                    </div>
-                  </td>
+      {loading ? (
+        <p className={styles.loading}>{t('loading')}</p>
+      ) : destinations.length === 0 ? (
+        <p className={styles.empty}>{t('destNoResults')}</p>
+      ) : (
+        <>
+          {/* ── Desktop table ── */}
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('destColName')}</th>
+                  <th>Slug</th>
+                  <th>{t('tourImage')}</th>
+                  <th>{t('destColTagline')}</th>
+                  <th>{t('colActions')}</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody>
+                {destinations.map(dest => (
+                  <tr key={dest.id}>
+                    <td className={styles.nameCell}>{dest.name}</td>
+                    <td className={styles.slugCell}>{dest.slug}</td>
+                    <td>
+                      {dest.image ? (
+                        <img src={dest.image} alt={dest.name} className={styles.imagePreview} />
+                      ) : (
+                        <span style={{ color: 'var(--color-text-3)', fontSize: 13 }}>—</span>
+                      )}
+                    </td>
+                    <td className={styles.taglineCell}>{dest.tagline || '—'}</td>
+                    <td>
+                      <div className={styles.actions}>
+                        <button className={styles.editBtn} onClick={() => openEdit(dest)}>
+                          {t('edit')}
+                        </button>
+                        <button className={styles.editBtn} onClick={() => setDuplicateId(dest.id)}>
+                          {t('duplicateBtn')}
+                        </button>
+                        <button className={styles.deleteBtn} onClick={() => handleDelete(dest.id)}>
+                          {t('delete')}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile card list ── */}
+          <div className={styles.mobileCardList}>
+            {destinations.map(dest => (
+              <div key={dest.id} className={styles.mobileCard}>
+                <div className={styles.mobileCardTop}>
+                  {dest.image && (
+                    <img src={dest.image} alt={dest.name} className={styles.mobileCardImage} />
+                  )}
+                  <div className={styles.mobileCardTitleBlock}>
+                    <p className={styles.mobileCardName}>{dest.name}</p>
+                    <p className={styles.mobileCardSlug}>{dest.slug}</p>
+                  </div>
+                </div>
+
+                <div className={styles.mobileCardMeta}>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('destColTagline')}</span>
+                    <span className={styles.mobileCardMetaValue}>{dest.tagline || '—'}</span>
+                  </div>
+                </div>
+
+                <div className={styles.mobileCardActions}>
+                  <button className={styles.editBtn} onClick={() => openEdit(dest)}>
+                    {t('edit')}
+                  </button>
+                  <button className={styles.editBtn} onClick={() => setDuplicateId(dest.id)}>
+                    {t('duplicateBtn')}
+                  </button>
+                  <button className={styles.deleteBtn} onClick={() => handleDelete(dest.id)}>
+                    {t('delete')}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {duplicateId && (
         <LocalePicker

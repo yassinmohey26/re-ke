@@ -1,0 +1,304 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-text-1);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-5);
+  margin: 0;
+}
+
+.addBtn {
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.addBtn:hover { opacity: 0.88; }
+
+.errorBanner {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+[data-theme="dark"] .errorBanner {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: rgba(220, 38, 38, 0.4);
+  color: #fca5a5;
+}
+
+.successBanner {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #16a34a;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+[data-theme="dark"] .successBanner {
+  background: rgba(22, 163, 74, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #86efac;
+}
+
+.loadingState {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-text-5);
+  font-size: 15px;
+}
+
+.tableWrap {
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border-4);
+  border-radius: 16px;
+  overflow-x: auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-5);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: var(--color-bg-hover);
+  border-bottom: 1px solid var(--color-border-4);
+}
+
+.tr {
+  border-bottom: 1px solid var(--color-border-4);
+  transition: background 0.15s;
+}
+.tr:last-child { border-bottom: none; }
+.tr:hover { background: var(--color-bg-hover); }
+
+.trNew {
+  background: #f0fdf4;
+}
+.trNew:hover { background: #dcfce7; }
+[data-theme="dark"] .trNew {
+  background: rgba(22, 163, 74, 0.12);
+}
+[data-theme="dark"] .trNew:hover { background: rgba(22, 163, 74, 0.2); }
+
+.td {
+  padding: 10px 16px;
+  vertical-align: middle;
+}
+
+.inputDest {
+  width: 100%;
+  min-width: 160px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--color-border-4);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--color-text-1);
+  background: var(--color-bg-2);
+  transition: border-color 0.18s;
+  outline: none;
+}
+.inputDest:focus { border-color: var(--color-accent); }
+
+.inputSmall {
+  width: 60px;
+  padding: 8px 8px;
+  border: 1.5px solid var(--color-border-4);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--color-text-1);
+  background: var(--color-bg-2);
+  text-align: center;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.inputSmall:focus { border-color: var(--color-accent); }
+
+.priceCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inputPrice {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--color-border-4);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-1);
+  background: var(--color-bg-2);
+  outline: none;
+  transition: border-color 0.18s;
+}
+.inputPrice:focus { border-color: var(--color-accent); }
+
+.euro {
+  font-size: 13px;
+  color: var(--color-text-5);
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saveBtn {
+  padding: 7px 16px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.18s;
+}
+.saveBtn:hover:not(:disabled) { opacity: 0.85; }
+.saveBtn:disabled { opacity: 0.5; cursor: default; }
+
+.deleteBtn {
+  padding: 7px 10px;
+  background: var(--color-bg-1);
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.deleteBtn:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+[data-theme="dark"] .deleteBtn:hover {
+  background: rgba(220, 38, 38, 0.15);
+}
+
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-text-5);
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════
+   Mobile card list (replaces table on small screens)
+   ═══════════════════════════════════════════ */
+.mobileCardList {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileCard {
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border-4);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mobileCardNew {
+  background: #f0fdf4;
+}
+[data-theme="dark"] .mobileCardNew {
+  background: rgba(22, 163, 74, 0.12);
+}
+
+.mobileCardField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileCardLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-5);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.mobileCardPriceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mobileCardPriceRow .inputPrice {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobileCardActions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-4);
+}
+
+.mobileCardActions .saveBtn,
+.mobileCardActions .deleteBtn {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .addBtn {
+    width: 100%;
+  }
+
+  /* Hide the desktop table, show the mobile card list */
+  .tableWrap {
+    display: none;
+  }
+
+  .mobileCardList {
+    display: flex;
+  }
+}

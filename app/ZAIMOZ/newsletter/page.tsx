@@ -117,52 +117,101 @@ export default function AdminNewsletterPage() {
         />
       </div>
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>{t('newsletterColEmail')}</th>
-              <th>{t('newsletterColName')}</th>
-              <th>{t('newsletterColSource')}</th>
-              <th>{t('newsletterColConfirmed')}</th>
-              <th>{t('newsletterColCreated')}</th>
-              <th>{t('actions')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={6} className={styles.loading}>{t('loading')}</td></tr>
-            ) : filtered.length === 0 ? (
-              <tr><td colSpan={6} className={styles.empty}>{search ? t('noResults') : 'No subscribers yet.'}</td></tr>
-            ) : (
-              filtered.map(sub => (
-                <tr key={sub.id}>
-                  <td className={styles.mono}>{sub.email}</td>
-                  <td>{sub.name || '—'}</td>
-                  <td><span className={styles.sourceBadge}>{sub.source}</span></td>
-                  <td>
-                    {sub.confirmed_at ? (
-                      <span className={styles.confirmed}>{t('newsletterConfirmed')}</span>
-                    ) : (
-                      <span className={styles.pending}>{t('newsletterPending')}</span>
-                    )}
-                  </td>
-                  <td>{new Date(sub.created_at).toLocaleDateString(dateLocale)}</td>
-                  <td>
-                    <button
-                      className={styles.deleteBtn}
-                      onClick={() => handleDelete(sub.id)}
-                      disabled={deleting === sub.id}
-                    >
-                      {deleting === sub.id ? '...' : t('delete')}
-                    </button>
-                  </td>
+      {loading ? (
+        <p className={styles.loadingText}>{t('loading')}</p>
+      ) : filtered.length === 0 ? (
+        <p className={styles.loadingText}>{search ? t('noResults') : 'No subscribers yet.'}</p>
+      ) : (
+        <>
+          {/* ── Desktop table ── */}
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('newsletterColEmail')}</th>
+                  <th>{t('newsletterColName')}</th>
+                  <th>{t('newsletterColSource')}</th>
+                  <th>{t('newsletterColConfirmed')}</th>
+                  <th>{t('newsletterColCreated')}</th>
+                  <th>{t('actions')}</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody>
+                {filtered.map(sub => (
+                  <tr key={sub.id}>
+                    <td className={styles.mono}>{sub.email}</td>
+                    <td>{sub.name || '—'}</td>
+                    <td><span className={styles.sourceBadge}>{sub.source}</span></td>
+                    <td>
+                      {sub.confirmed_at ? (
+                        <span className={styles.confirmed}>{t('newsletterConfirmed')}</span>
+                      ) : (
+                        <span className={styles.pending}>{t('newsletterPending')}</span>
+                      )}
+                    </td>
+                    <td>{new Date(sub.created_at).toLocaleDateString(dateLocale)}</td>
+                    <td>
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => handleDelete(sub.id)}
+                        disabled={deleting === sub.id}
+                      >
+                        {deleting === sub.id ? '...' : t('delete')}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile card list ── */}
+          <div className={styles.mobileCardList}>
+            {filtered.map(sub => (
+              <div key={sub.id} className={styles.mobileCard}>
+                <p className={styles.mobileCardName}>{sub.email}</p>
+
+                <div className={styles.mobileCardMeta}>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('newsletterColName')}</span>
+                    <span className={styles.mobileCardMetaValue}>{sub.name || '—'}</span>
+                  </div>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('newsletterColSource')}</span>
+                    <span className={styles.mobileCardMetaValue}>
+                      <span className={styles.sourceBadge}>{sub.source}</span>
+                    </span>
+                  </div>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('newsletterColConfirmed')}</span>
+                    <span className={styles.mobileCardMetaValue}>
+                      {sub.confirmed_at ? (
+                        <span className={styles.confirmed}>{t('newsletterConfirmed')}</span>
+                      ) : (
+                        <span className={styles.pending}>{t('newsletterPending')}</span>
+                      )}
+                    </span>
+                  </div>
+                  <div className={styles.mobileCardMetaItem}>
+                    <span className={styles.mobileCardMetaLabel}>{t('newsletterColCreated')}</span>
+                    <span className={styles.mobileCardMetaValue}>{new Date(sub.created_at).toLocaleDateString(dateLocale)}</span>
+                  </div>
+                </div>
+
+                <div className={styles.mobileCardFooter}>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={() => handleDelete(sub.id)}
+                    disabled={deleting === sub.id}
+                  >
+                    {deleting === sub.id ? '...' : t('delete')}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

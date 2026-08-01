@@ -11,6 +11,7 @@ const translations = {
   navNewsletter: { de: 'Newsletter', en: 'Newsletter', ru: 'Рассылка', ar: 'النشرة الإخبارية', fr: 'Newsletter', hu: 'Hírlevél' },
   navFaqs: { de: 'FAQs', en: 'FAQs', ru: 'ЧАВО', ar: 'الأسئلة الشائعة', fr: 'FAQ', hu: 'GYIK' },
   navDestinations: { de: 'Destinationen', en: 'Destinations', ru: 'Направления', ar: 'الوجهات', fr: 'Destinations', hu: 'Úti célok' },
+  navTransfers: { de: 'Transfers', en: 'Transfers', ru: 'Трансферы', ar: 'التحويلات', fr: 'Transferts', hu: 'Transzferek' },
   navTranslations: { de: 'Übersetzungen', en: 'Translations', ru: 'Переводы', ar: 'الترجمات', fr: 'Traductions', hu: 'Fordítások' },
   viewWebsite: { de: 'Website ansehen', en: 'View Website', ru: 'Посмотреть сайт', ar: 'عرض الموقع', fr: 'Voir le site', hu: 'Weboldal megtekintése' },
   signOut: { de: 'Abmelden', en: 'Sign Out', ru: 'Выйти', ar: 'تسجيل الخروج', fr: 'Déconnexion', hu: 'Kijelentkezés' },
@@ -215,6 +216,15 @@ const translations = {
   transHint: { de: 'Optional — leer lassen, um den deutschen Text zu verwenden', en: 'Optional — leave empty to use the German text', ru: 'Необязательно — оставьте пустым для использования немецкого текста', ar: 'اختياري — اتركه فارغاً لاستخدام النص الألماني', fr: 'Optionnel — laisser vide pour utiliser le texte allemand', hu: 'Nem kötelező — hagyja üresen a német szöveg használatához' },
   transTabContent: { de: 'Inhalt', en: 'Content', ru: 'Содержание', ar: 'المحتوى', fr: 'Contenu', hu: 'Tartalom' },
   transTabDetails: { de: 'Details', en: 'Details', ru: 'Детали', ar: 'التفاصيل', fr: 'Détails', hu: 'Részletek' },
+
+  // Top bar
+  notifications: { de: 'Benachrichtigungen', en: 'Notifications', ru: 'Уведомления', ar: 'الإشعارات', fr: 'Notifications', hu: 'Értesítések' },
+  notificationsEmpty: { de: 'Keine neuen Benachrichtigungen', en: 'No new notifications', ru: 'Нет новых уведомлений', ar: 'لا توجد إشعارات جديدة', fr: 'Aucune nouvelle notification', hu: 'Nincs új értesítés' },
+  viewBookings: { de: 'Buchungen ansehen', en: 'View bookings', ru: 'Посмотреть бронирования', ar: 'عرض الحجوزات', fr: 'Voir les réservations', hu: 'Foglalások megtekintése' },
+  viewContacts: { de: 'Kontaktanfragen ansehen', en: 'View contact requests', ru: 'Посмотреть запросы на связь', ar: 'عرض طلبات الاتصال', fr: 'Voir les demandes de contact', hu: 'Kapcsolatfelvételek megtekintése' },
+  markAllRead: { de: 'Alle als gelesen markieren', en: 'Mark all as read', ru: 'Отметить все как прочитанные', ar: 'تحديد الكل كمقروء', fr: 'Tout marquer comme lu', hu: 'Összes megjelölése olvasottként' },
+  darkMode: { de: 'Dunkelmodus', en: 'Dark mode', ru: 'Тёмный режим', ar: 'الوضع الداكن', fr: 'Mode sombre', hu: 'Sötét mód' },
+  lightMode: { de: 'Hellmodus', en: 'Light mode', ru: 'Светлый режим', ar: 'الوضع الفاتح', fr: 'Mode clair', hu: 'Világos mód' },
 
   // Common
   confirmDelete: { de: 'Wirklich löschen?', en: 'Really delete?', ru: 'Действительно удалить?', ar: 'هل تريد الحذف فعلاً؟', fr: 'Vraiment supprimer?', hu: 'Biztosan törli?' },

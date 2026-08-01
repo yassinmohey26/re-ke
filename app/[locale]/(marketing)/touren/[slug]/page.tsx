@@ -123,7 +123,10 @@ export default async function TourDetailPage({ params }: Props) {
     ],
   };
 
-  const basePricingTiers = parsePricingTiers(tour.description);
+  // Always parse pricing from rawDescription (the base German DB column) because
+  // buildPricingTable writes German HTML headers. The translated `description` may
+  // not contain the <table> at all, which would make parsePricingTiers return [].
+  const basePricingTiers = parsePricingTiers(tour.rawDescription || tour.description);
   const discountTiers = (tour.discount?.pricingTiers ?? []).map(t => ({
     minGuests: t.min,
     maxGuests: t.max,
@@ -208,7 +211,7 @@ export default async function TourDetailPage({ params }: Props) {
                   <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>{t('overview')}</h2>
                     <CollapsibleDescription
-                      html={hasPricingTable(tour.description) ? stripPricingTable(tour.description) : tour.description}
+                      html={hasPricingTable(tour.rawDescription || tour.description) ? stripPricingTable(tour.description) : tour.description}
                     />
                   </div>
                 )}

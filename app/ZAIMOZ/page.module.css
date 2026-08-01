@@ -51,6 +51,15 @@
   z-index: 1;
 }
 
+.heroTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
 .greetingBadge {
   display: inline-flex;
   align-items: center;
@@ -62,7 +71,6 @@
   font-size: 13px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 14px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -171,8 +179,8 @@
    ACTIVITY STRIP
 ══════════════════════════════════════ */
 .activityStrip {
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border-4);
   border-radius: 20px;
   padding: 22px 28px;
   display: flex;
@@ -197,7 +205,7 @@
 .activityLabel {
   font-size: 11px;
   font-weight: 700;
-  color: #888888;
+  color: var(--color-text-5);
   text-transform: uppercase;
   letter-spacing: 0.07em;
 }
@@ -205,12 +213,12 @@
 .activityCount {
   font-size: 13px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text-1);
 }
 
 .activityBar {
   height: 7px;
-  background: #f3f3f3;
+  background: var(--color-bg-2);
   border-radius: 9999px;
   overflow: hidden;
 }
@@ -224,7 +232,7 @@
 .activityDivider {
   width: 1px;
   height: 52px;
-  background: #eeeeee;
+  background: var(--color-border-4);
   margin: 0 28px;
   flex-shrink: 0;
 }
@@ -236,7 +244,7 @@
   font-family: var(--font-heading);
   font-size: 17px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text-1);
   margin-bottom: 14px;
   display: flex;
   align-items: center;
@@ -250,8 +258,8 @@
 }
 
 .actionCard {
-  background: #ffffff;
-  border: 1.5px solid #eeeeee;
+  background: var(--color-bg-1);
+  border: 1.5px solid var(--color-border-4);
   border-radius: 18px;
   padding: 20px 22px;
   display: flex;
@@ -298,12 +306,12 @@
 .actionTitle {
   font-size: 14px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text-1);
 }
 
 .actionDesc {
   font-size: 12px;
-  color: #999999;
+  color: var(--color-text-5);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -311,7 +319,7 @@
 
 .actionArrow {
   font-size: 18px;
-  color: #dddddd;
+  color: var(--color-border-5);
   transition: transform 0.22s ease, color 0.22s ease;
   flex-shrink: 0;
 }

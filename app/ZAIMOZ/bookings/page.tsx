@@ -68,69 +68,135 @@ export default function AdminBookingsPage() {
         </div>
       </div>
 
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>{t('bookingsId')}</th>
-              <th>{t('bookingsTour')}</th>
-              <th>{t('bookingsName')}</th>
-              <th>{t('bookingsEmail')}</th>
-              <th>{t('bookingsDate')}</th>
-              <th>{t('bookingsGuests')}</th>
-              <th>{t('bookingsStatus')}</th>
-              <th>{t('bookingsCreated')}</th>
-              <th>{t('actions')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={9}>{t('loading')}</td></tr>
-            ) : bookings.length === 0 ? (
-              <tr><td colSpan={9}>No bookings yet.</td></tr>
-            ) : (
-              bookings.map(booking => {
-                const status = STATUS_LABELS[booking.status];
-                return (
-                  <tr key={booking.id}>
-                    <td className={styles.mono}>#{booking.id}</td>
-                    <td className={styles.tourName}>{booking.tour_name}</td>
-                    <td>{booking.first_name} {booking.last_name}</td>
-                    <td className={styles.mono}>{booking.email}</td>
-                    <td>{booking.date ? new Date(booking.date).toLocaleDateString(dateLocale) : '—'}</td>
-                    <td className={styles.center}>{booking.guests}</td>
-                    <td>
-                      <span className={styles.statusBadge} style={{ background: status.color + '15', color: status.color }}>
-                        {status.label}
+      {loading ? (
+        <p className={styles.loading}>{t('loading')}</p>
+      ) : bookings.length === 0 ? (
+        <p className={styles.empty}>No bookings yet.</p>
+      ) : (
+        <>
+          {/* ── Desktop table ── */}
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('bookingsId')}</th>
+                  <th>{t('bookingsTour')}</th>
+                  <th>{t('bookingsName')}</th>
+                  <th>{t('bookingsEmail')}</th>
+                  <th>{t('bookingsDate')}</th>
+                  <th>{t('bookingsGuests')}</th>
+                  <th>{t('bookingsStatus')}</th>
+                  <th>{t('bookingsCreated')}</th>
+                  <th>{t('actions')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings.map(booking => {
+                  const status = STATUS_LABELS[booking.status];
+                  return (
+                    <tr key={booking.id}>
+                      <td className={styles.mono}>#{booking.id}</td>
+                      <td className={styles.tourName}>{booking.tour_name}</td>
+                      <td>{booking.first_name} {booking.last_name}</td>
+                      <td className={styles.mono}>{booking.email}</td>
+                      <td>{booking.date ? new Date(booking.date).toLocaleDateString(dateLocale) : '—'}</td>
+                      <td className={styles.center}>{booking.guests}</td>
+                      <td>
+                        <span className={styles.statusBadge} style={{ background: status.color + '15', color: status.color }}>
+                          {status.label}
+                        </span>
+                      </td>
+                      <td>{new Date(booking.created_at).toLocaleDateString(dateLocale)}</td>
+                      <td>
+                        <div className={styles.actions}>
+                          <select
+                            className={styles.statusSelect}
+                            value={booking.status}
+                            onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                          >
+                            <option value="PENDING">{t('statusPending')}</option>
+                            <option value="CONFIRMED">{t('statusConfirmed')}</option>
+                            <option value="CANCELLED">{t('statusCancelled')}</option>
+                            <option value="COMPLETED">{t('statusCompleted')}</option>
+                            <option value="PAYMENT_FAILED">{t('statusPaymentFailed')}</option>
+                            <option value="REFUNDED">{t('statusRefunded')}</option>
+                          </select>
+                          <button className={styles.deleteBtn} onClick={() => handleDelete(booking.id)}>
+                            {t('delete')}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* ── Mobile card list ── */}
+          <div className={styles.mobileCardList}>
+            {bookings.map(booking => {
+              const status = STATUS_LABELS[booking.status];
+              return (
+                <div key={booking.id} className={styles.mobileCard}>
+                  <p className={styles.mobileCardName}>
+                    #{booking.id} · {booking.tour_name}
+                  </p>
+
+                  <div className={styles.mobileCardMeta}>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsName')}</span>
+                      <span className={styles.mobileCardMetaValue}>{booking.first_name} {booking.last_name}</span>
+                    </div>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsStatus')}</span>
+                      <span className={styles.mobileCardMetaValue}>
+                        <span className={styles.statusBadge} style={{ background: status.color + '15', color: status.color }}>
+                          {status.label}
+                        </span>
                       </span>
-                    </td>
-                    <td>{new Date(booking.created_at).toLocaleDateString(dateLocale)}</td>
-                    <td>
-                      <div className={styles.actions}>
-                        <select
-                          className={styles.statusSelect}
-                          value={booking.status}
-                          onChange={(e) => handleStatusChange(booking.id, e.target.value)}
-                        >
-                          <option value="PENDING">{t('statusPending')}</option>
-                          <option value="CONFIRMED">{t('statusConfirmed')}</option>
-                          <option value="CANCELLED">{t('statusCancelled')}</option>
-                          <option value="COMPLETED">{t('statusCompleted')}</option>
-                          <option value="PAYMENT_FAILED">{t('statusPaymentFailed')}</option>
-                          <option value="REFUNDED">{t('statusRefunded')}</option>
-                        </select>
-                        <button className={styles.deleteBtn} onClick={() => handleDelete(booking.id)}>
-                          {t('delete')}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
-      </div>
+                    </div>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsDate')}</span>
+                      <span className={styles.mobileCardMetaValue}>{booking.date ? new Date(booking.date).toLocaleDateString(dateLocale) : '—'}</span>
+                    </div>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsGuests')}</span>
+                      <span className={styles.mobileCardMetaValue}>{booking.guests}</span>
+                    </div>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsEmail')}</span>
+                      <span className={styles.mobileCardMetaValue + ' ' + styles.mono}>{booking.email}</span>
+                    </div>
+                    <div className={styles.mobileCardMetaItem}>
+                      <span className={styles.mobileCardMetaLabel}>{t('bookingsCreated')}</span>
+                      <span className={styles.mobileCardMetaValue}>{new Date(booking.created_at).toLocaleDateString(dateLocale)}</span>
+                    </div>
+                  </div>
+
+                  <div className={styles.mobileCardStatusRow}>
+                    <select
+                      className={styles.statusSelect}
+                      value={booking.status}
+                      onChange={(e) => handleStatusChange(booking.id, e.target.value)}
+                    >
+                      <option value="PENDING">{t('statusPending')}</option>
+                      <option value="CONFIRMED">{t('statusConfirmed')}</option>
+                      <option value="CANCELLED">{t('statusCancelled')}</option>
+                      <option value="COMPLETED">{t('statusCompleted')}</option>
+                      <option value="PAYMENT_FAILED">{t('statusPaymentFailed')}</option>
+                      <option value="REFUNDED">{t('statusRefunded')}</option>
+                    </select>
+                    <button className={styles.deleteBtn} onClick={() => handleDelete(booking.id)}>
+                      {t('delete')}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }

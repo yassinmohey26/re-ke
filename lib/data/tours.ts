@@ -27,6 +27,9 @@ export interface Tour {
   name: string;
   shortDescription: string;
   description: string;
+  /** Always the raw base-column (German) description — used to parse pricing tiers
+   *  even when the display description is a translated version that lacks the HTML table. */
+  rawDescription: string;
   price: number | null;
   duration: string;
   durationHours: number;
@@ -233,6 +236,9 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     name: parseStr(tr?.name, row.name),
     shortDescription: parseStr(tr?.short_description, row.short_description ?? ''),
     description: parseStr(tr?.description, row.description ?? ''),
+    // rawDescription always points to the base DB column (German) so that
+    // parsePricingTiers can find the HTML table regardless of the active locale.
+    rawDescription: row.description ?? '',
     price: row.price,
     duration: stripZeroMinutes(parseStr(tr?.duration, row.duration ?? '')),
     durationHours: row.duration_hours ?? 0,
@@ -362,7 +368,24 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   if (!row) return undefined;
 
   const tr = await getSingleTranslation('tours', row.id, locale);
-  return mergeTranslation(row, tr);
+  const tour = mergeTranslation(row, tr);
+
+  // If the locale is not DE, also fetch the DE translation to extract rawDescription
+  // (the pricing table HTML is always stored in the DE translation row).
+  if (locale !== 'de') {
+    const { data: deTr } = await db
+      .from('content_translations')
+      .select('description')
+      .eq('table_name', 'tours')
+      .eq('row_id', row.id)
+      .eq('locale', 'de')
+      .maybeSingle();
+    if (deTr?.description) {
+      tour.rawDescription = deTr.description;
+    }
+  }
+
+  return tour;
 }
 
 export async function getTourExtras(tourId: string, locale: string = 'de'): Promise<TourExtra[]> {

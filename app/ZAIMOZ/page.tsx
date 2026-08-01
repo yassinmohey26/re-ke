@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useAdminLocale } from './AdminLanguageContext';
+import AdminClock from './AdminClock';
 import styles from './page.module.css';
 
 interface Tour { id: string; active: boolean; featured: boolean; }
@@ -167,7 +168,10 @@ export default function AdminDashboard() {
       <div className={styles.hero}>
         <div className={styles.heroGradient} />
         <div className={styles.heroContent}>
-          <div className={styles.greetingBadge}>👋 {greeting}</div>
+          <div className={styles.heroTopRow}>
+            <div className={styles.greetingBadge}>👋 {greeting}</div>
+            <AdminClock />
+          </div>
           <h1 className={styles.heroTitle}>{t('dashboardTitle')}</h1>
           <p className={styles.heroDate}>{dateStr}</p>
         </div>

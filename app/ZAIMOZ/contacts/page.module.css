@@ -144,3 +144,42 @@
   text-align: center;
   font-style: italic;
 }
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .messageCard {
+    padding: var(--space-4);
+  }
+
+  .messageHeader {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .messageMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  .messageEmail,
+  .messagePhone {
+    overflow-wrap: anywhere;
+  }
+
+  .messageActions {
+    flex-wrap: wrap;
+  }
+
+  .messageActions .markReadBtn,
+  .messageActions .deleteBtn {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-2) var(--space-3);
+  }
+}

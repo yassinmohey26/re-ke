@@ -63,16 +63,40 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   });
 
   const [pricingTiers, setPricingTiers] = useState<PricingTier[]>(() => {
-    const desc = tr('description') || '';
-    const parsed = parsePricingTiers(desc);
-    return parsed.length > 0 ? parsed : [];
+    // 1. First try parsing from description HTML (legacy: table was appended by buildPricingTable)
+    const baseDesc =
+      initialData?.rawDescription ||
+      initialData?.translations?.de?.description ||
+      initialData?.description ||
+      tr('description') ||
+      '';
+    const fromDesc = parsePricingTiers(baseDesc);
+    if (fromDesc.length > 0) return fromDesc;
+
+    // 2. Fallback: read from discount.pricingTiers JSON column
+    // The public tour page stores/reads pricing tiers here when no HTML table exists.
+    const discountTiers = initialData?.discount?.pricingTiers;
+    if (Array.isArray(discountTiers) && discountTiers.length > 0) {
+      return discountTiers.map((t: any) => ({
+        minGuests: Number(t.min ?? t.minGuests ?? 1),
+        maxGuests: Number(t.max ?? t.maxGuests ?? 1),
+        pricePerPerson: Number(t.price ?? t.pricePerPerson ?? 0),
+      }));
+    }
+
+    return [];
   });
 
   function parseDiscountInit(val: unknown): Discount {
     if (!val) return { active: false, percentage: 0 };
     if (typeof val === 'object' && val !== null) {
       const d = val as Discount;
-      return { active: d.active === true, percentage: d.percentage ?? 0, tierPrices: d.tierPrices };
+      return {
+        active: d.active === true,
+        percentage: d.percentage ?? 0,
+        tierPrices: d.tierPrices,
+        pricingTiers: d.pricingTiers, // preserve so it survives a save roundtrip
+      };
     }
     return { active: false, percentage: 0 };
   }
@@ -120,11 +144,27 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       description = description + '\n' + buildPricingTable(pricingTiers);
     }
 
+    // Always persist pricingTiers in the discount JSON column so the public
+    // tour page can find them even when description HTML parsing fails.
+    const pricingTierEntries = pricingTiers.map(t => ({
+      min: t.minGuests,
+      max: t.maxGuests,
+      price: t.pricePerPerson,
+    }));
+
+    let discountToSave: Discount | null = null;
+    if (showDiscount && discount.active) {
+      discountToSave = { ...discount, pricingTiers: pricingTierEntries };
+    } else if (pricingTierEntries.length > 0) {
+      // No active discount but we still need to persist pricing tiers
+      discountToSave = { active: false, percentage: 0, pricingTiers: pricingTierEntries };
+    }
+
     const data = {
       ...form,
       description,
       price: form.price === '' || form.price === null ? null : Number(form.price),
-      discount: showDiscount && discount.active ? discount : null,
+      discount: discountToSave,
       durationHours: Number(form.durationHours),
       maxGuests: Number(form.maxGuests),
       minAge: Number(form.minAge),

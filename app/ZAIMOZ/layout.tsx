@@ -3,6 +3,8 @@ import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import AdminSidebar from './AdminSidebar';
 import { AdminLanguageProvider } from './AdminLanguageContext';
+import { AdminThemeProvider } from './AdminThemeContext';
+import AdminTopBar from './AdminTopBar';
 import styles from './layout.module.css';
 
 export const metadata: Metadata = {
@@ -26,12 +28,13 @@ export default async function AdminLayout({
 
   return (
     <AdminLanguageProvider>
-      <div className={styles.adminLayout}>
+      <AdminThemeProvider>
         <AdminSidebar user={session.user as any} />
+        <AdminTopBar />
         <main className={styles.adminMain}>
           <div className={styles.adminContent}>{children}</div>
         </main>
-      </div>
+      </AdminThemeProvider>
     </AdminLanguageProvider>
   );
 }

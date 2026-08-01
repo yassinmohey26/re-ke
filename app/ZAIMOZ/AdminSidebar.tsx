@@ -14,9 +14,9 @@ interface AdminSidebarProps {
   };
 }
 
-const NAV_HREFS = ['/ZAIMOZ', '/ZAIMOZ/tours', '/ZAIMOZ/blog', '/ZAIMOZ/bookings', '/ZAIMOZ/contacts', '/ZAIMOZ/newsletter', '/ZAIMOZ/faqs', '/ZAIMOZ/destinations'] as const;
-const NAV_KEYS = ['navDashboard', 'navTours', 'navBlog', 'navBookings', 'navContacts', 'navNewsletter', 'navFaqs', 'navDestinations'] as const;
-const NAV_ICONS = ['◈', '◈', '◎', '◉', '◎', '◇', '?', '◆'];
+const NAV_HREFS = ['/ZAIMOZ', '/ZAIMOZ/tours', '/ZAIMOZ/blog', '/ZAIMOZ/bookings', '/ZAIMOZ/contacts', '/ZAIMOZ/newsletter', '/ZAIMOZ/faqs', '/ZAIMOZ/destinations', '/ZAIMOZ/transfers'] as const;
+const NAV_KEYS = ['navDashboard', 'navTours', 'navBlog', 'navBookings', 'navContacts', 'navNewsletter', 'navFaqs', 'navDestinations', 'navTransfers'] as const;
+const NAV_ICONS = ['📊', '🗺️', '📝', '📋', '📬', '📧', '❓', '📍', '✈️'];
 
 export default function AdminSidebar({ user }: AdminSidebarProps) {
   const pathname = usePathname();
