@@ -20,5 +20,6 @@
   .adminMain {
     margin-inline-start: 0;
     padding: var(--space-4);
+    padding-top: calc(var(--space-4) + 56px); /* clear the hamburger button */
   }
 }
