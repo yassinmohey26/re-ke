@@ -14,13 +14,21 @@ export async function GET(
 
   const extras = await getTourExtras(tour.id, locale);
 
+  const rawTiers = tour.discount?.pricingTiers ?? parsePricingTiers(tour.description);
+  const pricingTiers = rawTiers.map((t) => {
+    if ('minGuests' in t && 'pricePerPerson' in t) {
+      return { minGuests: t.minGuests, maxGuests: t.maxGuests, pricePerPerson: t.pricePerPerson };
+    }
+    return { minGuests: t.min, maxGuests: t.max, pricePerPerson: t.price };
+  });
+
   return NextResponse.json({
     id: tour.id,
     slug: tour.slug,
     name: tour.name,
     price: tour.price,
     maxGuests: tour.maxGuests,
-    pricingTiers: tour.discount?.pricingTiers ?? parsePricingTiers(tour.description),
+    pricingTiers,
     discount: tour.discount,
     extras,
   });
