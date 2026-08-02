@@ -33,7 +33,6 @@ export default function BlogPreview({ posts, locale = 'de' }: { posts: BlogPrevi
       <div className="container">
         <div className={styles.header}>
           <div>
-            <span className="section-eyebrow">{t('eyebrow')}</span>
             <h2 className="section-title">
               {t('titlePart1')} <span className="text-accent">{t('titleAccent')}</span>
             </h2>

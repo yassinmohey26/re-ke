@@ -15,7 +15,6 @@ export default async function FeaturedTours({ locale }: { locale: string }) {
       <div className="container">
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 'var(--space-6)', marginBottom: 'var(--space-10)', flexWrap: 'wrap' }}>
           <div>
-            <span className="section-eyebrow">{t('eyebrow')}</span>
             <h2 className="section-title">
               {t('titlePart1')} <span className="text-accent">{t('titleAccent')}</span>
             </h2>

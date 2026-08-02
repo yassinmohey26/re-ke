@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { isTourSortOrderSupported } from '@/lib/data/tours';
 
 export async function GET(
   request: NextRequest,
@@ -99,6 +100,7 @@ export async function PUT(
     if (body.featured !== undefined) tourRow.featured = body.featured;
     if (body.active !== undefined) tourRow.active = body.active;
     if (body.discount !== undefined) tourRow.discount = body.discount;
+    if (body.sortOrder !== undefined && await isTourSortOrderSupported()) tourRow.sort_order = body.sortOrder;
 
     if (body.destinationSlug !== undefined) {
       if (body.destinationSlug) {

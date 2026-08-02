@@ -51,6 +51,9 @@ const translations = {
   loading: { de: 'Lade Touren...', en: 'Loading tours...', ru: 'Загрузка туров...', ar: 'جارٍ تحميل الجولات...', fr: 'Chargement des circuits...', hu: 'Túrák betöltése...' },
   noResults: { de: 'Keine Touren gefunden', en: 'No tours found', ru: 'Туры не найдены', ar: 'لم يتم العثور على جولات', fr: 'Aucun circuit trouvé', hu: 'Nem található túra' },
   confirmDeleteTour: { de: 'Tour wirklich löschen?', en: 'Really delete this tour?', ru: 'Действительно удалить этот тур?', ar: 'هل تريد حذف هذه الجولة فعلاً؟', fr: 'Vraiment supprimer ce circuit?', hu: 'Biztosan törli ezt a túrát?' },
+  colOrder: { de: 'Reihenfolge', en: 'Order', ru: 'Порядок', ar: 'الترتيب', fr: 'Ordre', hu: 'Sorrend' },
+  moveUp: { de: 'Nach oben verschieben', en: 'Move up', ru: 'Переместить вверх', ar: 'تحريك لأعلى', fr: 'Monter', hu: 'Mozgatás felfelé' },
+  moveDown: { de: 'Nach unten verschieben', en: 'Move down', ru: 'Переместить вниз', ar: 'تحريك لأسفل', fr: 'Descendre', hu: 'Mozgatás lefelé' },
 
   // Tour Form
   tourBasics: { de: 'Grunddaten', en: 'Basic Data', ru: 'Основные данные', ar: 'البيانات الأساسية', fr: 'Données de base', hu: 'Alapadatok' },

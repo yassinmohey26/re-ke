@@ -27,7 +27,7 @@ const LONG_DISTANCE_SLUGS = [
   'kloester-st-antonius-st-paulus',
 ];
 
-const SPECIAL_DEST_SLUGS = new Set(['el-quseir', 'marsa-alam', 'kairo']);
+const SPECIAL_DEST_SLUGS = new Set(['el-quseir', 'marsa-alam', 'kairo', 'luxor']);
 
 interface Props {
   tours: Tour[];

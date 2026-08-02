@@ -16,6 +16,7 @@ interface Tour {
   destination: string;
   featured: boolean;
   active: boolean;
+  sort_order?: number;
 }
 
 export default function AdminToursPage() {
@@ -58,6 +59,31 @@ export default function AdminToursPage() {
       body: JSON.stringify({ active: !current }),
     });
     if (res.ok) setTours(tours.map(tour => tour.id === id ? { ...tour, active: !current } : tour));
+  }
+
+  async function handleMove(id: string, direction: -1 | 1) {
+    const idx = tours.findIndex(tour => tour.id === id);
+    const target = idx + direction;
+    if (idx < 0 || target < 0 || target >= tours.length) return;
+
+    const a = tours[idx];
+    const b = tours[target];
+
+    setTours(prev => {
+      const next = [...prev];
+      next[idx] = { ...b, sort_order: a.sort_order };
+      next[target] = { ...a, sort_order: b.sort_order };
+      return next.sort((x, y) => (x.sort_order ?? 0) - (y.sort_order ?? 0));
+    });
+
+    const payload = (tourId: string, order: number | undefined) =>
+      fetch(`/api/admin/tours/${tourId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sortOrder: order }),
+      });
+
+    await Promise.all([payload(a.id, b.sort_order), payload(b.id, a.sort_order)]);
   }
 
   async function handleDuplicate(locale: string) {
@@ -133,6 +159,7 @@ export default function AdminToursPage() {
             <table className={styles.table}>
               <thead>
                 <tr>
+                  <th>{t('colOrder')}</th>
                   <th>{t('colName')}</th>
                   <th>{t('colCategory')}</th>
                   <th>{t('colDestination')}</th>
@@ -145,6 +172,22 @@ export default function AdminToursPage() {
               <tbody>
                 {filtered.map((tour) => (
                   <tr key={tour.id}>
+                    <td>
+                      <div className={styles.reorder}>
+                        <button
+                          className={styles.reorderBtn}
+                          onClick={() => handleMove(tour.id, -1)}
+                          disabled={tours.findIndex(t => t.id === tour.id) === 0}
+                          aria-label={t('moveUp')}
+                        >▲</button>
+                        <button
+                          className={styles.reorderBtn}
+                          onClick={() => handleMove(tour.id, 1)}
+                          disabled={tours.findIndex(t => t.id === tour.id) === tours.length - 1}
+                          aria-label={t('moveDown')}
+                        >▼</button>
+                      </div>
+                    </td>
                     <td className={styles.tourName}>{tour.name}</td>
                     <td>
                       <span className={styles.badge}>{categoryMap[tour.category] || tour.category}</span>
@@ -185,7 +228,7 @@ export default function AdminToursPage() {
                 ))}
                 {filtered.length === 0 && (
                   <tr>
-                    <td colSpan={7} className={styles.empty}>{t('noResults')}</td>
+                    <td colSpan={8} className={styles.empty}>{t('noResults')}</td>
                   </tr>
                 )}
               </tbody>
@@ -199,6 +242,20 @@ export default function AdminToursPage() {
             )}
             {filtered.map((tour) => (
               <div key={tour.id} className={styles.mobileCard}>
+                <div className={styles.mobileCardReorder}>
+                  <button
+                    className={styles.reorderBtn}
+                    onClick={() => handleMove(tour.id, -1)}
+                    disabled={tours.findIndex(t => t.id === tour.id) === 0}
+                    aria-label={t('moveUp')}
+                  >▲</button>
+                  <button
+                    className={styles.reorderBtn}
+                    onClick={() => handleMove(tour.id, 1)}
+                    disabled={tours.findIndex(t => t.id === tour.id) === tours.length - 1}
+                    aria-label={t('moveDown')}
+                  >▼</button>
+                </div>
                 <p className={styles.mobileCardName}>{tour.name}</p>
 
                 <div className={styles.mobileCardMeta}>

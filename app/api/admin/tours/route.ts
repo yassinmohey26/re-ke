@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { isTourSortOrderSupported } from '@/lib/data/tours';
 
 export async function GET() {
   const session = await auth();
@@ -8,7 +9,11 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase.from('tours').select('*').order('created_at', { ascending: false });
+  const base = supabase.from('tours').select('*');
+  const ordered = (await isTourSortOrderSupported())
+    ? base.order('sort_order', { ascending: true, nullsFirst: false }).order('created_at', { ascending: false })
+    : base.order('created_at', { ascending: false });
+  const { data, error } = await ordered;
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data ?? []);
 }
@@ -36,6 +41,16 @@ export async function POST(request: NextRequest) {
       active: body.active !== false,
     };
     if (body.discount !== undefined) tourRow.discount = body.discount;
+
+    if (await isTourSortOrderSupported()) {
+      const { data: maxRow } = await supabase
+        .from('tours')
+        .select('sort_order')
+        .order('sort_order', { ascending: false, nullsFirst: false })
+        .limit(1)
+        .maybeSingle();
+      tourRow.sort_order = Number(maxRow?.sort_order ?? 0) + 1;
+    }
 
     if (body.destinationSlug) {
       const { data: dest } = await supabase

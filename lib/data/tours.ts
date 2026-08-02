@@ -2,6 +2,27 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 
 const db = getSupabaseAdmin();
 
+export async function isTourSortOrderSupported(): Promise<boolean> {
+  const { error } = await db.from('tours').select('sort_order').limit(1);
+  if (error) {
+    console.warn('[tours] sort_order column missing — using created_at ordering. Apply supabase/migrations/007_add_tours_sort_order.sql to enable manual tour ordering.');
+    return false;
+  }
+  return true;
+}
+
+async function orderToursQuery<T>(query: T): Promise<T> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sorted = (query as any).order('sort_order', { ascending: true, nullsFirst: false }).order('created_at', { ascending: false });
+  const res = await sorted;
+  if (res?.error && /sort_order/i.test(res.error.message)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (query as any).order('created_at', { ascending: false }) as T;
+  }
+  return sorted as T;
+}
+
+
 function stripZeroMinutes(d: string): string {
   return d.replace(/\s*0\s*(minutes?|Min\.?|minutes?)\s*/gi, ' ').replace(/\s{2,}/g, ' ').trim();
 }
@@ -356,7 +377,7 @@ async function getSingleTranslation(
 }
 
 export async function getTours(locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await db.from('tours').select('*').order('created_at', { ascending: false });
+  const { data: rows } = await orderToursQuery(db.from('tours').select('*'));
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -421,7 +442,7 @@ export async function getTourExtras(tourId: string, locale: string = 'de'): Prom
 }
 
 export async function getToursByCategory(category: Tour['category'], locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await db.from('tours').select('*').eq('category', category).order('created_at', { ascending: false });
+  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('category', category));
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -429,7 +450,7 @@ export async function getToursByCategory(category: Tour['category'], locale: str
 }
 
 export async function getToursByDestination(destinationSlug: string, locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await db.from('tours').select('*').eq('destination_slug', destinationSlug).order('created_at', { ascending: false });
+  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('destination_slug', destinationSlug));
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -437,7 +458,7 @@ export async function getToursByDestination(destinationSlug: string, locale: str
 }
 
 export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await db.from('tours').select('*').eq('featured', true).order('created_at', { ascending: false });
+  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('featured', true));
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);

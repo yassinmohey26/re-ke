@@ -60,7 +60,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const tHero = await getTranslations({ locale, namespace: 'hero' });
 
   const heroTranslations = {
-    eyebrow: tHero('eyebrow'),
     title: tHero('title'),
     subtitle: tHero('subtitle'),
     cta: tHero('cta'),

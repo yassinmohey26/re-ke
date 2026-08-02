@@ -12,7 +12,6 @@ interface TrustStat {
 
 interface HeroProps {
   trustStats?: TrustStat[];
-  eyebrow: string;
   title: string;
   subtitle: string;
   cta: string;
@@ -25,7 +24,7 @@ interface HeroProps {
 
 export default function Hero({
   trustStats = [],
-  eyebrow, title, subtitle, cta, secondary, check1, check2, check3, benefits,
+  title, subtitle, cta, secondary, check1, check2, check3, benefits,
 }: HeroProps) {
   const heroRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,7 +50,6 @@ export default function Hero({
       </div>
       <div className={styles.content}>
         <div className={styles.textBlock}>
-          <span className={styles.eyebrow}>{eyebrow}</span>
           <h1 className={styles.headline}>
             <KineticText text={title} as="span" />
           </h1>
