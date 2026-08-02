@@ -86,7 +86,10 @@
   position: relative;
   width: 100%;
   height: 320px;
-  background: url('https://hurghada-reiseplaner.at/wp-content/uploads/2025/11/pexels-merna-rakha-589037225-17142737-scaled.jpg') center/cover no-repeat;
+  background-color: #0f2740;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start;

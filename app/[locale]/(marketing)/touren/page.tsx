@@ -55,6 +55,10 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
   const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale)]);
   const destinationOptions = destinations.map(d => ({ slug: d.slug, name: d.name }));
 
+  const heroImage =
+    process.env.NEXT_PUBLIC_TOUREN_HERO_IMAGE ||
+    'https://res.cloudinary.com/sx85slkf/image/upload/f_auto,q_auto,w_1920/v1785257746/hurghada-reiseplaner/tours/pexels-merna-rakha-589037225-17142737-scaled.jpg';
+
   const translations = {
     heroTitle: await t('heroTitle'),
     searchWhere: await t('searchWhere'),
@@ -97,7 +101,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
 
   return (
     <Suspense>
-      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} translations={translations} />
+      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} translations={translations} heroImage={heroImage} />
     </Suspense>
   );
 }
