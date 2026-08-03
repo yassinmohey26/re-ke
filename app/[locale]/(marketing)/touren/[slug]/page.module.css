@@ -382,6 +382,7 @@
   padding: var(--space-4);
   background: var(--color-bg-light);
   border-radius: var(--radius-md);
+  max-width: 100%;
 }
 .itineraryNumber {
   width: 32px;
@@ -396,15 +397,23 @@
   justify-content: center;
   flex-shrink: 0;
 }
+.itineraryStep > div:last-child {
+  min-width: 0;
+  flex: 1;
+}
 .itineraryTitle {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: var(--space-1);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .itineraryContent {
   font-size: 14px;
   color: var(--color-text-2);
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* --- Included Grid --- */
@@ -727,7 +736,7 @@
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .sidebarSticky { position: static; }
   .quickFacts { grid-template-columns: repeat(2, 1fr); }
