@@ -74,29 +74,36 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const infantsMax = maxGuests - adults - childrenCount;
 
   // Build price breakdown line
-  const parsePrice = (s: string) => {
-    const m = s.match(/[\d,.]+/);
-    return m ? parseFloat(m[0].replace(',', '.')) : null;
-  };
   const childTiers = discount?.childTiers;
   const hasChildTiers = childTiers && childTiers.length >= 2;
   const breakdownPrice = salePricePerPerson ?? pricePerPerson;
+  const resolveTierPrice = (priceString: string | undefined, fallbackRatio: number, fullPrice: number) => {
+    if (!priceString) return Math.round(fullPrice * fallbackRatio);
+    const s = priceString.trim().toLowerCase();
+    if (!s || s === 'kostenlos' || s === 'frei' || s === 'free' || /^0\b/.test(s)) return 0;
+    const pct = s.match(/(\d+)\s*%/);
+    if (pct) return Math.round(fullPrice * parseFloat(pct[1]) / 100);
+    if (s.includes('voller') || s.includes('full')) return fullPrice;
+    const m = s.match(/[\d,.]+/);
+    if (m) return parseFloat(m[0].replace(',', '.'));
+    return Math.round(fullPrice * fallbackRatio);
+  };
   let breakdown = null;
   if (breakdownPrice != null) {
     const parts: string[] = [];
     if (adults > 0) parts.push(`${adults} × ${breakdownPrice} €`);
     if (childrenCount > 0) {
       if (hasChildTiers) {
-        const cp = parsePrice(childTiers[1].price);
-        parts.push(`${childrenCount} × ${cp != null ? cp.toFixed(0) : (breakdownPrice / 2).toFixed(0)} €`);
+        const cp = resolveTierPrice(childTiers[1]?.price, 0.5, breakdownPrice);
+        parts.push(`${childrenCount} × ${cp.toFixed(0)} €`);
       } else {
         parts.push(`${childrenCount} × ${(breakdownPrice / 2).toFixed(0)} €`);
       }
     }
     if (infants > 0) {
       if (hasChildTiers) {
-        const ip = parsePrice(childTiers[0].price);
-        parts.push(`${infants} × ${ip != null ? ip.toFixed(0) : '0'} €`);
+        const ip = resolveTierPrice(childTiers[0]?.price, 0, breakdownPrice);
+        parts.push(`${infants} × ${ip.toFixed(0)} €`);
       } else {
         parts.push(`${infants} × 0 €`);
       }

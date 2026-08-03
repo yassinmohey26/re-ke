@@ -89,21 +89,26 @@ export function TourBookingProvider({
       .filter((e) => selected.includes(e.id))
       .reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
     const effectivePrice = salePricePerPerson ?? pricePerPerson;
-    const parsePrice = (s: string) => {
-      const m = s.match(/[\d,.]+/);
-      return m ? parseFloat(m[0].replace(',', '.')) : null;
-    };
     const childTiers = discount?.childTiers;
     const hasChildTiers = childTiers && childTiers.length >= 2;
+    const resolveTierPrice = (priceString: string | undefined, fallbackRatio: number, fullPrice: number) => {
+      if (!priceString) return Math.round(fullPrice * fallbackRatio);
+      const s = priceString.trim().toLowerCase();
+      if (!s || s === 'kostenlos' || s === 'frei' || s === 'free' || /^0\b/.test(s)) return 0;
+      const pct = s.match(/(\d+)\s*%/);
+      if (pct) return Math.round(fullPrice * parseFloat(pct[1]) / 100);
+      if (s.includes('voller') || s.includes('full')) return fullPrice;
+      const m = s.match(/[\d.,]+/);
+      if (m) return parseFloat(m[0].replace(',', '.'));
+      return Math.round(fullPrice * fallbackRatio);
+    };
     const total = effectivePrice != null
       ? (() => {
           const adultTotal = effectivePrice * adults;
           if (hasChildTiers) {
-            const childPrice = parsePrice(childTiers[1].price);
-            const infantPrice = parsePrice(childTiers[0].price);
-            return adultTotal
-              + (childrenCount && childPrice != null ? childPrice * childrenCount : (effectivePrice / 2) * childrenCount)
-              + (infants && infantPrice != null ? infantPrice * infants : 0);
+            const childPrice = resolveTierPrice(childTiers[1]?.price, 0.5, effectivePrice);
+            const infantPrice = resolveTierPrice(childTiers[0]?.price, 0, effectivePrice);
+            return adultTotal + childPrice * childrenCount + infantPrice * infants;
           }
           return adultTotal + (effectivePrice / 2) * childrenCount;
         })() + extrasTotal
