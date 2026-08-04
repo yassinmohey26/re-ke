@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useAdminLocale } from '../AdminLanguageContext';
 import GalleryUpload from '@/components/admin/GalleryUpload';
 import ExtrasManager from './ExtrasManager';
+import ItineraryManager from './ItineraryManager';
 import { parsePricingTiers, stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
 import type { PricingTier } from '@/lib/pricing-table';
 import type { Discount } from '@/lib/data/tours';
@@ -173,7 +174,6 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       notIncluded: form.notIncluded.split('\n').filter((s: string) => s.trim()),
       image: images.length > 0 ? JSON.stringify(images) : '',
       gallery: initialData?.gallery || [],
-      itinerary: initialData?.itinerary || [],
       faqs: initialData?.faqs || [],
     };
     await onSave(data);
@@ -403,6 +403,10 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
 
       {initialData?.id && (
         <ExtrasManager tourId={initialData.id} styles={styles} />
+      )}
+
+      {initialData?.id && (
+        <ItineraryManager tourId={initialData.id} styles={styles} />
       )}
 
       <div className={styles.section}>

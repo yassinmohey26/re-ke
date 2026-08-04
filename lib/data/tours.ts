@@ -161,8 +161,8 @@ function stripEmoji(s: string): string {
 }
 
 function parseFaqs(val: unknown, fallback: { question: string; answer: string }[]): { question: string; answer: string }[] {
-  if (!Array.isArray(val)) return fallback;
-  return val.map(item => {
+  const source = Array.isArray(val) ? val : fallback;
+  return source.map(item => {
     if (item.question && item.answer) return { question: stripEmoji(item.question), answer: item.answer };
     if (item.q && item.a) return { question: stripEmoji(item.q), answer: item.a };
     return { question: '', answer: '' };
@@ -300,6 +300,7 @@ async function getTranslationsMap(
   locale: string,
 ): Promise<Map<string, any>> {
   if (rowIds.length === 0) return new Map();
+  if (tableName === 'tours' && locale === 'de') return new Map();
 
   const map = new Map<string, any>();
 
@@ -347,6 +348,7 @@ async function getSingleTranslation(
   rowId: string,
   locale: string,
 ): Promise<any> {
+  if (tableName === 'tours' && locale === 'de') return null;
   // Try requested locale
   const { data } = await db
     .from('content_translations')
