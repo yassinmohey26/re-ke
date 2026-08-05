@@ -7,6 +7,7 @@ import GalleryUpload from '@/components/admin/GalleryUpload';
 import FAQManager from '@/components/admin/FAQManager';
 import ExtrasManager from './ExtrasManager';
 import ItineraryManager from './ItineraryManager';
+import ChildDiscountManager, { ChildDiscountEditor, type ChildDiscountFormTier } from './ChildDiscountManager';
 import { parsePricingTiers, stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
 import type { PricingTier } from '@/lib/pricing-table';
 import type { Discount } from '@/lib/data/tours';
@@ -132,6 +133,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
     () => (Array.isArray(initialData?.faqs) ? initialData.faqs : []),
   );
 
+  const [childDiscountTiers, setChildDiscountTiers] = useState<ChildDiscountFormTier[]>([]);
+
   const isCreateMode = !initialData?.id;
 
   function update(key: string, value: any) {
@@ -246,6 +249,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       gallery: initialData?.gallery || [],
       faqs,
       itinerary,
+      childDiscounts: childDiscountTiers,
     };
     await onSave(data);
   }
@@ -441,6 +445,12 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
           </div>
         )}
       </div>
+
+      {initialData?.id ? (
+        <ChildDiscountManager tourId={initialData.id} styles={styles} />
+      ) : (
+        <ChildDiscountEditor tiers={childDiscountTiers} onChange={setChildDiscountTiers} styles={styles} />
+      )}
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('tourImage')} / Galerie</h2>

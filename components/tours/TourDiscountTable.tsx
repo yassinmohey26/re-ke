@@ -1,27 +1,22 @@
 import { getTranslations } from 'next-intl/server';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
-import type { Discount } from '@/lib/data/tours';
+import {
+  formatAgeLabel,
+  formatDiscountLabel,
+  resolveChildDiscounts,
+  type ChildDiscountLocale,
+  type TourChildDiscount,
+} from '@/lib/child-discounts';
 
 interface Props {
-  discount?: Discount | null;
+  childDiscounts?: TourChildDiscount[] | null;
+  locale: string;
 }
 
-export default async function TourDiscountTable({ discount }: Props) {
+export default async function TourDiscountTable({ childDiscounts, locale }: Props) {
   const t = await getTranslations('tours');
-
-  if (!discount?.childTiers || discount.childTiers.length === 0) return null;
-
-  // Map known German DB strings → translation keys
-  const labelMap: Record<string, string> = {
-    '0–2 Jahre': t('child0to2'),
-    '3–10 Jahre': t('child3to10'),
-    'Ab 11 Jahre': t('child11plus'),
-  };
-  const priceMap: Record<string, string> = {
-    'Kostenlos': t('childFree'),
-    '50% Ermäßigung': t('childHalf'),
-    'Voller Preis': t('childFull'),
-  };
+  const tiers = resolveChildDiscounts(childDiscounts ?? []);
+  const loc = (locale in { de: 1, en: 1, ar: 1, fr: 1, hu: 1, ru: 1 } ? locale : 'de') as ChildDiscountLocale;
 
   return (
     <div className={styles.section}>
@@ -34,10 +29,10 @@ export default async function TourDiscountTable({ discount }: Props) {
           </tr>
         </thead>
         <tbody>
-          {discount.childTiers.map((tier, i) => (
-            <tr key={i}>
-              <td className={styles.priceTableCell}>{labelMap[tier.label] ?? tier.label}</td>
-              <td className={styles.priceTableCellValue}>{priceMap[tier.price] ?? tier.price}</td>
+          {tiers.map((tier, i) => (
+            <tr key={tier.id ?? i}>
+              <td className={styles.priceTableCell}>{formatAgeLabel(tier, loc)}</td>
+              <td className={styles.priceTableCellValue}>{formatDiscountLabel(tier, loc)}</td>
             </tr>
           ))}
         </tbody>

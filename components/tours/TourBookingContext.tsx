@@ -3,6 +3,13 @@
 import { createContext, useContext, useState, useMemo, type ReactNode } from 'react';
 import { type PricingTier, getPriceForGuests, applyDiscount } from '@/lib/pricing-table';
 import type { Discount } from '@/lib/data/tours';
+import type { TourChildDiscount } from '@/lib/child-discounts';
+import {
+  computeTierPrice,
+  findTierForChild,
+  findTierForInfant,
+  resolveChildDiscounts,
+} from '@/lib/child-discounts';
 
 interface Extra {
   id: string;
@@ -49,6 +56,7 @@ export function TourBookingProvider({
   maxGuests = 8,
   pricingTiers = [],
   discount = null,
+  childDiscounts = [],
   extras,
   children,
 }: {
@@ -57,6 +65,7 @@ export function TourBookingProvider({
   maxGuests?: number;
   pricingTiers?: PricingTier[];
   discount?: Discount | null;
+  childDiscounts?: TourChildDiscount[];
   extras: Extra[];
   children: ReactNode;
 }) {
@@ -75,8 +84,8 @@ export function TourBookingProvider({
 
   const value = useMemo(() => {
     const guestsTotal = adults + childrenCount + infants;
-    const hasFixedChildPricing = discount?.childTiers != null && discount.childTiers.length >= 2;
-    const guestsForPricing = hasFixedChildPricing ? adults : adults + childrenCount;
+    const tiers = resolveChildDiscounts(childDiscounts);
+    const guestsForPricing = adults;
     const pricePerPerson = getPriceForGuests(pricingTiers, price, guestsForPricing);
     const activeTierIndex = pricingTiers.findIndex(
       t => guestsForPricing >= t.minGuests && guestsForPricing <= t.maxGuests
@@ -89,28 +98,14 @@ export function TourBookingProvider({
       .filter((e) => selected.includes(e.id))
       .reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
     const effectivePrice = salePricePerPerson ?? pricePerPerson;
-    const childTiers = discount?.childTiers;
-    const hasChildTiers = childTiers && childTiers.length >= 2;
-    const resolveTierPrice = (priceString: string | undefined, fallbackRatio: number, fullPrice: number) => {
-      if (!priceString) return Math.round(fullPrice * fallbackRatio);
-      const s = priceString.trim().toLowerCase();
-      if (!s || s === 'kostenlos' || s === 'frei' || s === 'free' || /^0\b/.test(s)) return 0;
-      const pct = s.match(/(\d+)\s*%/);
-      if (pct) return Math.round(fullPrice * parseFloat(pct[1]) / 100);
-      if (s.includes('voller') || s.includes('full')) return fullPrice;
-      const m = s.match(/[\d.,]+/);
-      if (m) return parseFloat(m[0].replace(',', '.'));
-      return Math.round(fullPrice * fallbackRatio);
-    };
+    const infantTier = findTierForInfant(tiers);
+    const childTier = findTierForChild(tiers);
     const total = effectivePrice != null
       ? (() => {
           const adultTotal = effectivePrice * adults;
-          if (hasChildTiers) {
-            const childPrice = resolveTierPrice(childTiers[1]?.price, 0.5, effectivePrice);
-            const infantPrice = resolveTierPrice(childTiers[0]?.price, 0, effectivePrice);
-            return adultTotal + childPrice * childrenCount + infantPrice * infants;
-          }
-          return adultTotal + (effectivePrice / 2) * childrenCount;
+          const childPrice = infantTier ? computeTierPrice(infantTier, effectivePrice) : 0;
+          const childrenPrice = childTier ? computeTierPrice(childTier, effectivePrice) : Math.round(effectivePrice / 2);
+          return adultTotal + childrenPrice * childrenCount + childPrice * infants;
         })() + extrasTotal
       : null;
     const bookingHref =
@@ -139,7 +134,7 @@ export function TourBookingProvider({
       total,
       bookingHref,
     };
-  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, slug, extras, selected]);
+  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, childDiscounts, slug, extras, selected]);
 
   return <TourBookingContext.Provider value={value}>{children}</TourBookingContext.Provider>;
 }

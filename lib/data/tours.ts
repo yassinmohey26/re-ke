@@ -1,4 +1,9 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
+import {
+  parseChildDiscountRow,
+  resolveChildDiscounts,
+  type TourChildDiscount,
+} from '@/lib/child-discounts';
 
 const db = getSupabaseAdmin();
 
@@ -71,6 +76,8 @@ export interface Tour {
   meetingPoint: string;
   featured: boolean;
   discount: Discount | null;
+  /** Age-based child pricing tiers (DB rows or runtime default fallback). */
+  childDiscounts: TourChildDiscount[];
 }
 
 export interface Destination {
@@ -280,6 +287,7 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     meetingPoint: parseStr(tr?.meeting_point, row.meeting_point ?? ''),
     featured: row.featured ?? false,
     discount: parseDiscount(row.discount ?? null),
+    childDiscounts: [],
   };
 }
 
@@ -392,6 +400,8 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
 
   const tr = await getSingleTranslation('tours', row.id, locale);
   const tour = mergeTranslation(row, tr);
+  const childDiscountRows = await getTourChildDiscountsFromDb(row.id);
+  tour.childDiscounts = resolveChildDiscounts(childDiscountRows);
 
   // If the locale is not DE, also fetch the DE translation to extract rawDescription
   // (the pricing table HTML is always stored in the DE translation row).
@@ -409,6 +419,28 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   }
 
   return tour;
+}
+
+export async function getTourChildDiscountsFromDb(tourId: string): Promise<TourChildDiscount[]> {
+  const { data, error } = await db
+    .from('tour_child_discounts')
+    .select('*')
+    .eq('tour_id', tourId)
+    .order('sort_order', { ascending: true })
+    .order('age_from', { ascending: true });
+
+  if (error) {
+    if (/tour_child_discounts/i.test(error.message)) {
+      console.warn(
+        '[tours] tour_child_discounts table missing — using default child pricing. Apply supabase/migrations/008_tour_child_discounts.sql.',
+      );
+      return [];
+    }
+    console.error('[tours] getTourChildDiscountsFromDb:', error.message);
+    return [];
+  }
+
+  return (data ?? []).map((row) => parseChildDiscountRow(row as Record<string, unknown>));
 }
 
 export async function getTourExtras(tourId: string, locale: string = 'de'): Promise<TourExtra[]> {

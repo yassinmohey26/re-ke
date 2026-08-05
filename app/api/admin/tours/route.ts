@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { isTourSortOrderSupported } from '@/lib/data/tours';
+import { sanitizeChildDiscountInput, type ChildDiscountInput } from '@/lib/child-discounts';
 
 function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
   if (!Array.isArray(value)) return [];
@@ -144,6 +145,29 @@ export async function POST(request: NextRequest) {
         console.error('Tour itinerary update error:', itineraryError);
       } else if (updatedTour) {
         createdTour = updatedTour;
+      }
+    }
+
+    if (Array.isArray(body.childDiscounts)) {
+      const childDiscountRows = (body.childDiscounts as Record<string, unknown>[])
+        .map((item) => sanitizeChildDiscountInput(item))
+        .filter((input): input is ChildDiscountInput => input !== null)
+        .map((input, index) => ({
+          tour_id: tour.id,
+          age_from: input.age_from,
+          age_to: input.age_to,
+          discount_type: input.discount_type,
+          discount_value: input.discount_value,
+          sort_order: input.sort_order ?? index,
+        }));
+
+      if (childDiscountRows.length > 0) {
+        const { error: childDiscountError } = await supabase
+          .from('tour_child_discounts')
+          .insert(childDiscountRows);
+        if (childDiscountError) {
+          console.error('Tour child discounts insert error:', childDiscountError);
+        }
       }
     }
 
