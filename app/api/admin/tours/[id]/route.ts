@@ -3,6 +3,38 @@ import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { isTourSortOrderSupported } from '@/lib/data/tours';
 
+function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (item && typeof item === 'object') {
+        const o = item as Record<string, unknown>;
+        return {
+          title: typeof o.title === 'string' ? o.title : '',
+          content: typeof o.content === 'string' ? o.content : '',
+        };
+      }
+      return { title: '', content: '' };
+    })
+    .filter((i) => i.title.trim() !== '' || i.content.trim() !== '');
+}
+
+function sanitizeFAQs(value: unknown): { question: string; answer: string }[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (item && typeof item === 'object') {
+        const o = item as Record<string, unknown>;
+        return {
+          question: typeof o.question === 'string' ? o.question : '',
+          answer: typeof o.answer === 'string' ? o.answer : '',
+        };
+      }
+      return { question: '', answer: '' };
+    })
+    .filter((i) => i.question.trim() !== '' || i.answer.trim() !== '');
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -101,6 +133,8 @@ export async function PUT(
     if (body.active !== undefined) tourRow.active = body.active;
     if (body.discount !== undefined) tourRow.discount = body.discount;
     if (body.sortOrder !== undefined && await isTourSortOrderSupported()) tourRow.sort_order = body.sortOrder;
+    if (body.itinerary !== undefined) tourRow.itinerary = sanitizeItinerary(body.itinerary);
+    if (body.faqs !== undefined) tourRow.faqs = sanitizeFAQs(body.faqs);
 
     if (body.destinationSlug !== undefined) {
       if (body.destinationSlug) {
@@ -131,7 +165,7 @@ export async function PUT(
 
     const hasTrFields = body.name !== undefined || body.shortDescription !== undefined || body.description !== undefined
       || body.categoryLabel !== undefined || body.highlights !== undefined || body.included !== undefined
-      || body.notIncluded !== undefined || body.faqs !== undefined || body.meetingPoint !== undefined
+      || body.notIncluded !== undefined || (body.faqs !== undefined && locale !== 'de') || body.meetingPoint !== undefined
       || body.duration !== undefined;
 
     if (hasTrFields) {
@@ -147,7 +181,7 @@ export async function PUT(
       if (body.highlights !== undefined) trRow.highlights = body.highlights;
       if (body.included !== undefined) trRow.included = body.included;
       if (body.notIncluded !== undefined) trRow.not_included = body.notIncluded;
-      if (body.faqs !== undefined) trRow.faqs = body.faqs;
+      if (body.faqs !== undefined && locale !== 'de') trRow.faqs = body.faqs;
       if (body.meetingPoint !== undefined) trRow.meeting_point = body.meetingPoint;
       if (body.duration !== undefined) trRow.duration = body.duration;
 

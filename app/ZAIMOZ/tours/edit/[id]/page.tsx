@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, use } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import TourForm from '../../TourForm';
 import { useAdminLocale } from '../../../AdminLanguageContext';
@@ -9,10 +9,19 @@ import { useAdminLocale } from '../../../AdminLanguageContext';
 export default function EditTourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t, locale } = useAdminLocale();
   const [tour, setTour] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [showCreatedBanner, setShowCreatedBanner] = useState(
+    () => searchParams.get('created') === '1',
+  );
+
+  function dismissCreatedBanner() {
+    setShowCreatedBanner(false);
+    router.replace(`/ZAIMOZ/tours/edit/${id}`, { scroll: false });
+  }
 
   useEffect(() => {
     fetch(`/api/admin/tours/${id}`)
@@ -50,6 +59,44 @@ export default function EditTourPage({ params }: { params: Promise<{ id: string 
           {t('editTourTitle')} {tour.name}
         </h1>
       </div>
+      {showCreatedBanner && (
+        <div
+          role="status"
+          style={{
+            background: '#f0fdf4',
+            border: '1px solid #86efac',
+            color: '#16a34a',
+            padding: '10px 16px',
+            borderRadius: '10px',
+            fontSize: '14px',
+            fontWeight: 500,
+            marginBottom: 'var(--space-4)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 'var(--space-3)',
+          }}
+        >
+          <span>Tour created successfully! You can now add the itinerary below.</span>
+          <button
+            type="button"
+            onClick={dismissCreatedBanner}
+            aria-label="Dismiss"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'inherit',
+              cursor: 'pointer',
+              fontSize: '18px',
+              lineHeight: 1,
+              padding: '0 4px',
+              flexShrink: 0,
+            }}
+          >
+            ×
+          </button>
+        </div>
+      )}
       <TourForm initialData={tour} onSave={handleSave} saving={saving} />
     </div>
   );

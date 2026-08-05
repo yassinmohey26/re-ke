@@ -19,7 +19,12 @@ export default function NewTourPage() {
       body: JSON.stringify(data),
     });
     if (res.ok) {
-      router.push('/ZAIMOZ/tours');
+      const newTour = await res.json();
+      if (newTour?.id) {
+        router.push(`/ZAIMOZ/tours/edit/${newTour.id}?created=1`);
+      } else {
+        alert(t('saveError'));
+      }
     } else {
       alert(t('saveError'));
     }

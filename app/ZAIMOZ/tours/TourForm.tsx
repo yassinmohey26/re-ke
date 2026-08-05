@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useAdminLocale } from '../AdminLanguageContext';
 import GalleryUpload from '@/components/admin/GalleryUpload';
+import FAQManager from '@/components/admin/FAQManager';
 import ExtrasManager from './ExtrasManager';
 import ItineraryManager from './ItineraryManager';
 import { parsePricingTiers, stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
@@ -32,6 +33,18 @@ function parseImageField(val: unknown): string[] {
 }
 
 const EMPTY_TIER: PricingTier = { minGuests: 1, maxGuests: 1, pricePerPerson: 0 };
+const EMPTY_ITINERARY_ITEM = { title: '', content: '' };
+
+const reorderBtnStyle: React.CSSProperties = {
+  background: 'transparent',
+  border: '1px solid rgba(255,255,255,0.2)',
+  color: 'inherit',
+  borderRadius: '4px',
+  padding: '2px 6px',
+  cursor: 'pointer',
+  fontSize: '10px',
+  lineHeight: 1,
+};
 
 export default function TourForm({ initialData, onSave, saving }: TourFormProps) {
   const { t, locale } = useAdminLocale();
@@ -109,6 +122,18 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
     return parseImageField(initialData?.image);
   });
 
+  const [itinerary, setItinerary] = useState<{ title: string; content: string }[]>(
+    () => (Array.isArray(initialData?.itinerary) ? initialData.itinerary : []),
+  );
+  const [itineraryEditingIndex, setItineraryEditingIndex] = useState<number | 'new' | null>(null);
+  const [itineraryForm, setItineraryForm] = useState(EMPTY_ITINERARY_ITEM);
+
+  const [faqs, setFaqs] = useState<{ question: string; answer: string }[]>(
+    () => (Array.isArray(initialData?.faqs) ? initialData.faqs : []),
+  );
+
+  const isCreateMode = !initialData?.id;
+
   function update(key: string, value: any) {
     setForm(prev => ({ ...prev, [key]: value }));
   }
@@ -135,6 +160,51 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
 
   function removeTier(index: number) {
     setPricingTiers(prev => prev.filter((_, i) => i !== index));
+  }
+
+  function startItineraryAdd() {
+    setItineraryForm(EMPTY_ITINERARY_ITEM);
+    setItineraryEditingIndex('new');
+  }
+
+  function startItineraryEdit(index: number) {
+    setItineraryForm({ ...itinerary[index] });
+    setItineraryEditingIndex(index);
+  }
+
+  function cancelItineraryEdit() {
+    setItineraryEditingIndex(null);
+    setItineraryForm(EMPTY_ITINERARY_ITEM);
+  }
+
+  function moveItineraryItem(index: number, direction: -1 | 1) {
+    const target = index + direction;
+    if (index < 0 || target < 0 || target >= itinerary.length) return;
+    setItinerary(prev => {
+      const next = [...prev];
+      [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+
+  function removeItineraryItem(index: number) {
+    if (!confirm('Delete this itinerary item?')) return;
+    setItinerary(prev => prev.filter((_, i) => i !== index));
+    if (itineraryEditingIndex === index) cancelItineraryEdit();
+  }
+
+  function commitItineraryEdit() {
+    if (!itineraryForm.title.trim() && !itineraryForm.content.trim()) {
+      cancelItineraryEdit();
+      return;
+    }
+    const item = { title: itineraryForm.title.trim(), content: itineraryForm.content.trim() };
+    if (itineraryEditingIndex === 'new') {
+      setItinerary(prev => [...prev, item]);
+    } else if (itineraryEditingIndex !== null) {
+      setItinerary(prev => prev.map((it, i) => (i === itineraryEditingIndex ? item : it)));
+    }
+    cancelItineraryEdit();
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -174,7 +244,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       notIncluded: form.notIncluded.split('\n').filter((s: string) => s.trim()),
       image: images.length > 0 ? JSON.stringify(images) : '',
       gallery: initialData?.gallery || [],
-      faqs: initialData?.faqs || [],
+      faqs,
+      itinerary,
     };
     await onSave(data);
   }
@@ -405,9 +476,75 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         <ExtrasManager tourId={initialData.id} styles={styles} />
       )}
 
-      {initialData?.id && (
+      {isCreateMode ? (
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Reiseverlauf (Deutsch – master)</h2>
+          <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
+            German itinerary is the single source of truth. Saved with the tour when you create it.
+          </p>
+
+          <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
+                <th style={{ textAlign: 'left', padding: '8px' }}>Title</th>
+                <th style={{ textAlign: 'left', padding: '8px' }}>Content</th>
+                <th style={{ padding: '8px' }} />
+              </tr>
+            </thead>
+            <tbody>
+              {itinerary.map((item, index) => (
+                <tr key={index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                  <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+                    <div style={{ display: 'flex', gap: '4px' }}>
+                      <button type="button" onClick={() => moveItineraryItem(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
+                      <button type="button" onClick={() => moveItineraryItem(index, 1)} disabled={index === itinerary.length - 1} style={reorderBtnStyle}>▼</button>
+                    </div>
+                  </td>
+                  <td style={{ padding: '8px' }}>{item.title || <span style={{ opacity: 0.6 }}>—</span>}</td>
+                  <td style={{ padding: '8px', opacity: 0.8 }}>{item.content}</td>
+                  <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+                    <button type="button" onClick={() => startItineraryEdit(index)} className={styles.slugBtn}>Edit</button>
+                    <button type="button" onClick={() => removeItineraryItem(index)} className={styles.cancelBtn}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+              {itinerary.length === 0 && (
+                <tr><td colSpan={4} style={{ padding: '8px', opacity: 0.7 }}>No itinerary items yet.</td></tr>
+              )}
+            </tbody>
+          </table>
+
+          {itineraryEditingIndex !== null ? (
+            <div className={styles.row3}>
+              <div className={styles.field}>
+                <label className={styles.label}>Title</label>
+                <input className={styles.input} value={itineraryForm.title} onChange={e => setItineraryForm(f => ({ ...f, title: e.target.value }))} />
+              </div>
+              <div className={styles.field} style={{ gridColumn: '1 / -1' }}>
+                <label className={styles.label}>Content</label>
+                <textarea className={styles.textarea} rows={3} value={itineraryForm.content} onChange={e => setItineraryForm(f => ({ ...f, content: e.target.value }))} />
+              </div>
+              <div style={{ display: 'flex', gap: '8px', gridColumn: '1 / -1' }}>
+                <button type="button" onClick={commitItineraryEdit} className={styles.saveBtn}>
+                  {itineraryEditingIndex === 'new' ? 'Add item' : 'Update item'}
+                </button>
+                <button type="button" onClick={cancelItineraryEdit} className={styles.cancelBtn}>Cancel</button>
+              </div>
+            </div>
+          ) : (
+            <button type="button" onClick={startItineraryAdd} className={styles.slugBtn}>+ Add item</button>
+          )}
+
+          <p style={{ marginTop: 'var(--space-3)', fontSize: '12px', color: 'var(--color-text-3)' }}>
+            {itinerary.length} item(s)
+          </p>
+        </div>
+      ) : (
         <ItineraryManager tourId={initialData.id} styles={styles} />
       )}
+
+      <FAQManager faqs={faqs} onChange={setFaqs} styles={styles} />
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('tourStatus')}</h2>
