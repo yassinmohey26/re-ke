@@ -135,6 +135,7 @@ export async function PUT(
     if (body.sortOrder !== undefined && await isTourSortOrderSupported()) tourRow.sort_order = body.sortOrder;
     if (body.itinerary !== undefined) tourRow.itinerary = sanitizeItinerary(body.itinerary);
     if (body.faqs !== undefined) tourRow.faqs = sanitizeFAQs(body.faqs);
+    if (body.name !== undefined && locale === 'de') tourRow.name = body.name;
 
     if (body.destinationSlug !== undefined) {
       if (body.destinationSlug) {
@@ -166,7 +167,7 @@ export async function PUT(
     const hasTrFields = body.name !== undefined || body.shortDescription !== undefined || body.description !== undefined
       || body.categoryLabel !== undefined || body.highlights !== undefined || body.included !== undefined
       || body.notIncluded !== undefined || (body.faqs !== undefined && locale !== 'de') || body.meetingPoint !== undefined
-      || body.duration !== undefined;
+      || body.duration !== undefined || body.deName !== undefined;
 
     if (hasTrFields) {
       const trRow: Record<string, unknown> = {
@@ -174,7 +175,11 @@ export async function PUT(
         row_id: id,
         locale,
       };
-      if (body.name !== undefined) trRow.name = body.name;
+      if (locale === 'de') {
+        if (body.deName !== undefined) trRow.name = body.deName;
+      } else if (body.name !== undefined) {
+        trRow.name = body.name;
+      }
       if (body.shortDescription !== undefined) trRow.short_description = body.shortDescription;
       if (body.description !== undefined) trRow.description = body.description;
       if (body.categoryLabel !== undefined) trRow.category_label = body.categoryLabel;

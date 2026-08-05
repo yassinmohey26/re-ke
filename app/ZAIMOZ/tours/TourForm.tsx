@@ -56,7 +56,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
 
   const [form, setForm] = useState({
     slug: initialData?.slug || '',
-    name: tr('name') || '',
+    name: locale === 'de' ? (initialData?.name || '') : (tr('name') || ''),
+    deName: initialData?.translations?.de?.name || '',
     shortDescription: tr('short_description') || '',
     description: tr('description') || '',
     price: initialData?.price ?? '',
@@ -271,6 +272,12 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
             <input className={styles.input} value={form.slug} onChange={e => update('slug', e.target.value)} required />
           </div>
         </div>
+        {locale === 'de' && (
+          <div className={styles.field}>
+            <label className={styles.label}>{t('tourNameDeTranslation')}</label>
+            <input className={styles.input} value={form.deName} onChange={e => update('deName', e.target.value)} />
+          </div>
+        )}
         <div className={styles.field}>
           <label className={styles.label}>{t('tourShortDesc')}</label>
           <input className={styles.input} value={form.shortDescription} onChange={e => update('shortDescription', e.target.value)} required />

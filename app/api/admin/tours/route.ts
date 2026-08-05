@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     const faqs = sanitizeFAQs(body.faqs);
 
     const tourRow: Record<string, unknown> = {
-      name: body.name || '',  
+      name: body.name || '',
       slug: body.slug,
       price: body.price ?? null,
       duration_hours: body.durationHours || 0,
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       table_name: 'tours',
       row_id: tour.id,
       locale: 'de',
-      name: body.name || '',
+      name: body.deName || body.name || '',
       short_description: body.shortDescription || '',
       description: body.description || '',
       category_label: body.categoryLabel || '',

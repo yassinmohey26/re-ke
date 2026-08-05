@@ -58,6 +58,7 @@ const translations = {
   // Tour Form
   tourBasics: { de: 'Grunddaten', en: 'Basic Data', ru: 'Основные данные', ar: 'البيانات الأساسية', fr: 'Données de base', hu: 'Alapadatok' },
   tourName: { de: 'Tour-Name *', en: 'Tour Name *', ru: 'Название тура *', ar: 'اسم الجولة *', fr: 'Nom du circuit *', hu: 'Túra neve *' },
+  tourNameDeTranslation: { de: 'Tour-Name (DE – Übersetzung)', en: 'Tour Name (DE – Translation)', ru: 'Название тура (DE – перевод)', ar: 'اسم الجولة (DE – الترجمة)', fr: 'Nom du circuit (DE – traduction)', hu: 'Túra neve (DE – fordítás)' },
   tourSlug: { de: 'Slug *', en: 'Slug *', ru: 'Slug *', ar: 'الرابط *', fr: 'Slug *', hu: 'Slug *' },
   tourShortDesc: { de: 'Kurzbeschreibung *', en: 'Short Description *', ru: 'Краткое описание *', ar: 'وصف قصير *', fr: 'Description courte *', hu: 'Rövid leírás *' },
   tourFullDesc: { de: 'Vollständige Beschreibung', en: 'Full Description', ru: 'Полное описание', ar: 'الوصف الكامل', fr: 'Description complète', hu: 'Teljes leírás' },
