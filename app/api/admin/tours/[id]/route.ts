@@ -123,6 +123,7 @@ export async function PUT(
     if (body.slug !== undefined) tourRow.slug = body.slug;
     if (body.price !== undefined) tourRow.price = body.price ?? null;
     if (body.durationHours !== undefined) tourRow.duration_hours = body.durationHours;
+    if (body.duration !== undefined) tourRow.duration = body.duration;
     if (body.maxGuests !== undefined) tourRow.max_guests = body.maxGuests;
     if (body.difficulty !== undefined) tourRow.difficulty = body.difficulty;
     if (body.minAge !== undefined) tourRow.min_age = body.minAge;
@@ -136,6 +137,20 @@ export async function PUT(
     if (body.itinerary !== undefined) tourRow.itinerary = sanitizeItinerary(body.itinerary);
     if (body.faqs !== undefined) tourRow.faqs = sanitizeFAQs(body.faqs);
     if (body.name !== undefined && locale === 'de') tourRow.name = body.name;
+    // German‑locale specific fields
+    if (body.shortDescription !== undefined && locale === 'de')
+      tourRow.short_description = body.shortDescription;
+    if (body.description !== undefined && locale === 'de')
+      tourRow.description = body.description;
+    if (body.categoryLabel !== undefined && locale === 'de')
+      tourRow.category_label = body.categoryLabel;
+    if (body.highlights !== undefined && locale === 'de')
+      tourRow.highlights = body.highlights;
+    if (body.included !== undefined && locale === 'de')
+      tourRow.included = body.included;
+    if (body.notIncluded !== undefined && locale === 'de')
+      tourRow.not_included = body.notIncluded;
+    if (body.meetingPoint !== undefined) tourRow.meeting_point = body.meetingPoint;
 
     if (body.destinationSlug !== undefined) {
       if (body.destinationSlug) {
