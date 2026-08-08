@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: var(--space-3);
 }
+.description {
+  white-space: pre-line;
+}
 .collapsed {
   display: -webkit-box;
   -webkit-line-clamp: 5;
@@ -14,6 +17,7 @@
 }
 .description :global(p) {
   margin-bottom: var(--space-4);
+  
 }
 .description :global(p):last-child {
   margin-bottom: 0;
