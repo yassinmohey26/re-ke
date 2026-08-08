@@ -1,0 +1,431 @@
+[
+  {
+    "tourId": "7b681580-bfb6-4e96-913f-47c64cf2231c",
+    "slug": "private-speedboot-tour-orange-bay-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "2dc6864a-30cb-4a8e-8277-a54c2ed8ca7d",
+    "slug": "kloester-st-antonius-st-paulus",
+    "timeSlots": [
+      "04:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+    "slug": "family-safari-hurghada",
+    "timeSlots": [
+      "08:30",
+      "13:30"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr oder {time} Uhr",
+      "en": "Hotel lobby in Hurghada (approx. {time} – exact pick-up time confirmed upon booking)",
+      "ru": "Лобби вашего отеля в Хургаде (около {time} – точное время подтверждается при бронировании)",
+      "fr": "Hall de votre hôtel à Hurghada (vers 09 h – l'heure exacte de prise en charge est confirmée lors de la réservation)",
+      "hu": "Hurghada-i szállodájának recepciója (kb. {time} – a pontos felvételi időt a foglaláskor erősítik meg)",
+      "ar": "ردهة فندقك في الغردقة (حوالي الساعة {time} – يُؤكد وقت الاستلام الدقيق عند الحجز)"
+    }
+  },
+  {
+    "tourId": "17a82d9b-2d00-4a29-8528-3c2e97a6bf26",
+    "slug": "mahmya-insel-ausflug-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "vers 08h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+    "slug": "family-abendsafari-hurghada",
+    "timeSlots": [],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "Hotel lobby in Hurghada (approx. {time} – exact pick-up time confirmed upon booking)",
+      "ru": "Лобби вашего отеля в Хургаде (около {time} – точное время подтверждается при бронировании)",
+      "fr": "Hall de votre hôtel à Hurghada (vers {time} – l'heure exacte de prise en charge est confirmée lors de la réservation)",
+      "hu": "Hurghada-i szállodájának recepciója (kb. {time} – a pontos felvételi időt a foglaláskor erősítik meg)",
+      "ar": "ردهة فندقك في الغردقة (حوالي الساعة {time} – يُؤكد وقت الاستلام الدقيق عند الحجز)"
+    }
+  },
+  {
+    "tourId": "f265b20c-db45-4173-a352-b1921fd7f744",
+    "slug": "hula-hula-insel-schnorchelausflug-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "8c5d9ce5-9931-42a6-8f09-44adf155d616",
+    "slug": "mini-egypt-park-hurghada",
+    "timeSlots": [
+      "10:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "vers 10h00",
+      "hu": "kb. {time} óra",
+      "ar": "بالتواصل معنا"
+    }
+  },
+  {
+    "tourId": "c7b7cfad-0101-4997-ac52-e4456a21c252",
+    "slug": "privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh",
+    "timeSlots": [
+      "02:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "1c5a3c79-ab29-46c7-b480-36954adcc661",
+    "slug": "luxor-tagesausflug-heissluftballon-hoteluebernachtung",
+    "timeSlots": [
+      "17:00"
+    ],
+    "templates": {
+      "de": "ca. {time}",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "vers 17h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} مساءً"
+    }
+  },
+  {
+    "tourId": "a8ddb433-a4fb-41ca-b90d-b399b4a57923",
+    "slug": "dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel",
+    "timeSlots": [
+      "06:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "6b629662-908c-40e3-b396-565393a6be18",
+    "slug": "makadi-water-park-hurghada-mittagessen-transfer",
+    "timeSlots": [
+      "09:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "vers 09h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "65f786e7-75c3-457b-a66a-e9f91f2c950e",
+    "slug": "kairo-mit-flug-ab-hurghada-pyramiden-museum",
+    "timeSlots": [
+      "04:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "80dc4e17-ea30-4511-92be-5e8add77f139",
+    "slug": "eintrittskarte-zum-hurghada-grand-aquarium",
+    "timeSlots": [
+      "10:00"
+    ],
+    "templates": {
+      "de": "ca.{time} Uhr",
+      "en": "approx.{time}",
+      "ru": "около {time}",
+      "fr": "vers {time} h",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "27ae0b35-e0ef-4b01-9aa7-23d3210d74ff",
+    "slug": "private-delfin-tour-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "b604535f-6c99-4766-9150-c29fbbf5678c",
+    "slug": "eden-island-schnorchelausflug-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "0009b90b-71a9-4e78-8459-e56bacce7cbf",
+    "slug": "glasbodenboot-hurghada-mit-schnorcheln",
+    "timeSlots": [
+      "12:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} ظهراً"
+    }
+  },
+  {
+    "tourId": "c2db0455-a5c7-47f9-8925-2ce6dcc3434a",
+    "slug": "naechtliche-stadtrundfahrt-durch-hurghada-private-tour",
+    "timeSlots": [
+      "19:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} مساءً"
+    }
+  },
+  {
+    "tourId": "b2dc19de-fc9f-4a96-a742-7646e16a8486",
+    "slug": "privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang",
+    "timeSlots": [
+      "12:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. 12h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} مساءً"
+    }
+  },
+  {
+    "tourId": "69aa0c36-125f-4f41-8502-55a8f4fd6d98",
+    "slug": "orange-bay-insel-schnorchelausflug-hurghada",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "ок. {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time}",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "42a2941f-6b90-4f0a-9593-0ec1ec980a13",
+    "slug": "luxor-tagesausflug-ab-hurghada",
+    "timeSlots": [],
+    "templates": {
+      "de": "ca. 04.00 Uhr",
+      "en": "approx. 04.00",
+      "ru": "ок. 04.00",
+      "fr": "vers 04h00",
+      "hu": "kb. 04.00 óra",
+      "ar": "حوالي الساعة 03:00 فجراً"
+    }
+  },
+  {
+    "tourId": "380712ad-0b71-4e9a-8bfd-4e34c6906afc",
+    "slug": "quad-tour-hurghada-kamelritt",
+    "timeSlots": [
+      "08:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. 08h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "94351900-ac6d-4c76-92e1-f9e1b1744f2f",
+    "slug": "privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum",
+    "timeSlots": [
+      "02:00"
+    ],
+    "templates": {
+      "de": "ca.  {time} Uhr",
+      "en": "approx.  {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. 02h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "7cb0c635-f7a7-4d98-a9b0-cde4997ca8ae",
+    "slug": "privater-tagesausflug-ab-hurghada-dendera-abydos-tempel",
+    "timeSlots": [
+      "04:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. 04h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "4f91f20d-ead4-4473-8700-371d4cb5fc4e",
+    "slug": "hurghada-shopping-tour-basar-transfer",
+    "timeSlots": [],
+    "templates": {
+      "de": "Hurghada - Rotes Meer - Aegypten",
+      "en": "Hurghada - Red Sea - Egypt",
+      "ru": "Забор из отеля",
+      "fr": "Prise en charge à votre hôtel",
+      "hu": "kb. 10:00 ",
+      "ar": "حوالي الساعة 10:00 صباحاً"
+    }
+  },
+  {
+    "tourId": "30cb3bb8-2bcb-4863-a0ca-49220bdb6a1d",
+    "slug": "mega-safari-hurghada",
+    "timeSlots": [
+      "08:30",
+      "15:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr oder {time} Uhr",
+      "en": "Around {time}",
+      "ru": "Около {time}",
+      "fr": "Vers 08 h 30 ou 15 h 00",
+      "hu": "Kb. {time}",
+      "ar": "حوالي {time}"
+    }
+  },
+  {
+    "tourId": "a9e92b99-283c-4b1e-ac9a-12bfe9c7fef0",
+    "slug": "2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben",
+    "timeSlots": [],
+    "templates": {
+      "de": "Hurghada - Rotes Meer - Aegypten",
+      "en": "Hurghada - Red Sea - Egypt",
+      "ru": "Хургада - Красное море - Египет",
+      "fr": "Hurghada - Mer Rouge - Egypte",
+      "hu": "Hurghada – Vörös-tenger – Egyiptom",
+      "ar": "حوالي الساعة 02:00 صباحاً"
+    }
+  },
+  {
+    "tourId": "77f34e21-9d9d-4be6-90b3-8148b2d82214",
+    "slug": "el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtsturm",
+    "timeSlots": [
+      "10:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "env. {time}",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} صباحاً"
+    }
+  },
+  {
+    "tourId": "3ebed770-c1d0-44dd-8d95-590fdec83f74",
+    "slug": "reiten-in-hurghada-strand-wueste-pferde-im-meer",
+    "timeSlots": [
+      "10:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "около {time}",
+      "fr": "environ {time}",
+      "hu": "kb. {time}",
+      "ar": "نحو الساعة {time}"
+    }
+  },
+  {
+    "tourId": "872d19ae-dd4c-4c01-9f1b-217e481b3732",
+    "slug": "super-safari-hurghada",
+    "timeSlots": [
+      "13:00"
+    ],
+    "templates": {
+      "de": "ca. {time} Uhr",
+      "en": "approx. {time}",
+      "ru": "примерно в {time}",
+      "fr": "env. 13h00",
+      "hu": "kb. {time} óra",
+      "ar": "حوالي الساعة {time} مساءً"
+    }
+  }
+]
