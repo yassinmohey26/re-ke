@@ -150,7 +150,10 @@ export async function PUT(
       tourRow.included = body.included;
     if (body.notIncluded !== undefined && locale === 'de')
       tourRow.not_included = body.notIncluded;
+    // meeting_point is now a structural field owned by tours base table only.
+    // Pickup time slots are stored in pickup_time_slots JSONB on tours.
     if (body.meetingPoint !== undefined) tourRow.meeting_point = body.meetingPoint;
+    if (body.pickupTimeSlots !== undefined) tourRow.pickup_time_slots = body.pickupTimeSlots;
 
     if (body.destinationSlug !== undefined) {
       if (body.destinationSlug) {
@@ -181,8 +184,7 @@ export async function PUT(
 
     const hasTrFields = body.name !== undefined || body.shortDescription !== undefined || body.description !== undefined
       || body.categoryLabel !== undefined || body.highlights !== undefined || body.included !== undefined
-      || body.notIncluded !== undefined || (body.faqs !== undefined && locale !== 'de') || body.meetingPoint !== undefined
-      || body.duration !== undefined || body.deName !== undefined;
+      || body.notIncluded !== undefined || (body.faqs !== undefined && locale !== 'de') || body.deName !== undefined;
 
     if (hasTrFields) {
       const trRow: Record<string, unknown> = {
@@ -202,8 +204,9 @@ export async function PUT(
       if (body.included !== undefined) trRow.included = body.included;
       if (body.notIncluded !== undefined) trRow.not_included = body.notIncluded;
       if (body.faqs !== undefined && locale !== 'de') trRow.faqs = body.faqs;
-      if (body.meetingPoint !== undefined) trRow.meeting_point = body.meetingPoint;
-      if (body.duration !== undefined) trRow.duration = body.duration;
+      // NOTE: duration and meeting_point are NOT written to content_translations.
+      // duration is derived from tours.duration_hours at render time (formatDuration).
+      // meeting_point is rendered from tours.pickup_time_slots + CT template at render time.
 
       const { error: trError } = await supabase
         .from('content_translations')

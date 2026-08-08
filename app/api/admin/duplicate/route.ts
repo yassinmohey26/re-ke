@@ -76,8 +76,8 @@ export async function POST(request: NextRequest) {
       not_included: deTranslation.not_included,
       itinerary: deTranslation.itinerary,
       faqs: deTranslation.faqs,
-      meeting_point: deTranslation.meeting_point,
-      duration: deTranslation.duration,
+      // meeting_point and duration are NOT copied to translations —
+      // they are rendered at runtime from tours.pickup_time_slots and tours.duration_hours.
       tagline: deTranslation.tagline,
       title: deTranslation.title,
       excerpt: deTranslation.excerpt,

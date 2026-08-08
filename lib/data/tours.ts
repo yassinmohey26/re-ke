@@ -32,6 +32,80 @@ function stripZeroMinutes(d: string): string {
   return d.replace(/\s*0\s*(minutes?|Min\.?|minutes?)\s*/gi, ' ').replace(/\s{2,}/g, ' ').trim();
 }
 
+/**
+ * Formats a numeric duration (in hours) into a locale-appropriate string.
+ * Tours with duration_hours >= 24 are rendered as day/night strings.
+ */
+export function formatDuration(hours: number, locale: string): string {
+  if (!hours || hours <= 0) return '';
+
+  if (hours >= 24) {
+    if (hours === 24) {
+      const map: Record<string, string> = {
+        de: '1 Tag, 1 Nacht', en: '1 Day, 1 Night', ar: 'يوم وليلة',
+        ru: '1 день, 1 ночь', fr: '1 jour, 1 nuit', hu: '1 nap, 1 éjszaka',
+      };
+      return map[locale] ?? '1 Day, 1 Night';
+    }
+    if (hours === 48) {
+      const map: Record<string, string> = {
+        de: '2 Tage, 1 Nacht', en: '2 Days, 1 Night', ar: 'يومان وليلة',
+        ru: '2 дня, 1 ночь', fr: '2 jours, 1 nuit', hu: '2 nap, 1 éjszaka',
+      };
+      return map[locale] ?? '2 Days, 1 Night';
+    }
+  }
+
+  switch (locale) {
+    case 'de': return hours === 1 ? '1 Stunde' : `${hours} Stunden`;
+    case 'en': return hours === 1 ? '1 Hour' : `${hours} Hours`;
+    case 'ar':
+      if (hours === 1) return 'ساعة واحدة';
+      if (hours === 2) return 'ساعتان';
+      if (hours >= 3 && hours <= 10) return `${hours} ساعات`;
+      return `${hours} ساعة`;
+    case 'ru': {
+      const mod10 = hours % 10;
+      const mod100 = hours % 100;
+      if (mod10 === 1 && mod100 !== 11) return `${hours} час`;
+      if ([2, 3, 4].includes(mod10) && ![12, 13, 14].includes(mod100)) return `${hours} часа`;
+      return `${hours} часов`;
+    }
+    case 'fr': return hours === 1 ? '1 heure' : `${hours} heures`;
+    case 'hu': return `${hours} óra`;
+    default:   return `${hours}h`;
+  }
+}
+
+/**
+ * Renders a localised meeting-point string from a template + pickup time slots.
+ * German: appends " Uhr" to each slot (e.g. "08:30 Uhr oder 13:30 Uhr").
+ * French:  converts HH:MM → HHhMM notation (e.g. "08h30").
+ * Other locales: plain HH:MM slots joined by locale separator.
+ */
+export function formatMeetingPoint(
+  template: string,
+  timeSlots: string[],
+  locale: string,
+): string {
+  if (!template) return '';
+  if (!timeSlots || timeSlots.length === 0 || !template.includes('{time}')) {
+    return template;
+  }
+
+  const formattedSlots = timeSlots.map((t) => {
+    if (locale === 'de') return `${t} Uhr`;
+    if (locale === 'fr') return t.replace(':', 'h');
+    return t;
+  });
+
+  const separators: Record<string, string> = {
+    de: ' oder ', en: ' or ', ar: ' أو ', ru: ' или ', fr: ' ou ', hu: ' vagy ',
+  };
+  const joined = formattedSlots.join(separators[locale] ?? ' or ');
+  return template.replace(/\{time\}/g, joined);
+}
+
 export interface PricingTierEntry {
   min: number;
   max: number;
@@ -255,9 +329,28 @@ function parseDestinationEav(tr: any): any {
   return tr;
 }
 
-function mergeTranslation(row: any, trRaw: any): Tour {
+function mergeTranslation(row: any, trRaw: any, locale: string = 'de'): Tour {
   const tr = parseEavJoinedString(trRaw);
   const unique = (arr: string[]) => [...new Set(arr)];
+
+  // ── Structural fields: always sourced from `tours` base table ────────────
+  // duration_hours is the single source of truth; format per-locale at render time.
+  const durationHours: number = row.duration_hours ?? 0;
+  const pickupSlots: string[] = Array.isArray(row.pickup_time_slots) ? row.pickup_time_slots : [];
+
+  // For tours without a numeric duration_hours (legacy string-only tours), fall back
+  // to the raw German string in the tours table — never from translations.
+  const durationStr = durationHours > 0
+    ? formatDuration(durationHours, locale)
+    : stripZeroMinutes(row.duration ?? '');
+
+  // Meeting point: render from template stored in content_translations (or tours base
+  // for 'de') + structural time slots from tours.pickup_time_slots.
+  const rawMeetingTemplate = locale === 'de'
+    ? (row.meeting_point ?? '')
+    : parseStr(tr?.meeting_point, row.meeting_point ?? '');
+  const meetingPointStr = formatMeetingPoint(rawMeetingTemplate, pickupSlots, locale);
+
   return {
     id: row.id,
     slug: row.slug,
@@ -268,8 +361,8 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     // parsePricingTiers can find the HTML table regardless of the active locale.
     rawDescription: row.description ?? '',
     price: row.price,
-    duration: stripZeroMinutes(parseStr(tr?.duration, row.duration ?? '')),
-    durationHours: row.duration_hours ?? 0,
+    duration: durationStr,
+    durationHours,
     maxGuests: row.max_guests ?? 8,
     difficulty: row.difficulty ?? 'leicht',
     minAge: row.min_age ?? 6,
@@ -284,7 +377,7 @@ function mergeTranslation(row: any, trRaw: any): Tour {
     faqs: parseFaqs(tr?.faqs, row.faqs ?? []),
     image: row.image ?? '',
     images: parseImages(row.image ?? ''),
-    meetingPoint: parseStr(tr?.meeting_point, row.meeting_point ?? ''),
+    meetingPoint: meetingPointStr,
     featured: row.featured ?? false,
     discount: parseDiscount(row.discount ?? null),
     childDiscounts: [],
@@ -391,7 +484,7 @@ export async function getTours(locale: string = 'de'): Promise<Tour[]> {
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
 }
 
 export async function getTourBySlug(slug: string, locale: string = 'de'): Promise<Tour | undefined> {
@@ -399,7 +492,7 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   if (!row) return undefined;
 
   const tr = await getSingleTranslation('tours', row.id, locale);
-  const tour = mergeTranslation(row, tr);
+  const tour = mergeTranslation(row, tr, locale);
   const childDiscountRows = await getTourChildDiscountsFromDb(row.id);
   tour.childDiscounts = resolveChildDiscounts(childDiscountRows);
 
@@ -480,7 +573,7 @@ export async function getToursByCategory(category: Tour['category'], locale: str
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
 }
 
 export async function getToursByDestination(destinationSlug: string, locale: string = 'de'): Promise<Tour[]> {
@@ -488,7 +581,7 @@ export async function getToursByDestination(destinationSlug: string, locale: str
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
 }
 
 export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
@@ -496,7 +589,7 @@ export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null));
+  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
 }
 
 export async function getDestinations(locale: string = 'de'): Promise<Destination[]> {

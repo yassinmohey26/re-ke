@@ -47,8 +47,6 @@ async function main() {
       included: t.included || [],
       not_included: t.not_included || [],
       faqs: t.faqs || [],
-      meeting_point: t.meeting_point || '',
-      duration: t.duration || '',
       category_label: t.tour_type || '',
     };
 

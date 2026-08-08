@@ -43,8 +43,6 @@ async function main() {
       included: item.included || [],
       not_included: item.not_included || [],
       faqs: item.faqs || [],
-      meeting_point: item.meeting_point || '',
-      duration: item.duration || '',
       category_label: item.tour_type || '',
     };
 

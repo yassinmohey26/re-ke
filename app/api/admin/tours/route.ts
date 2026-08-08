@@ -77,6 +77,8 @@ export async function POST(request: NextRequest) {
       faqs,
     };
     if (body.discount !== undefined) tourRow.discount = body.discount;
+    if (body.meetingPoint !== undefined) tourRow.meeting_point = body.meetingPoint;
+    if (body.pickupTimeSlots !== undefined) tourRow.pickup_time_slots = body.pickupTimeSlots;
 
     if (await isTourSortOrderSupported()) {
       const { data: maxRow } = await supabase
@@ -119,8 +121,6 @@ export async function POST(request: NextRequest) {
       highlights: body.highlights || [],
       included: body.included || [],
       not_included: body.notIncluded || [],
-      meeting_point: body.meetingPoint || '',
-      duration: body.duration || '',
     };
 
     const { error: trError } = await supabase
