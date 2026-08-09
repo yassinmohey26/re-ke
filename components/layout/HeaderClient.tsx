@@ -63,7 +63,7 @@ export default function HeaderClient() {
   function switchLocale(newLocale: string) {
     document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
     const pathWithoutLocale = pathname.replace(/^\/(de|en|ru|ar|fr|hu)/, '') || '/';
-    window.location.href = `/${newLocale}${pathWithoutLocale}`;
+    window.location.replace(`/${newLocale}${pathWithoutLocale}`);
     setLangOpen(false);
   }
 

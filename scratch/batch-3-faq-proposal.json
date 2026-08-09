@@ -1,0 +1,67 @@
+{
+  "tourId": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+  "slug": "family-abendsafari-hurghada",
+  "faqSource": "tours.faqs (DE master; deCT.faqs is empty so DE page renders tours.faqs)",
+  "faqs": {
+    "en": [
+      { "question": "How long does the Family Safari in Hurghada take?", "answer": "The Family Safari takes about 3 hours in total, including transfer and safari program." },
+      { "question": "What is included in the 3-hour Family Safari?", "answer": "The tour combines a quad ride, a Spider Car ride, dinner and an entertaining show. Hotel transfer is also included." },
+      { "question": "How long does the quad ride last?", "answer": "The quad ride through the desert takes about 30 to 40 minutes. The exact duration can vary slightly depending on the group and schedule." },
+      { "question": "How long does the Spider Car ride last?", "answer": "The Spider Car ride takes about 10 to 15 minutes." },
+      { "question": "When does the Family Safari start?", "answer": "Hotel pickup is around 3:00 PM. The exact pickup time is confirmed before the excursion." },
+      { "question": "Is dinner included in the price?", "answer": "Yes. After the driving activities, dinner is part of the program." },
+      { "question": "Is there a show on the Family Safari?", "answer": "Yes. The program includes an entertaining show that rounds off the safari in the evening." },
+      { "question": "Is the Family Safari suitable for beginners?", "answer": "Yes. No prior quad riding experience is required. Before the start, participants receive a safety briefing." },
+      { "question": "What should I bring to the safari?", "answer": "We recommend comfortable clothing, closed shoes, sunglasses and a scarf or cloth to protect against desert dust." },
+      { "question": "Is hotel transfer included?", "answer": "Yes. Round-trip transfer is included for the designated pickup areas. Additional transfer costs may apply for certain more distant regions." }
+    ],
+    "ar": [
+      { "question": "كم تستغرق سفاري العائلة في الغردقة؟", "answer": "تستغرق سفاري العائلة حوالي 3 ساعات إجمالاً بما في ذلك النقل وبرنامج السفاري." },
+      { "question": "ما الذي تشمله سفاري العائلة لمدة 3 ساعات؟", "answer": "تجمع الجولة بين رحلة الكواد ورحلة سيارة سبايدر والعشاء وعرض ترفيهي. النقل من الفندق متضمن أيضاً." },
+      { "question": "كم تستغرق رحلة الكواد؟", "answer": "تستغرق رحلة الكواد عبر الصحراء حوالي 30 إلى 40 دقيقة. قد تختلف المدة الدقيقة قليلاً حسب المجموعة وترتيب البرنامج." },
+      { "question": "كم تستغرق رحلة سيارة سبايدر؟", "answer": "تستغرق رحلة سيارة سبايدر حوالي 10 إلى 15 دقيقة." },
+      { "question": "متى تبدأ سفاري العائلة؟", "answer": "يتم الاستلام من الفندق حوالي الساعة 15:00. يتم تأكيد وقت الاستلام الدقيق قبل الرحلة." },
+      { "question": "هل العشاء متضمن في السعر؟", "answer": "نعم. بعد أنشطة القيادة، يكون العشاء جزءاً من البرنامج." },
+      { "question": "هل هناك عرض في سفاري العائلة؟", "answer": "نعم. يتضمن البرنامج عرضاً ترفيهياً يختتم رحلة السفاري في المساء." },
+      { "question": "هل سفاري العائلة مناسبة للمبتدئين؟", "answer": "نعم. لا حاجة لخبرة سابقة في قيادة الكواد. قبل البداية، يتلقى المشاركون تعليمات السلامة." },
+      { "question": "ماذا يجب أن أحضر معي إلى السفاري؟", "answer": "ننصح بارتداء ملابس مريحة وأحذية مغلقة ونظارات شمسية بالإضافة إلى وشاح أو قطعة قماش للحماية من غبار الصحراء." },
+      { "question": "هل النقل من الفندق متضمن؟", "answer": "نعم. النقل ذهاباً وإياباً متضمن لمناطق الاستلام المحددة. قد تُطبق تكاليف نقل إضافية لبعض المناطق الأبعد." }
+    ],
+    "ru": [
+      { "question": "Сколько длится семейное сафари в Хургаде?", "answer": "Семейное сафари длится около 3 часов, включая трансфер и программу." },
+      { "question": "Что входит в 3-часовое семейное сафари?", "answer": "Экскурсия сочетает поездку на квадроцикле, поездку на Spider Car, ужин и развлекательное шоу. Трансфер из отеля также включён." },
+      { "question": "Сколько длится поездка на квадроцикле?", "answer": "Поездка на квадроцикле по пустыне длится около 30–40 минут. Точное время может немного варьироваться в зависимости от группы и программы." },
+      { "question": "Сколько длится поездка на Spider Car?", "answer": "Поездка на Spider Car длится примерно 10–15 минут." },
+      { "question": "Когда начинается семейное сафари?", "answer": "Забор из отеля осуществляется около 15:00. Точное время забора подтверждается перед экскурсией." },
+      { "question": "Ужин включён в стоимость?", "answer": "Да. После поездок на транспорте ужин является частью программы." },
+      { "question": "Есть ли шоу на семейном сафари?", "answer": "Да. В программу входит развлекательное шоу, которое завершает вечернюю экскурсию." },
+      { "question": "Подходит ли семейное сафари новичкам?", "answer": "Да. Опыт вождения квадроцикла не требуется. Перед началом участники проходят инструктаж по безопасности." },
+      { "question": "Что взять с собой на сафари?", "answer": "Рекомендуем удобную одежду, закрытую обувь, солнцезащитные очки, а также платок или шарф для защиты от пустынной пыли." },
+      { "question": "Трансфер из отеля включён?", "answer": "Да. Трансфер туда и обратно включён для предусмотренных районов забора. Для некоторых более отдалённых районов могут применяться дополнительные расходы на трансфер." }
+    ],
+    "fr": [
+      { "question": "Combien de temps dure le Safari familial à Hurghada ?", "answer": "Le Safari familial dure environ 3 heures au total, transfert et programme inclus." },
+      { "question": "Qu'est-ce qui est inclus dans le Safari familial de 3 heures ?", "answer": "La visite combine une balade en quad, une balade en Spider Car, un dîner et un spectacle divertissant. Le transfert d'hôtel est également inclus." },
+      { "question": "Combien de temps dure la balade en quad ?", "answer": "La balade en quad dans le désert dure environ 30 à 40 minutes. La durée exacte peut varier légèrement selon le groupe et le déroulement." },
+      { "question": "Combien de temps dure la balade en Spider Car ?", "answer": "La balade en Spider Car dure environ 10 à 15 minutes." },
+      { "question": "Quand commence le Safari familial ?", "answer": "La prise en charge à l'hôtel a lieu vers 15h00. L'heure exacte est confirmée avant l'excursion." },
+      { "question": "Le dîner est-il inclus dans le prix ?", "answer": "Oui. Après les activités de conduite, un dîner fait partie du programme." },
+      { "question": "Y a-t-il un spectacle au Safari familial ?", "answer": "Oui. Le programme comprend un spectacle divertissant qui conclut l'excursion en soirée." },
+      { "question": "Le Safari familial convient-il aux débutants ?", "answer": "Oui. Aucune expérience de quad n'est requise. Avant le départ, les participants reçoivent un briefing de sécurité." },
+      { "question": "Que dois-je emporter pour le safari ?", "answer": "Nous recommandons des vêtements confortables, des chaussures fermées, des lunettes de soleil ainsi qu'un foulard ou un tissu pour vous protéger de la poussière du désert." },
+      { "question": "Le transfert d'hôtel est-il inclus ?", "answer": "Oui. Le transfert aller-retour est inclus pour les zones de prise en charge prévues. Des frais de transfert supplémentaires peuvent s'appliquer pour certaines régions plus éloignées." }
+    ],
+    "hu": [
+      { "question": "Mennyi ideig tart a Family Safari Hurghadában?", "answer": "A Family Safari összesen körülbelül 3 órát vesz igénybe, beleértve a transzfert és a szafari programot." },
+      { "question": "Mit tartalmaz a 3 órás Family Safari?", "answer": "A túra ötvözi a quadozást, a Spider Car-utazást, a vacsorát és egy szórakoztató műsort. A szállodai transzfer is jár." },
+      { "question": "Meddig tart a quadozás?", "answer": "A quadozás a sivatagban körülbelül 30–40 percig tart. A pontos idő a csoporttól és a programtól függően kissé változhat." },
+      { "question": "Meddig tart a Spider Car-utazás?", "answer": "A Spider Car-utazás körülbelül 10–15 percig tart." },
+      { "question": "Mikor kezdődik a Family Safari?", "answer": "A szállodai felvétel körülbelül 15:00-kor történik. A pontos időpontot a kirándulás előtt megerősítik." },
+      { "question": "A vacsora benne van az árban?", "answer": "Igen. A vezetéses programok után a vacsora a program része." },
+      { "question": "Van műsor a Family Safari-n?", "answer": "Igen. A program egy szórakoztató műsort is tartalmaz, amely záróakkordja az esti szafarinak." },
+      { "question": "Megfelelő-e a Family Safari kezdőknek?", "answer": "Igen. Nem szükséges előzetes quadozási tapasztalat. Az indulás előtt a résztvevők biztonsági eligazítást kapnak." },
+      { "question": "Mit vigyek magammal a szafarira?", "answer": "Kényelmes ruházatot, zárt cipőt, napszemüveget, valamint egy sálat vagy kendőt ajánlunk a sivatagi por elleni védelemhez." },
+      { "question": "A szállodai transzfer benne van az árban?", "answer": "Igen. Az oda-vissza transzfer a meghatározott felvételi körzetekre vonatkozóan jár. Egyes távolabbi régiókba transzfer-felár számítható fel." }
+    ]
+  }
+}

@@ -1,0 +1,132 @@
+[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] Q: هل يوجد مرشد سياحي ناطق بالألمانية؟
+  A: نعم، الرحلة بأكملها بمرافقة مرشد سياحي خبير ناطق بالألمانية.
+  -> shared fragment (11): "مرشد سياحي " with removed [not_included]: "مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي) +10"
+[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] Q: هل الوجبات مشمولة أثناء الرحلة؟
+  A: نعم، في كلا اليومين وجبة غداء مشمولة تتضمن مشروبات غير كحولية.
+  -> shared fragment (12): " غداء مشمولة" with removed [highlights]: "وجبتا غداء مشمولة"
+[family-safari-hurghada] Q: كم تستغرق سفاري العائلة في الغردقة؟
+  A: تستغرق سفاري العائلة حوالي 5 ساعات إجمالاً، بما في ذلك النقل من الفندق وبرنامج السفاري الكامل.
+  -> shared fragment (14): "نقل من الفندق " with removed [highlights]: "نقل من الفندق مشمول"
+[family-safari-hurghada] Q: ما الذي يشمله سفاري العائلة في الغردقة؟
+  A: تجمع الجولة بين الرباعية وعربة العنكبوت وسفاري الجيب وزيارة القرية البدوية وركوب الجمل. كما تشمل الشاي البدوي وزجاجة مياه والنقل من الفندق.
+  -> shared fragment (13): "نقل من الفندق" with removed [highlights]: "نقل من الفندق مشمول"
+[family-safari-hurghada] Q: ما الذي يشمله سفاري العائلة في الغردقة؟
+  A: تجمع الجولة بين الرباعية وعربة العنكبوت وسفاري الجيب وزيارة القرية البدوية وركوب الجمل. كما تشمل الشاي البدوي وزجاجة مياه والنقل من الفندق.
+  -> shared fragment (9): "ة البدوية" with removed [highlights]: "انغماس ثقافي في الحياة البدوية"
+[family-safari-hurghada] Q: ما مسافة سفاري الجيب؟
+  A: تغطي سفاري الجيب حوالي 50 كيلومتراً إجمالاً – نحو 25 كيلومتراً إلى القرية البدوية و25 كيلومتراً في طريق العودة.
+  -> shared fragment (9): "ة البدوية" with removed [highlights]: "انغماس ثقافي في الحياة البدوية"
+[family-safari-hurghada] Q: ماذا ينتظرني في القرية البدوية؟
+  A: ستتعرف على أسلوب الحياة التقليدي للبدو، وتستمتع بجولة قصيرة على ظهر جمل، وتشرب الشاي البدوي التقليدي، وتزور صيدلية بدوية تقليدية.
+  -> shared fragment (10): " الحياة ال" with removed [highlights]: "انغماس ثقافي في الحياة البدوية"
+[family-safari-hurghada] Q: هل يشمل النقل من الفندق؟
+  A: نعم. يشمل النقل ذهاباً وإياباً للمناطق المعتادة. قد تُطبَّق رسوم نقل إضافية لبعض المناطق الأبعد.
+  -> shared fragment (13): "نقل من الفندق" with removed [highlights]: "نقل من الفندق مشمول"
+[hurghada-shopping-tour-basar-transfer] Q: هل يتحدث المرافقون لغات متعددة؟
+  A: نعم، يرافقك فريق مخطط رحلات الغردقة طوال الجولة، ويتحدث المرافقون الألمانية أو الإنجليزية أو العربية حسب التوفر ويساعدونك في كل ما يتعلق بالسوق والمنتجات.
+  -> shared fragment (9): "الألمانية" with removed [highlights]: "مرشد سياحي ناطق بالألمانية"
+[kairo-mit-flug-ab-hurghada-pyramiden-museum] Q: كم تستغرق جولة اليوم؟
+  A: حوالي 15 ساعة. نستقبلك حوالي الساعة 04:00 من فندقك، نطير إلى القاهرة، نزور المعالم، ونعود إلى فندقك حوالي الساعة 20:15.
+  -> shared fragment (8): " القاهرة" with removed [highlights]: "تنقلات خاصة في القاهرة"
+[kairo-mit-flug-ab-hurghada-pyramiden-museum] Q: متى يجب أن أحجز؟
+  A: ننصح بالحجز المبكر، خاصة في الموسم المرتفع، لضمان الموعد الذي ترغب به.
+  -> shared fragment (11): " خاصة في ال" with removed [highlights]: "تنقلات خاصة في القاهرة"
+[kloester-st-antonius-st-paulus] Q: في أي وقت يتم الاستلام من الفندق؟
+  A: يتم الاستلام حسب موقع الفندق في الغردقة بين 03:30 و 04:30 صباحاً. نُعلمك بالتوقيت الدقيق قبل الجولة.
+  -> shared fragment (8): " الفندق " with removed [highlights]: "نقل من وإلى الفندق مشمول"
+[luxor-tagesausflug-ab-hurghada] Q: ما المعالم المزار؟
+  A: معبد الكرنك المذهل ووادي الملوك الشهير ومعبد الملكة حتشبسوت وتماثيل ممنون. جميع رسوم الدخول مشمولة في سعر الرحلة.
+  -> shared fragment (12): "رسوم الدخول " with removed [not_included]: "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+[luxor-tagesausflug-ab-hurghada] Q: هل رسوم الدخول مشمولة؟
+  A: نعم، جميع رسوم الدخول للمعالم المذكورة مشمولة.
+  -> shared fragment (12): "رسوم الدخول " with removed [not_included]: "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+[luxor-tagesausflug-ab-hurghada] Q: هل يمكن التصوير في وادي الملوك؟
+  A: نعم، بالهاتف مجاناً وبدون فلاش. الكاميرات الاحترافية برسوم.
+  -> shared fragment (15): " في وادي الملوك" with removed [not_included]: "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+[luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: كيف تجري رحلة البالون في الأقصر؟
+  A: تبدأ الرحلة قبل شروق الشمس. بعد الانتقال إلى موقع الإقلاع، تحلق حوالي 45–60 دقيقة بإطلالة مذهلة على الأقصر والنيل والمعابد.
+  -> shared fragment (8): " الأقصر " with removed [highlights]: "جولة ثقافية في معالم الأقصر الأثرية"
+[luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: ما المعالم الثقافية المزارة؟
+  A: تزور معبد الكرنك ووادي الملوك ومعبد حتشبسوت وتماثيل ممنون.
+  -> shared fragment (8): "معالم ال" with removed [highlights]: "جولة ثقافية في معالم الأقصر الأثرية"
+[luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: ما المعالم الثقافية المزارة؟
+  A: تزور معبد الكرنك ووادي الملوك ومعبد حتشبسوت وتماثيل ممنون.
+  -> shared fragment (11): "وادي الملوك" with removed [not_included]: "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+[luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: هل مرشد ناطق بالألمانية مشمول؟
+  A: نعم.
+  -> shared fragment (16): " ناطق بالألمانية" with removed [highlights]: "مرشد سياحي ناطق بالألمانية"
+[mahmya-insel-ausflug-hurghada] Q: هل الوجبات مشمولة؟
+  A: نعم، تستمتع ببوفيه غداء غني مع مشروبات وفواكه مباشرة على الشاطئ.
+  -> shared fragment (8): "مشروبات " with removed [not_included]: "المشروبات الإضافية"
+[mahmya-insel-ausflug-hurghada] Q: هل توجد شواطئ خاصة؟
+  A: نعم، تتمتع الجزيرة بشواطئ رملية بيضاء ناعمة ومرافق صحية ودشات، مثالية ليوم مريح.
+  -> shared fragment (8): " الجزيرة" with removed [included]: "رسوم دخول الجزيرة"
+[makadi-water-park-hurghada-mittagessen-transfer] Q: هل الوجبات مشمولة؟
+  A: نعم، بوفيه غداء غني مع مشروبات خفيفة وقهوة وشاي مشمول في السعر.
+  -> shared fragment (8): "مشروبات " with removed [not_included]: "المشروبات الإضافية خارج الوجبة"
+[makadi-water-park-hurghada-mittagessen-transfer] Q: هل النقل مشمول؟
+  A: نعم، نقل من وإلى الفندق مشمول.
+  -> shared fragment (24): "نقل من وإلى الفندق مشمول" with removed [highlights]: "نقل من وإلى الفندق مشمول"
+[mini-egypt-park-hurghada] Q: ما المعالم المعروضة؟
+  A: أكثر من 55 نموذجاً مصغراً دقيقاً لأشهر معالم مصر، منها أهرامات الجيزة والمصرح العظيم ومعبد أبو سمبل ومعبد الكرنك وسد أسوان والمتحف المصري في القاهرة وغيرها الكثير.
+  -> shared fragment (13): "معبد الكرنك و" with removed [highlights]: "معبد الكرنك و معبد الأقصر"
+[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] Q: هل المشروبات في المقهى مشمولة؟
+  A: مشروب محلي واحد مشمول. أي مشروبات إضافية أو طلبات شخصية غير مشمولة في السعر.
+  -> shared fragment (9): "المشروبات" with removed [not_included]: "الوجبات والمشروبات"
+[private-delfin-tour-hurghada] Q: ما الذي أحضره؟
+  A: جميع معدات الغطس مشمولة. يرجى إحضار ملابس سباحة ومنشفة وواقي شمس وغطاء رأس.
+  -> shared fragment (8): "معدات ال" with removed [included]: "معدات المراقبة"
+[private-delfin-tour-hurghada] Q: ما الأسماك التي سأراها أثناء الغطس؟
+  A: يمكنك رؤية أسماك المهرج والببغائية والإمبراطور والملائكية وأسماك الراي وغيرها من الكائنات البحرية الاستوائية.
+  -> shared fragment (8): " البحرية" with removed [highlights]: "مرشد خبير بالمناطق البحرية"
+[private-delfin-tour-hurghada] Q: ما الأسماك التي سأراها أثناء الغطس؟
+  A: يمكنك رؤية أسماك المهرج والببغائية والإمبراطور والملائكية وأسماك الراي وغيرها من الكائنات البحرية الاستوائية.
+  -> shared fragment (8): " البحرية" with removed [included]: "مرشد خبير بالحياة البحرية"
+[private-speedboot-tour-orange-bay-hurghada] Q: كم تستغرق الرحلة؟
+  A: حوالي 8 ساعات شاملة النقل من الفندق والغطس والوقت على الجزيرة والعودة.
+  -> shared fragment (8): " الجزيرة" with removed [included]: "رسوم دخول الجزيرة"
+[private-speedboot-tour-orange-bay-hurghada] Q: كم تبعد الجزيرة عن الغردقة؟
+  A: حوالي 40 دقيقة بالقارب من ميناء الغردقة.
+  -> shared fragment (8): " الجزيرة" with removed [included]: "رسوم دخول الجزيرة"
+[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] Q: هل مرشد ناطق بالألمانية مشمول؟
+  A: نعم.
+  -> shared fragment (16): " ناطق بالألمانية" with removed [highlights]: "مرشد سياحي خاص ناطق بالألمانية"
+[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] Q: هل رسوم الدخول مشمولة؟
+  A: نعم، جميع رسوم الدخول مشمولة.
+  -> shared fragment (12): "رسوم الدخول " with removed [not_included]: "رسوم الدخول الإضافية لبعض الغرف الأثرية"
+[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] Q: ما المعابد المزارة؟
+  A: معبد دندرة ومعبد أبيدوس.
+  -> shared fragment (9): " المعابد " with removed [highlights]: "وقت أطول في المعابد مقارنة بالرحلات الجماعية"
+[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] Q: لماذا دندرة وأبيدوس أقل ازدحاماً من الأقصر؟
+  A: تقعان بعيداً عن الطرق الجماعية إلى الأقصر، لذا تستمتع بالمعابد بهدوء وأصالة أكبر ومع وقت أطول للصور والشرح. مثالية لمن يبحث عن الثقافة دون حشود.
+  -> shared fragment (9): " الجماعية" with removed [highlights]: "وقت أطول في المعابد مقارنة بالرحلات الجماعية"
+[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] Q: هل النقل خاص؟
+  A: نعم، نقل خاص بسيارة مكيفة.
+  -> shared fragment (20): "نقل خاص بسيارة مكيفة" with removed [highlights]: "نقل خاص بسيارة مكيفة"
+[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] Q: ما المعالم المزارة؟
+  A: أهرامات الجيزة والمصرح العظيم والمتحف المصري الكبير.
+  -> shared fragment (8): " المعالم" with removed [not_included]: "رسوم دخول إضافية لبعض المعالم"
+[super-safari-hurghada] Q: كم تستغرق السوبر سفاري؟
+  A: عادةً من 7 إلى 8 ساعات. الاستلام بعد الظهر، وبعد الأنشطة في الصحراء تستمتع بعشاء شواء قبل العودة إلى فندقك مساءً.
+  -> shared fragment (11): " في الصحراء" with removed [highlights]: "مشاهدة النجوم في الصحراء"
+[super-safari-hurghada] Q: ما الفعاليات المشمولة؟
+  A: الدراجات النارية وركوب الإبل والسباحة وعرض الفلاحة والوجبة ومشاهدة النجوم.
+  -> shared fragment (8): "السباحة " with removed [highlights]: "السباحة في حمامات الطين الطبيعية"
+[super-safari-hurghada] Q: ما الفعاليات المشمولة؟
+  A: الدراجات النارية وركوب الإبل والسباحة وعرض الفلاحة والوجبة ومشاهدة النجوم.
+  -> shared fragment (12): "عرض الفلاحة " with removed [highlights]: "عرض الفلاحة البدوية (الرقص والموسيقى)"
+[super-safari-hurghada] Q: ما الفعاليات المشمولة؟
+  A: الدراجات النارية وركوب الإبل والسباحة وعرض الفلاحة والوجبة ومشاهدة النجوم.
+  -> shared fragment (13): "مشاهدة النجوم" with removed [highlights]: "مشاهدة النجوم في الصحراء"
+[super-safari-hurghada] Q: هل الوجبات مشمولة؟
+  A: نعم، عشاء شواء تقليدي في القرية البدوية مشمول، مع مشروبات خفيفة وشاي ومأكولات محلية أثناء البرنامج المسائي.
+  -> shared fragment (10): "ة البدوية " with removed [highlights]: "عرض الفلاحة البدوية (الرقص والموسيقى)"
+[super-safari-hurghada] Q: ما هي السوبر سفاري في الغردقة؟
+  A: من أشهر رحلات السفاري الصحراوية في مصر. تجمع عدة مغامرات في يوم واحد: ركوب الكواد، سيارة سبايدر باجي، جيب سفاري، ركوب الجمل، وزيارة قرية بدوية مع عشاء شواء تقليدي وعرض شرقي.
+  -> shared fragment (8): "ي الصحرا" with removed [highlights]: "مشاهدة النجوم في الصحراء"
+[super-safari-hurghada] Q: هل النقل من الفندق مشمول؟
+  A: نعم، الاستلام والعودة من فنادق الغردقة مشمول عادةً في السعر. قد تُطبق رسوم إضافية للفنادق خارج الغردقة.
+  -> shared fragment (13): " الفندق مشمول" with removed [highlights]: "نقل من وإلى الفندق مشمول"
+[super-safari-hurghada] Q: متى أفضل وقت للسفاري الصحراوية؟
+  A: جولة الظهيرة الأكثر شعبية لأنك تشهد غروب الشمس الرائع في الصحراء، والأجواء المعتدلة مساءً تجعلها مريحة بشكل خاص.
+  -> shared fragment (11): " في الصحراء" with removed [highlights]: "مشاهدة النجوم في الصحراء"

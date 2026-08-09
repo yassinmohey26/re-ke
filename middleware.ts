@@ -12,6 +12,17 @@ const PROTECTED_ROUTES = ['/ZAIMOZ'];
 // Public API routes that need rate-limit tracking
 const PUBLIC_API_ROUTES = ['/api/contact', '/api/booking'];
 
+// Listing-only pages where NEXT_LOCALE cookie should override the URL locale
+// on back/forward navigation. Tour detail pages are intentionally excluded
+// so shared/direct links to a specific locale keep working.
+const LISTING_PATHS = ['/touren', '/airport-transfer', '/blog', '/kontakt', '/terms'];
+
+function getLocaleFromPath(pathname: string) {
+  const match = pathname.match(/^\/(de|en|ru|ar|fr|hu)(\/.*)?$/);
+  if (!match) return null;
+  return { locale: match[1], rest: match[2] || '/' };
+}
+
 // --- Simple in-memory rate limiter (per IP, resets on edge restart) ---
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
@@ -92,6 +103,26 @@ export function middleware(request: NextRequest) {
         status: 429,
         headers: { 'Retry-After': '60' },
       });
+    }
+  }
+
+  // ── Sync locale with cookie on listing pages only ────────────────────────
+  // If the visitor previously switched language (NEXT_LOCALE cookie) but
+  // lands back on a listing page with an older locale in the URL (e.g. via
+  // browser Back), redirect to the cookie's locale. Detail pages are
+  // excluded so a shared link to a specific locale still works as-is.
+  const parsedLocale = getLocaleFromPath(pathname);
+  if (parsedLocale) {
+    const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+    if (
+      cookieLocale &&
+      cookieLocale !== parsedLocale.locale &&
+      (routing.locales as readonly string[]).includes(cookieLocale) &&
+      LISTING_PATHS.includes(parsedLocale.rest)
+    ) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${cookieLocale}${parsedLocale.rest === '/' ? '' : parsedLocale.rest}`;
+      return NextResponse.redirect(url);
     }
   }
 

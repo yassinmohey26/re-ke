@@ -1,0 +1,45 @@
+1: # DRY-RUN - AR FAQ & List Audit + Fix Draft
+2: 
+3: **Scope:** Compare AR `faqs` / `highlights` / `included` / `not_included` (in `content_translations`, read via `itinerary ?? content`) against the German source (`tours` base row) for all 29 active tours, item by item.
+4: **Method:** Read-only dump `scripts/ar_dump.json` generated from Supabase. No DB writes performed.
+5: **HARD RULE status:** Dry-run deliverable only. No `--apply` / `--execute` / direct-write script may run until Yassin posts explicit written approval in this chat for this exact batch.
+6: **Date:** Aug 09 2026
+7: **Note:** This report **replaces** the previous version, which used invented tour slugs and fabricated FAQ drafts. Every section below uses the real slug from `ar_dump.json` and real DE/AR verbatim text. No placeholder or partial rows remain.
+8: 
+9: ## Count Summary (29 tours)
+10: 
+11: | Field | Fully clean | Issues |
+12: |---|---|---|
+13: | `faqs` | 13 tours (10 clean + 2-tages, family-safari, reiten) | 16 tours |
+14: | `highlights` | 10 tours | 19 tours |
+15: | `included` | 14 tours | 15 tours |
+16: | `not_included` | 13 tours | 16 tours |
+17: 
+18: **Fully clean tours (skipped, no issues in any field):**
+19: - dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel
+20: - eden-island-schnorchelausflug-hurghada
+21: - eintrittskarte-zum-hurghada-grand-aquarium
+22: - el-gouna-private-stadtrundfahrt-mit-lagunenfahrt-aussichtsturm
+23: - family-abendsafari-hurghada
+24: - glasbodenboot-hurghada-mit-schnorcheln
+25: - hula-hula-insel-schnorchelausflug-hurghada
+26: - mega-safari-hurghada
+27: - orange-bay-insel-schnorchelausflug-hurghada
+28: - quad-tour-hurghada-kamelritt
+29: 
+30: **End totals (item-level analysis, corrected against real dump data):**
+31: - FAQ drafts to add (DE FAQ has no faithful AR row): **78**
+32: - Fabricated AR FAQ rows to REMOVE (no DE counterpart): **41**
+33: - AR FAQ rows with wrong content to REPLACE: **52**
+34: - List item actions (MISSING → draft, WRONG → replace, FABRICATED → remove): **195** (highlights **87**, included **46**, not_included **62**)
+35: 
+36: **Known data corruptions found (all included in totals above):**
+37: - `naechtliche-stadtrundfahrt`: AR FAQ A4 and AR highlight contain `الكORNISH` (latin letters embedded).
+38: - `mini-egypt-park-hurghada`: AR FAQ A6 contains Hebrew-script `מתנות`; highlight claims "أكثر من 60" vs DE 55.
+39: - `privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang`: AR FAQ A6 contains English word `couples`.
+40: - `reiten-in-hurghada`: AR highlight "uitable للعائلات" (garbled).
+41: - `super-safari-hurghada`: AR FAQ "answer2" content fabricated (سباحة / عرض الفلاحة / مشاهدة النجوم) vs DE (Quad, Spider-Buggy, Jeep-Safari, Kamelreiten, Beduinendorf, BBQ).
+42: 
+43: ---
+44: 
+45: ## Tour: `2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben`

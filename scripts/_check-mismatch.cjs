@@ -1,0 +1,16 @@
+const fs = require('fs');
+const d = require('./ar_dump.json');
+const out = [];
+const t1 = d.find(x => x.slug === '2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben');
+out.push('=== 2-tages not_included (dump) ===');
+(t1.ar.not_included || []).forEach((v, i) => out.push(i + ': ' + v));
+const t2 = d.find(x => x.slug === 'super-safari-hurghada');
+out.push('=== super-safari included (dump) ===');
+(t2.ar.included || []).forEach((v, i) => out.push(i + ': ' + v));
+out.push('=== super-safari highlights (dump) ===');
+(t2.ar.highlights || []).forEach((v, i) => out.push(i + ': ' + v));
+const t3 = d.find(x => x.slug === 'luxor-tagesausflug-heissluftballon-hoteluebernachtung');
+out.push('=== luxor-heissluft faqs (dump) ===');
+(t3.ar.faqs || []).forEach((f, i) => out.push(i + ': Q=' + f.question + ' | A=' + String(f.answer).slice(0, 60)));
+fs.writeFileSync('_mismatch_check.txt', out.join('\n'));
+console.log('WROTE');

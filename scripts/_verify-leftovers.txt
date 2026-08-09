@@ -1,0 +1,234 @@
+########## luxor-tagesausflug-ab-hurghada
+--- DE highlights:
+  0: Tal der Könige – Gräber der Pharaonen entdecken
+  1: Karnak-Tempel – monumentales Bauwerk mit Säulenhalle
+  2: Terrassentempel der Königin Hatschepsut – architektonisches Meisterwerk
+  3: Memnonkolosse – beeindruckende Sitzstatuen
+  4: Mittagessen mit ägyptischen Spezialitäten
+  5: Privattour mit deutschsprachigem Ägyptologen
+--- DE included:
+  0: Hochwertiger Transfer im klimatisierten Fahrzeug
+  1: Deutschsprachiger Ägyptologe als Reiseleiter
+  2: Eintrittsgelder zu allen Sehenswürdigkeiten
+  3: Mittagessen
+  4: Wasser und Softdrinks während der Fahrt
+--- DE not_included:
+  0: Getränke im Restaurant
+  1: Persönliche Ausgaben
+  2: Transferzuschlag für Gäste aus Marsa Alam: 25 € pro Person
+  3: Transferzuschlag für Gäste aus El Quseir: 15 € pro Person
+  4: Transferzuschlag ab Makadi Bay & Sahl Hasheesh: 5 € pro Person
+  5: Transferzuschlag ab El Gouna, Safaga & Soma Bay: 10 € pro Person
+  6: Fremdsprachiger Reiseleiter (Englisch, Russisch oder Französisch): Aufpreis 10 € pro Person
+
+########## luxor-tagesausflug-heissluftballon-hoteluebernachtung
+--- DE highlights:
+  0: Hot air balloon ride over Luxor at sunrise – unforgettable panoramic view over the Nile
+  1: Karnak Temple – the largest religious structure of antiquity
+  2: Valley of the Kings – visit three magnificent tombs with original wall paintings
+  3: Hatshepsut Temple – the masterpiece of Egypt’s most powerful woman
+  4: Colossi of Memnon – impressive remains of the Temple of Amenhotep III
+  5: Hotel overnight stay including dinner & breakfast
+--- DE included:
+  0: German-speaking Egyptologist as guide
+  1: Admission fees for all attractions per the program
+  2: 45–60 minute hot air balloon ride over Luxor
+  3: Hotel overnight stay including dinner & breakfast
+  4: All transfers in an air-conditioned vehicle
+  5: All taxes & service fees
+--- DE not_included:
+  0: Drinks at the restaurant
+  1: Personal expenses
+  2: Transfer surcharge for guests from Marsa Alam: 25 euros per person
+  3: Transfer surcharge for guests from El Quseir: 15 euros per person
+  4: Transfer surcharge from Makadi Bay & Sahl Hasheesh: 5 euros per person
+  5: Transfer surcharge from El Gouna, Safaga & Soma Bay: 10 euros per person
+  6: Foreign-language guide (English, Russian, or French): surcharge 10 euros per person
+
+########## privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh
+--- DE highlights:
+  0: Sakkara – Ursprung des Pyramidenbaus
+  1: Stufenpyramide des Djoser
+  2: Historische Einführung in die Frühzeit der königlichen Nekropole
+  3: Dahschur – Entwicklung der Pyramidenform
+  4: Knickpyramide
+  5: Rote Pyramide mit Zugang zum Innenraum
+  6: Gizeh – Weltwunder der Antike
+  7: Pyramiden von Cheops, Chephren und Mykerinos
+  8: Sphinx und Taltempel
+  9: Fachkundige Erläuterungen zu Bauweise, Religion und Symbolik
+--- DE included:
+  0: Alle Transfers in modernen, klimatisierten Fahrzeugen
+  1: Sämtliche Eintrittsgelder
+  2: Deutschsprachiger Reiseleiter und Ägyptologe
+  3: Mittagessen
+  4: Getränke im Bus
+  5: Versicherung
+--- DE not_included:
+  0: Persönliche Ausgaben
+  1: Getränke im Restaurant
+  2: Transferzuschlag für Gäste aus Marsa Alam: 50 € pro Person
+  3: Transferzuschlag für Gäste aus El Quseir: 35 € pro Person
+  4: Transferzuschlag ab Makadi Bay & Sahl Hasheesh: 5 € pro Person
+  5: Transferzuschlag ab El Gouna, Safaga & Soma Bay: 10 € pro Person
+  6: Fremdsprachiger Reiseleiter (Englisch, Russisch oder Französisch): Aufpreis 10 € pro Person
+
+########## 2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben
+--- DE highlights:
+  0: Besuch der Pyramiden von Gizeh
+  1: Die Große Sphinx
+  2: Ägyptisches Museum in Kairo
+  3: Altstadt Khan el-Khalili
+  4: Alabaster-Moschee
+  5: 2 Tage mit Übernachtung
+  6: Guide für die gesamte Reise
+--- DE included:
+  0: Hin- und Rückfahrt Hurghada-Kairo (mit Klimaanlage)
+  1: 1 Übernachtung in einem 4-Sterne-Hotel in Kairo
+  2: Frühstück im Hotel
+  3: Mittagessen am ersten Tag
+  4: Eintrittskarten für alle Besichtigungen
+  5: Erfahrener Reiseführer
+  6: Trinkwasser im Bus
+--- DE not_included:
+  0: Trinkgelder
+  1: Fotos und Videos
+  2: Abendessen
+  3: Zusätzliche Getränke
+  4: Persönliche Ausgaben
+
+########## privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum
+--- DE highlights:
+  0: Privater Ausflug – keine Gruppentour, kein Zeitdruck
+  1: Deutschsprachiger, erfahrener Reiseleiter
+  2: Besuch des Grand Egyptian Museum inklusive Eintritt
+  3: Besichtigung der Pyramiden & Sphinx von Gizeh
+  4: Mittagessen inklusive
+  5: Kostenlose Getränke im Fahrzeug
+  6: Individueller Service & flexible Tagesgestaltung
+--- DE included:
+  0: Privater Transfer im klimatisierten Fahrzeug
+  1: Deutschsprachiger Reiseleiter
+  2: Eintrittskarte für das Grand Egyptian Museum
+  3: Besuch der Pyramiden von Gizeh & Sphinx
+  4: Mittagessen in Kairo
+  5: Kostenlose Getränke während der Fahrt
+--- DE not_included:
+  0: Persönliche Ausgaben
+  1: Getränke beim Mittagessen
+  2: Eintritt ins Innere der Pyramiden (optional)
+  3: Transferzuschlag für Gäste aus Marsa Alam: 50 € pro Person
+  4: Transferzuschlag für Gäste aus El Quseir: 35 € pro Person
+  5: Transferzuschlag ab Makadi Bay & Sahl Hasheesh: 5 € pro Person
+  6: Transferzuschlag ab El Gouna, Safaga & Soma Bay: 10 € pro Person
+  7: Fremdsprachiger Reiseleiter (Englisch, Russisch oder Französisch): Aufpreis 10 € pro Person
+
+########## hurghada-shopping-tour-basar-transfer
+--- DE highlights:
+  0: Kostenlose Shopping Tour mit Hoteltransfer
+  1: Besuch eines bekannten Basars in Hurghada
+  2: Souvenirs, Gewürze, Parfümöle, Lederwaren & Schmuck
+  3: Freie Zeit zum Einkaufen und Bummeln
+  4: Ideal für Familien, Paare & Kulturinteressierte
+--- DE included:
+  0: Hoteltransfer hin und zurück
+  1: Privater oder komfortabler Transfer
+  2: Freie Zeit auf dem Basar
+  3: Begleitung/Organisation durch Hurghada Reiseplaner
+--- DE not_included:
+  0: Persönliche Ausgaben
+  1: Einkäufe und Souvenirs
+  2: Trinkgeld freiwillig
+
+########## REPORT removal reasons (search)
+54: | D3 | Gibt es deutschsprachige Reiseleitung? | هل يوجد مرشد سياحي ناطق بالألمانية؟ | OK |
+72: | Guide für die gesamte Reise | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+83: | Erfahrener Reiseführer | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+95: | (none) | مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي) +10 - **FABRICATED** | **REMOVE** |
+171: | (none) | مرشد سياحي ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+179: | Begleitung/Organisation durch Hurghada Reiseplaner | مرشد سياحي ناطق بالألمانية - **SUBSTITUTED** | مرافقة وتنظيم من فريق مخطط رحلات الغردقة |
+224: | Deutschsprachiger Ägyptologe – Führung ganzen Tag | مرشد سياحي ناطق بالألمانية - OK | keep |
+234: | Deutschsprachiger Ägyptologe | مرشد سياحي ناطق بالألمانية - OK | keep |
+244: | Fremdsprachiger Reiseleiter: Aufpreis 10 € | **MISSING** | مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي): إضافي 10 يورو للفرد |
+280: | Deutschsprachige fachkundige Reiseleitung | مرشد سياحي ناطق بالألمانية - OK | keep |
+288: | Deutschsprachige Reiseleitung | مرشد سياحي ناطق بالألمانية - OK | keep |
+300: | Fremdsprachiger Reiseleiter: Aufpreis 10 € | **MISSING** | مرشد سياحي بلغة أجنبية: إضافي 10 يورو للفرد |
+336: | Privattour mit deutschsprachigem Ägyptologen | مرشد سياحي ناطق بالألمانية - OK | keep |
+349: | Fremdsprachiger Reiseleiter: Aufpreis 10 € | **MISSING** | مرشد سياحي بلغة أجنبية: إضافي 10 يورو للفرد |
+387: | (none) | مرشد سياحي ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+393: | German-speaking Egyptologist as guide | مرشد سياحي ناطق بالألمانية - OK | keep |
+569: | Fahrer & ortskundiger Guide | مرشد سياحي في الحديقة - OK | keep |
+618: **REMOVE** from current AR highlights (fabricated/off-topic, 6): جولة خاصة ليلية في الغردقة (slogan), زيارة الكORNISH والشواطئ (wrong, corrupted), استكشاف الأسواق والمناطق الحيوية (generic), مشاهدة غروب وشروق القمر (fabricated), مرشد سياحي ناطق بالألمانية (not in DE highlights), نقل خاص بسيارة مكيفة (not in DE highlights).
+624: | Deutschsprachiger Reiseleiter | مرشد سياحي ناطق بالألمانية - OK | keep |
+792: | (none) | مرشد سياحي خاص ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+801: | Deutschsprachiger Reiseleiter und Ägyptologe | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+902: | Deutschsprachiger Ägyptologe mit Fachwissen | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+913: | Professioneller deutschsprachiger Reiseleiter / Ägyptologe | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+959: | Deutschsprachiger, erfahrener Reiseleiter | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+971: | Deutschsprachiger Reiseleiter | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+
+350: | (none) | رسوم الدخول الإضافية لبعض الغرف في وادي الملوك - **FABRICATED** (contradicts D8) | **REMOVE** |
+409: | (none) | رسوم الدخول الإضافية لبعض الغرف في وادي الملوك - **FABRICATED** | **REMOVE** |
+813: | (none) | رسوم الدخول الإضافية لبعض الغرف الأثرية - **FABRICATED** | **REMOVE** |
+
+73: | (none) | وجبتا غداء مشمولة - **FABRICATED** | **REMOVE** |
+81: | Mittagessen am ersten Tag | وجبتا غداء - **WRONG** (DE: one lunch on day 1) | غداء في اليوم الأول |
+375: | هل الوجبات مشمولة؟ | وجبتا غداء مشمولتان. (DE: dinner & breakfast, not two lunches) |
+388: | (none) | وجبتا غداء مشمولة - **FABRICATED** (DE: dinner & breakfast) | **REMOVE** |
+399: | (none) | وجبتا غداء - **FABRICATED** | **REMOVE** |
+
+618: **REMOVE** from current AR highlights (fabricated/off-topic, 6): جولة خاصة ليلية في الغردقة (slogan), زيارة الكORNISH والشواطئ (wrong, corrupted), استكشاف الأسواق والمناطق الحيوية (generic), مشاهدة غروب وشروق القمر (fabricated), مرشد سياحي ناطق بالألمانية (not in DE highlights), نقل خاص بسيارة مكيفة (not in DE highlights).
+623: | Transfer in modernen, klimatisierten Fahrzeugen | نقل خاص بسيارة مكيفة - OK | keep |
+794: | (none) | نقل خاص بسيارة مكيفة - **FABRICATED** | **REMOVE** |
+799: | Alle Transfers in modernen, klimatisierten Fahrzeugen | نقل خاص بسيارة مكيفة من وإلى الفندق - OK | keep |
+905: | Komfortabler Transfer im klimatisierten Fahrzeug | نقل خاص بسيارة مكيفة - OK | keep |
+914: | Private Transfers im modernen, klimatisierten Fahrzeug | نقل خاص بسيارة مكيفة من وإلى الفندق - OK | keep |
+937: | D1 | 🚗 Wie erfolgt der Transfer nach Kairo? | هل النقل خاص؟ → "نعم، نقل خاص بسيارة مكيفة." | OK | keep |
+965: | (none) | نقل خاص بسيارة مكيفة - **FABRICATED** (not in DE highlights) | **REMOVE** |
+970: | Privater Transfer im klimatisierten Fahrzeug | نقل خاص بسيارة مكيفة من وإلى القاهرة - OK | keep |
+
+119: | (none) | نقل من الفندق مشمول - **FABRICATED** | **REMOVE** |
+146: | D1 | 🏷️ Ist die Shopping Tour wirklich kostenlos? | (none) | **MISSING → DRAFT** | "هل جولة التسوق في الغردقة مجانية فعلاً؟" → "نعم! المشاركة في الجولة مجانية تماماً. النقل من الفندق وإليه ومرافقة فريقنا مشمولة في السعر. فقط مشترياتك ونفقاتك الشخصية في السوق غير مشمولة." |
+421: | D2 | ⏰ Wie lange dauert der Ausflug? | كم تستغرق الرحلة؟ → "يوم كامل من الصباح إلى المساء." | **WRONG → REPLACE** | "حوالي 7 ساعات شاملة النقل من الفندق ورحلة القارب والوقت على الشاطئ والعودة." |
+534: | D1 | 🕓 Wie lange dauert der Ausflug? | كم تستغرق الزيارة؟ → "حوالي ساعة إلى ساعتين." | **WRONG → REPLACE** | "حوالي ساعتين إلى 3 ساعات شاملة النقل من الفندق." |
+593: | D3 | 🚗 Ist der Transfer vom Hotel inklusive? | (none) | **MISSING → DRAFT** | "هل النقل من الفندق مشمول؟" → "نعم، الاستلام والعودة من بهو فندقك في الغردقة مشمولان – بمركبات حديثة ومكيفة." |
+647: | D3 | 🚗 Gibt es einen Hoteltransfer? | (none) | **MISSING → DRAFT** | "هل يوجد نقل من الفندق؟" → "نعم، الاستلام والعودة بمركبة مكيفة مشمولان." |
+701: | D1 | 🕒 Wie lange dauert die Bootstour? | كم تستغرق الرحلة؟ → "حوالي 6 إلى 7 ساعات." | **WRONG → REPLACE** | "حوالي 8 ساعات شاملة النقل من الفندق والغطس والوقت على الجزيرة والعودة." |
+1003: | Hoteltransfer von Hurghada inklusive | نقل من الفندق مشمول من الغردقة - OK | keep |
+1023: | D3 | 🚐 Ist der Hoteltransfer im Preis enthalten? | (none) | **MISSING → DRAFT** | "هل النقل من الفندق مشمول؟" → "نعم، الاستلام والعودة من فنادق الغردقة مشمول عادةً في السعر. قد تُطبق رسوم إضافية للفنادق خارج الغردقة." |
+
+
+54: | D3 | Gibt es deutschsprachige Reiseleitung? | هل يوجد مرشد سياحي ناطق بالألمانية؟ | OK |
+72: | Guide für die gesamte Reise | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+83: | Erfahrener Reiseführer | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+151: | D6 | 🌍 Welche Sprachen sprechen die Begleiter? | هل مرشد ناطق بالألمانية مشمول؟ → "نعم." | **WRONG → REPLACE** | "هل يتحدث المرافقون لغات متعددة؟" → "نعم، يرافقك فريق مخطط رحلات الغردقة طوال الجولة، ويتحدث المرافقون الألمانية أو الإنجليزية أو العربية حسب التوفر ويساعدونك في كل ما يتعلق بالسوق والمنتجات." |
+171: | (none) | مرشد سياحي ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+179: | Begleitung/Organisation durch Hurghada Reiseplaner | مرشد سياحي ناطق بالألمانية - **SUBSTITUTED** | مرافقة وتنظيم من فريق مخطط رحلات الغردقة |
+200: | D2 | 🏛️ Welche Sehenswürdigkeiten werden besucht? | ما المعالم المزار؟ → "أهرامات الجيزة والمصرح العظيم والمتحف المصري الكبير." | **WRONG → REPLACE** | "تزور أهرامات الجيزة الشهيرة والمصرح العظيم، وحسب رغبتك إما المتحف المصري الكبير أو المتحف المصري، مع غداء في مطعم على النيل ومرافقة عالم مصريات ناطق بالألمانية طوال اليوم." |
+224: | Deutschsprachiger Ägyptologe – Führung ganzen Tag | مرشد سياحي ناطق بالألمانية - OK | keep |
+234: | Deutschsprachiger Ägyptologe | مرشد سياحي ناطق بالألمانية - OK | keep |
+256: | D1 | ✨ Was macht diesen Ausflug so besonders? | (none) | **MISSING → DRAFT** | "ما الذي يميز هذه الجولة؟" → "رحلة خاصة إلى أديرة الأنبا أنطونيوس والأنبا بولا من الغردقة تجمع بين التاريخ والروحانية والمناظر الصحراوية الخلابة. تزور أقدم الأديرة المسيحية في العالم مع عالم مصريات ناطق بالألمانية – بعيداً عن الطرق السياحية المعتادة." |
+262: | D7 | 📝 Was ist im Preis enthalten? | هل مرشد ناطق بالألمانية مشمول؟ → "نعم." + هل توجد رسوم دخول؟ → "نعم، رسوم الدخول مشمولة في السعر." | OK (covered by two AR rows) | keep |
+263: | D8 | 💳 Gibt es zusätzliche Kosten? | هل وجبة مشمولة؟ → "لا، الوجبات غير مشمولة. أحضر ماءً ووجبة خفيفة." | **WRONG → REPLACE** | "هل توجد تكاليف إضافية خلال الجولة؟" → "لا، جميع الخدمات الأساسية كالتنقلات ورسوم الدخول والمرشد الناطق بالألمانية والغداء مشمولة بالفعل. لا توجد تكاليف إضافية سوى المصروفات الشخصية والمشروبات في المطعم." |
+265: | D10 | 🔒 Ist die Tour sicher? | (none) | **MISSING → DRAFT** | "هل الجولة آمنة ومناسبة لجميع الأعمار؟" → "نعم، الجولة بصحبة سائقين ذوي خبرة ومرشد ناطق بالألمانية. زيارة الأديرة مناسبة لجميع الأعمار تقريباً، فقط الصعود إلى المغارة يتطلب لياقة بدنية جيدة وهو اختياري." |
+280: | Deutschsprachige fachkundige Reiseleitung | مرشد سياحي ناطق بالألمانية - OK | keep |
+288: | Deutschsprachige Reiseleitung | مرشد سياحي ناطق بالألمانية - OK | keep |
+314: | D4 | 👨🏫 Gibt es einen deutschsprachigen Reiseleiter? | هل مرشد ناطق بالألمانية مشمول؟ → "نعم." | OK | keep |
+336: | Privattour mit deutschsprachigem Ägyptologen | مرشد سياحي ناطق بالألمانية - OK | keep |
+369: | D9 | 🗣️ Gibt es einen deutschsprachigen Reiseleiter? | هل مرشد ناطق بالألمانية مشمول؟ → "نعم." | OK | keep |
+387: | (none) | مرشد سياحي ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+393: | German-speaking Egyptologist as guide | مرشد سياحي ناطق بالألمانية - OK | keep |
+429: | D10 | ✅ Warum über Hurghada Reiseplaner buchen? | (none) | **MISSING → DRAFT** | "لماذا أحجز مع مخطط رحلات الغردقة؟" → "تستفيد من جودة موثوقة وأسعار عادلة ومرشدين ناطقين بالألمانية ذوي خبرة وخدمة عملاء موثوقة. نضمن أن تكون رحلتك إلى جزيرة ماهميا آمنة ومريحة ولا تُنسى." |
+537: | D4 | 🗣️ Gibt es einen deutschsprachigen Guide? | (none) | **MISSING → DRAFT** | "هل يوجد مرشد ناطق بالألمانية؟" → "نعم، مرشدون ناطقون بالألمانية يرافقونك في الحديقة ويشرحون لك تاريخ وثقافة وأهمية المعالم المعروضة." |
+606: | هل مرشد ناطق بالألمانية مشمول؟ | نعم. (no DE FAQ) |
+618: **REMOVE** from current AR highlights (fabricated/off-topic, 6): جولة خاصة ليلية في الغردقة (slogan), زيارة الكORNISH والشواطئ (wrong, corrupted), استكشاف الأسواق والمناطق الحيوية (generic), مشاهدة غروب وشروق القمر (fabricated), مرشد سياحي ناطق بالألمانية (not in DE highlights), نقل خاص بسيارة مكيفة (not in DE highlights).
+624: | Deutschsprachiger Reiseleiter | مرشد سياحي ناطق بالألمانية - OK | keep |
+769: | D8 | 🗣️ In welcher Sprache findet die Führung statt? | هل مرشد ناطق بالألمانية مشمول؟ → "نعم." | OK | keep |
+792: | (none) | مرشد سياحي خاص ناطق بالألمانية - **FABRICATED** (not in DE highlights) | **REMOVE** |
+801: | Deutschsprachiger Reiseleiter und Ägyptologe | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+894: | هل مرشد ناطق بالألمانية مشمول؟ | نعم. (no DE FAQ) |
+902: | Deutschsprachiger Ägyptologe mit Fachwissen | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+913: | Professioneller deutschsprachiger Reiseleiter / Ägyptologe | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+951: | هل مرشد ناطق بالألمانية مشمول؟ | نعم. (no DE FAQ) |
+959: | Deutschsprachiger, erfahrener Reiseleiter | مرشد سياحي خاص ناطق بالألمانية - OK | keep |
+971: | Deutschsprachiger Reiseleiter | مرشد سياحي خاص ناطق بالألمانية - OK | keep |

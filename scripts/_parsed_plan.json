@@ -1,0 +1,2322 @@
+{
+ "tours": [
+  {
+   "slug": "2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben",
+   "faqs": [],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Ägyptisches Museum in Kairo",
+      "value": "المتحف المصري في القاهرة",
+      "cur": "المتحف المصري الكبير (GEM)"
+     },
+     {
+      "op": "add",
+      "deItem": "Altstadt Khan el-Khalili",
+      "value": "خان الخليلي في القاهرة التاريخية"
+     },
+     {
+      "op": "add",
+      "deItem": "Alabaster-Moschee",
+      "value": "مسجد المرمر (جامع محمد علي)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبتا غداء مشمولة"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Frühstück im Hotel",
+      "value": "فطور في الفندق"
+     },
+     {
+      "op": "replace",
+      "deItem": "Mittagessen am ersten Tag",
+      "value": "غداء في اليوم الأول",
+      "cur": "وجبتا غداء"
+     },
+     {
+      "op": "add",
+      "deItem": "Trinkwasser im Bus",
+      "value": "مياه شرب في الحافلة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Trinkgelder",
+      "value": "البقشيش"
+     },
+     {
+      "op": "add",
+      "deItem": "Fotos und Videos",
+      "value": "الصور والفيديوهات"
+     },
+     {
+      "op": "add",
+      "deItem": "Abendessen",
+      "value": "وجبة العشاء"
+     },
+     {
+      "op": "replace",
+      "deItem": "Zusätzliche Getränke",
+      "value": "المشروبات الإضافية",
+      "cur": "المشروبات في المطعم"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم نقل إضافية مرسى علم 50 / القصير 35 / مكادي وسهل حشيش 5 / الجونة وسفاجا وسوما باي 10"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي) +10"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "family-safari-hurghada",
+   "faqs": [],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Quadfahrt durch die Wüste (ca. 30–40 Min.)",
+      "value": "جولة رباعية في الصحراء (حوالي 30–40 دقيقة)",
+      "cur": "جولة رباعية مثيرة في الصحراء"
+     },
+     {
+      "op": "add",
+      "deItem": "Spider-Car-Fahrt (ca. 10–15 Min.)",
+      "value": "جولة بسيارة السبيدر (حوالي 10–15 دقيقة)"
+     },
+     {
+      "op": "replace",
+      "deItem": "Rund 50 km Jeep-Safari durch die Wüste",
+      "value": "جيب سفاري عبر الصحراء نحو 50 كيلومتراً",
+      "cur": "رحلة جيب عبر الكثبان"
+     },
+     {
+      "op": "add",
+      "deItem": "Kurzer Kamelritt im Beduinendorf",
+      "value": "ركوب جمل قصير في القرية البدوية"
+     },
+     {
+      "op": "add",
+      "deItem": "Besuch einer traditionellen Beduinen-Apotheke",
+      "value": "زيارة صيدلية بدوية تقليدية"
+     },
+     {
+      "op": "add",
+      "deItem": "1 Flasche Wasser inklusive",
+      "value": "زجاجة ماء واحدة مشمولة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من الفندق مشمول"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشدون محترفون طوال الرحلة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مناسب لجميع الأعمار والمستويات"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "انغماس ثقافي في الحياة البدوية"
+     }
+    ],
+    "included": [],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Schal und Schutzbrille",
+      "value": "شال ونظارة واقية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الكحول"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "hurghada-shopping-tour-basar-transfer",
+   "faqs": [
+    {
+     "op": "add",
+     "deq": "🏷️ Ist die Shopping Tour wirklich kostenlos?",
+     "q": "هل جولة التسوق في الغردقة مجانية فعلاً؟",
+     "a": "نعم! المشاركة في الجولة مجانية تماماً. النقل من الفندق وإليه ومرافقة فريقنا مشمولة في السعر. فقط مشترياتك ونفقاتك الشخصية في السوق غير مشمولة."
+    },
+    {
+     "op": "replace",
+     "deq": "🚐 Wie erfolgt der Transfer zum Basar?",
+     "curQ": "هل النقل مشمول؟",
+     "q": null,
+     "a": "نستقبلك مباشرة من فندقك في الغردقة أو المنطقة المحيطة بمركبة مكيفة، وبعد الجولة نعيدك بأمان إلى فندقك.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🕒 Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الجولة؟",
+     "q": null,
+     "a": "حوالي ساعتين إلى 3 ساعات عادةً، حسب حركة المرور ومدة تواجدك في السوق.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🌆 Was kann man auf dem Basar kaufen?",
+     "curQ": "ما الأماكن المزار؟",
+     "q": null,
+     "a": "يقدم السوق تشكيلة ضخمة: هدايا تذكارية، لفائف البردي، توابل، زيوت عطور، منتجات جلدية، مجوهرات، أعمال يدوية وغيرها الكثير – ستجد بالتأكيد تذكاراً مثالياً لعطلتك.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "💳 Gibt es feste Preise auf dem Basar?",
+     "q": "هل توجد أسعار ثابتة في السوق؟",
+     "a": "نعم، في معظم المتاجر توجد أسعار ثابتة ومعلنة، فتتسوق براحة دون حاجة للمساومة. الأسعار غالباً منخفضة وشفافة ويتم التعامل مع الجميع بإنصاف."
+    },
+    {
+     "op": "replace",
+     "deq": "🌍 Welche Sprachen sprechen die Begleiter?",
+     "curQ": "هل مرشد ناطق بالألمانية مشمول؟",
+     "q": "هل يتحدث المرافقون لغات متعددة؟",
+     "a": "نعم، يرافقك فريق مخطط رحلات الغردقة طوال الجولة، ويتحدث المرافقون الألمانية أو الإنجليزية أو العربية حسب التوفر ويساعدونك في كل ما يتعلق بالسوق والمنتجات.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🕓 Wann findet die Einkaufstour statt?",
+     "q": "متى تُقام جولة التسوق؟",
+     "a": "تُعرض جولة التسوق في الغردقة يومياً. نُعلمك بموعد الاستلام الدقيق بعد الحجز حسب موقع فندقك."
+    },
+    {
+     "op": "add",
+     "deq": "📱 Wie kann ich die Tour buchen?",
+     "q": "كيف يمكنني حجز الجولة؟",
+     "a": "يمكنك الحجز مباشرة عبر موقعنا مخطط رحلات الغردقة أو هاتفياً مع فريقنا. بعد الحجز تتلقى كل معلومات موعد الاستلام ونقطة الالتقاء عبر البريد أو واتساب."
+    },
+    {
+     "op": "replace",
+     "deq": "🧴 Gibt es etwas mitzubringen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": "ما الذي يجب أن أحضره؟",
+     "a": "ننصحك بأخذ بعض النقود بالجنيه المصري أو اليورو للتسوق، وزجاجة ماء، وملابس وأحذية مريحة – وبالطبع مزاج جيد وفضول!",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد توقفات بيعية إلزامية؟",
+     "a": "لا، يمكنك اختيار الأماكن التي تزورها."
+    },
+    {
+     "op": "remove",
+     "q": "هل وقت كافٍ للتسوق؟",
+     "a": "نعم، يتوفر وقت كافٍ لرؤية المنتجات والتفاوض."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Souvenirs, Gewürze, Parfümöle, Lederwaren & Schmuck",
+      "value": "اكتشف الهدايا والتوابل وزيوت العطور والمنتجات الجلدية والمجوهرات",
+      "cur": "اكتشف الحرف اليدوية والمجوهرات والتوابل"
+     },
+     {
+      "op": "add",
+      "deItem": "Ideal für Familien, Paare & Kulturinteressierte",
+      "value": "مثالي للعائلات والأزواج ومحبي الثقافة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد سياحي ناطق بالألمانية"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Privater oder komfortabler Transfer",
+      "value": "نقل خاص أو مريح"
+     },
+     {
+      "op": "add",
+      "deItem": "Freie Zeit auf dem Basar",
+      "value": "وقت حر في السوق"
+     },
+     {
+      "op": "replace",
+      "deItem": "Begleitung/Organisation durch Hurghada Reiseplaner",
+      "value": "مرافقة وتنظيم من فريق مخطط رحلات الغردقة",
+      "cur": "مرشد سياحي ناطق بالألمانية"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Einkäufe und Souvenirs",
+      "value": "المشتريات والهدايا التذكارية"
+     },
+     {
+      "op": "add",
+      "deItem": "Trinkgeld freiwillig",
+      "value": "الإكرامية (اختياري)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم نقل إضافية لمناطق محددة"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "kairo-mit-flug-ab-hurghada-pyramiden-museum",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "⏳ Wie lange dauert der Tagesausflug?",
+     "curQ": "كم يستغرق اليوم؟",
+     "q": "كم تستغرق جولة اليوم؟",
+     "a": "حوالي 15 ساعة. نستقبلك حوالي الساعة 04:00 من فندقك، نطير إلى القاهرة، نزور المعالم، ونعود إلى فندقك حوالي الساعة 20:15.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🏛️ Welche Sehenswürdigkeiten werden besucht?",
+     "curQ": "ما المعالم المزار؟",
+     "q": null,
+     "a": "تزور أهرامات الجيزة الشهيرة والمصرح العظيم، وحسب رغبتك إما المتحف المصري الكبير أو المتحف المصري، مع غداء في مطعم على النيل ومرافقة عالم مصريات ناطق بالألمانية طوال اليوم.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "👶 Ist der Ausflug für Kinder geeignet?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم، الجولة مناسبة للعائلات: الأطفال من 0–2 سنة 200 يورو، ومن 3–10 سنوات 240 يورو، ومن 11 سنة فما فوق السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚘 Transfer von Marsa Alam oder El Quseir?",
+     "q": "هل يوجد نقل من مرسى علم أو القصير؟",
+     "a": "نعم، ننظم نقلاً إلى مطار الغردقة. من مرسى علم: +50 يورو للفرد، ومن القصير: +35 يورو للفرد."
+    },
+    {
+     "op": "add",
+     "deq": "🏛️ Kann ich wählen, welches Museum?",
+     "q": "هل يمكنني اختيار المتحف الذي أزوره؟",
+     "a": "نعم، يمكنك الاختيار بين المتحف المصري الكبير أو المتحف المصري حسب اهتمامك."
+    },
+    {
+     "op": "add",
+     "deq": "👥 Wie viele Personen sind in einer Gruppe?",
+     "q": "كم عدد الأشخاص في المجموعة؟",
+     "a": "تُقام الجولة كرحلة خاصة أو في مجموعات صغيرة بحد أقصى 8 أشخاص، لضمان أجواء مريحة ووقت كافٍ في كل معلم."
+    },
+    {
+     "op": "add",
+     "deq": "🗣️ Wann sollte ich buchen?",
+     "q": "متى يجب أن أحجز؟",
+     "a": "ننصح بالحجز المبكر، خاصة في الموسم المرتفع، لضمان الموعد الذي ترغب به."
+    },
+    {
+     "op": "add",
+     "deq": "🛠️ Kann ich den Ausflug individuell anpassen?",
+     "q": "هل يمكنني تخصيص الجولة؟",
+     "a": "نعم، جولتنا مرنة. يمكنك تغيير ترتيب المعالم أو إضافة توقفات إضافية حسب رغبتك."
+    },
+    {
+     "op": "add",
+     "deq": "💶 Wie läuft die Bezahlung ab?",
+     "q": "كيف يتم الدفع؟",
+     "a": "عبر الإنترنت من موقعنا أو بطلب عبر البريد الإلكتروني، مع دفع آمن قبل المغادرة وبدون رسوم خفية."
+    },
+    {
+     "op": "remove",
+     "q": "هل الرحلة بالطائرة فعلاً؟",
+     "a": "نعم، رحلة جوية ذهاباً وإياباً من الغردقة إلى القاهرة مشمولة. (content already covered by included; no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "هل أحتاج جواز سفر؟",
+     "a": "نعم، جواز سفر ساري المفعول مطلوب للرحلة الجوية."
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "جواز سفرك وواقي شمساً وقبعة وأحذية مريحة وأموالاً للتسوق."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Mittagessen am Nil – lokale Spezialitäten",
+      "value": "وجبة غداء على النيل – أطباق محلية",
+      "cur": "وجبة غداء مشمولة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "تنقلات خاصة في القاهرة"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Betreuung & Organisation durch Hurghada Reiseplaner",
+      "value": "رعاية وتنظيم من مخطط رحلات الغردقة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Transferzuschlag ab Marsa Alam: 50 € / El Quseir: 35 €",
+      "value": "رسوم نقل إضافية من مرسى علم 50 يورو / من القصير 35 يورو للفرد"
+     },
+     {
+      "op": "add",
+      "deItem": "Transferzuschlag Makadi Bay & Sahl Hasheesh: 5 € / El Gouna, Safaga & Soma Bay: 10 €",
+      "value": "رسوم نقل إضافية من خليج مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي): إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم النقل الإضافية من الفندق إلى المطار"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "kloester-st-antonius-st-paulus",
+   "faqs": [
+    {
+     "op": "add",
+     "deq": "✨ Was macht diesen Ausflug so besonders?",
+     "q": "ما الذي يميز هذه الجولة؟",
+     "a": "رحلة خاصة إلى أديرة الأنبا أنطونيوس والأنبا بولا من الغردقة تجمع بين التاريخ والروحانية والمناظر الصحراوية الخلابة. تزور أقدم الأديرة المسيحية في العالم مع عالم مصريات ناطق بالألمانية – بعيداً عن الطرق السياحية المعتادة."
+    },
+    {
+     "op": "replace",
+     "deq": "⏱️ Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الجولة؟",
+     "q": null,
+     "a": "حوالي 14 ساعة. مشمولة فيها الرحلة ذهاباً وإياباً بمركبة مكيفة، وجميع الزيارات، ووجبة غداء.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🕓 Um wie viel Uhr ist die Abholung?",
+     "q": "في أي وقت يتم الاستلام من الفندق؟",
+     "a": "يتم الاستلام حسب موقع الفندق في الغردقة بين 03:30 و 04:30 صباحاً. نُعلمك بالتوقيت الدقيق قبل الجولة."
+    },
+    {
+     "op": "add",
+     "deq": "🏞️ Muss ich die Höhle des Heiligen Antonius besuchen?",
+     "q": "هل يجب أن أصعد إلى مغارة الأنبا أنطونيوس؟",
+     "a": "لا، الصعود إلى المغارة اختياري. من لا يرغب في الصعود يمكنه زيارة الدير بهدوء أو البقاء في محيطه."
+    },
+    {
+     "op": "replace",
+     "deq": "👨👩👧 Ist der Ausflug für Kinder geeignet?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم، مناسب للعائلات مع الأطفال: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%، ومن 11 سنة السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "👕 Welche Kleidung wird empfohlen?",
+     "curQ": "ما المطلوب للدخول؟",
+     "q": null,
+     "a": "ننصح بملابس خفيفة مريحة وحذاء متين. بما أن الأديرة نشطة، يجب تغطية الكتفين والركبتين. يُنصح أيضاً بقبعة وواقي شمس وكثير من الماء.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "💳 Gibt es zusätzliche Kosten?",
+     "curQ": "هل وجبة مشمولة؟",
+     "q": "هل توجد تكاليف إضافية خلال الجولة؟",
+     "a": "لا، جميع الخدمات الأساسية كالتنقلات ورسوم الدخول والمرشد الناطق بالألمانية والغداء مشمولة بالفعل. لا توجد تكاليف إضافية سوى المصروفات الشخصية والمشروبات في المطعم.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "📷 Darf ich in den Klöstern fotografieren?",
+     "q": "هل يمكنني التصوير في الأديرة؟",
+     "a": "نعم، في معظم مناطق الأديرة يسمح بالتصوير. في بعض الكنائس أو الكنائس الصغيرة قد يُمنع التصوير بالفلاش، وسيخبرك المرشد بالقواعد في الموقع."
+    },
+    {
+     "op": "add",
+     "deq": "🔒 Ist die Tour sicher?",
+     "q": "هل الجولة آمنة ومناسبة لجميع الأعمار؟",
+     "a": "نعم، الجولة بصحبة سائقين ذوي خبرة ومرشد ناطق بالألمانية. زيارة الأديرة مناسبة لجميع الأعمار تقريباً، فقط الصعود إلى المغارة يتطلب لياقة بدنية جيدة وهو اختياري."
+    },
+    {
+     "op": "remove",
+     "q": "هل الأديرة مفتوحة للزوار؟",
+     "a": "نعم، مفتوحة يومياً للزيارات."
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "ملابس محتشمة وحذاءً مريحاً وواقي شمساً. (duplicate of D6)"
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Historische Kirchen, Fresken und wertvolle Manuskripte",
+      "value": "اكتشف الكنائس القديمة واللوحات الجدارية والمخطوطات الثمينة",
+      "cur": "اكتشف الكنائس القديمة والمنحوتات الصخرية"
+     },
+     {
+      "op": "add",
+      "deItem": "Aufstieg zur Höhle des Heiligen Antonius (optional)",
+      "value": "الصعود إلى مغارة الأنبا أنطونيوس (اختياري)"
+     },
+     {
+      "op": "add",
+      "deItem": "Mittagessen inklusive",
+      "value": "وجبة غداء مشمولة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من وإلى الفندق مشمول"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Mittagessen",
+      "value": "وجبة غداء"
+     },
+     {
+      "op": "add",
+      "deItem": "Getränke im Fahrzeug",
+      "value": "مشروبات أثناء الرحلة"
+     },
+     {
+      "op": "add",
+      "deItem": "Alle Servicegebühren und Steuern",
+      "value": "جميع رسوم الخدمة والضرائب"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Getränke im Restaurant",
+      "value": "المشروبات في المطعم"
+     },
+     {
+      "op": "replace",
+      "deItem": "Transferzuschläge (Marsa Alam 25 € / El Quseir 15 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 25 يورو / من القصير 15 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم نقل إضافية لمناطق محددة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد سياحي بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "luxor-tagesausflug-ab-hurghada",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "⏰ Wann beginnt und endet der Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": "متى يبدأ الأخر وينتهي؟",
+     "a": "يبدأ حوالي الساعة 05:30 وينتهي حوالي الساعة 20:00 حسب حركة المرور. نُعلمك بموعد الاستلام الدقيق في اليوم السابق حسب موقع فندقك.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚐 Wie erfolgt die Abholung vom Hotel?",
+     "q": "كيف يتم الاستلام من الفندق؟",
+     "a": "نستقبلك مباشرة من بهو فندقك بمركبة خاصة مكيفة."
+    },
+    {
+     "op": "replace",
+     "deq": "🧭 Welche Sehenswürdigkeiten besucht man?",
+     "curQ": "ما المعالم المزار؟",
+     "q": null,
+     "a": "معبد الكرنك المذهل ووادي الملوك الشهير ومعبد الملكة حتشبسوت وتماثيل ممنون. جميع رسوم الدخول مشمولة في سعر الرحلة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "👶 Sind Kinder erlaubt und gibt es Rabatte?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم، الأطفال من 0–2 سنة يسافرون مجاناً، وللأطفال من 3–10 سنوات خصم 50%.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "📷 Darf man im Tal der Könige fotografieren?",
+     "q": "هل يمكن التصوير في وادي الملوك؟",
+     "a": "نعم، بالهاتف مجاناً وبدون فلاش. الكاميرات الاحترافية برسوم."
+    },
+    {
+     "op": "add",
+     "deq": "🚌 Wie lange dauert die Fahrt nach Luxor?",
+     "q": "كم تستغرق الرحلة إلى الأقصر؟",
+     "a": "حوالي 4 إلى 4.5 ساعات لكل اتجاه، مع توقف قصير أثناء القيادة."
+    },
+    {
+     "op": "add",
+     "deq": "🔒 Ist der Ausflug sicher?",
+     "q": "هل الجولة آمنة؟",
+     "a": "نعم، الطريق بين الغردقة والأقصر مصرح به رسمياً للسياحة ومن أكثر الطرق السياحية استخداماً في مصر. سائقونا ذوو خبرة والمركبات حديثة ومكيفة."
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد رسوم إضافية؟",
+     "a": "رسوم الدخول لبعض الغرف في وادي الملوك إضافية."
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "واقي شمساً وقبعة وماءً وأحذية مريحة وأموالاً إضافية."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Memnonkolosse – beeindruckende Sitzstatuen",
+      "value": "تماثيل ممنون – تماثيل جلوس رائعة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "معبد هابو"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من وإلى الفندق"
+     }
+    ],
+    "included": [],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Getränke im Restaurant",
+      "value": "المشروبات في المطعم"
+     },
+     {
+      "op": "replace",
+      "deItem": "Transferzuschläge (Marsa Alam 25 € / El Quseir 15 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 25 يورو / من القصير 15 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم النقل الإضافية من المناطق البعيدة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد سياحي بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "luxor-tagesausflug-heissluftballon-hoteluebernachtung",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🎈 Wie läuft die Heißluftballonfahrt ab?",
+     "curQ": "هل رحلة البالون مشمولة؟",
+     "q": "كيف تجري رحلة البالون في الأقصر؟",
+     "a": "تبدأ الرحلة قبل شروق الشمس. بعد الانتقال إلى موقع الإقلاع، تحلق حوالي 45–60 دقيقة بإطلالة مذهلة على الأقصر والنيل والمعابد.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🛡️ Ist die Ballonfahrt sicher?",
+     "q": "هل رحلة البالون آمنة؟",
+     "a": "نعم، تنفذ حصرياً بواسطة طيارين معتمدين من الدولة. جميع البالونات تخضع للصيانة يومياً ولفحوصات أمان صارمة، وتتم الرحلة فقط في ظروف جوية مناسبة."
+    },
+    {
+     "op": "replace",
+     "deq": "🏛️ Welche Orte werden besichtigt?",
+     "curQ": "ما المعالم الثقافية المزارة؟",
+     "q": null,
+     "a": "تزور معبد الكرنك ووادي الملوك ومعبد حتشبسوت وتماثيل ممنون.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "⏳ Wie lange dauert die Tour inklusive Anreise?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 27–28 ساعة (الاستلام مساء اليوم السابق، والعودة مساء اليوم التالي).",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🛏️ Ist die Übernachtung inklusive?",
+     "curQ": "هل الإقامة مشمولة؟",
+     "q": null,
+     "a": "نعم، ليلة واحدة في فندق مع عشاء وفطور مشمولة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🧒 Gibt es Kinderermäßigungen?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%، ومن 11 سنة السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "👕 Welche Kleidung wird empfohlen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": "ما الملابس الموصى بها؟",
+     "a": "ملابس مريحة وأحذية ثابتة، وفي الشتاء سترة خفيفة، فصباح الإقلاع قد يكون بارداً.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "❓ Für Anfänger geeignet / Höhenangst?",
+     "q": "هل أحتاج للخوف من المرتفعات وهل الرحلة مناسبة للمبتدئين؟",
+     "a": "رحلة البالون هادئة ولطيفة، ويستمتع بها المبتدئون دون مشاكل. في حال الخوف الشديد من المرتفعات ننصح بالتواصل معنا قبل الحجز."
+    },
+    {
+     "op": "add",
+     "deq": "🌦️ Findet die Ballonfahrt bei jedem Wetter statt?",
+     "q": "هل تقام رحلة البالون في أي طقس؟",
+     "a": "لا، السلامة أولاً. في حال الرياح القوية أو سوء الأحوال الجوية يتم تأجيل الإقلاع أو تقديم بديل مناسب."
+    },
+    {
+     "op": "remove",
+     "q": "هل الوجبات مشمولة؟",
+     "a": "وجبتا غداء مشمولتان. (DE: dinner & breakfast, not two lunches)"
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Karnak Temple – largest religious structure of antiquity",
+      "value": "معبد الكرنك – أكبر منشأة دينية في العصور القديمة",
+      "cur": "معبد الكرنك و معبد هابو"
+     },
+     {
+      "op": "add",
+      "deItem": "Colossi of Memnon – impressive remains",
+      "value": "تماثيل ممنون – بقايا مثيرة للإعجاب من معبد أمنحتب الثالث"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "جولة ثقافية في معالم الأقصر الأثرية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد سياحي ناطق بالألمانية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبتا غداء مشمولة"
+     }
+    ],
+    "included": [
+     {
+      "op": "replace",
+      "deItem": "Hotel overnight stay incl. dinner & breakfast",
+      "value": "إقامة ليلية في فندق مع عشاء وفطور",
+      "cur": "إقامة ليلية واحدة في فندق"
+     },
+     {
+      "op": "add",
+      "deItem": "All taxes & service fees",
+      "value": "جميع الضرائب ورسوم الخدمة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبتا غداء"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Drinks at the restaurant",
+      "value": "المشروبات في المطعم"
+     },
+     {
+      "op": "replace",
+      "deItem": "Transfer surcharges (Marsa Alam 25 € / El Quseir 15 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 25 يورو / من القصير 15 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم النقل الإضافية من المناطق البعيدة"
+     },
+     {
+      "op": "add",
+      "deItem": "Foreign-language guide: surcharge 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات غير المذكورة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم الدخول الإضافية لبعض الغرف في وادي الملوك"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "mahmya-insel-ausflug-hurghada",
+   "faqs": [
+    {
+     "op": "add",
+     "deq": "🛥️ Was ist der Mahmya Insel Ausflug?",
+     "q": "ما هي رحلة جزيرة ماهميا؟",
+     "a": "رحلة يوم كامل بالقارب من الغردقة إلى جزيرة ماهميا الساحرة في محمية الجفتون. استمتع بالغطس والشواطئ الرملية البيضاء والمياه الصافية وغداء لذيذ مباشرة على البحر الأحمر."
+    },
+    {
+     "op": "replace",
+     "deq": "⏰ Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 7 ساعات شاملة النقل من الفندق ورحلة القارب والوقت على الشاطئ والعودة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🤿 Benötige ich Schnorchelerfahrung?",
+     "q": "هل أحتاج خبرة في الغطس؟",
+     "a": "لا، الرحلة مناسبة للمبتدئين والمحترفين على حد سواء. المرشدون يدعمونك في كل وقت ويضمنون تجربة غطس آمنة."
+    },
+    {
+     "op": "replace",
+     "deq": "🏝️ Strände und Einrichtungen?",
+     "curQ": "هل توجد شواطئ خاصة؟",
+     "q": null,
+     "a": "نعم، تتمتع الجزيرة بشواطئ رملية بيضاء ناعمة ومرافق صحية ودشات، مثالية ليوم مريح.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🍽️ Ist das Mittagessen inklusive?",
+     "curQ": "هل الوجبات مشمولة؟",
+     "q": null,
+     "a": "نعم، تستمتع ببوفيه غداء غني مع مشروبات وفواكه مباشرة على الشاطئ.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🐬 Kann ich Delfine oder andere Meeresbewohner sehen?",
+     "q": "هل يمكنني رؤية الدلافين أو كائنات بحرية أخرى؟",
+     "a": "مع الحظ قد تقابل الدلافين والسلاحف البحرية وأسراب الأسماك الملونة – من أبرز محطات الزيارة!"
+    },
+    {
+     "op": "replace",
+     "deq": "🏖️ Ist der Ausflug für Kinder geeignet?",
+     "curQ": "هل مناسب للأطفال؟",
+     "q": null,
+     "a": "نعم: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%، ومن 11 سنة السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🌞 Was soll ich mitbringen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "ننصح بملابس سباحة ومنشفة وواقي شمس ونظارة شمسية وقبعة وكاميرا أو هاتف وأغراضك الشخصية",
+     "note": "OK (partial – add Sonnenhut/Kamera)"
+    },
+    {
+     "op": "add",
+     "deq": "✅ Warum über Hurghada Reiseplaner buchen?",
+     "q": "لماذا أحجز مع مخطط رحلات الغردقة؟",
+     "a": "تستفيد من جودة موثوقة وأسعار عادلة ومرشدين ناطقين بالألمانية ذوي خبرة وخدمة عملاء موثوقة. نضمن أن تكون رحلتك إلى جزيرة ماهميا آمنة ومريحة ولا تُنسى."
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكنني التصوير؟",
+     "a": "نعم، من أجمل مواقع التصوير في الغردقة."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Bootsfahrt zur Mahmya Insel im Roten Meer",
+      "value": "رحلة بالقارب إلى جزيرة ماهميا في البحر الأحمر"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد غطس محترف"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Wasser, Softdrinks & Obst",
+      "value": "ماء ومشروبات خفيفة وفواكه"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم دخول الجزيرة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Trinkgelder (freiwillig)",
+      "value": "الإكراميات (اختيارية)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "المشروبات الإضافية"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "makadi-water-park-hurghada-mittagessen-transfer",
+   "faqs": [
+    {
+     "op": "add",
+     "deq": "🏨 Von welchen Hotels erfolgt die Abholung?",
+     "q": "من أي فنادق يتم الاستلام؟",
+     "a": "من جميع الفنادق في الغردقة وخليج مكادي وسهل حشيش والمناطق المجاورة."
+    },
+    {
+     "op": "replace",
+     "deq": "⏰ Wie lange dauert der Ausflug?",
+     "curQ": "كم يستغرق اليوم؟",
+     "q": null,
+     "a": "عادةً من 6 إلى 8 ساعات شاملة أوقات النقل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🍽️🥤 Sind Mittagessen und Getränke inbegriffen?",
+     "curQ": "هل الوجبات مشمولة؟",
+     "q": null,
+     "a": "نعم، بوفيه غداء غني مع مشروبات خفيفة وقهوة وشاي مشمول في السعر.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚪 Gibt es lange Wartezeiten am Eingang?",
+     "q": "هل توجد طوابير طويلة عند الدخول؟",
+     "a": "لا، يستفيد ضيوف مخطط رحلات الغردقة من دخول مفضل، مما يتجنب عادةً الانتظار الطويل عند المدخل."
+    },
+    {
+     "op": "replace",
+     "deq": "🎒 Was sollte ich zum Ausflug mitbringen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "ملابس سباحة ومنشفة وواقي شمس وحذاء مائي وملابس احتياطية وبعض النقود للمصروفات الشخصية",
+     "note": "OK (partial – add Badeschuhe, Wechselkleidung, Bargeld)"
+    },
+    {
+     "op": "add",
+     "deq": "🚐 Ist der Transfer sicher und komfortabel?",
+     "q": "هل النقل آمن ومريح؟",
+     "a": "نعم، يتم النقل في مركبات حديثة مكيفة مع سائقين ذوي خبرة."
+    },
+    {
+     "op": "add",
+     "deq": "🔄 Kann der Ausflug storniert werden?",
+     "q": "هل يمكن إلغاء الرحلة؟",
+     "a": "نعم، إلغاء مجاني وفق الشروط المذكورة عند الحجز. التفاصيل خلال عملية الحجز."
+    },
+    {
+     "op": "add",
+     "deq": "⭐ Warum bei Hurghada Reiseplaner buchen?",
+     "q": "لماذا أحجز مع مخطط رحلات الغردقة؟",
+     "a": "تستفيد من أسعار شفافة وخدمة شخصية ونقل موثوق وتنظيم احترافي – لرحلة مريحة دون تكاليف خفية."
+    },
+    {
+     "op": "remove",
+     "q": "ما الألعاب المتوفرة؟",
+     "a": "منزليات وحلزونات ومسابح وألعاب مائية متنوعة."
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكن شراء مشروبات إضافية؟",
+     "a": "نعم، توجد مقاهي ومتاجر داخل المنتزه."
+    },
+    {
+     "op": "remove",
+     "q": "هل يوجد وقت محدد للدخول؟",
+     "a": "يمكنك الدخول في أي وقت خلال ساعات عمل المنتزه."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Über 50 Wasserattraktionen für jedes Alter",
+      "value": "أكثر من 50 منطقة جذب مائي لجميع الأعمار",
+      "cur": "منتزه ماكادي المائي مع جميع الألعاب المائية"
+     },
+     {
+      "op": "replace",
+      "deItem": "38 spektakuläre Wasserrutschen",
+      "value": "38 منزلقاً مائياً مذهلاً – من السريع إلى الهادئ",
+      "cur": "منزليات وحلزونات ومسابح ضخمة"
+     },
+     {
+      "op": "add",
+      "deItem": "Black Hole, High-Speed-Rutschen & Wasser-Achterbahn",
+      "value": "بلاك هول ومنزلقات فائقة السرعة وأفعوانية مائية"
+     },
+     {
+      "op": "add",
+      "deItem": "Lazy River & Relax-Zonen",
+      "value": "نهر كسول ومناطق استرخاء"
+     },
+     {
+      "op": "replace",
+      "deItem": "Große Kinderbereiche für sicheren Familienspaß",
+      "value": "مناطق أطفال واسعة لمرح عائلي آمن",
+      "cur": "مناسب للعائلات والأطفال والكبار"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبة غداء بوفيه مشمولة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من وإلى الفندق مشمول"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "يوم كامل من المرح"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Bevorzugter Einlass mit organisiertem Zugang",
+      "value": "دخول مفضل مع تنظيم الوصول"
+     },
+     {
+      "op": "add",
+      "deItem": "Softdrinks, Kaffee & Tee",
+      "value": "مشروبات خفيفة وقهوة وشاي"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Trinkgelder",
+      "value": "الإكراميات"
+     },
+     {
+      "op": "replace",
+      "deItem": "Persönliche Ausgaben & Fotoservice",
+      "value": "المصروفات الشخصية وخدمة الصور",
+      "cur": "المصروفات الشخصية"
+     },
+     {
+      "op": "add",
+      "deItem": "Transferzuschläge für bestimmte Regionen",
+      "value": "رسوم نقل إضافية لمناطق محددة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "المشروبات الإضافية خارج الوجبة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الألعاب الإضافية غير المشمولة"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "mini-egypt-park-hurghada",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🕓 Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الزيارة؟",
+     "q": null,
+     "a": "حوالي ساعتين إلى 3 ساعات شاملة النقل من الفندق.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🚐 Ist der Hoteltransfer im Preis enthalten?",
+     "curQ": "هل النقل مشمول؟",
+     "q": null,
+     "a": "نعم، النقل ذهاباً وإياباً بمركبة مكيفة مشمول في السعر. سائقنا يستقبلك من فندقك في الغردقة ويعيدك براحة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🧭 Was kann ich im Mini Egypt Park sehen?",
+     "curQ": "ما المعالم المعروضة؟",
+     "q": null,
+     "a": "أكثر من 55 نموذجاً مصغراً دقيقاً لأشهر معالم مصر، منها أهرامات الجيزة والمصرح العظيم ومعبد أبو سمبل ومعبد الكرنك وسد أسوان والمتحف المصري في القاهرة وغيرها الكثير.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🗣️ Gibt es einen deutschsprachigen Guide?",
+     "q": "هل يوجد مرشد ناطق بالألمانية؟",
+     "a": "نعم، مرشدون ناطقون بالألمانية يرافقونك في الحديقة ويشرحون لك تاريخ وثقافة وأهمية المعالم المعروضة."
+    },
+    {
+     "op": "add",
+     "deq": "📸 Darf ich Fotos machen?",
+     "q": "هل يمكنني التقاط الصور؟",
+     "a": "نعم، التصوير مسموح بوضوح في حديقة ميني إيجيبت. النماذج المصغرة التفصيلية تقدم مواضيع رائعة لصور تذكارية."
+    },
+    {
+     "op": "replace",
+     "deq": "💧 Was sollte ich mitnehmen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "ملابس خفيفة وقبعة أو كاب وواقي شمس وماء للشرب وكاميرا أو هاتف وأحذية مريحة.",
+     "note": "**WRONG → REPLACE** (contains Hebrew-script corruption מתנות)"
+    },
+    {
+     "op": "add",
+     "deq": "🕒 Wann findet der Ausflug statt?",
+     "q": "متى تُقام الرحلة؟",
+     "a": "تُقام رحلة ميني إيجيبت يومياً. يمكنك الاختيار بين فترات الصباح أو بعد الظهر حسب التوفر، ونُعلمك بموعد الاستلام الدقيق بعد الحجز."
+    },
+    {
+     "op": "add",
+     "deq": "🛒 Wie kann ich buchen?",
+     "q": "كيف يمكنني الحجز؟",
+     "a": "يمكنك الحجز مباشرة عبر موقعنا أو عبر واتساب أو الهاتف أو البريد الإلكتروني. بعد الحجز تتلقى تأكيداً فورياً مع كل معلومات الاستلام."
+    },
+    {
+     "op": "add",
+     "deq": "💸 Kann ich kostenlos stornieren?",
+     "q": "هل يمكن الإلغاء مجاناً؟",
+     "a": "نعم، مع مخطط رحلات الغردقة يمكنك إلغاء حجزك مجاناً حتى 48 ساعة قبل بدء الجولة."
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد مناطق استرخاء؟",
+     "a": "نعم، حدائق ومناطق جلوس جميلة."
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد متاجر؟",
+     "a": "نعم، متجر تذكارات."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "🏺 Erlebe 55 ikonische Wahrzeichen Ägyptens",
+      "value": "55 معلماً أيقونياً لمصر – من الأقصر إلى الإسكندرية، مبنية بمقياس دقيق",
+      "cur": "أكثر من 60 نموذجاً مصغراً لمعالم مصرية"
+     },
+     {
+      "op": "add",
+      "deItem": "🎧 Spannende Geschichten & Hintergründe",
+      "value": "قصص شيقة وخلفيات رائعة عن أشهر المباني المصرية"
+     },
+     {
+      "op": "add",
+      "deItem": "🚌 Komfort inklusive – klimatisierter Transfer",
+      "value": "راحة مشمولة – نقل مكيف ذهاباً وإياباً مباشرة من فندقك"
+     },
+     {
+      "op": "replace",
+      "deItem": "📸 Perfekt für Erinnerungsfotos",
+      "value": "مثالي لصور تذكارية – التقط لحظات سحرية بين الأهرامات المصغرة والمعابد",
+      "cur": "أهرامات الجيزة ومصرح أبو الهول"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "معبد الكرنك و معبد الأقصر"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "قلعة صلاح الدين والأهرامات"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "حديقة جميلة ومناطق استرخاء"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Geführte Tour durch alle Ausstellungen",
+      "value": "جولة إرشادية في جميع المعارض"
+     },
+     {
+      "op": "add",
+      "deItem": "Abholung & Rücktransfer im klimatisierten Fahrzeug",
+      "value": "استلام وعودة بمركبة مكيفة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Getränke",
+      "value": "المشروبات"
+     },
+     {
+      "op": "add",
+      "deItem": "Trinkgelder (optional)",
+      "value": "الإكراميات (اختيارية)"
+     },
+     {
+      "op": "add",
+      "deItem": "Transferzuschlag Makadi Bay & Sahl Hasheesh: 5 € / El Gouna, Safaga & Soma Bay: 10 €",
+      "value": "رسوم نقل إضافية من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من وإلى الفندق (اختياري)"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "naechtliche-stadtrundfahrt-durch-hurghada-private-tour",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🌙 Was erwartet mich bei der nächtlichen Stadtführung?",
+     "curQ": "ما الأماكن المزارة؟",
+     "q": "ما الذي ينتظرني في الجولة الليلية؟",
+     "a": "تستكشف الغردقة بعيداً عن الفنادق ليلاً: المارينا، سوق السمك، المسجد الكبير (من الخارج)، سوق الخضار والفواكه المحلي، ومقهى تقليدي – تجربة أصيلة ومريحة وخاصة.",
+     "note": "**WRONG → REPLACE** (contains latin-script corruption الكORNISH)"
+    },
+    {
+     "op": "replace",
+     "deq": "🕖 Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الجولة؟",
+     "q": null,
+     "a": "حوالي 3 ساعات – من حوالي 19:00 إلى 22:00.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚗 Ist der Transfer vom Hotel inklusive?",
+     "q": "هل النقل من الفندق مشمول؟",
+     "a": "نعم، الاستلام والعودة من بهو فندقك في الغردقة مشمولان – بمركبات حديثة ومكيفة."
+    },
+    {
+     "op": "replace",
+     "deq": "👨👩👧👦 Für Familien und Kinder geeignet?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%، ومن 11 سنة السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "📸 Auch für Erstbesucher geeignet?",
+     "q": "هل الجولة مناسبة للزوار لأول مرة؟",
+     "a": "نعم، مثالية لمن يريدون رؤية الغردقة الحقيقية بعيداً عن الفنادق وتجربة الثقافة المحلية والأسواق والحياة اليومية."
+    },
+    {
+     "op": "add",
+     "deq": "🕌 Muss ich mich besonders kleiden?",
+     "q": "هل توجد قواعد ملابس خاصة؟",
+     "a": "ننصح بملابس مريحة محتشمة. لزيارة المسجد من الخارج لا توجد قواعد خاصة، لكن من الأفضل تغطية الكتفين والركبتين."
+    },
+    {
+     "op": "add",
+     "deq": "☕ Sind Getränke im Café im Preis enthalten?",
+     "q": "هل المشروبات في المقهى مشمولة؟",
+     "a": "مشروب محلي واحد مشمول. أي مشروبات إضافية أو طلبات شخصية غير مشمولة في السعر."
+    },
+    {
+     "op": "add",
+     "deq": "💰 Wie erfolgt die Bezahlung?",
+     "q": "كيف يتم الدفع؟",
+     "a": "نقداً عند الاستلام. تُقبل اليورو والدولار الأمريكي والفرنك السويسري."
+    },
+    {
+     "op": "add",
+     "deq": "🔒 Ist der Ausflug sicher?",
+     "q": "هل الجولة آمنة؟",
+     "a": "نعم، الجولة خاصة ومنظمة باحتراف وتشمل التأمين وخدمة VIP ورعاية عملاء على مدار الساعة."
+    },
+    {
+     "op": "add",
+     "deq": "❌ Gibt es Verkaufsstopps oder Kaffeefahrten?",
+     "q": "هل توجد توقفات بيعية؟",
+     "a": "لا، لا توقفات بيعية ولا ضغط زمني ولا رحلات تسويقية – التركيز كله على تجربتك."
+    },
+    {
+     "op": "remove",
+     "q": "هل الجولة خاصة؟",
+     "a": "نعم، خاصة مع عائلتك أو مجموعتك فقط. (no dedicated DE FAQ; content consistent with D9 but not a DE question)"
+    },
+    {
+     "op": "remove",
+     "q": "هل مرشد ناطق بالألمانية مشمول؟",
+     "a": "نعم. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "هل وقت كافٍ للتصوير؟",
+     "a": "نعم، توقفات تصوير كافية. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "أثراً خفيفاً وحذاءً مريحاً وأموالاً للتسوق. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكنني رؤية غروب الشمس؟",
+     "a": "نعم، يمكنك مراقبة غروب الشمس على البحر أثناء الجولة. (no DE FAQ; night tour 19:00–22:00)"
+    }
+   ],
+   "list": {
+    "highlights": [],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Eintrittsgebühren für alle genannten Sehenswürdigkeiten",
+      "value": "رسوم الدخول لجميع المعالم المذكورة"
+     },
+     {
+      "op": "add",
+      "deItem": "Versicherung und Steuern",
+      "value": "التأمين والضرائب"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وقت كافٍ للاستكشاف والتصوير"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "replace",
+      "deItem": "Transferzuschlag Makadi Bay & Sahl Hasheesh: 5 € / El Gouna, Safaga & Soma Bay: 10 €",
+      "value": "رسوم نقل إضافية من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم نقل إضافية لمناطق محددة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات والمشروبات"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "private-delfin-tour-hurghada",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "👶 Ist der Ausflug für Kinder geeignet?",
+     "curQ": "هل مناسب للأطفال؟",
+     "q": null,
+     "a": "نعم، الأطفال من عمر 3 سنوات مرحب بهم، وتتوفر سترات نجاة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚗 Gibt es einen Hoteltransfer?",
+     "q": "هل يوجد نقل من الفندق؟",
+     "a": "نعم، الاستلام والعودة بمركبة مكيفة مشمولان."
+    },
+    {
+     "op": "replace",
+     "deq": "🏊♂️ Welche Ausrüstung wird benötigt?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "جميع معدات الغطس مشمولة. يرجى إحضار ملابس سباحة ومنشفة وواقي شمس وغطاء رأس.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🌦️ Was passiert bei schlechtem Wetter?",
+     "q": "ماذا يحدث عند سوء الطقس؟",
+     "a": "في حال الرياح القوية أو سوء الأحوال الجوية يتم تأجيل الرحلة أو إلغاؤها لأسباب تتعلق بالسلامة."
+    },
+    {
+     "op": "add",
+     "deq": "👨👩👧👦 Wie viele Personen sind auf dem Boot?",
+     "q": "كم عدد الأشخاص على متن القارب؟",
+     "a": "بحد أقصى 8 أشخاص لضمان الخصوصية والراحة."
+    },
+    {
+     "op": "replace",
+     "deq": "⏰ Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 4 ساعات من الفندق وحتى العودة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🌴 Auf welche Insel fahren wir?",
+     "q": "إلى أي جزيرة سنذهب؟",
+     "a": "حسب أحوال الطقس والبحر نزور جزيرة جميلة في البحر الأحمر بشاطئ رملي أبيض ومياه فيروزية."
+    },
+    {
+     "op": "add",
+     "deq": "🐠 Welche Fische sehe ich beim Schnorcheln?",
+     "q": "ما الأسماك التي سأراها أثناء الغطس؟",
+     "a": "يمكنك رؤية أسماك المهرج والببغائية والإمبراطور والملائكية وأسماك الراي وغيرها من الكائنات البحرية الاستوائية."
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكن السباحة بالقرب من الدلافين؟",
+     "a": "يتم الحفاظ على مسافة آمنة لحماية الدلافين والزوار."
+    },
+    {
+     "op": "remove",
+     "q": "هل مرشد خبير مشمول؟",
+     "a": "نعم، مرشد خبير بالحياة البحرية."
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد فرصة للغطس؟",
+     "a": "يمكن إضافة توقف غطس حسب الرغبة."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Zwei spektakuläre Korallenriffe",
+      "value": "شعاب مرجانية رائعة (توقفان للغطس)"
+     },
+     {
+      "op": "add",
+      "deItem": "Schnorcheln am versunkenen Schiffswrack",
+      "value": "الغطس عند حطام سفينة غارقة"
+     },
+     {
+      "op": "add",
+      "deItem": "Softdrinks & frische Früchte an Bord",
+      "value": "مشروبات خفيفة وفواكه طازجة على متن القارب"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد خبير بالمناطق البحرية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وقت كافٍ للمراقبة والتصوير"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مياه صافية وطبيعة خلابة"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Privates Speedboot mit erfahrenem Kapitän",
+      "value": "قارب سريع خاص مع قبطان ذو خبرة"
+     },
+     {
+      "op": "add",
+      "deItem": "Schnorchelausrüstung",
+      "value": "معدات الغطس"
+     },
+     {
+      "op": "add",
+      "deItem": "Delfinbeobachtung in freier Wildbahn",
+      "value": "مراقبة الدلافين في البرية"
+     },
+     {
+      "op": "add",
+      "deItem": "Zwei Schnorchelstopps",
+      "value": "توقفان للغطس"
+     },
+     {
+      "op": "add",
+      "deItem": "Softdrinks, Wasser & frische Früchte",
+      "value": "مشروبات خفيفة وماء وفواكه طازجة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رحلة خاصة بالقارب"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد خبير بالحياة البحرية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "معدات المراقبة"
+     }
+    ],
+    "not_included": []
+   }
+  },
+  {
+   "slug": "private-speedboot-tour-orange-bay-hurghada",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🕒 Wie lange dauert die Bootstour?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 8 ساعات شاملة النقل من الفندق والغطس والوقت على الجزيرة والعودة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "📍 Von welchen Orten kann die Tour starten?",
+     "q": "من أي الأماكن يمكن أن تبدأ الجولة؟",
+     "a": "نستقبلك من الغردقة والجونة وخليج مكادي وسوما باي وسفاجا."
+    },
+    {
+     "op": "replace",
+     "deq": "👨👩👧 Für Familien mit Kindern geeignet?",
+     "curQ": "هل مناسب للأطفال؟",
+     "q": null,
+     "a": "نعم، ممتازة للعائلات: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🐠 Welche Meeresbewohner kann ich sehen?",
+     "q": "ما الكائنات البحرية التي يمكنني رؤيتها؟",
+     "a": "مع الحظ تشاهد أسماك المهرج والببغائية والفراشة والهامور وأسماك الراي وحتى السلاحف البحرية."
+    },
+    {
+     "op": "add",
+     "deq": "🚤 Wie viele Personen passen auf das Boot?",
+     "q": "كم عدد الأشخاص على القارب الخاص؟",
+     "a": "حسب القارب المحجوز يمكن عادةً مشاركة 6–8 أشخاص، ما يجعلها مثالية للأزواج والعائلات أو المجموعات الصغيرة."
+    },
+    {
+     "op": "add",
+     "deq": "🏖️ Wie lange können wir auf der Insel bleiben?",
+     "q": "كم يمكننا البقاء على جزيرة أورنج باي؟",
+     "a": "حوالي 2–3 ساعات، وقت كافٍ للسباحة والغطس والاسترخاء على الشاطئ."
+    },
+    {
+     "op": "add",
+     "deq": "⚓ Wie weit ist die Insel entfernt?",
+     "q": "كم تبعد الجزيرة عن الغردقة؟",
+     "a": "حوالي 40 دقيقة بالقارب من ميناء الغردقة."
+    },
+    {
+     "op": "add",
+     "deq": "🔒 Ist die Speedboot Tour wirklich privat?",
+     "q": "هل الجولة خاصة فعلاً؟",
+     "a": "نعم، القارب السريع محجوز لك ومرافقيك حصرياً، لا يرافقكم ضيوف آخرون – تستمتع بالجولة بأكملها بخصوصية تامة."
+    },
+    {
+     "op": "remove",
+     "q": "ما الفرق بين القارب السريع والعادي؟",
+     "a": "القارب السريع يوفر وصولاً أسرع للجزيرة مما يمنحك وقتاً أطول على الشاطئ."
+    },
+    {
+     "op": "remove",
+     "q": "هل النقل مشمول؟",
+     "a": "نعم، نقل من وإلى الفندق مشمول. (no dedicated DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "واقي شمساً وملابس سباحة ومنشفة ونظارة شمسية."
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكنني التصوير؟",
+     "a": "نعم، من أجمل مواقع التصوير في الغردقة."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Exotische Fische, Rochen & Schildkröten möglich",
+      "value": "إمكانية رؤية أسماك غريبة وأسماك الراي والسلاحف"
+     },
+     {
+      "op": "replace",
+      "deItem": "Entspannung am weißen Sandstrand oder auf dem Sonnendeck",
+      "value": "استرخاء على الشاطئ الرملي الأبيض أو على سطح القارب",
+      "cur": "وقت طويل على الشاطئ"
+     },
+     {
+      "op": "replace",
+      "deItem": "Mittagessen & Softdrinks inklusive",
+      "value": "غداء ومشروبات خفيفة مشمولة",
+      "cur": "وجبة غداء مشمولة"
+     },
+     {
+      "op": "add",
+      "deItem": "Private Betreuung durch erfahrene Crew",
+      "value": "رعاية خاصة من طاقم ذو خبرة"
+     },
+     {
+      "op": "add",
+      "deItem": "Flexibel & individuell für Paare, Familien oder kleine Gruppen",
+      "value": "مرنة وفردية للأزواج والعائلات والمجموعات الصغيرة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وصول سريع للجزيرة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد غطس محترف"
+     }
+    ],
+    "included": [
+     {
+      "op": "replace",
+      "deItem": "Privates Speedboot & erfahrene Crew",
+      "value": "قارب سريع خاص مع طاقم ذو خبرة",
+      "cur": "رحلة بالقارب السريع"
+     },
+     {
+      "op": "add",
+      "deItem": "Besuch der Orange Bay Insel oder Magawish Insel",
+      "value": "زيارة جزيرة أورنج باي أو جزيرة ماجاويش"
+     },
+     {
+      "op": "replace",
+      "deItem": "Mittagessen & Softdrinks",
+      "value": "غداء ومشروبات خفيفة",
+      "cur": "وجبة غداء"
+     },
+     {
+      "op": "add",
+      "deItem": "Persönliche Betreuung & Sicherheitseinweisung",
+      "value": "رعاية شخصية وإرشادات أمان"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد غطس محترف"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم دخول الجزيرة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Trinkgeld freiwillig",
+      "value": "الإكرامية (اختيارية)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "المشروبات الإضافية"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "⏱️ Wie lange dauert der Pyramiden-Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 18 ساعة. الاستلام حوالي الساعة 03:00 والعودة حوالي الساعة 21:00.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚐 Wie erfolgt die Abholung?",
+     "q": "كيف يتم الاستلام؟",
+     "a": "نستقبلك في موعده من بهو فندقك. الاستلام ممكن من الغردقة والجونة وخليج مكادي وسهل حشيش وسوما باي وسفاجا والقصير ومرسى علم."
+    },
+    {
+     "op": "replace",
+     "deq": "👨👩👧 Kann ich die Tour mit Kindern buchen?",
+     "curQ": "هل مناسب للعائلات؟",
+     "q": null,
+     "a": "نعم، الأطفال مرحب بهم: 0–2 سنة مجاناً، 3–10 سنوات خصم 50%، ومن 11 سنة السعر الكامل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "📅 Findet die Tour täglich statt?",
+     "q": "هل تُقام الجولة يومياً؟",
+     "a": "نعم، تُقام يومياً، وحسب رغبتك يمكن تنظيمها خصوصاً في اليوم الذي تختاره."
+    },
+    {
+     "op": "add",
+     "deq": "🛠️ Kann ich die Tour individuell anpassen?",
+     "q": "هل يمكنني تخصيص الجولة؟",
+     "a": "نعم، كجولة خاصة يمكن تعديل الأوقات والترتيب ومدة البقاء حسب رغبتك."
+    },
+    {
+     "op": "add",
+     "deq": "📜 Warum sind Sakkara und Dahschur empfehlenswert?",
+     "q": "لماذا يُنصح بزيارة سقارة ودهشور؟",
+     "a": "توضحان تطور شكل الهرم من التجارب الأولى إلى أول هرم حقيقي. يجد كثير من الضيوف هذين الموقعين أهدأ وأكثر أصالة وأهمية تاريخية."
+    },
+    {
+     "op": "remove",
+     "q": "هل الوجبات مشمولة؟",
+     "a": "نعم، وجبة غداء مشمولة. (no DE FAQ; content is in included)"
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "واقي شمساً وقبعة وأحذية مريحة وماءً."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Historische Einführung in die Frühzeit der Nekropole",
+      "value": "مقدمة تاريخية عن العصر المبكر للجبانة الملكية"
+     },
+     {
+      "op": "add",
+      "deItem": "Fachkundige Erläuterungen zu Bauweise, Religion und Symbolik",
+      "value": "شروحات خبيرة حول طرق البناء والدين والرموز"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد سياحي خاص ناطق بالألمانية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبة غداء مشمولة"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل خاص بسيارة مكيفة"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Versicherung",
+      "value": "التأمين"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "replace",
+      "deItem": "Transferzuschläge (Marsa Alam 50 € / El Quseir 35 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 50 يورو / من القصير 35 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم النقل الإضافية من المناطق البعيدة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم الدخول الإضافية لبعض الغرف الأثرية"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "⏱️ Wie lange dauert der Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 4 ساعات شاملة التنقلات وتوقفات الغطس والوقت على الجزيرة والعودة عند غروب الشمس.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🏨 Werden wir vom Hotel abgeholt?",
+     "q": "هل نُستقبل من الفندق؟",
+     "a": "نعم، الاستلام والعودة من فندقك في الغردقة مشمولان في السعر."
+    },
+    {
+     "op": "add",
+     "deq": "🏝️ Welche Insel wird besucht?",
+     "q": "أي جزيرة تُزار؟",
+     "a": "جزيرة هادئة وطبيعية في محيط الغردقة. تُختار الجزيرة الدقيقة حسب الطقس والأحوال البحرية."
+    },
+    {
+     "op": "replace",
+     "deq": "🤿 Ist Schnorchelausrüstung im Preis enthalten?",
+     "curQ": "هل الغطس مشمول؟",
+     "q": null,
+     "a": "نعم، القناع والسنوركل والزعانف وسترات النجاة متوفرة مجاناً.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "👨👩👧 Ist der Ausflug für Kinder geeignet?",
+     "q": "هل الجولة مناسبة للأطفال؟",
+     "a": "نعم، الجولة مناسبة للعائلات والأطفال، وتتوفر سترات نجاة."
+    },
+    {
+     "op": "replace",
+     "deq": "🥤 Sind Getränke und frisches Obst an Bord?",
+     "curQ": "هل توجد مشروبات مشمولة؟",
+     "q": null,
+     "a": "نعم، مشروبات منعشة وفواكه طازجة تُقدم على متن القارب.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "⚓ Wie sicher ist die Speedboot Tour?",
+     "q": "ما مدى أمان الجولة؟",
+     "a": "جميع القوارب مطابقة لمعايير السلامة المحلية ومجهزة بسترات نجاة ومعدات أمان."
+    },
+    {
+     "op": "add",
+     "deq": "📍 Von welchen Hotels ist die Abholung möglich?",
+     "q": "من أي فنادق يمكن الاستلام؟",
+     "a": "الاستلام ممكن من جميع الفنادق في الغردقة، والأماكن الأخرى عند الطلب."
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "كاميراً وواقي شمساً ونظارة شمسية."
+    },
+    {
+     "op": "remove",
+     "q": "هل مناسب لل couples؟",
+     "a": "نعم، تجربة رومانسية رائعة لل couples. (contains English word `couples`)"
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكن إضافة وجبة؟",
+     "a": "نعم، يمكن ترتيب وجبة خاصة على متن القارب."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Aufenthalt auf einer ruhigen Insel",
+      "value": "التوقف على جزيرة هادئة"
+     },
+     {
+      "op": "add",
+      "deItem": "Getränke und frisches Obst an Bord",
+      "value": "مشروبات وفواكه طازجة على متن القارب"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وقت للسباحة والاسترخاء"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد غطس محترف"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "تجربة رومانسية مميزة"
+     }
+    ],
+    "included": [
+     {
+      "op": "replace",
+      "deItem": "Getränke & Obst",
+      "value": "مشروبات وفواكه",
+      "cur": "مشروبات خفيفة"
+     },
+     {
+      "op": "add",
+      "deItem": "Steuern & Versicherung",
+      "value": "الضرائب والتأمين"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مرشد غطس محترف"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "الوجبات الرئيسية"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "privater-tagesausflug-ab-hurghada-dendera-abydos-tempel",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🕓 Wie lange dauert der Tagesausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "حوالي 13 ساعة. مدة القيادة نحو 3–4 ساعات لكل اتجاه، مع فترات راحة وزيارات وغداء. الاستلام حوالي الساعة 04:30 صباحاً والعودة في المساء.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚐 Wie erfolgt die Abholung?",
+     "q": "كيف يتم الاستلام؟",
+     "a": "نستقبلك مباشرة من فندقك أو مكان إقامتك في الغردقة. نُعلمك بموعد الاستلام الدقيق في اليوم السابق حسب موقع فندقك، ونعيدك بأمان بعد الجولة."
+    },
+    {
+     "op": "replace",
+     "deq": "🍽️ Gibt es ein Mittagessen?",
+     "curQ": "هل الوجبات مشمولة؟",
+     "q": null,
+     "a": "نعم، غداء في مطعم مصري تقليدي قرب معبد أبيدوس مشمول. المشروبات في المطعم غير مشمولة.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🧳 Was sollte ich mitnehmen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "جواز سفر أو نسخة من الهوية (إلزامية للحصول على الموافقة)، حزمة فطور (تُطلب من مكتب الاستقبال مساء اليوم السابق)، أحذية مريحة وملابس خفيفة، قبعة وواقي شمس ونظارة شمسية، كاميرا أو هاتف، وبعض النقود للإكراميات والمرافق.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "👨👩👧 Ist der Ausflug für Kinder geeignet?",
+     "q": "هل الجولة مناسبة للأطفال؟",
+     "a": "نعم، مناسبة للعائلات وللأطفال من حوالي 6 سنوات. يرجى مراعاة أن اليوم يبدأ مبكراً وأن مسافة القيادة طويلة نسبياً."
+    },
+    {
+     "op": "add",
+     "deq": "🏺 Brauche ich eine Genehmigung für die Tour?",
+     "q": "هل أحتاج تصريحاً للجولة؟",
+     "a": "نعم، هذه الرحلة خارج الغردقة تتطلب تصريح سفر رسمياً. نتولى ذلك بالكامل! نحتاج فقط نسخة من جواز سفرك أو هويتك لجميع المشاركين."
+    },
+    {
+     "op": "add",
+     "deq": "✨ Warum ist Dendera und Abydos weniger überlaufen als Luxor?",
+     "q": "لماذا دندرة وأبيدوس أقل ازدحاماً من الأقصر؟",
+     "a": "تقعان بعيداً عن الطرق الجماعية إلى الأقصر، لذا تستمتع بالمعابد بهدوء وأصالة أكبر ومع وقت أطول للصور والشرح. مثالية لمن يبحث عن الثقافة دون حشود."
+    },
+    {
+     "op": "remove",
+     "q": "هل مرشد ناطق بالألمانية مشمول؟",
+     "a": "نعم. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "هل رسوم الدخول مشمولة؟",
+     "a": "نعم. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "ما الفرق عن الرحلة الجماعية؟",
+     "a": "وقت أطول في المعابد وشرح تفصيلي أكثر وراحة أكبر. (no DE FAQ; overlaps D10)"
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Privater Ausflug ohne Gruppentourismus",
+      "value": "رحلة خاصة بدون سياحة جماعية"
+     },
+     {
+      "op": "add",
+      "deItem": "Authentische Tempelkunst, Reliefs und Hieroglyphen",
+      "value": "فنون معابد أصيلة ونقوش وهيروغليفية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وقت أطول في المعابد مقارنة بالرحلات الجماعية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "وجبة غداء مشمولة"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Alle Steuern und Servicegebühren",
+      "value": "جميع الضرائب ورسوم الخدمة"
+     }
+    ],
+    "not_included": [
+     {
+      "op": "replace",
+      "deItem": "Persönliche Ausgaben & Trinkgelder",
+      "value": "المصروفات الشخصية والإكراميات",
+      "cur": "المصروفات الشخصية"
+     },
+     {
+      "op": "replace",
+      "deItem": "Transferzuschläge (Marsa Alam 50 € / El Quseir 35 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 50 يورو / من القصير 35 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم النقل الإضافية من المناطق البعيدة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum",
+   "faqs": [
+    {
+     "op": "replace",
+     "deq": "🍴 Ist das Mittagessen im Preis inbegriffen?",
+     "curQ": "هل الوجبات مشمولة؟",
+     "q": null,
+     "a": "نعم، غداء في مطعم محلي بالقاهرة مشمول. فقط المشروبات تُدفع بشكل منفصل.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "replace",
+     "deq": "🕰️ Wann beginnt und endet der Ausflug?",
+     "curQ": "كم تستغرق الرحلة؟",
+     "q": null,
+     "a": "الاستلام حوالي 02:30–03:30 صباحاً من فندقك، والعودة حوالي 21:00–22:00 مساءً. التوقيت الدقيق يعتمد على موقع فندقك وحالة المرور.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "👗 Welche Kleidung wird empfohlen?",
+     "q": "ما الملابس الموصى بها؟",
+     "a": "ملابس مريحة خفيفة وقبعة ونظارة شمسية. واقي الشمس والأحذية المريحة موصى بها. في المتاحف والأماكن المقدسة يُفضل لباس محتشم (بدون أكمام قصيرة أو شورتات قصيرة)."
+    },
+    {
+     "op": "add",
+     "deq": "📸 Darf man im Grand Egyptian Museum fotografieren?",
+     "q": "هل يمكن التصوير في المتحف المصري الكبير؟",
+     "a": "في معظم المناطق يسمح بالتصوير بدون فلاش. قد تمنع بعض المناطق أو المعارض الخاصة التصوير – يخبرك المرشد بالقواعد في الموقع."
+    },
+    {
+     "op": "add",
+     "deq": "📅 Kann man den Ausflug an jedem Tag buchen?",
+     "q": "هل يمكن الحجز في أي يوم؟",
+     "a": "نعم، تُقام الجولة يومياً. نظراً لأن أماكن المتحف المصري الكبير محدودة ننصح بالحجز المبكر."
+    },
+    {
+     "op": "add",
+     "deq": "🏆 Warum sollte ich diesen privaten Kairo-Ausflug buchen?",
+     "q": "لماذا أحجز هذه الجولة الخاصة؟",
+     "a": "لأنك تستمتع بالثقافة والراحة والخصوصية بتوازن مثالي: بلا حشود ولا ضغط، مع رعاية شخصية، وزيارة المتحف المصري الكبير الرائع، وتجارب أصيلة مع مخطط رحلات الغردقة – المتخصص في الجولات الخاصة بمصر."
+    },
+    {
+     "op": "remove",
+     "q": "هل مرشد ناطق بالألمانية مشمول؟",
+     "a": "نعم. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "هل أحتاج جواز سفر؟",
+     "a": "لا، الرحلة بسيارة فقط. (no DE FAQ)"
+    },
+    {
+     "op": "remove",
+     "q": "ما الذي أحضره؟",
+     "a": "واقي شمساً وقبعة وأحذية مريحة وماءً وأموالاً للتسوق. (no DE FAQ)"
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Besuch des Grand Egyptian Museum inklusive Eintritt",
+      "value": "زيارة المتحف المصري الكبير شاملة تذكرة الدخول",
+      "cur": "المتحف المصري الكبير (GEM)"
+     },
+     {
+      "op": "add",
+      "deItem": "Kostenlose Getränke im Fahrzeug",
+      "value": "مشروبات مجانية في المركبة"
+     },
+     {
+      "op": "add",
+      "deItem": "Individueller Service & flexible Tagesgestaltung",
+      "value": "خدمة فردية وتنظيم مرن لليوم"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل خاص بسيارة مكيفة"
+     }
+    ],
+    "included": [],
+    "not_included": [
+     {
+      "op": "add",
+      "deItem": "Eintritt ins Innere der Pyramiden (optional)",
+      "value": "الدخول إلى داخل الأهرامات (اختياري)"
+     },
+     {
+      "op": "replace",
+      "deItem": "Transferzuschläge (Marsa Alam 50 € / El Quseir 35 € / Makadi & Sahl Hasheesh 5 € / El Gouna, Safaga & Soma Bay 10 €)",
+      "value": "رسوم نقل إضافية من مرسى علم 50 يورو / من القصير 35 يورو / من مكادي وسهل حشيش 5 يورو / من الجونة وسفاجا وسوما باي 10 يورو للفرد",
+      "cur": "رسوم النقل الإضافية من المناطق البعيدة"
+     },
+     {
+      "op": "add",
+      "deItem": "Fremdsprachiger Reiseleiter: Aufpreis 10 €",
+      "value": "مرشد بلغة أجنبية: إضافي 10 يورو للفرد"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "رسوم دخول إضافية لبعض المعالم"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "reiten-in-hurghada-strand-wueste-pferde-im-meer",
+   "faqs": [],
+   "list": {
+    "highlights": [
+     {
+      "op": "replace",
+      "deItem": "Familienfreundlich und für Anfänger geeignet",
+      "value": "مناسب للعائلات وللمبتدئين",
+      "cur": "uitable للعائلات ومناسب للمبتدئين"
+     }
+    ],
+    "included": [],
+    "not_included": []
+   }
+  },
+  {
+   "slug": "super-safari-hurghada",
+   "faqs": [
+    {
+     "op": "add",
+     "deq": "🏜️ Was ist die Super Safari Hurghada?",
+     "q": "ما هي السوبر سفاري في الغردقة؟",
+     "a": "من أشهر رحلات السفاري الصحراوية في مصر. تجمع عدة مغامرات في يوم واحد: ركوب الكواد، سيارة سبايدر باجي، جيب سفاري، ركوب الجمل، وزيارة قرية بدوية مع عشاء شواء تقليدي وعرض شرقي."
+    },
+    {
+     "op": "replace",
+     "deq": "🕒 Wie lange dauert die Super Safari?",
+     "curQ": "كم تستغرق السوبر سفاري؟",
+     "q": null,
+     "a": "عادةً من 7 إلى 8 ساعات. الاستلام بعد الظهر، وبعد الأنشطة في الصحراء تستمتع بعشاء شواء قبل العودة إلى فندقك مساءً.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "add",
+     "deq": "🚐 Ist der Hoteltransfer im Preis enthalten?",
+     "q": "هل النقل من الفندق مشمول؟",
+     "a": "نعم، الاستلام والعودة من فنادق الغردقة مشمول عادةً في السعر. قد تُطبق رسوم إضافية للفنادق خارج الغردقة."
+    },
+    {
+     "op": "add",
+     "deq": "🏍️ Wie lange dauert das Quadfahren?",
+     "q": "كم تستغرق جولة الكواد؟",
+     "a": "حوالي 30 إلى 45 دقيقة حسب الجولة، عبر كثبان رملية مذهلة وطبيعة صحراوية حول الغردقة – من أبرز محطات الرحلة."
+    },
+    {
+     "op": "replace",
+     "deq": "🍖 Ist das Abendessen im Preis enthalten?",
+     "curQ": "هل الوجبات مشمولة؟",
+     "q": null,
+     "a": "نعم، عشاء شواء تقليدي في القرية البدوية مشمول، مع مشروبات خفيفة وشاي ومأكولات محلية أثناء البرنامج المسائي.",
+     "note": "OK (partial – add BBQ + Softdrinks/Tee)"
+    },
+    {
+     "op": "add",
+     "deq": "🌅 Wann ist die beste Zeit für die Wüstensafari?",
+     "q": "متى أفضل وقت للسفاري الصحراوية؟",
+     "a": "جولة الظهيرة الأكثر شعبية لأنك تشهد غروب الشمس الرائع في الصحراء، والأجواء المعتدلة مساءً تجعلها مريحة بشكل خاص."
+    },
+    {
+     "op": "replace",
+     "deq": "👕 Was sollte man mitbringen?",
+     "curQ": "ما الذي أحضره؟",
+     "q": null,
+     "a": "ملابس مريحة وأحذية ثابتة ونظارة شمسية وواقي شمس ووشاح أو شال للحماية من الغبار، مع كاميرا أو هاتف لتوثيق أجمل لحظات السوبر سفاري.",
+     "note": "**WRONG → REPLACE**"
+    },
+    {
+     "op": "remove",
+     "q": "هل يمكن مشاهدة النجوم؟",
+     "a": "نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء."
+    },
+    {
+     "op": "remove",
+     "q": "هل توجد حمامات طين؟",
+     "a": "نعم، حمامات الطين الطبيعية مشمولة في المغامرة."
+    }
+   ],
+   "list": {
+    "highlights": [
+     {
+      "op": "add",
+      "deItem": "Spider-Buggy & Jeep Safari",
+      "value": "سيارة سبايدر باجي وجيب سفاري"
+     },
+     {
+      "op": "replace",
+      "deItem": "Kamelritt & Beduinendorf",
+      "value": "ركوب الجمل وزيارة القرية البدوية",
+      "cur": "ركوب الإبل في الصحراء"
+     },
+     {
+      "op": "add",
+      "deItem": "Sonnenuntergang in der Wüste",
+      "value": "غروب الشمس في الصحراء"
+     },
+     {
+      "op": "replace",
+      "deItem": "BBQ-Abendessen & Show",
+      "value": "عشاء شواء وعرض",
+      "cur": "وجبة عشاء في الكثبان الرملية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "السباحة في حمامات الطين الطبيعية"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "عرض الفلاحة البدوية (الرقص والموسيقى)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "مشاهدة النجوم في الصحراء"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "نقل من وإلى الفندق مشمول"
+     }
+    ],
+    "included": [
+     {
+      "op": "add",
+      "deItem": "Spider-Buggy Fahrt",
+      "value": "رحلة بسيارة سبايدر باجي"
+     },
+     {
+      "op": "add",
+      "deItem": "Jeep-Safari",
+      "value": "جيب سفاري"
+     },
+     {
+      "op": "add",
+      "deItem": "Besuch im Beduinendorf",
+      "value": "زيارة القرية البدوية"
+     },
+     {
+      "op": "replace",
+      "deItem": "Abendshow",
+      "value": "العرض الشرقي",
+      "cur": "عرض الفلاحة البدوية (الرقص والموسيقى)"
+     },
+     {
+      "op": "remove",
+      "deItem": "(none)",
+      "value": "حمامات الطين الطبيعية"
+     }
+    ],
+    "not_included": []
+   }
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+################ 1) 2-tages not_included — REPORT ROWS ################
+| DE item | Current AR / status | Proposed AR |
+|---|---|---|
+| Trinkgelder | **MISSING** | البقشيش |
+| Fotos und Videos | **MISSING** | الصور والفيديوهات |
+| Abendessen | **MISSING** | وجبة العشاء |
+| Zusätzliche Getränke | المشروبات في المطعم - **SUBSTITUTED** | المشروبات الإضافية |
+| Persönliche Ausgaben | المصروفات الشخصية - OK | keep |
+| (none) | رسوم نقل إضافية مرسى علم 50 / القصير 35 / مكادي وسهل حشيش 5 / الجونة وسفاجا وسوما باي 10 - **FABRICATED** | **REMOVE** |
+| (none) | مرشد سياحي بلغة أجنبية (إنجليزي/روسي/فرنسي) +10 - **FABRICATED** | **REMOVE** |
+
+--- DUMP items (current AR, verbatim) ---
+  dump[0] "المشروبات في المطعم"
+  dump[1] "المصروفات الشخصية"
+  dump[2] "رسوم نقل إضافية من مرسى علم: 50 يورو للفرد"
+  dump[3] "رسوم نقل إضافية من القصير: 35 يورو للفرد"
+  dump[4] "رسوم نقل إضافية من خليج Макادي وسهل الحشيش: 5 يورو للفرد"
+  dump[5] "رسوم نقل إضافية من الجونة وسفاجا وسماء باي: 10 يورو للفرد"
+  dump[6] "مرشد سياحي بلغة أجنبية (إنجليزي أو روسي أو فرنسي): إضافي 10 يورو للفرد"
+
+################ 2) super-safari included — REPORT ROWS ################
+| DE item | Current AR / status | Proposed AR |
+|---|---|---|
+| Hoteltransfer (Hin- und Rückfahrt) | نقل من وإلى الفندق بسيارة مكيفة - OK | keep |
+| Quadfahrt durch die Wüste | الدراجات النارية مع الوقود - OK | keep |
+| Spider-Buggy Fahrt | **MISSING** | رحلة بسيارة سبايدر باجي |
+| Jeep-Safari | **MISSING** | جيب سفاري |
+| Kamelritt | ركوب الإبل - OK | keep |
+| Besuch im Beduinendorf | **MISSING** | زيارة القرية البدوية |
+| BBQ-Abendessen | وجبة عشاء - OK | keep |
+| Softdrinks | المشروبات الخفيفة - OK | keep |
+| Abendshow | عرض الفلاحة البدوية (الرقص والموسيقى) - **WRONG** (DE: orientalische Abendshow; عرض الفلاحة = farm show) | العرض الشرقي |
+| (none) | حمامات الطين الطبيعية - **FABRICATED** | **REMOVE** |
+
+--- DUMP items (current AR, verbatim) ---
+  dump[0] "نقل من وإلى الفندق بسيارة مكيفة"
+  dump[1] "الدراجات النارية مع الوقود"
+  dump[2] "ركوب الإبل"
+  dump[3] "عرض الفلاحة البدوية"
+  dump[4] "وجبة عشاء"
+  dump[5] "المشروبات الخفيفة"
+  dump[6] "حمامات الطين الطبيعية"
+
+################ 3) naechtliche highlights — REPORT PROSE ################
+DE highlights are 4 title + description blocks. Current AR is entirely off-topic (الكورنيش, sunset, beach). Propose a **complete replacement** with the 4 DE blocks and **REMOVE** all 6 current AR items:
+1. مارينا الغردقة – وجهة نابضة بالحياة من أجمل مرافئ البحر الأحمر. ليلاً تتحول أضواء القوارب إلى عرض ملون، ومكان مثالي للتصوير وأول انطباع عن الحياة الليلية في الغردقة.
+2. سوق الخضار والفواكه التقليدي – هنا يبدأ الغردقة الحقيقي: لقاء السكان المحليين وأجواء المساومة والأصوات والروائح، بعيداً عن مناطق السياح.
+3. سوق السمك والمسجد الكبير – نمر على سوق السمك ونصل إلى المسجد الكبير الذي يتألق بأضوائه الدافئة مساءً، مع مناظر معمارية رائعة.
+4. تجربة مقهى مصري أصيل – في الختام تستمتع بشاي نعناع تقليدي أو قهوة عربية في مقهى محلي، لحظة هادئة تكمل الجولة بشكل مثالي.
+**REMOVE** from current AR highlights (fabricated/off-topic, 6): جولة خاصة ليلية في الغردقة (slogan), زيارة الكORNISH والشواطئ (wrong, corrupted), استكشاف الأسواق والمناطق الحيوية (generic), مشاهدة غروب وشروق القمر (fabricated), مرشد سياحي ناطق بالألمانية (not in DE highlights), نقل خاص بسيارة مكيفة (not in DE highlights).
+
+--- DUMP items (current AR, verbatim) ---
+  dump[0] "جولة خاصة ليلية في الغردقة"
+  dump[1] "زيارة الكORNISH والشواطئ"
+  dump[2] "استكشاف الأسواق والمناطق الحيوية"
+  dump[3] "مشاهدة غروب وشروق القمر على البحر الأحمر"
+  dump[4] "مرشد سياحي ناطق بالألمانية"
+  dump[5] "نقل خاص بسيارة مكيفة"

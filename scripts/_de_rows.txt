@@ -1,0 +1,30 @@
+### 2-tages DE not_included (base row, verbatim)
+count=5
+  de[0] "Trinkgelder"
+  de[1] "Fotos und Videos"
+  de[2] "Abendessen"
+  de[3] "Zusätzliche Getränke"
+  de[4] "Persönliche Ausgaben"
+
+### super-safari DE included (base row, verbatim)
+count=9
+  de[0] "Hoteltransfer (Hin- und Rückfahrt)"
+  de[1] "Quadfahrt durch die Wüste"
+  de[2] "Spider-Buggy Fahrt"
+  de[3] "Jeep-Safari"
+  de[4] "Kamelritt"
+  de[5] "Besuch im Beduinendorf"
+  de[6] "BBQ-Abendessen"
+  de[7] "Softdrinks"
+  de[8] "Abendshow"
+
+### naechtliche DE highlights (base row, verbatim)
+count=8
+  de[0] "Marina von Hurghada"
+  de[1] "Die Marina ist ein moderner Hotspot und zählt zu den schönsten Hafenanlagen am Roten Meer. Zahlreiche Yachten starten von hier zu Tauch- und Inseltrips. Abends verwandeln die Lichter der Boote das Wasser in ein leuchtendes Farbspiel. Ein idealer Ort für Fotos und einen ersten Eindruck vom pulsierenden Nachtleben Hurghadas."
+  de[2] "Traditioneller Obst- und Gemüsemarkt"
+  de[3] "Hier beginnt das echte Hurghada. Der Markt ist Treffpunkt der Einheimischen, die täglich frische Waren einkaufen. Besucher erleben authentisches Feilschen, echte Geräusche und Gerüche – ein lebendiger Ausschnitt des ägyptischen Alltags, fernab der Touristenzonen."
+  de[4] "Fischmarkt und Große Moschee"
+  de[5] "Wir spazieren am Fischmarkt vorbei und erreichen die Große Moschee, die am Abend in warmen Lichtern erstrahlt. Sie bietet beeindruckende Fotomotive und einen Blick auf die religiöse Architektur der Stadt."
+  de[6] "Typisch ägyptisches Café-Erlebnis"
+  de[7] "Zum Abschluss genießen Sie einen traditionellen Pfefferminztee oder arabischen Kaffee in einem lokalen Café. Ein ruhiger Moment, der die Tour perfekt abrundet."

@@ -1,0 +1,211 @@
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D1 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D2 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D3 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D4 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D5 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D6 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D7 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D8 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D9 st=OK prop=
+OTHER[2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben] D10 st=OK prop=
+ADD[hurghada-shopping-tour-basar-transfer] D1 deq=🏷️ Ist die Shopping Tour wirklich koste prop="هل جولة التسوق في الغردقة مجانية فعلاً؟" → "نعم! المشاركة ف
+REPLACE[hurghada-shopping-tour-basar-transfer] D2 deq=🚐 Wie erfolgt der Transfer zum Basar? ar=هل النقل مشمول؟ → "نعم، نقل من وإلى الفن
+REPLACE[hurghada-shopping-tour-basar-transfer] D3 deq=🕒 Wie lange dauert der Ausflug? ar=كم تستغرق الجولة؟ → "حوالي 3 إلى 4 ساعات
+REPLACE[hurghada-shopping-tour-basar-transfer] D4 deq=🌆 Was kann man auf dem Basar kaufen? ar=ما الأماكن المزار؟ → "أسواق الغردقة والب
+ADD[hurghada-shopping-tour-basar-transfer] D5 deq=💳 Gibt es feste Preise auf dem Basar? prop="هل توجد أسعار ثابتة في السوق؟" → "نعم، في معظم المتاجر توجد
+REPLACE[hurghada-shopping-tour-basar-transfer] D6 deq=🌍 Welche Sprachen sprechen die Begleite ar=هل مرشد ناطق بالألمانية مشمول؟ → "نعم."
+OTHER[hurghada-shopping-tour-basar-transfer] D7 st=OK prop=keep
+ADD[hurghada-shopping-tour-basar-transfer] D8 deq=🕓 Wann findet die Einkaufstour statt? prop="متى تُقام جولة التسوق؟" → "تُعرض جولة التسوق في الغردقة يوم
+ADD[hurghada-shopping-tour-basar-transfer] D9 deq=📱 Wie kann ich die Tour buchen? prop="كيف يمكنني حجز الجولة؟" → "يمكنك الحجز مباشرة عبر موقعنا مخ
+REPLACE[hurghada-shopping-tour-basar-transfer] D10 deq=🧴 Gibt es etwas mitzubringen? ar=ما الذي أحضره؟ → "أموالاً للتسوق وحذاءً 
+REMOVE[hurghada-shopping-tour-basar-transfer] q=هل توجد توقفات بيعية إلزامية؟
+REMOVE[hurghada-shopping-tour-basar-transfer] q=هل وقت كافٍ للتسوق؟
+REPLACE[kairo-mit-flug-ab-hurghada-pyramiden-museum] D1 deq=⏳ Wie lange dauert der Tagesausflug? ar=كم يستغرق اليوم؟ → "يوم كامل من الصباح إ
+REPLACE[kairo-mit-flug-ab-hurghada-pyramiden-museum] D2 deq=🏛️ Welche Sehenswürdigkeiten werden bes ar=ما المعالم المزار؟ → "أهرامات الجيزة وال
+REPLACE[kairo-mit-flug-ab-hurghada-pyramiden-museum] D3 deq=👶 Ist der Ausflug für Kinder geeignet? ar=هل مناسب للعائلات؟ → "نعم، ممتاز للعائلا
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D4 deq=🚘 Transfer von Marsa Alam oder El Qusei prop="هل يوجد نقل من مرسى علم أو القصير؟" → "نعم، ننظم نقلاً إلى 
+OTHER[kairo-mit-flug-ab-hurghada-pyramiden-museum] D5 st=OK (content matches D5; covered by multiple AR rows) prop=keep (A1 flight row + lunch row cover D5)
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D6 deq=🏛️ Kann ich wählen, welches Museum? prop="هل يمكنني اختيار المتحف الذي أزوره؟" → "نعم، يمكنك الاختيار
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D7 deq=👥 Wie viele Personen sind in einer Grup prop="كم عدد الأشخاص في المجموعة؟" → "تُقام الجولة كرحلة خاصة أو 
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D8 deq=🗣️ Wann sollte ich buchen? prop="متى يجب أن أحجز؟" → "ننصح بالحجز المبكر، خاصة في الموسم الم
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D9 deq=🛠️ Kann ich den Ausflug individuell anp prop="هل يمكنني تخصيص الجولة؟" → "نعم، جولتنا مرنة. يمكنك تغيير ت
+ADD[kairo-mit-flug-ab-hurghada-pyramiden-museum] D10 deq=💶 Wie läuft die Bezahlung ab? prop="كيف يتم الدفع؟" → "عبر الإنترنت من موقعنا أو بطلب عبر البري
+REMOVE[kairo-mit-flug-ab-hurghada-pyramiden-museum] q=هل الرحلة بالطائرة فعلاً؟
+REMOVE[kairo-mit-flug-ab-hurghada-pyramiden-museum] q=هل أحتاج جواز سفر؟
+REMOVE[kairo-mit-flug-ab-hurghada-pyramiden-museum] q=ما الذي أحضره؟
+ADD[kloester-st-antonius-st-paulus] D1 deq=✨ Was macht diesen Ausflug so besonders? prop="ما الذي يميز هذه الجولة؟" → "رحلة خاصة إلى أديرة الأنبا أنط
+REPLACE[kloester-st-antonius-st-paulus] D2 deq=⏱️ Wie lange dauert der Ausflug? ar=كم تستغرق الجولة؟ → "حوالي 6 إلى 7 ساعات
+ADD[kloester-st-antonius-st-paulus] D3 deq=🕓 Um wie viel Uhr ist die Abholung? prop="في أي وقت يتم الاستلام من الفندق؟" → "يتم الاستلام حسب موقع
+ADD[kloester-st-antonius-st-paulus] D4 deq=🏞️ Muss ich die Höhle des Heiligen Anto prop="هل يجب أن أصعد إلى مغارة الأنبا أنطونيوس؟" → "لا، الصعود إل
+REPLACE[kloester-st-antonius-st-paulus] D5 deq=👨👩👧 Ist der Ausflug für Kinder geeign ar=هل مناسب للعائلات؟ → "نعم، رحلة تعليمية 
+REPLACE[kloester-st-antonius-st-paulus] D6 deq=👕 Welche Kleidung wird empfohlen? ar=ما المطلوب للدخول؟ → "ملابس محتشمة تغطي 
+OTHER[kloester-st-antonius-st-paulus] D7 st=OK (covered by two AR rows) prop=keep
+REPLACE[kloester-st-antonius-st-paulus] D8 deq=💳 Gibt es zusätzliche Kosten? ar=هل وجبة مشمولة؟ → "لا، الوجبات غير مشمول
+ADD[kloester-st-antonius-st-paulus] D9 deq=📷 Darf ich in den Klöstern fotografiere prop="هل يمكنني التصوير في الأديرة؟" → "نعم، في معظم مناطق الأدير
+ADD[kloester-st-antonius-st-paulus] D10 deq=🔒 Ist die Tour sicher? prop="هل الجولة آمنة ومناسبة لجميع الأعمار؟" → "نعم، الجولة بصحبة
+REMOVE[kloester-st-antonius-st-paulus] q=هل الأديرة مفتوحة للزوار؟
+REMOVE[kloester-st-antonius-st-paulus] q=ما الذي أحضره؟
+REPLACE[luxor-tagesausflug-ab-hurghada] D1 deq=⏰ Wann beginnt und endet der Ausflug? ar=كم تستغرق الرحلة؟ → "يوم كامل من الصباح 
+ADD[luxor-tagesausflug-ab-hurghada] D2 deq=🚐 Wie erfolgt die Abholung vom Hotel? prop="كيف يتم الاستلام من الفندق؟" → "نستقبلك مباشرة من بهو فندقك
+OTHER[luxor-tagesausflug-ab-hurghada] D3 st=OK prop=keep
+OTHER[luxor-tagesausflug-ab-hurghada] D4 st=OK prop=keep
+REPLACE[luxor-tagesausflug-ab-hurghada] D5 deq=🧭 Welche Sehenswürdigkeiten besucht man ar=ما المعالم المزار؟ → "معبد الكرنك و معبد
+OTHER[luxor-tagesausflug-ab-hurghada] D6 st=OK prop=keep
+REPLACE[luxor-tagesausflug-ab-hurghada] D7 deq=👶 Sind Kinder erlaubt und gibt es Rabat ar=هل مناسب للعائلات؟ → "نعم، رحلة تعليمية 
+ADD[luxor-tagesausflug-ab-hurghada] D8 deq=📷 Darf man im Tal der Könige fotografie prop="هل يمكن التصوير في وادي الملوك؟" → "نعم، بالهاتف مجاناً وبد
+ADD[luxor-tagesausflug-ab-hurghada] D9 deq=🚌 Wie lange dauert die Fahrt nach Luxor prop="كم تستغرق الرحلة إلى الأقصر؟" → "حوالي 4 إلى 4.5 ساعات لكل 
+ADD[luxor-tagesausflug-ab-hurghada] D10 deq=🔒 Ist der Ausflug sicher? prop="هل الجولة آمنة؟" → "نعم، الطريق بين الغردقة والأقصر مصرح به
+REMOVE[luxor-tagesausflug-ab-hurghada] q=هل توجد رسوم إضافية؟
+REMOVE[luxor-tagesausflug-ab-hurghada] q=ما الذي أحضره؟
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D1 deq=🎈 Wie läuft die Heißluftballonfahrt ab? ar=هل رحلة البالون مشمولة؟ → "نعم، رحلة بال
+ADD[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D2 deq=🛡️ Ist die Ballonfahrt sicher? prop="هل رحلة البالون آمنة؟" → "نعم، تنفذ حصرياً بواسطة طيارين مع
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D3 deq=🏛️ Welche Orte werden besichtigt? ar=ما المعالم الثقافية المزارة؟ → "معبد الك
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D4 deq=⏳ Wie lange dauert die Tour inklusive An ar=كم تستغرق الرحلة؟ → "يومان وليلة واحدة."
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D5 deq=🛏️ Ist die Übernachtung inklusive? ar=هل الإقامة مشمولة؟ → "نعم، ليلة واحدة في
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D6 deq=🧒 Gibt es Kinderermäßigungen? ar=هل مناسب للعائلات؟ → "نعم، رحلة استثنائي
+REPLACE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D7 deq=👕 Welche Kleidung wird empfohlen? ar=ما الذي أحضره؟ → "ملابس مريحة وواقي شمسا
+ADD[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D8 deq=❓ Für Anfänger geeignet / Höhenangst? prop="هل أحتاج للخوف من المرتفعات وهل الرحلة مناسبة للمبتدئين؟" →
+OTHER[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D9 st=OK prop=keep
+ADD[luxor-tagesausflug-heissluftballon-hoteluebernachtung] D10 deq=🌦️ Findet die Ballonfahrt bei jedem Wet prop="هل تقام رحلة البالون في أي طقس؟" → "لا، السلامة أولاً. في ح
+REMOVE[luxor-tagesausflug-heissluftballon-hoteluebernachtung] q=هل الوجبات مشمولة؟
+ADD[mahmya-insel-ausflug-hurghada] D1 deq=🛥️ Was ist der Mahmya Insel Ausflug? prop="ما هي رحلة جزيرة ماهميا؟" → "رحلة يوم كامل بالقارب من الغرد
+REPLACE[mahmya-insel-ausflug-hurghada] D2 deq=⏰ Wie lange dauert der Ausflug? ar=كم تستغرق الرحلة؟ → "يوم كامل من الصباح 
+OTHER[mahmya-insel-ausflug-hurghada] D3 st=OK (partial – D3 also lists boat/snorkel/strand/lunch) prop=keep; boat/snorkel/strand/lunch covered by A4 + included
+ADD[mahmya-insel-ausflug-hurghada] D4 deq=🤿 Benötige ich Schnorchelerfahrung? prop="هل أحتاج خبرة في الغطس؟" → "لا، الرحلة مناسبة للمبتدئين وال
+REPLACE[mahmya-insel-ausflug-hurghada] D5 deq=🏝️ Strände und Einrichtungen? ar=هل توجد شواطئ خاصة؟ → "نعم، شواطئ رملية 
+REPLACE[mahmya-insel-ausflug-hurghada] D6 deq=🍽️ Ist das Mittagessen inklusive? ar=هل الوجبات مشمولة؟ → "نعم، وجبة غداء مشم
+ADD[mahmya-insel-ausflug-hurghada] D7 deq=🐬 Kann ich Delfine oder andere Meeresbe prop="هل يمكنني رؤية الدلافين أو كائنات بحرية أخرى؟" → "مع الحظ ق
+REPLACE[mahmya-insel-ausflug-hurghada] D8 deq=🏖️ Ist der Ausflug für Kinder geeignet? ar=هل مناسب للأطفال؟ → "نعم، رحلة عائلية مم
+OTHER[mahmya-insel-ausflug-hurghada] D9 st=OK (partial – add Sonnenhut/Kamera) prop=ننصح بملابس سباحة ومنشفة وواقي شمس ونظارة شمسية وقبعة وكامير
+ADD[mahmya-insel-ausflug-hurghada] D10 deq=✅ Warum über Hurghada Reiseplaner buchen prop="لماذا أحجز مع مخطط رحلات الغردقة؟" → "تستفيد من جودة موثوقة
+REMOVE[mahmya-insel-ausflug-hurghada] q=هل يمكنني التصوير؟
+OTHER[makadi-water-park-hurghada-mittagessen-transfer] D1 st=OK (partial – D1 also includes Eintritt, Mittagsbuffet) prop=keep
+ADD[makadi-water-park-hurghada-mittagessen-transfer] D2 deq=🏨 Von welchen Hotels erfolgt die Abholu prop="من أي فنادق يتم الاستلام؟" → "من جميع الفنادق في الغردقة وخ
+REPLACE[makadi-water-park-hurghada-mittagessen-transfer] D3 deq=⏰ Wie lange dauert der Ausflug? ar=كم يستغرق اليوم؟ → "يوم كامل من الصباح إ
+OTHER[makadi-water-park-hurghada-mittagessen-transfer] D4 st=OK prop=keep
+REPLACE[makadi-water-park-hurghada-mittagessen-transfer] D5 deq=🍽️🥤 Sind Mittagessen und Getränke inbe ar=هل الوجبات مشمولة؟ → "نعم، وجبة غداء بوف
+ADD[makadi-water-park-hurghada-mittagessen-transfer] D6 deq=🚪 Gibt es lange Wartezeiten am Eingang? prop="هل توجد طوابير طويلة عند الدخول؟" → "لا، يستفيد ضيوف مخطط ر
+OTHER[makadi-water-park-hurghada-mittagessen-transfer] D7 st=OK (partial – add Badeschuhe, Wechselkleidung, Bargeld) prop=ملابس سباحة ومنشفة وواقي شمس وحذاء مائي وملابس احتياطية وبعض
+ADD[makadi-water-park-hurghada-mittagessen-transfer] D8 deq=🚐 Ist der Transfer sicher und komfortab prop="هل النقل آمن ومريح؟" → "نعم، يتم النقل في مركبات حديثة مكيف
+ADD[makadi-water-park-hurghada-mittagessen-transfer] D9 deq=🔄 Kann der Ausflug storniert werden? prop="هل يمكن إلغاء الرحلة؟" → "نعم، إلغاء مجاني وفق الشروط المذك
+ADD[makadi-water-park-hurghada-mittagessen-transfer] D10 deq=⭐ Warum bei Hurghada Reiseplaner buchen? prop="لماذا أحجز مع مخطط رحلات الغردقة؟" → "تستفيد من أسعار شفافة
+REMOVE[makadi-water-park-hurghada-mittagessen-transfer] q=ما الألعاب المتوفرة؟
+REMOVE[makadi-water-park-hurghada-mittagessen-transfer] q=هل يمكن شراء مشروبات إضافية؟
+REMOVE[makadi-water-park-hurghada-mittagessen-transfer] q=هل يوجد وقت محدد للدخول؟
+REPLACE[mini-egypt-park-hurghada] D1 deq=🕓 Wie lange dauert der Ausflug? ar=كم تستغرق الزيارة؟ → "حوالي ساعة إلى ساع
+REPLACE[mini-egypt-park-hurghada] D2 deq=🚐 Ist der Hoteltransfer im Preis enthal ar=هل النقل مشمول؟ → "رسوم الدخول مشمولة. ا
+REPLACE[mini-egypt-park-hurghada] D3 deq=🧭 Was kann ich im Mini Egypt Park sehen ar=ما المعالم المعروضة؟ → "أكثر من 60 نموذا
+ADD[mini-egypt-park-hurghada] D4 deq=🗣️ Gibt es einen deutschsprachigen Guid prop="هل يوجد مرشد ناطق بالألمانية؟" → "نعم، مرشدون ناطقون بالألم
+OTHER[mini-egypt-park-hurghada] D5 st=OK prop=keep
+ADD[mini-egypt-park-hurghada] D6 deq=📸 Darf ich Fotos machen? prop="هل يمكنني التقاط الصور؟" → "نعم، التصوير مسموح بوضوح في حدي
+REPLACE[mini-egypt-park-hurghada] D7 deq=💧 Was sollte ich mitnehmen? ar=ما الذي أحضره؟ → "كاميراً للتصوير وأموال
+ADD[mini-egypt-park-hurghada] D8 deq=🕒 Wann findet der Ausflug statt? prop="متى تُقام الرحلة؟" → "تُقام رحلة ميني إيجيبت يومياً. يمكنك 
+ADD[mini-egypt-park-hurghada] D9 deq=🛒 Wie kann ich buchen? prop="كيف يمكنني الحجز؟" → "يمكنك الحجز مباشرة عبر موقعنا أو عبر 
+ADD[mini-egypt-park-hurghada] D10 deq=💸 Kann ich kostenlos stornieren? prop="هل يمكن الإلغاء مجاناً؟" → "نعم، مع مخطط رحلات الغردقة يمكن
+REMOVE[mini-egypt-park-hurghada] q=هل توجد مناطق استرخاء؟
+REMOVE[mini-egypt-park-hurghada] q=هل توجد متاجر؟
+REPLACE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D1 deq=🌙 Was erwartet mich bei der nächtlichen ar=ما الأماكن المزارة؟ → "الكORNISH والشواط
+REPLACE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D2 deq=🕖 Wie lange dauert der Ausflug? ar=كم تستغرق الجولة؟ → "حوالي 3 إلى 4 ساعات
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D3 deq=🚗 Ist der Transfer vom Hotel inklusive? prop="هل النقل من الفندق مشمول؟" → "نعم، الاستلام والعودة من بهو 
+REPLACE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D4 deq=👨👩👧👦 Für Familien und Kinder geeigne ar=هل مناسب للعائلات؟ → "نعم، جولة ممتعة لل
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D5 deq=📸 Auch für Erstbesucher geeignet? prop="هل الجولة مناسبة للزوار لأول مرة؟" → "نعم، مثالية لمن يريدو
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D6 deq=🕌 Muss ich mich besonders kleiden? prop="هل توجد قواعد ملابس خاصة؟" → "ننصح بملابس مريحة محتشمة. لزي
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D7 deq=☕ Sind Getränke im Café im Preis enthalt prop="هل المشروبات في المقهى مشمولة؟" → "مشروب محلي واحد مشمول. أ
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D8 deq=💰 Wie erfolgt die Bezahlung? prop="كيف يتم الدفع؟" → "نقداً عند الاستلام. تُقبل اليورو والدولا
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D9 deq=🔒 Ist der Ausflug sicher? prop="هل الجولة آمنة؟" → "نعم، الجولة خاصة ومنظمة باحتراف وتشمل ا
+ADD[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] D10 deq=❌ Gibt es Verkaufsstopps oder Kaffeefahr prop="هل توجد توقفات بيعية؟" → "لا، لا توقفات بيعية ولا ضغط زمني 
+REMOVE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] q=هل الجولة خاصة؟
+REMOVE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] q=هل مرشد ناطق بالألمانية مشمول؟
+REMOVE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] q=هل وقت كافٍ للتصوير؟
+REMOVE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] q=ما الذي أحضره؟
+REMOVE[naechtliche-stadtrundfahrt-durch-hurghada-private-tour] q=هل يمكنني رؤية غروب الشمس؟
+OTHER[private-delfin-tour-hurghada] D1 st=OK prop=keep
+REPLACE[private-delfin-tour-hurghada] D2 deq=👶 Ist der Ausflug für Kinder geeignet? ar=هل مناسب للأطفال؟ → "نعم، تجربة رائعة لل
+ADD[private-delfin-tour-hurghada] D3 deq=🚗 Gibt es einen Hoteltransfer? prop="هل يوجد نقل من الفندق؟" → "نعم، الاستلام والعودة بمركبة مكي
+REPLACE[private-delfin-tour-hurghada] D4 deq=🏊♂️ Welche Ausrüstung wird benötigt? ar=ما الذي أحضره؟ → "كاميراً مقاومة للماء و
+ADD[private-delfin-tour-hurghada] D5 deq=🌦️ Was passiert bei schlechtem Wetter? prop="ماذا يحدث عند سوء الطقس؟" → "في حال الرياح القوية أو سوء ال
+ADD[private-delfin-tour-hurghada] D6 deq=👨👩👧👦 Wie viele Personen sind auf dem prop="كم عدد الأشخاص على متن القارب؟" → "بحد أقصى 8 أشخاص لضمان ا
+REPLACE[private-delfin-tour-hurghada] D7 deq=⏰ Wie lange dauert der Ausflug? ar=كم تستغرق الرحلة؟ → "حوالي 4 إلى 5 ساعات
+ADD[private-delfin-tour-hurghada] D8 deq=🌴 Auf welche Insel fahren wir? prop="إلى أي جزيرة سنذهب؟" → "حسب أحوال الطقس والبحر نزور جزيرة ج
+ADD[private-delfin-tour-hurghada] D9 deq=🐠 Welche Fische sehe ich beim Schnorche prop="ما الأسماك التي سأراها أثناء الغطس؟" → "يمكنك رؤية أسماك ال
+OTHER[private-delfin-tour-hurghada] D10 st=OK (partial – D10 also covers speedboot, Riffe, Wrack) prop=keep; speedboot/Riffe/Wrack covered by included + D8/D9
+REMOVE[private-delfin-tour-hurghada] q=هل يمكن السباحة بالقرب من الدلافين؟
+REMOVE[private-delfin-tour-hurghada] q=هل مرشد خبير مشمول؟
+REMOVE[private-delfin-tour-hurghada] q=هل توجد فرصة للغطس؟
+REPLACE[private-speedboot-tour-orange-bay-hurghada] D1 deq=🕒 Wie lange dauert die Bootstour? ar=كم تستغرق الرحلة؟ → "حوالي 6 إلى 7 ساعات
+ADD[private-speedboot-tour-orange-bay-hurghada] D2 deq=📍 Von welchen Orten kann die Tour start prop="من أي الأماكن يمكن أن تبدأ الجولة؟" → "نستقبلك من الغردقة و
+OTHER[private-speedboot-tour-orange-bay-hurghada] D3 st=OK (partial – DE has no guide mention) prop=keep; remove "مرشد" from answer → "نعم، القناع والسنوركل وال
+REPLACE[private-speedboot-tour-orange-bay-hurghada] D4 deq=👨👩👧 Für Familien mit Kindern geeignet ar=هل مناسب للأطفال؟ → "نعم، رحلة عائلية مم
+ADD[private-speedboot-tour-orange-bay-hurghada] D5 deq=🐠 Welche Meeresbewohner kann ich sehen? prop="ما الكائنات البحرية التي يمكنني رؤيتها؟" → "مع الحظ تشاهد أ
+ADD[private-speedboot-tour-orange-bay-hurghada] D6 deq=🚤 Wie viele Personen passen auf das Boo prop="كم عدد الأشخاص على القارب الخاص؟" → "حسب القارب المحجوز يمك
+OTHER[private-speedboot-tour-orange-bay-hurghada] D7 st=OK prop=keep
+ADD[private-speedboot-tour-orange-bay-hurghada] D8 deq=🏖️ Wie lange können wir auf der Insel b prop="كم يمكننا البقاء على جزيرة أورنج باي؟" → "حوالي 2–3 ساعات، 
+ADD[private-speedboot-tour-orange-bay-hurghada] D9 deq=⚓ Wie weit ist die Insel entfernt? prop="كم تبعد الجزيرة عن الغردقة؟" → "حوالي 40 دقيقة بالقارب من م
+ADD[private-speedboot-tour-orange-bay-hurghada] D10 deq=🔒 Ist die Speedboot Tour wirklich priva prop="هل الجولة خاصة فعلاً؟" → "نعم، القارب السريع محجوز لك ومراف
+REMOVE[private-speedboot-tour-orange-bay-hurghada] q=ما الفرق بين القارب السريع والعادي؟
+REMOVE[private-speedboot-tour-orange-bay-hurghada] q=هل النقل مشمول؟
+REMOVE[private-speedboot-tour-orange-bay-hurghada] q=ما الذي أحضره؟
+REMOVE[private-speedboot-tour-orange-bay-hurghada] q=هل يمكنني التصوير؟
+REPLACE[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D1 deq=⏱️ Wie lange dauert der Pyramiden-Ausflu ar=كم تستغرق الرحلة؟ → "يوم كامل من الصباح 
+ADD[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D2 deq=🚐 Wie erfolgt die Abholung? prop="كيف يتم الاستلام؟" → "نستقبلك في موعده من بهو فندقك. الاستل
+OTHER[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D3 st=OK prop=keep
+OTHER[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D4 st=OK (partial – covers 100% privat) prop=keep
+REPLACE[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D5 deq=👨👩👧 Kann ich die Tour mit Kindern buc ar=هل مناسب للعائلات؟ → "نعم، رحلة ممتازة ل
+OTHER[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D6 st=OK prop=keep
+ADD[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D7 deq=📅 Findet die Tour täglich statt? prop="هل تُقام الجولة يومياً؟" → "نعم، تُقام يومياً، وحسب رغبتك ي
+OTHER[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D8 st=OK prop=keep
+ADD[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D9 deq=🛠️ Kann ich die Tour individuell anpass prop="هل يمكنني تخصيص الجولة؟" → "نعم، كجولة خاصة يمكن تعديل الأو
+ADD[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] D10 deq=📜 Warum sind Sakkara und Dahschur empfe prop="لماذا يُنصح بزيارة سقارة ودهشور؟" → "توضحان تطور شكل الهرم 
+REMOVE[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] q=هل الوجبات مشمولة؟
+REMOVE[privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] q=ما الذي أحضره؟
+OTHER[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D1 st=OK prop=keep
+REPLACE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D2 deq=⏱️ Wie lange dauert der Ausflug? ar=كم تستغرق الرحلة؟ → "حوالي 4 إلى 5 ساعات
+ADD[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D3 deq=🏨 Werden wir vom Hotel abgeholt? prop="هل نُستقبل من الفندق؟" → "نعم، الاستلام والعودة من فندقك في
+ADD[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D4 deq=🏝️ Welche Insel wird besucht? prop="أي جزيرة تُزار؟" → "جزيرة هادئة وطبيعية في محيط الغردقة. تُ
+REPLACE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D5 deq=🤿 Ist Schnorchelausrüstung im Preis ent ar=هل الغطس مشمول؟ → "نعم، معدات الغطس ومرش
+ADD[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D6 deq=👨👩👧 Ist der Ausflug für Kinder geeign prop="هل الجولة مناسبة للأطفال؟" → "نعم، الجولة مناسبة للعائلات و
+OTHER[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D7 st=OK prop=keep
+REPLACE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D8 deq=🥤 Sind Getränke und frisches Obst an Bo ar=هل توجد مشروبات مشمولة؟ → "نعم، مشروبات 
+ADD[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D9 deq=⚓ Wie sicher ist die Speedboot Tour? prop="ما مدى أمان الجولة؟" → "جميع القوارب مطابقة لمعايير السلامة
+ADD[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] D10 deq=📍 Von welchen Hotels ist die Abholung m prop="من أي فنادق يمكن الاستلام؟" → "الاستلام ممكن من جميع الفناد
+REMOVE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] q=ما الذي أحضره؟
+REMOVE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] q=هل مناسب لل couples؟
+REMOVE[privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] q=هل يمكن إضافة وجبة؟
+REPLACE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D1 deq=🕓 Wie lange dauert der Tagesausflug? ar=كم تستغرق الرحلة؟ → "يوم كامل من الصباح 
+ADD[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D2 deq=🚐 Wie erfolgt die Abholung? prop="كيف يتم الاستلام؟" → "نستقبلك مباشرة من فندقك أو مكان إقامت
+OTHER[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D3 st=OK prop=keep
+OTHER[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D4 st=keep prop=
+OTHER[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D5 st=keep prop=
+REPLACE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D6 deq=🍽️ Gibt es ein Mittagessen? ar=هل الوجبات مشمولة؟ → "نعم، وجبة غداء مشم
+REPLACE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D7 deq=🧳 Was sollte ich mitnehmen? ar=ما الذي أحضره؟ → "واقي شمساً وأحذية مريح
+ADD[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D8 deq=👨👩👧 Ist der Ausflug für Kinder geeign prop="هل الجولة مناسبة للأطفال؟" → "نعم، مناسبة للعائلات وللأطفال
+ADD[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D9 deq=🏺 Brauche ich eine Genehmigung für die  prop="هل أحتاج تصريحاً للجولة؟" → "نعم، هذه الرحلة خارج الغردقة ت
+ADD[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] D10 deq=✨ Warum ist Dendera und Abydos weniger ü prop="لماذا دندرة وأبيدوس أقل ازدحاماً من الأقصر؟" → "تقعان بعيدا
+REMOVE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] q=هل مرشد ناطق بالألمانية مشمول؟
+REMOVE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] q=هل رسوم الدخول مشمولة؟
+REMOVE[privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] q=ما الفرق عن الرحلة الجماعية؟
+OTHER[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D1 st=OK prop=keep
+OTHER[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D2 st=OK (partial – covers GEM; add Eintritt detail) prop=keep
+OTHER[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D3 st=keep prop=
+REPLACE[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D4 deq=🍴 Ist das Mittagessen im Preis inbegrif ar=هل الوجبات مشمولة؟ → "نعم، وجبة غداء مشم
+OTHER[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D5 st=OK prop=keep
+REPLACE[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D6 deq=🕰️ Wann beginnt und endet der Ausflug? ar=كم تستغرق الرحلة؟ → "يوم كامل من الصباح 
+ADD[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D7 deq=👗 Welche Kleidung wird empfohlen? prop="ما الملابس الموصى بها؟" → "ملابس مريحة خفيفة وقبعة ونظارة ش
+ADD[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D8 deq=📸 Darf man im Grand Egyptian Museum fot prop="هل يمكن التصوير في المتحف المصري الكبير؟" → "في معظم المناط
+ADD[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D9 deq=📅 Kann man den Ausflug an jedem Tag buc prop="هل يمكن الحجز في أي يوم؟" → "نعم، تُقام الجولة يومياً. نظرا
+ADD[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] D10 deq=🏆 Warum sollte ich diesen privaten Kair prop="لماذا أحجز هذه الجولة الخاصة؟" → "لأنك تستمتع بالثقافة والر
+REMOVE[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] q=هل مرشد ناطق بالألمانية مشمول؟
+REMOVE[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] q=هل أحتاج جواز سفر؟
+REMOVE[privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] q=ما الذي أحضره؟
+ADD[super-safari-hurghada] D1 deq=🏜️ Was ist die Super Safari Hurghada? prop="ما هي السوبر سفاري في الغردقة؟" → "من أشهر رحلات السفاري ال
+REPLACE[super-safari-hurghada] D2 deq=🕒 Wie lange dauert die Super Safari? ar=كم تستغرق السوبر سفاري؟ → "حوالي 4 إلى 5
+ADD[super-safari-hurghada] D3 deq=🚐 Ist der Hoteltransfer im Preis enthal prop="هل النقل من الفندق مشمول؟" → "نعم، الاستلام والعودة من فناد
+ADD[super-safari-hurghada] D4 deq=🏍️ Wie lange dauert das Quadfahren? prop="كم تستغرق جولة الكواد؟" → "حوالي 30 إلى 45 دقيقة حسب الجولة
+OTHER[super-safari-hurghada] D5 st=OK prop=keep
+OTHER[super-safari-hurghada] D6 st=OK (after D2 fix) prop=keep
+OTHER[super-safari-hurghada] D7 st=OK (partial – add BBQ + Softdrinks/Tee) prop="نعم، عشاء شواء تقليدي في القرية البدوية مشمول، مع مشروبات خ
+ADD[super-safari-hurghada] D8 deq=🌅 Wann ist die beste Zeit für die Wüste prop="متى أفضل وقت للسفاري الصحراوية؟" → "جولة الظهيرة الأكثر شعب
+REPLACE[super-safari-hurghada] D9 deq=👕 Was sollte man mitbringen? ar=ما الذي أحضره؟ → "ملابس مريحة وحذاءً مغل
+OTHER[super-safari-hurghada] D10 st=OK prop=keep
+REMOVE[super-safari-hurghada] q=هل يمكن مشاهدة النجوم؟
+REMOVE[super-safari-hurghada] q=هل توجد حمامات طين؟

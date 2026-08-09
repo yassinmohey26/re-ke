@@ -1,0 +1,9 @@
+const fs = require('fs');
+const c = fs.readFileSync('DRYRUN_AR_FAQ_LISTS.md', 'utf8');
+const lines = c.split('\n');
+console.log('LINES=' + lines.length);
+console.log('L44=' + JSON.stringify(lines[44]));
+const m = lines[44].match(/^## Tour: `([^`]+)`/);
+console.log('MATCH44=' + (m ? m[1] : 'NO'));
+const m2 = lines[44].match(/^## Tour:/);
+console.log('PREFIX_MATCH=' + (m2 ? 'YES' : 'NO'));

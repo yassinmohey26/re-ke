@@ -53,7 +53,10 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
 
   const t = await getTranslations('tours');
   const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale)]);
-  const destinationOptions = destinations.map(d => ({ slug: d.slug, name: d.name }));
+  const hiddenDestSlugs = new Set(['kairo', 'luxor']);
+  const destinationOptions = destinations
+    .filter(d => !hiddenDestSlugs.has(d.slug))
+    .map(d => ({ slug: d.slug, name: d.name }));
 
   const heroImage =
     process.env.NEXT_PUBLIC_TOUREN_HERO_IMAGE ||

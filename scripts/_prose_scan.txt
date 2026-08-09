@@ -1,0 +1,55 @@
+2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben [Not included] non-table line: ---
+family-safari-hurghada [FAQs] non-table line: All 10 DE Q ↔ AR Q/A pairs faithful (duration 5h, Quad 30-40 min, Spider 10-15 min, Jeep 50 km, Beduinendorf, times 08:30/13:30, Anfänger, m
+family-safari-hurghada [Included] non-table line: All 12 DE items ↔ AR faithful (Transfer, Quad, Spider, Jeep, Beduinendorf, Kamelritt, Tee, Apotheke, Wasserflasche, Guide, Sicherheitseinwei
+family-safari-hurghada [Not included] non-table line: ---
+hurghada-shopping-tour-basar-transfer [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+hurghada-shopping-tour-basar-transfer [Not included] non-table line: ---
+kairo-mit-flug-ab-hurghada-pyramiden-museum [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+kairo-mit-flug-ab-hurghada-pyramiden-museum [Not included] non-table line: ---
+kloester-st-antonius-st-paulus [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+kloester-st-antonius-st-paulus [Not included] non-table line: ---
+luxor-tagesausflug-ab-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+luxor-tagesausflug-ab-hurghada [Included] non-table line: All 5 DE items ↔ AR faithful (Transfer, Ägyptologe, Eintrittsgelder, Mittagessen, Wasser & Softdrinks). **OK — keep.**
+luxor-tagesausflug-ab-hurghada [Not included] non-table line: ---
+luxor-tagesausflug-heissluftballon-hoteluebernachtung [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+luxor-tagesausflug-heissluftballon-hoteluebernachtung [Not included] non-table line: ---
+mahmya-insel-ausflug-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+mahmya-insel-ausflug-hurghada [Not included] non-table line: ---
+makadi-water-park-hurghada-mittagessen-transfer [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+makadi-water-park-hurghada-mittagessen-transfer [Not included] non-table line: ---
+mini-egypt-park-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+mini-egypt-park-hurghada [Not included] non-table line: ---
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: DE highlights are 4 title + description blocks. Current AR is entirely off-topic (الكورنيش, sunset, beach). Propose a **complete replacement
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: 1. مارينا الغردقة – وجهة نابضة بالحياة من أجمل مرافئ البحر الأحمر. ليلاً تتحول أضواء القوارب إلى عرض ملون، ومكان مثالي للتصوير وأول انطباع ع
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: 2. سوق الخضار والفواكه التقليدي – هنا يبدأ الغردقة الحقيقي: لقاء السكان المحليين وأجواء المساومة والأصوات والروائح، بعيداً عن مناطق السياح.
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: 3. سوق السمك والمسجد الكبير – نمر على سوق السمك ونصل إلى المسجد الكبير الذي يتألق بأضوائه الدافئة مساءً، مع مناظر معمارية رائعة.
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: 4. تجربة مقهى مصري أصيل – في الختام تستمتع بشاي نعناع تقليدي أو قهوة عربية في مقهى محلي، لحظة هادئة تكمل الجولة بشكل مثالي.
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Highlights] non-table line: **REMOVE** from current AR highlights (fabricated/off-topic, 6): جولة خاصة ليلية في الغردقة (slogan), زيارة الكORNISH والشواطئ (wrong, corru
+naechtliche-stadtrundfahrt-durch-hurghada-private-tour [Not included] non-table line: ---
+private-delfin-tour-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+private-delfin-tour-hurghada [Not included] non-table line: المصروفات الشخصية / الوجبات / رسوم نقل إضافية لمناطق محددة — all faithful. **OK — keep.**
+private-delfin-tour-hurghada [Not included] non-table line: ---
+private-speedboot-tour-orange-bay-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+private-speedboot-tour-orange-bay-hurghada [Not included] non-table line: ---
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh [Not included] non-table line: ---
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang [Not included] non-table line: ---
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+privater-tagesausflug-ab-hurghada-dendera-abydos-tempel [Not included] non-table line: ---
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum [Not included] non-table line: ---
+reiten-in-hurghada-strand-wueste-pferde-im-meer [FAQs] non-table line: All 10 DE Q ↔ AR Q/A pairs faithful (Reiterfahrung, privat, Schwimmen im Meer, Dauer 1-2h, Hoteltransfer, Abholorte, Kleidung, Sicherheit, B
+reiten-in-hurghada-strand-wueste-pferde-im-meer [Included] non-table line: All 6 DE items ↔ AR faithful. **OK — keep.**
+reiten-in-hurghada-strand-wueste-pferde-im-meer [Not included] non-table line: البقشيش / رسوم نقل إضافية لمناطق معينة — faithful. **OK — keep.**
+reiten-in-hurghada-strand-wueste-pferde-im-meer [Not included] non-table line: ---
+super-safari-hurghada [FAQs] non-table line: **Fabricated / unmapped AR rows (REMOVE):**
+super-safari-hurghada [Not included] non-table line: المصروفات الشخصية / البقشيش / رسوم نقل إضافية لمناطق محددة — faithful. **OK — keep.**
+super-safari-hurghada [Not included] non-table line: ---
+super-safari-hurghada [Not included] non-table line: ## Final notes
+super-safari-hurghada [Not included] non-table line: 1. **Verification:** This regenerated report contains 0 placeholders and 0 invented FAQ rows. Every AR row quoted above is verbatim from `ar
+super-safari-hurghada [Not included] non-table line: 2. **Totals (item-level):** 78 FAQ drafts, 41 fabricated FAQ rows to REMOVE, 52 wrong FAQ rows to REPLACE, 195 list actions (87 highlights /
+super-safari-hurghada [Not included] non-table line: 3. **Corruptions requiring script-level repair:** `الكORNISH` (naechtliche A4 + highlight), Hebrew `מתנות` (mini-egypt FAQ A6), English `cou
+super-safari-hurghada [Not included] non-table line: 4. **Data model:** `content_translations.itinerary` is NULL; itineraries live in `content`. This report covers `faqs`, `highlights`, `includ
+super-safari-hurghada [Not included] non-table line: 5. **HARD RULE:** This is a dry-run deliverable. No `--apply` / `--execute` / direct DB write may run until Yassin posts explicit written ap

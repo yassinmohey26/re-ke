@@ -1,0 +1,79 @@
+OK  2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben.faqs
+OK  2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben.highlights
+OK  2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben.included
+OK  2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben.not_included
+OK  family-safari-hurghada.highlights
+OK  family-safari-hurghada.not_included
+OK  hurghada-shopping-tour-basar-transfer.faqs
+OK  hurghada-shopping-tour-basar-transfer.highlights
+OK  hurghada-shopping-tour-basar-transfer.included
+OK  hurghada-shopping-tour-basar-transfer.not_included
+OK  kairo-mit-flug-ab-hurghada-pyramiden-museum.faqs
+OK  kairo-mit-flug-ab-hurghada-pyramiden-museum.highlights
+OK  kairo-mit-flug-ab-hurghada-pyramiden-museum.included
+OK  kairo-mit-flug-ab-hurghada-pyramiden-museum.not_included
+OK  kloester-st-antonius-st-paulus.faqs
+OK  kloester-st-antonius-st-paulus.highlights
+OK  kloester-st-antonius-st-paulus.included
+OK  kloester-st-antonius-st-paulus.not_included
+OK  luxor-tagesausflug-ab-hurghada.faqs
+OK  luxor-tagesausflug-ab-hurghada.highlights
+OK  luxor-tagesausflug-ab-hurghada.not_included
+OK  luxor-tagesausflug-heissluftballon-hoteluebernachtung.faqs
+OK  luxor-tagesausflug-heissluftballon-hoteluebernachtung.highlights
+OK  luxor-tagesausflug-heissluftballon-hoteluebernachtung.included
+OK  luxor-tagesausflug-heissluftballon-hoteluebernachtung.not_included
+OK  mahmya-insel-ausflug-hurghada.faqs
+OK  mahmya-insel-ausflug-hurghada.highlights
+OK  mahmya-insel-ausflug-hurghada.included
+OK  mahmya-insel-ausflug-hurghada.not_included
+OK  makadi-water-park-hurghada-mittagessen-transfer.faqs
+OK  makadi-water-park-hurghada-mittagessen-transfer.highlights
+OK  makadi-water-park-hurghada-mittagessen-transfer.included
+OK  makadi-water-park-hurghada-mittagessen-transfer.not_included
+OK  mini-egypt-park-hurghada.faqs
+OK  mini-egypt-park-hurghada.highlights
+OK  mini-egypt-park-hurghada.included
+OK  mini-egypt-park-hurghada.not_included
+OK  naechtliche-stadtrundfahrt-durch-hurghada-private-tour.faqs
+OK  naechtliche-stadtrundfahrt-durch-hurghada-private-tour.highlights
+OK  naechtliche-stadtrundfahrt-durch-hurghada-private-tour.included
+OK  naechtliche-stadtrundfahrt-durch-hurghada-private-tour.not_included
+OK  private-delfin-tour-hurghada.faqs
+OK  private-delfin-tour-hurghada.highlights
+OK  private-delfin-tour-hurghada.included
+OK  private-speedboot-tour-orange-bay-hurghada.faqs
+OK  private-speedboot-tour-orange-bay-hurghada.highlights
+OK  private-speedboot-tour-orange-bay-hurghada.included
+OK  private-speedboot-tour-orange-bay-hurghada.not_included
+OK  privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh.faqs
+OK  privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh.highlights
+OK  privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh.included
+OK  privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh.not_included
+OK  privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang.faqs
+OK  privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang.highlights
+OK  privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang.included
+OK  privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang.not_included
+OK  privater-tagesausflug-ab-hurghada-dendera-abydos-tempel.faqs
+OK  privater-tagesausflug-ab-hurghada-dendera-abydos-tempel.highlights
+OK  privater-tagesausflug-ab-hurghada-dendera-abydos-tempel.included
+OK  privater-tagesausflug-ab-hurghada-dendera-abydos-tempel.not_included
+OK  privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum.faqs
+OK  privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum.highlights
+OK  privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum.not_included
+OK  reiten-in-hurghada-strand-wueste-pferde-im-meer.highlights
+OK  super-safari-hurghada.faqs
+OK  super-safari-hurghada.highlights
+OK  super-safari-hurghada.included
+
+Matched fields: 67/67 across 19 tours. Mismatches: 0
+
+Corruption scan (batch tours, all 4 fields):
+  0 remaining corruption tokens in all 19 tours.
+
+Untouched check vs ar_dump.json (anything outside approved slug+field must be identical):
+  Fields outside approved list that changed: 0 (expected 0). Untouched-match: 49.
+
+Spot checks:
+  super-safari "ما الفعاليات المشمولة؟" -> تشمل الفعاليات ركوب الدراجات النارية (كواد)، ركوب الإبل، رحلة بسيارة سبايدر باجي، جيب سفاري، زيارة القرية البدوية، عشاء شواء تقليدي، مشروبات خفيفة، والعرض الشرقي.
+  2-tages "هل الوجبات مشمولة أثناء الرحلة؟" -> نعم، يشمل البرنامج وجبة غداء في اليوم الأول وإفطاراً في الفندق. وجبة العشاء غير مشمولة.

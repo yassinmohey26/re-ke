@@ -1,0 +1,67 @@
+{
+  "tourId": "30cb3bb8-2bcb-4863-a0ca-49220bdb6a1d",
+  "slug": "mega-safari-hurghada",
+  "faqSource": "tours.faqs (DE master; deCT.faqs is empty so DE page renders tours.faqs)",
+  "faqs": {
+    "en": [
+      { "question": "Is the Mega Safari suitable for beginners?", "answer": "Yes. Before the start, all participants receive a detailed safety briefing. Even without prior experience, you can safely take part in the tour." },
+      { "question": "How long does the quad ride last?", "answer": "The quad ride takes about 30 to 40 minutes, depending on the route and group size." },
+      { "question": "How long do you ride the Spider Car?", "answer": "The Spider Car ride takes about 10 to 15 minutes." },
+      { "question": "How long does the entire Mega Safari take?", "answer": "The whole tour including hotel transfer takes up to 3 hours." },
+      { "question": "When does the Mega Safari start?", "answer": "The tour takes place twice daily \u2013 at 09:00 and 15:30." },
+      { "question": "Is hotel transfer included in the price?", "answer": "Yes. Round-trip transfer from hotels in Hurghada is included in the price. Transfer surcharges may apply for some regions." },
+      { "question": "What should I bring to the tour?", "answer": "We recommend comfortable clothing, closed shoes, sunglasses, a scarf or cloth as well as sunscreen." },
+      { "question": "From what age can children take part?", "answer": "Children from 3 to 10 years receive 50% discount. From age 11, the regular price applies." },
+      { "question": "Am I allowed to bring my phone or camera?", "answer": "Yes. However, we recommend protecting electronic devices well due to the desert dust." },
+      { "question": "Why should I book the Mega Safari in Hurghada?", "answer": "The Mega Safari combines quad, Spider Car and the impressive desert landscape in one excursion. This makes it more varied than a classic quad tour, and it is one of the most popular safari experiences in Hurghada." }
+    ],
+    "ar": [
+      { "question": "هل الميجا سفاري مناسبة للمبتدئين؟", "answer": "نعم. قبل البداية، يحصل جميع المشاركين على إرشادات سلامة مفصلة. حتى دون خبرة سابقة، يمكنك المشاركة في الجولة بأمان." },
+      { "question": "كم تستغرق رحلة الكواد؟", "answer": "تستغرق رحلة الكواد حوالي 30 إلى 40 دقيقة حسب المسار وحجم المجموعة." },
+      { "question": "كم تستغرق رحلة سيارة سبايدر؟", "answer": "تستغرق رحلة سيارة سبايدر حوالي 10 إلى 15 دقيقة." },
+      { "question": "كم تستغرق الميجا سفاري بأكملها؟", "answer": "تستغرق الجولة بأكملها بما في ذلك النقل من الفندق حتى 3 ساعات." },
+      { "question": "متى تبدأ الميجا سفاري؟", "answer": "تقام الجولة مرتين يومياً – الساعة 09:00 والساعة 15:30." },
+      { "question": "هل النقل من الفندق متضمن في السعر؟", "answer": "نعم. النقل ذهاباً وإياباً من فنادق الغردقة متضمن في السعر. قد تُطبق رسوم نقل إضافية لبعض المناطق." },
+      { "question": "ماذا يجب أن أحضر معي إلى الجولة؟", "answer": "ننصح بارتداء ملابس مريحة وأحذية مغلقة ونظارات شمسية ووشاح أو قطعة قماش بالإضافة إلى واقي الشمس." },
+      { "question": "من أي عمر يمكن للأطفال المشاركة؟", "answer": "يحصل الأطفال من 3 إلى 10 سنوات على خصم 50%. من سن 11 عاماً يُطبق السعر العادي." },
+      { "question": "هل يمكنني اصطحاب هاتفي أو كاميرتي؟", "answer": "نعم. ومع ذلك ننصح بحماية الأجهزة الإلكترونية جيداً بسبب غبار الصحراء." },
+      { "question": "لماذا يجب أن أحجز الميجا سفاري في الغردقة؟", "answer": "تجمع الميجا سفاري بين الكواد وسيارة سبايدر والمناظر الصحراوية المذهلة في رحلة واحدة. لذلك توفر تنوعاً أكبر من جولة الكواد التقليدية، وتعد من أشهر تجارب السفاري في الغردقة." }
+    ],
+    "ru": [
+      { "question": "Подходит ли мега-сафари новичкам?", "answer": "Да. Перед началом все участники получают подробный инструктаж по безопасности. Даже без опыта вы можете безопасно участвовать в экскурсии." },
+      { "question": "Сколько длится поездка на квадроцикле?", "answer": "Поездка на квадроцикле длится около 30–40 минут в зависимости от маршрута и размера группы." },
+      { "question": "Сколько длится поездка на Spider Car?", "answer": "Поездка на Spider Car длится около 10–15 минут." },
+      { "question": "Сколько длится всё мега-сафари?", "answer": "Вся экскурсия вместе с трансфером из отеля длится до 3 часов." },
+      { "question": "Когда начинается мега-сафари?", "answer": "Экскурсия проводится дважды в день – в 09:00 и в 15:30." },
+      { "question": "Трансфер из отеля входит в стоимость?", "answer": "Да. Трансфер из отелей Хургады туда и обратно входит в стоимость. Для некоторых регионов может взиматься доплата за трансфер." },
+      { "question": "Что взять с собой на экскурсию?", "answer": "Рекомендуем удобную одежду, закрытую обувь, солнцезащитные очки, платок или шарф, а также солнцезащитный крем." },
+      { "question": "С какого возраста дети могут участвовать?", "answer": "Дети от 3 до 10 лет получают скидку 50%. С 11 лет действует обычная цена." },
+      { "question": "Можно ли брать с собой телефон или камеру?", "answer": "Да. Однако рекомендуем хорошо защищать электронные устройства из-за пустынной пыли." },
+      { "question": "Почему стоит забронировать мега-сафари в Хургаде?", "answer": "Мега-сафари сочетает квадроцикл, Spider Car и впечатляющий пустынный пейзаж в одной экскурсии. Благодаря этому оно разнообразнее классической поездки на квадроцикле и относится к самым популярным сафари-впечатлениям в Хургаде." }
+    ],
+    "fr": [
+      { "question": "Le Mega Safari convient-il aux débutants ?", "answer": "Oui. Avant le départ, tous les participants reçoivent un briefing de sécurité détaillé. Même sans expérience, vous pouvez participer à la visite en toute sécurité." },
+      { "question": "Combien de temps dure la balade en quad ?", "answer": "La balade en quad dure environ 30 à 40 minutes, selon l'itinéraire et la taille du groupe." },
+      { "question": "Combien de temps dure la balade en Spider Car ?", "answer": "La balade en Spider Car dure environ 10 à 15 minutes." },
+      { "question": "Combien de temps dure tout le Mega Safari ?", "answer": "Toute la visite, transfert d'hôtel inclus, dure jusqu'à 3 heures." },
+      { "question": "Quand commence le Mega Safari ?", "answer": "La visite a lieu deux fois par jour – à 09h00 et 15h30." },
+      { "question": "Le transfert d'hôtel est-il inclus dans le prix ?", "answer": "Oui. Le transfert aller-retour depuis les hôtels de Hurghada est inclus dans le prix. Des suppléments de transfert peuvent s'appliquer pour certaines régions." },
+      { "question": "Que dois-je emporter pour la visite ?", "answer": "Nous recommandons des vêtements confortables, des chaussures fermées, des lunettes de soleil, un foulard ou un tissu ainsi qu'une crème solaire." },
+      { "question": "À partir de quel âge les enfants peuvent-ils participer ?", "answer": "Les enfants de 3 à 10 ans bénéficient d'une réduction de 50 %. À partir de 11 ans, le prix régulier s'applique." },
+      { "question": "Puis-je emporter mon téléphone ou mon appareil photo ?", "answer": "Oui. Nous recommandons toutefois de bien protéger les appareils électroniques à cause de la poussière du désert." },
+      { "question": "Pourquoi devrais-je réserver le Mega Safari à Hurghada ?", "answer": "Le Mega Safari combine le quad, la Spider Car et l'impressionnant paysage désertique en une seule excursion. Il offre ainsi plus de variété qu'une simple balade en quad et fait partie des expériences de safari les plus populaires de Hurghada." }
+    ],
+    "hu": [
+      { "question": "Megfelelő-e a Mega Safari kezdőknek?", "answer": "Igen. Az indulás előtt minden résztvevő részletes biztonsági eligazítást kap. Még tapasztalat nélkül is biztonságosan részt vehet a túrán." },
+      { "question": "Meddig tart a quadozás?", "answer": "A quadozás az útvonaltól és a csoport méretétől függően körülbelül 30–40 percig tart." },
+      { "question": "Meddig tart a Spider Car-utazás?", "answer": "A Spider Car-utazás körülbelül 10–15 percig tart." },
+      { "question": "Meddig tart a teljes Mega Safari?", "answer": "A teljes túra a szállodai transzferrel együtt legfeljebb 3 órát vesz igénybe." },
+      { "question": "Mikor indul a Mega Safari?", "answer": "A túra naponta kétszer indul – 09:00-kor és 15:30-kor." },
+      { "question": "A szállodai transzfer benne van az árban?", "answer": "Igen. Az oda-vissza transzfer a hurghadai szállodákból benne van az árban. Egyes régiókba transzfer-felár számítható fel." },
+      { "question": "Mit vigyek magammal a túrára?", "answer": "Kényelmes ruházatot, zárt cipőt, napszemüveget, sálat vagy kendőt, valamint naptejet ajánlunk." },
+      { "question": "Milyen kortól vehetnek részt a gyerekek?", "answer": "A 3–10 éves gyerekek 50% kedvezményt kapnak. 11 éves kortól a normál ár érvényes." },
+      { "question": "Vihetem magammal a telefonomat vagy a fényképezőgépemet?", "answer": "Igen. Ugyanakkor javasoljuk, hogy a sivatagi por miatt jól védje az elektronikus eszközöket." },
+      { "question": "Miért érdemes lefoglalnom a Mega Safari-t Hurghadában?", "answer": "A Mega Safari egyetlen kirándulásban ötvözi a quadot, a Spider Cart és a lenyűgöző sivatagi tájat. Így változatosabb, mint egy klasszikus quadozás, és Hurghada egyik legnépszerűbb szafariélménye." }
+    ]
+  }
+}

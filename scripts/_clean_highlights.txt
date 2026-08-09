@@ -1,0 +1,56 @@
+### quad-tour-hurghada-kamelritt
+DE highlights count=7
+  de[0] "Quad Safari in Hurghada durch Wüste & Sanddünen"
+  de[1] "Über 50 km Fahrspaß mit dem Quad"
+  de[2] "Kamelritt & traditionelles Beduinendorf inklusive"
+  de[3] "Perfekt für Anfänger – keine Erfahrung erforderlich"
+  de[4] "Hotelabholung & Rücktransfer inklusive"
+  de[5] "Tägliche Quad Tour in Hurghada"
+  de[6] "Abenteuer in der Wüste Ägyptens"
+AR highlights count=6
+  ar[0] "مغامرة على الدراجات النارية في الصحراء"
+  ar[1] "ركوب الإبل في الكثبان الرملية"
+  ar[2] "مشاهدة الفلاحة البدوية (عرض الفنون الشعبية)"
+  ar[3] "وجبة عشاء مشمولة"
+  ar[4] "مشروبات خفيفة"
+  ar[5] "نقل من وإلى الفندق مشمول"
+
+### orange-bay-insel-schnorchelausflug-hurghada
+DE highlights count=10
+  de[0] "Traumhafte Orange Bay Island im Giftun-Nationalpark"
+  de[1] "Einer der beliebtesten Schnorchelausflüge in Hurghada"
+  de[2] "Zwei Schnorchelstopps an erstklassigen Korallenriffen"
+  de[3] "Kristallklares Wasser & vielfältige Unterwasserwelt"
+  de[4] "Entspannung am weißen Sandstrand mit Sonnenliegen"
+  de[5] "Mittagessen & alkoholfreie Getränke inklusive"
+  de[6] "Privater Hoteltransfer im klimatisierten Fahrzeug"
+  de[7] "Hochwertige Boote"
+  de[8] "Ideal für Familien, Paare und Gruppen"
+  de[9] "Orange Bay – die Karibik des Roten Meeres"
+AR highlights count=10
+  ar[0] "جزيرة أورنج باي الساحرة في منتزه جيفتون الوطني"
+  ar[1] "من أكثر رحلات الغطس شعبية في الغردقة"
+  ar[2] "توقفان للغطس عند شعاب مرجانية من الطراز الأول"
+  ar[3] "مياه صافية وعالم بحري متنوع"
+  ar[4] "استرخاء على الشاطئ الرملي الأبيض مع كراسي التشمس"
+  ar[5] "غداء ومشروبات غير كحولية مشمولة"
+  ar[6] "نقل خاص من الفندق بسيارة مكيفة"
+  ar[7] "قوارب عالية الجودة"
+  ar[8] "مثالية للعائلات والأزواج والمجموعات"
+  ar[9] "أورنج باي – كاريبي البحر الأحمر"
+
+### hula-hula-insel-schnorchelausflug-hurghada
+DE highlights count=6
+  de[0] "Bootsfahrt zur Hula Hula Insel ab Hurghada"
+  de[1] "Schnorcheln im Roten Meer mit Korallenriffen"
+  de[2] "90 Minuten Inselaufenthalt auf Hula Hula"
+  de[3] "Mittagessen & Softgetränke an Bord inklusive"
+  de[4] "Ideal für Familien, Paare und Schnorchel-Anfänger"
+  de[5] "Hoteltransfer von Hurghada inklusive"
+AR highlights count=6
+  ar[0] "رحلة قارب إلى جزيرة هولا هولا من الغردقة"
+  ar[1] "الغطس في البحر الأحمر على شعاب مرجانية"
+  ar[2] "90 دقيقة إقامة على جزيرة هولا هولا"
+  ar[3] "وجبة غداء ومشروبات غازية على متن القارب مشمولة"
+  ar[4] "مثالية للعائلات والأزواج ومبتدئي الغطس"
+  ar[5] "نقل من الفندق من الغردقة مشمول"

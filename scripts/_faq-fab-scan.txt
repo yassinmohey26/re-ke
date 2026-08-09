@@ -1,0 +1,191 @@
+=== super-safari DE FAQ questions (tours.faqs) ===
+1. 🏜️ Was ist die Super Safari Hurghada?
+2. 🕒 Wie lange dauert die Super Safari Hurghada?
+3. 🚐 Ist der Hoteltransfer im Preis enthalten?
+4. 🏍️ Wie lange dauert das Quadfahren in der Wüste?
+5. 👨‍👩‍👧‍👦 Ist die Super Safari für Familien geeignet?
+6. 🐪 Kann man während der Safari Kamelreiten?
+7. 🍖 Ist das Abendessen im Preis enthalten?
+8. 🌅 Wann ist die beste Zeit für die Wüstensafari?
+9. 👕 Was sollte man zur Wüstensafari mitbringen?
+10. 🏍️ Kann ich die Super Safari auch ohne Führerschein machen?
+
+=== super-safari AR FAQ before (ar.faqs) ===
+1. Q: كم تستغرق السوبر سفاري؟
+   A: حوالي 4 إلى 5 ساعات.
+2. Q: ما الفعاليات المشمولة؟
+   A: الدراجات النارية وركوب الإبل والسباحة وعرض الفلاحة والوجبة ومشاهدة النجوم.
+3. Q: هل مناسب للمبتدئين؟
+   A: نعم، التدريب الأساسي للدراجات النارية مشمول.
+4. Q: هل الوجبات مشمولة؟
+   A: نعم، وجبة عشاء مشمولة.
+5. Q: هل مناسب للأطفال؟
+   A: من 6 سنوات فما فوق للدراجات النارية. الأطفال الأصغر يمكنهم ركوب الإبل.
+6. Q: ما الذي أحضره؟
+   A: ملابس مريحة وحذاءً مغلقاً ونظارة شمسية وغطاء رأس.
+7. Q: هل يمكن مشاهدة النجوم؟
+   A: نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء.
+8. Q: هل توجد حمامات طين؟
+   A: نعم، حمامات الطين الطبيعية مشمولة في المغامرة.
+
+=== super-safari AR FAQ ops from report ===
+{"op":"add","deq":"🏜️ Was ist die Super Safari Hurghada?","q":"ما هي السوبر سفاري في الغردقة؟","a":"من أشهر رحلات السفاري الصحراوية في مصر. تجمع عدة مغامرات في يوم واحد: ركوب الكواد، سيارة سبايدر باجي، جيب سفاري، ركوب الجمل، وزيارة قرية بدوية مع عشاء شواء تقليدي وعرض شرقي."}
+{"op":"replace","deq":"🕒 Wie lange dauert die Super Safari?","curQ":"كم تستغرق السوبر سفاري؟","q":null,"a":"عادةً من 7 إلى 8 ساعات. الاستلام بعد الظهر، وبعد الأنشطة في الصحراء تستمتع بعشاء شواء قبل العودة إلى فندقك مساءً.","note":"**WRONG → REPLACE**"}
+{"op":"add","deq":"🚐 Ist der Hoteltransfer im Preis enthalten?","q":"هل النقل من الفندق مشمول؟","a":"نعم، الاستلام والعودة من فنادق الغردقة مشمول عادةً في السعر. قد تُطبق رسوم إضافية للفنادق خارج الغردقة."}
+{"op":"add","deq":"🏍️ Wie lange dauert das Quadfahren?","q":"كم تستغرق جولة الكواد؟","a":"حوالي 30 إلى 45 دقيقة حسب الجولة، عبر كثبان رملية مذهلة وطبيعة صحراوية حول الغردقة – من أبرز محطات الرحلة."}
+{"op":"replace","deq":"🍖 Ist das Abendessen im Preis enthalten?","curQ":"هل الوجبات مشمولة؟","q":null,"a":"نعم، عشاء شواء تقليدي في القرية البدوية مشمول، مع مشروبات خفيفة وشاي ومأكولات محلية أثناء البرنامج المسائي.","note":"OK (partial – add BBQ + Softdrinks/Tee)"}
+{"op":"add","deq":"🌅 Wann ist die beste Zeit für die Wüstensafari?","q":"متى أفضل وقت للسفاري الصحراوية؟","a":"جولة الظهيرة الأكثر شعبية لأنك تشهد غروب الشمس الرائع في الصحراء، والأجواء المعتدلة مساءً تجعلها مريحة بشكل خاص."}
+{"op":"replace","deq":"👕 Was sollte man mitbringen?","curQ":"ما الذي أحضره؟","q":null,"a":"ملابس مريحة وأحذية ثابتة ونظارة شمسية وواقي شمس ووشاح أو شال للحماية من الغبار، مع كاميرا أو هاتف لتوثيق أجمل لحظات السوبر سفاري.","note":"**WRONG → REPLACE**"}
+{"op":"remove","q":"هل يمكن مشاهدة النجوم؟","a":"نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء."}
+{"op":"remove","q":"هل توجد حمامات طين؟","a":"نعم، حمامات الطين الطبيعية مشمولة في المغامرة."}
+
+=== super-safari AR highlights/included/not_included removes ===
+highlights REMOVE: "السباحة في حمامات الطين الطبيعية"
+highlights REMOVE: "عرض الفلاحة البدوية (الرقص والموسيقى)"
+highlights REMOVE: "مشاهدة النجوم في الصحراء"
+highlights REMOVE: "نقل من وإلى الفندق مشمول"
+included REMOVE: "حمامات الطين الطبيعية"
+
+=== SCAN: FAQ answers referencing removed content (same tour) ===
+
+- [hurghada-shopping-tour-basar-transfer] Q: هل توجد توقفات بيعية إلزامية؟
+  A: لا، يمكنك اختيار الأماكن التي تزورها.
+  -> removed CONTAINS answer: لا، يمكنك اختيار الأماكن التي تزورها.  (removed=هل توجد توقفات بيعية إلزامية؟ — لا، يمكنك اختيار الأماكن التي تزورها.)
+- [hurghada-shopping-tour-basar-transfer] Q: هل وقت كافٍ للتسوق؟
+  A: نعم، يتوفر وقت كافٍ لرؤية المنتجات والتفاوض.
+  -> removed CONTAINS answer: نعم، يتوفر وقت كافٍ لرؤية المنتجات والتفاوض.  (removed=هل وقت كافٍ للتسوق؟ — نعم، يتوفر وقت كافٍ لرؤية المنتجات والتفاوض.)
+- [kairo-mit-flug-ab-hurghada-pyramiden-museum] Q: هل أحتاج جواز سفر؟
+  A: نعم، جواز سفر ساري المفعول مطلوب للرحلة الجوية.
+  -> removed CONTAINS answer: نعم، جواز سفر ساري المفعول مطلوب للرحلة الجوية.  (removed=هل أحتاج جواز سفر؟ — نعم، جواز سفر ساري المفعول مطلوب للرحلة الجوية.)
+- [kairo-mit-flug-ab-hurghada-pyramiden-museum] Q: ما الذي أحضره؟
+  A: جواز سفرك وواقي شمساً وقبعة وأحذية مريحة وأموالاً للتسوق.
+  -> removed CONTAINS answer: جواز سفرك وواقي شمساً وقبعة وأحذية مريحة وأموالاً للتسوق.  (removed=ما الذي أحضره؟ — جواز سفرك وواقي شمساً وقبعة وأحذية مريحة وأموالاً للتسوق.)
+- [kloester-st-antonius-st-paulus] Q: هل الأديرة مفتوحة للزوار؟
+  A: نعم، مفتوحة يومياً للزيارات.
+  -> removed CONTAINS answer: نعم، مفتوحة يومياً للزيارات.  (removed=هل الأديرة مفتوحة للزوار؟ — نعم، مفتوحة يومياً للزيارات.)
+- [kloester-st-antonius-st-paulus] Q: ما الذي أحضره؟
+  A: ملابس محتشمة وحذاءً مريحاً وواقي شمساً.
+  -> removed CONTAINS answer: ملابس محتشمة وحذاءً مريحاً وواقي شمساً.  (removed=ما الذي أحضره؟ — ملابس محتشمة وحذاءً مريحاً وواقي شمساً. (duplicate of D6))
+- [kloester-st-antonius-st-paulus] Q: هل وجبة مشمولة؟
+  A: لا، الوجبات غير مشمولة. أحضر ماءً ووجبة خفيفة.
+  -> answer CONTAINS removed: الوجبات
+- [luxor-tagesausflug-ab-hurghada] Q: ما المعالم المزار؟
+  A: معبد الكرنك و معبد هابو و وادي الملوك و معبد حتشبسوت.
+  -> answer CONTAINS removed: معبد هابو
+- [luxor-tagesausflug-ab-hurghada] Q: هل توجد رسوم إضافية؟
+  A: رسوم الدخول لبعض الغرف في وادي الملوك إضافية.
+  -> removed CONTAINS answer: رسوم الدخول لبعض الغرف في وادي الملوك إضافية.  (removed=هل توجد رسوم إضافية؟ — رسوم الدخول لبعض الغرف في وادي الملوك إضافية.)
+- [luxor-tagesausflug-ab-hurghada] Q: ما الذي أحضره؟
+  A: واقي شمساً وقبعة وماءً وأحذية مريحة وأموالاً إضافية.
+  -> removed CONTAINS answer: واقي شمساً وقبعة وماءً وأحذية مريحة وأموالاً إضافية.  (removed=ما الذي أحضره؟ — واقي شمساً وقبعة وماءً وأحذية مريحة وأموالاً إضافية.)
+- [luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: هل الوجبات مشمولة؟
+  A: وجبتا غداء مشمولتان.
+  -> answer CONTAINS removed: وجبتا غداء
+- [luxor-tagesausflug-heissluftballon-hoteluebernachtung] Q: هل الوجبات مشمولة؟
+  A: وجبتا غداء مشمولتان.
+  -> removed CONTAINS answer: وجبتا غداء مشمولتان.  (removed=هل الوجبات مشمولة؟ — وجبتا غداء مشمولتان. (DE: dinner & breakfast, not two lunches))
+- [mahmya-insel-ausflug-hurghada] Q: هل يمكنني التصوير؟
+  A: نعم، من أجمل مواقع التصوير في الغردقة.
+  -> removed CONTAINS answer: نعم، من أجمل مواقع التصوير في الغردقة.  (removed=هل يمكنني التصوير؟ — نعم، من أجمل مواقع التصوير في الغردقة.)
+- [makadi-water-park-hurghada-mittagessen-transfer] Q: هل الوجبات مشمولة؟
+  A: نعم، وجبة غداء بوفيه مشمولة.
+  -> answer CONTAINS removed: وجبة غداء بوفيه مشمولة
+- [makadi-water-park-hurghada-mittagessen-transfer] Q: هل النقل مشمول؟
+  A: نعم، نقل من وإلى الفندق مشمول.
+  -> answer CONTAINS removed: نقل من وإلى الفندق مشمول
+- [makadi-water-park-hurghada-mittagessen-transfer] Q: ما الألعاب المتوفرة؟
+  A: منزليات وحلزونات ومسابح وألعاب مائية متنوعة.
+  -> removed CONTAINS answer: منزليات وحلزونات ومسابح وألعاب مائية متنوعة.  (removed=ما الألعاب المتوفرة؟ — منزليات وحلزونات ومسابح وألعاب مائية متنوعة.)
+- [makadi-water-park-hurghada-mittagessen-transfer] Q: هل يمكن شراء مشروبات إضافية؟
+  A: نعم، توجد مقاهي ومتاجر داخل المنتزه.
+  -> removed CONTAINS answer: نعم، توجد مقاهي ومتاجر داخل المنتزه.  (removed=هل يمكن شراء مشروبات إضافية؟ — نعم، توجد مقاهي ومتاجر داخل المنتزه.)
+- [makadi-water-park-hurghada-mittagessen-transfer] Q: هل يوجد وقت محدد للدخول؟
+  A: يمكنك الدخول في أي وقت خلال ساعات عمل المنتزه.
+  -> removed CONTAINS answer: يمكنك الدخول في أي وقت خلال ساعات عمل المنتزه.  (removed=هل يوجد وقت محدد للدخول؟ — يمكنك الدخول في أي وقت خلال ساعات عمل المنتزه.)
+- [mini-egypt-park-hurghada] Q: هل توجد مناطق استرخاء؟
+  A: نعم، حدائق ومناطق جلوس جميلة.
+  -> removed CONTAINS answer: نعم، حدائق ومناطق جلوس جميلة.  (removed=هل توجد مناطق استرخاء؟ — نعم، حدائق ومناطق جلوس جميلة.)
+- [mini-egypt-park-hurghada] Q: هل توجد متاجر؟
+  A: نعم، متجر تذكارات.
+  -> removed CONTAINS answer: نعم، متجر تذكارات.  (removed=هل توجد متاجر؟ — نعم، متجر تذكارات.)
+- [naechtliche-stadtrundfahrt-durch-hurghada-private-tour] Q: هل الجولة خاصة؟
+  A: نعم، خاصة مع عائلتك أو مجموعتك فقط.
+  -> removed CONTAINS answer: نعم، خاصة مع عائلتك أو مجموعتك فقط.  (removed=هل الجولة خاصة؟ — نعم، خاصة مع عائلتك أو مجموعتك فقط. (no dedicated DE FAQ; content consistent with D9 but not a DE question))
+- [naechtliche-stadtrundfahrt-durch-hurghada-private-tour] Q: هل وقت كافٍ للتصوير؟
+  A: نعم، توقفات تصوير كافية.
+  -> removed CONTAINS answer: نعم، توقفات تصوير كافية.  (removed=هل وقت كافٍ للتصوير؟ — نعم، توقفات تصوير كافية. (no DE FAQ))
+- [naechtliche-stadtrundfahrt-durch-hurghada-private-tour] Q: ما الذي أحضره؟
+  A: أثراً خفيفاً وحذاءً مريحاً وأموالاً للتسوق.
+  -> removed CONTAINS answer: أثراً خفيفاً وحذاءً مريحاً وأموالاً للتسوق.  (removed=ما الذي أحضره؟ — أثراً خفيفاً وحذاءً مريحاً وأموالاً للتسوق. (no DE FAQ))
+- [naechtliche-stadtrundfahrt-durch-hurghada-private-tour] Q: هل يمكنني رؤية غروب الشمس؟
+  A: نعم، يمكنك مراقبة غروب الشمس على البحر أثناء الجولة.
+  -> removed CONTAINS answer: نعم، يمكنك مراقبة غروب الشمس على البحر أثناء الجولة.  (removed=هل يمكنني رؤية غروب الشمس؟ — نعم، يمكنك مراقبة غروب الشمس على البحر أثناء الجولة. (no DE FAQ; night tour 19:00–22:00))
+- [private-delfin-tour-hurghada] Q: هل يمكن السباحة بالقرب من الدلافين؟
+  A: يتم الحفاظ على مسافة آمنة لحماية الدلافين والزوار.
+  -> removed CONTAINS answer: يتم الحفاظ على مسافة آمنة لحماية الدلافين والزوار.  (removed=هل يمكن السباحة بالقرب من الدلافين؟ — يتم الحفاظ على مسافة آمنة لحماية الدلافين والزوار.)
+- [private-delfin-tour-hurghada] Q: هل مرشد خبير مشمول؟
+  A: نعم، مرشد خبير بالحياة البحرية.
+  -> answer CONTAINS removed: مرشد خبير بالحياة البحرية
+- [private-delfin-tour-hurghada] Q: هل مرشد خبير مشمول؟
+  A: نعم، مرشد خبير بالحياة البحرية.
+  -> removed CONTAINS answer: نعم، مرشد خبير بالحياة البحرية.  (removed=هل مرشد خبير مشمول؟ — نعم، مرشد خبير بالحياة البحرية.)
+- [private-delfin-tour-hurghada] Q: هل توجد فرصة للغطس؟
+  A: يمكن إضافة توقف غطس حسب الرغبة.
+  -> removed CONTAINS answer: يمكن إضافة توقف غطس حسب الرغبة.  (removed=هل توجد فرصة للغطس؟ — يمكن إضافة توقف غطس حسب الرغبة.)
+- [private-speedboot-tour-orange-bay-hurghada] Q: ما الفرق بين القارب السريع والعادي؟
+  A: القارب السريع يوفر وصولاً أسرع للجزيرة مما يمنحك وقتاً أطول على الشاطئ.
+  -> removed CONTAINS answer: القارب السريع يوفر وصولاً أسرع للجزيرة مما يمنحك وقتاً أطول على الشاطئ.  (removed=ما الفرق بين القارب السريع والعادي؟ — القارب السريع يوفر وصولاً أسرع للجزيرة مما يمنحك وقتاً أطول على الشاطئ.)
+- [private-speedboot-tour-orange-bay-hurghada] Q: هل النقل مشمول؟
+  A: نعم، نقل من وإلى الفندق مشمول.
+  -> removed CONTAINS answer: نعم، نقل من وإلى الفندق مشمول.  (removed=هل النقل مشمول؟ — نعم، نقل من وإلى الفندق مشمول. (no dedicated DE FAQ))
+- [private-speedboot-tour-orange-bay-hurghada] Q: ما الذي أحضره؟
+  A: واقي شمساً وملابس سباحة ومنشفة ونظارة شمسية.
+  -> removed CONTAINS answer: واقي شمساً وملابس سباحة ومنشفة ونظارة شمسية.  (removed=ما الذي أحضره؟ — واقي شمساً وملابس سباحة ومنشفة ونظارة شمسية.)
+- [private-speedboot-tour-orange-bay-hurghada] Q: هل يمكنني التصوير؟
+  A: نعم، من أجمل مواقع التصوير في الغردقة.
+  -> removed CONTAINS answer: نعم، من أجمل مواقع التصوير في الغردقة.  (removed=هل يمكنني التصوير؟ — نعم، من أجمل مواقع التصوير في الغردقة.)
+- [privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] Q: هل الوجبات مشمولة؟
+  A: نعم، وجبة غداء مشمولة.
+  -> answer CONTAINS removed: وجبة غداء مشمولة
+- [privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] Q: هل الوجبات مشمولة؟
+  A: نعم، وجبة غداء مشمولة.
+  -> removed CONTAINS answer: نعم، وجبة غداء مشمولة.  (removed=هل الوجبات مشمولة؟ — نعم، وجبة غداء مشمولة. (no DE FAQ; content is in included))
+- [privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh] Q: ما الذي أحضره؟
+  A: واقي شمساً وقبعة وأحذية مريحة وماءً.
+  -> removed CONTAINS answer: واقي شمساً وقبعة وأحذية مريحة وماءً.  (removed=ما الذي أحضره؟ — واقي شمساً وقبعة وأحذية مريحة وماءً.)
+- [privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] Q: ما الذي أحضره؟
+  A: كاميراً وواقي شمساً ونظارة شمسية.
+  -> removed CONTAINS answer: كاميراً وواقي شمساً ونظارة شمسية.  (removed=ما الذي أحضره؟ — كاميراً وواقي شمساً ونظارة شمسية.)
+- [privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] Q: هل مناسب لل couples؟
+  A: نعم، تجربة رومانسية رائعة لل couples.
+  -> removed CONTAINS answer: نعم، تجربة رومانسية رائعة لل couples.  (removed=هل مناسب لل couples؟ — نعم، تجربة رومانسية رائعة لل couples. (contains English word `couples`))
+- [privater-speedboot-ausflug-in-hurghada-schnorcheln-an-korallenriffen-sonnenuntergang] Q: هل يمكن إضافة وجبة؟
+  A: نعم، يمكن ترتيب وجبة خاصة على متن القارب.
+  -> removed CONTAINS answer: نعم، يمكن ترتيب وجبة خاصة على متن القارب.  (removed=هل يمكن إضافة وجبة؟ — نعم، يمكن ترتيب وجبة خاصة على متن القارب.)
+- [privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] Q: هل الوجبات مشمولة؟
+  A: نعم، وجبة غداء مشمولة.
+  -> answer CONTAINS removed: وجبة غداء مشمولة
+- [privater-tagesausflug-ab-hurghada-dendera-abydos-tempel] Q: ما الفرق عن الرحلة الجماعية؟
+  A: وقت أطول في المعابد وشرح تفصيلي أكثر وراحة أكبر.
+  -> removed CONTAINS answer: وقت أطول في المعابد وشرح تفصيلي أكثر وراحة أكبر.  (removed=ما الفرق عن الرحلة الجماعية؟ — وقت أطول في المعابد وشرح تفصيلي أكثر وراحة أكبر. (no DE FAQ; overlaps D10))
+- [privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] Q: هل النقل خاص؟
+  A: نعم، نقل خاص بسيارة مكيفة.
+  -> answer CONTAINS removed: نقل خاص بسيارة مكيفة
+- [privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] Q: هل أحتاج جواز سفر؟
+  A: لا، الرحلة بسيارة فقط.
+  -> removed CONTAINS answer: لا، الرحلة بسيارة فقط.  (removed=هل أحتاج جواز سفر؟ — لا، الرحلة بسيارة فقط. (no DE FAQ))
+- [privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum] Q: ما الذي أحضره؟
+  A: واقي شمساً وقبعة وأحذية مريحة وماءً وأموالاً للتسوق.
+  -> removed CONTAINS answer: واقي شمساً وقبعة وأحذية مريحة وماءً وأموالاً للتسوق.  (removed=ما الذي أحضره؟ — واقي شمساً وقبعة وأحذية مريحة وماءً وأموالاً للتسوق. (no DE FAQ))
+- [super-safari-hurghada] Q: هل يمكن مشاهدة النجوم؟
+  A: نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء.
+  -> answer CONTAINS removed: مشاهدة النجوم في الصحراء
+- [super-safari-hurghada] Q: هل يمكن مشاهدة النجوم؟
+  A: نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء.
+  -> removed CONTAINS answer: نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء.  (removed=هل يمكن مشاهدة النجوم؟ — نعم، في حالة الصافي يمكنك مشاهدة النجوم في الصحراء.)
+- [super-safari-hurghada] Q: هل توجد حمامات طين؟
+  A: نعم، حمامات الطين الطبيعية مشمولة في المغامرة.
+  -> answer CONTAINS removed: حمامات الطين الطبيعية
+- [super-safari-hurghada] Q: هل توجد حمامات طين؟
+  A: نعم، حمامات الطين الطبيعية مشمولة في المغامرة.
+  -> removed CONTAINS answer: نعم، حمامات الطين الطبيعية مشمولة في المغامرة.  (removed=هل توجد حمامات طين؟ — نعم، حمامات الطين الطبيعية مشمولة في المغامرة.)
