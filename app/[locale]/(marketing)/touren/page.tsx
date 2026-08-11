@@ -99,6 +99,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
     categorySnorkelDesc: await t('categorySnorkelDesc'),
     categorySafariDesc: await t('categorySafariDesc'),
     viewTours: await t('viewTours'),
+    toursWord: await t('toursWord'),
     favorite: await (await getTranslations('a11y'))('favorite'),
   };
 

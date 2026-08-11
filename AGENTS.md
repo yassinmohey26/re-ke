@@ -128,3 +128,41 @@ The committed POST handler inserted only `slug` + `image`, omitting `name` (and 
 ## Verification status
 - `npx tsc --noEmit` passes; `npm run build` exits 0.
 - Live POST test skipped by decision (no admin credentials used, no temp auth user created). User verifies create/edit from the dashboard.
+
+# Session — Aug 11 2026: Home destination cards reuse Trips/Search filter
+
+## Goal
+Make a Home page destination click behave exactly like selecting that destination in the Trips/Search filter.
+
+## Root cause of 21 vs 29
+- Home card previously linked to `/destinationen/<slug>`, whose page filtered `t.destinationSlug === slug` → 21 tours for Hurghada.
+- The Trips/Search page destination filter is a **no-op for non-special destinations** (only `SPECIAL_DEST_SLUGS` = el-quseir/marsa-alam/kairo/luxor trigger the hardcoded `LONG_DISTANCE_SLUGS` filter), so selecting Hurghada there shows **all 29 tours**.
+
+## Change (smallest possible, no schema change)
+- `components/sections/Destinations.tsx` — home card links to `/touren?destination=<slug>` (was `/destinationen/<slug>`).
+- `app/[locale]/(marketing)/touren/ToursClient.tsx` — `appliedDestination` now initializes from the `destination` URL param (`useState(paramsDest)`), so landing on `/touren?destination=hurghada` applies the exact same filter as manually selecting + searching.
+
+## Result
+Home → Hurghada → `/touren?destination=hurghada` → the existing ToursClient filter runs → same trip count as the Trips/Search page (29). No second filtering implementation; no hardcoded counts.
+
+## Verification
+- `npx tsc --noEmit` passes; `npm run build` exits 0.
+- The `/destinationen/<slug>` detail page still exists unchanged for direct destination links.
+
+# Session — Aug 11 2026: Premium redesign of the 3 category cards on the Tours page
+
+## Scope
+UI-only redesign of the 3 category cards (Cultural / Snorkelling / Safari) in `ToursClient.tsx`. No filter logic, navigation, images, data, or schema changes.
+
+## Changes
+- `app/[locale]/(marketing)/touren/ToursClient.tsx`
+  - Cards are now data-driven via a `categoryCards` array (key, exact same image URL, title, desc, count, `lucide-react` icon: `Pyramid`/`Waves`/`Compass`).
+  - `categoryCounts` useMemo computes per-type counts using the **exact same `TYPE_MAP`** as the type filter — no hardcoded counts.
+  - Click behavior unchanged: `onClick={() => { toggleDraftType(card.key); handleSearch(); }}`.
+  - Added `toursWord` to the `translations` Props.
+- `ToursClient.module.css` — redesigned cards: 3-up desktop (24px gap), 440px height, 24px radius, bottom-left gradient overlay, top circular icon badge, brand-blue `#1B4FD8` "View Tours" pill + arrow, frosted-glass count pill, hover = lift (`translateY(-8px)`) + image zoom (`scale(1.06)`) + CTA/arrow slide. RTL-safe (logical properties + `[dir='rtl']` arrow flip). Responsive: ≤900px = 2-up (340px), ≤600px = 1-up (300px).
+- `app/[locale]/(marketing)/touren/page.tsx` + `destinationen/[slug]/page.tsx` — pass `toursWord` translation.
+- `messages/{de,en,fr,hu,ru,ar}.json` — new `tours.toursWord` key for the count pill label (de "Touren", en "tours", fr "tours", hu "túra", ru "туров", ar "رحلة").
+
+## Result
+Counts render dynamically (13 / 10 / 6 for cultural/snorkel/safari on the current data; sum 29 = all tours). `npx tsc --noEmit` passes; `npm run build` exits 0; dev server serves `/de/touren` with all 3 new cards + pills present.

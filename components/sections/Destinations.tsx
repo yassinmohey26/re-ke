@@ -36,7 +36,7 @@ export default function Destinations({ destinations }: { destinations: Destinati
             destinations.map((dest, i) => (
               <Link
                 key={dest.slug}
-                href={`/destinationen/${dest.slug}`}
+                href={`/touren?destination=${dest.slug}`}
                 className={[styles.card, styles[`pos${i}`]].join(' ')}
                 aria-label={dest.name}
               >

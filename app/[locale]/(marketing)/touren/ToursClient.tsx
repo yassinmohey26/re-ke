@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { Tour } from '@/lib/data/tours';
 import Image from 'next/image';
+import { Pyramid, Waves, Compass, ArrowRight } from 'lucide-react';
 import cloudinaryLoader from '@/lib/cloudinaryLoader';
 import styles from './ToursClient.module.css';
 
@@ -73,6 +74,7 @@ interface Props {
     categorySnorkelDesc: string;
     categorySafariDesc: string;
     viewTours: string;
+    toursWord: string;
   };
 }
 
@@ -128,7 +130,7 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   const [draftPriceMin, setDraftPriceMin] = useState(paramsPriceMin);
   const [draftPriceMax, setDraftPriceMax] = useState(paramsPriceMax);
 
-  const [appliedDestination, setAppliedDestination] = useState('');
+  const [appliedDestination, setAppliedDestination] = useState(paramsDest);
   const [appliedSearch, setAppliedSearch] = useState('');
   const [appliedTypes, setAppliedTypes] = useState<Set<string>>(() => new Set(paramsTypes));
   const [appliedDurations, setAppliedDurations] = useState<Set<string>>(new Set());
@@ -339,6 +341,47 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const paged = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
+  const categoryCounts = useMemo(() => {
+    const countFor = (key: string): number => {
+      const cats = TYPE_MAP[key];
+      if (!cats) return 0;
+      const allowed = new Set(cats);
+      return tours.reduce((n, tour) => n + (allowed.has(tour.category) ? 1 : 0), 0);
+    };
+    return {
+      cultural: countFor('cultural'),
+      snorkel: countFor('snorkel'),
+      safari: countFor('safari'),
+    };
+  }, [tours]);
+
+  const categoryCards = [
+    {
+      key: 'cultural',
+      image: 'https://res.cloudinary.com/sx85slkf/image/upload/v1784360310/hurghada-reiseplaner/tours/vqqsp7ra8teoydmm6yfn.jpg',
+      title: t.typeCultural,
+      desc: t.categoryCulturalDesc,
+      count: categoryCounts.cultural,
+      Icon: Pyramid,
+    },
+    {
+      key: 'snorkel',
+      image: 'https://res.cloudinary.com/sx85slkf/image/upload/v1784552895/hurghada-reiseplaner/tours/ittvyyrxy2bdegnpu7x7.jpg',
+      title: t.typeSnorkel,
+      desc: t.categorySnorkelDesc,
+      count: categoryCounts.snorkel,
+      Icon: Waves,
+    },
+    {
+      key: 'safari',
+      image: 'https://res.cloudinary.com/sx85slkf/image/upload/v1784566865/hurghada-reiseplaner/tours/ppnoc8ywf1n43zu4ophl.jpg',
+      title: t.typeSafari,
+      desc: t.categorySafariDesc,
+      count: categoryCounts.safari,
+      Icon: Compass,
+    },
+  ];
+
   return (
     <div className={styles.wrapper}>
       {/* Hero */}
@@ -457,63 +500,38 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
       {/* Category Cards */}
       <div className={styles.categories}>
         <div className={styles.categoriesInner}>
-          <button
-            className={styles.categoryCard}
-            onClick={() => { toggleDraftType('cultural'); handleSearch(); }}
-          >
-            <Image
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784360310/hurghada-reiseplaner/tours/vqqsp7ra8teoydmm6yfn.jpg"
-              alt={t.typeCultural}
-              className={styles.categoryImg}
-              fill
-              sizes="(max-width: 900px) 100vw, 33vw"
-              loader={cloudinaryLoader}
-            />
-            <div className={styles.categoryOverlay} />
-            <div className={styles.categoryContent}>
-              <h3 className={styles.categoryTitle}>{t.typeCultural}</h3>
-              <p className={styles.categoryDesc}>{t.categoryCulturalDesc}</p>
-              <span className={styles.categoryBtn}>{t.viewTours}</span>
-            </div>
-          </button>
-          <button
-            className={styles.categoryCard}
-            onClick={() => { toggleDraftType('snorkel'); handleSearch(); }}
-          >
-            <Image
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784552895/hurghada-reiseplaner/tours/ittvyyrxy2bdegnpu7x7.jpg"
-              alt={t.typeSnorkel}
-              className={styles.categoryImg}
-              fill
-              sizes="(max-width: 900px) 100vw, 33vw"
-              loader={cloudinaryLoader}
-            />
-            <div className={styles.categoryOverlay} />
-            <div className={styles.categoryContent}>
-              <h3 className={styles.categoryTitle}>{t.typeSnorkel}</h3>
-              <p className={styles.categoryDesc}>{t.categorySnorkelDesc}</p>
-              <span className={styles.categoryBtn}>{t.viewTours}</span>
-            </div>
-          </button>
-          <button
-            className={styles.categoryCard}
-            onClick={() => { toggleDraftType('safari'); handleSearch(); }}
-          >
-            <Image
-              src="https://res.cloudinary.com/sx85slkf/image/upload/v1784566865/hurghada-reiseplaner/tours/ppnoc8ywf1n43zu4ophl.jpg"
-              alt={t.typeSafari}
-              className={styles.categoryImg}
-              fill
-              sizes="(max-width: 900px) 100vw, 33vw"
-              loader={cloudinaryLoader}
-            />
-            <div className={styles.categoryOverlay} />
-            <div className={styles.categoryContent}>
-              <h3 className={styles.categoryTitle}>{t.typeSafari}</h3>
-              <p className={styles.categoryDesc}>{t.categorySafariDesc}</p>
-              <span className={styles.categoryBtn}>{t.viewTours}</span>
-            </div>
-          </button>
+          {categoryCards.map(card => (
+            <button
+              key={card.key}
+              className={styles.categoryCard}
+              onClick={() => { toggleDraftType(card.key); handleSearch(); }}
+              aria-label={card.title}
+            >
+              <Image
+                src={card.image}
+                alt={card.title}
+                className={styles.categoryImg}
+                fill
+                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                loader={cloudinaryLoader}
+              />
+              <div className={styles.categoryOverlay} />
+              <div className={styles.categoryIconWrap}>
+                <card.Icon className={styles.categoryIcon} size={18} strokeWidth={2.4} />
+              </div>
+              <div className={styles.categoryContent}>
+                <h3 className={styles.categoryTitle}>{card.title}</h3>
+                <p className={styles.categoryDesc}>{card.desc}</p>
+                <div className={styles.categoryFooter}>
+                  <span className={styles.categoryBtn}>
+                    <span>{t.viewTours}</span>
+                    <ArrowRight className={styles.categoryBtnArrow} size={15} strokeWidth={2.2} />
+                  </span>
+                  <span className={styles.categoryCount}>{card.count} {t.toursWord}</span>
+                </div>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
