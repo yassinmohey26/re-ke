@@ -160,6 +160,8 @@ export interface Destination {
   tagline: string;
   description: string;
   image: string;
+  featured: boolean;
+  display_order: number | null;
 }
 
 export interface TourCategory {
@@ -392,6 +394,8 @@ function mergeDestinationTranslation(row: any, trRaw: any): Destination {
     tagline: parseStr(tr?.tagline, row.tagline ?? ''),
     description: parseStr(tr?.description, row.description ?? ''),
     image: row.image ?? '',
+    featured: row.featured ?? false,
+    display_order: row.display_order ?? null,
   };
 }
 

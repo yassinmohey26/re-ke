@@ -80,3 +80,51 @@ Word-level replacements couldn't fully clean itineraries, so flagged tours got *
 | RU | 21 | 0 flagged (29 clean) |
 
 **Total: 66 itinerary rewrites applied; 0 German words remain.** `des`/`Tour` (native FR) and `mit` (native HU) are known false positives, excluded per-locale in the audit.
+
+# Session — Aug 11 2026: Homepage Featured Destinations (superseded)
+
+## Current truth (updated Aug 11 2026)
+- **Homepage displays ALL destinations** returned by `getDestinations(locale)` — there is **no 5-destination homepage cap** and no featured filter.
+- **`featured` / `display_order` are no longer used** by the destination dashboard or homepage visibility. The dashboard form has no star toggle / position / homepage-column controls (those keys were removed from `app/ZAIMOZ/admin-i18n.ts` too).
+- **The database columns may remain** because migration `supabase/migrations/009_destinations_featured.sql` has already been applied — they are inert for dashboard/homepage purposes.
+- Destination CRUD mutations **still trigger revalidation** via `revalidateDestinationPages()`.
+
+## Data model
+- `destinations.featured` (boolean) + `destinations.display_order` (int, nullable) exist from migration `009`. Not used by the dashboard or homepage anymore; kept only because the migration is already applied.
+- Migration seeds the original 5 homepage destinations as featured with positions 1-5 and adds `idx_destinations_featured_display_order`.
+
+## Files
+- `supabase/migrations/009_destinations_featured.sql` — ALTER TABLE + index + seed (applied; columns now inert)
+- `lib/data/tours.ts` — `Destination` interface carries `featured`/`display_order` (mapped in `mergeDestinationTranslation`); `getDestinations()` returns all rows ordered `created_at` ASC
+- `app/[locale]/(marketing)/page.tsx` — homepage renders ALL destinations, no featured filter or cap
+- `components/sections/Destinations.tsx` + `Destinations.module.css` — renders all cards (`grid-auto-rows` lets extra cards flow)
+- `app/api/admin/destinations/route.ts` + `[id]/route.ts` — POST/PUT/DELETE CRUD; all mutations call `revalidateDestinationPages()`
+- `app/api/admin/destinations/revalidate.ts` — `revalidatePath('/[locale]')`, `/destinationen`, and `/destinationen/[slug]` for all 6 locales
+- `app/ZAIMOZ/destinations/page.tsx` + `page.module.css` — plain create/edit form (name, slug, tagline, description, image), no featured controls
+
+## i18n
+Admin UI strings live in `app/ZAIMOZ/admin-i18n.ts` (per-admin, not in `messages/*.json`). Homepage section strings are in `messages/*.json` under `homeDest`.
+
+# Session — Aug 11 2026: Fix Destination CREATE not-null `name` regression
+
+## Bug
+POST `/api/admin/destinations` failed with `null value in column "name" of relation "destinations" violates not-null constraint` even when the dashboard form contained a valid name (e.g. "sohag").
+
+## Root cause
+The committed POST handler inserted only `slug` + `image`, omitting `name` (and `tagline`/`description`).
+
+## Fix (working copy, uncommitted)
+- `app/api/admin/destinations/route.ts` POST now:
+  - validates `name` → HTTP 400 `"Destination name is required"` when missing/blank
+  - inserts `name` explicitly (plus `tagline`/`description`)
+  - defaults `featured` to false and `display_order` to null (not part of the dashboard form)
+  - calls `revalidateDestinationPages()`
+- `app/ZAIMOZ/destinations/page.tsx` sends `{ name, slug, tagline, description, image }`.
+
+## Constraints honored
+- `destinations.name` NOT NULL is untouched; no schema change; no new migration.
+- Homepage behavior unchanged (renders all destinations); featured/position NOT reintroduced as homepage controls.
+
+## Verification status
+- `npx tsc --noEmit` passes; `npm run build` exits 0.
+- Live POST test skipped by decision (no admin credentials used, no temp auth user created). User verifies create/edit from the dashboard.

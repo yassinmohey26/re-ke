@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1052,
+    "locale": "en",
+    "itinerary": [
+      {
+        "title": "1. Hotel Pick-Up",
+        "content": "Comfortable transfer from your hotel to the safari station in Hurghada."
+      },
+      {
+        "title": "2. Safety Briefing & Preparation",
+        "content": "Before the start, you will receive a safety briefing and important information on how to handle the vehicles."
+      },
+      {
+        "title": "3. Quad Ride through the Desert",
+        "content": "Experience around 30 to 40 minutes of riding fun on the quad through the impressive desert landscape around Hurghada."
+      },
+      {
+        "title": "4. Spider Car Ride",
+        "content": "Afterwards, a 10 to 15 minute Spider Car ride awaits you — the second driving experience of the safari."
+      },
+      {
+        "title": "5. Dinner",
+        "content": "After the driving activities, enjoy a shared dinner and recover from your desert adventure."
+      },
+      {
+        "title": "6. Entertaining Show",
+        "content": "Look forward to a show that provides an entertaining finale to your Family Safari."
+      },
+      {
+        "title": "7. Return Transfer to the Hotel",
+        "content": "After the program, you will be comfortably taken back to your hotel."
+      }
+    ]
+  },
+  {
+    "id": 1056,
+    "locale": "ar",
+    "itinerary": [
+      {
+        "title": "1. الاستقبال من الفندق",
+        "content": "نقل مريح من فندقك إلى محطة السفاري في الغردقة."
+      },
+      {
+        "title": "2. الإرشاد والتحضير",
+        "content": "قبل الانطلاق ستتلقى إرشادات السلامة ومعلومات مهمة حول التعامل مع المركبات."
+      },
+      {
+        "title": "3. جولة رباعية عبر الصحراء",
+        "content": "استمتع بنحو 30 إلى 40 دقيقة من متعة القيادة بالدراجة الرباعية عبر المناظر الصحراوية الرائعة حول الغردقة."
+      },
+      {
+        "title": "4. جولة سيارة سبايدر",
+        "content": "بعد ذلك تنتظرك جولة بسيارة سبايدر لمدة تتراوح بين 10 و15 دقيقة، لتكون بذلك تجربة القيادة الثانية في السفاري."
+      },
+      {
+        "title": "5. العشاء",
+        "content": "بعد أنشطة القيادة استمتع بعشاء جماعي واسترخِ بعد مغامرتك في الصحراء."
+      },
+      {
+        "title": "6. عرض ترفيهي",
+        "content": "استمتع بعرض يضمن لك ختاماً ترفيهياً ممتعاً لسفاري العائلة."
+      },
+      {
+        "title": "7. العودة إلى الفندق",
+        "content": "بعد انتهاء البرنامج يتم نقلك براحة تامة إلى فندقك."
+      }
+    ]
+  }
+]

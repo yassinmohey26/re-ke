@@ -38,6 +38,7 @@ export default function AdminDestinationsPage() {
   const [saving, setSaving] = useState(false);
   const [autoSlug, setAutoSlug] = useState(true);
   const [duplicateId, setDuplicateId] = useState<string | null>(null);
+  const [formError, setFormError] = useState('');
 
   useEffect(() => { fetchDestinations(); }, []);
 
@@ -58,6 +59,7 @@ export default function AdminDestinationsPage() {
     setEditingId(null);
     setForm(EMPTY_FORM);
     setAutoSlug(true);
+    setFormError('');
     setShowForm(true);
   }
 
@@ -71,6 +73,7 @@ export default function AdminDestinationsPage() {
       image: dest.image || '',
     });
     setAutoSlug(false);
+    setFormError('');
     setShowForm(true);
   }
 
@@ -78,6 +81,7 @@ export default function AdminDestinationsPage() {
     setShowForm(false);
     setEditingId(null);
     setForm(EMPTY_FORM);
+    setFormError('');
   }
 
   function handleNameChange(name: string) {
@@ -91,6 +95,7 @@ export default function AdminDestinationsPage() {
   async function handleSave() {
     if (!form.name.trim()) return;
     setSaving(true);
+    setFormError('');
 
     const payload = {
       name: form.name,
@@ -101,31 +106,31 @@ export default function AdminDestinationsPage() {
     };
 
     try {
-      if (editingId !== null) {
-        const res = await fetch(`/api/admin/destinations/${editingId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (res.ok) {
-          await fetchDestinations();
-        }
+      const res = editingId !== null
+        ? await fetch(`/api/admin/destinations/${editingId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          })
+        : await fetch('/api/admin/destinations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+      if (res.ok) {
+        await fetchDestinations();
+        cancelForm();
       } else {
-        const res = await fetch('/api/admin/destinations', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (res.ok) {
-          await fetchDestinations();
-        }
+        const err = await res.json().catch(() => ({ error: `Save failed (HTTP ${res.status})` }));
+        setFormError(err.error || `Save failed (HTTP ${res.status})`);
       }
     } catch (e) {
       console.error('Failed to save destination:', e);
+      setFormError('Failed to save destination');
     }
 
     setSaving(false);
-    cancelForm();
   }
 
   async function handleDelete(id: string) {
@@ -218,6 +223,7 @@ export default function AdminDestinationsPage() {
                 label={t('destImageUrl')}
               />
             </div>
+            {formError && <p className={styles.formError}>{formError}</p>}
           </div>
           <div className={styles.formActions}>
             <button className={styles.saveBtn} onClick={handleSave} disabled={saving}>

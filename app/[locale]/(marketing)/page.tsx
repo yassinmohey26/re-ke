@@ -90,16 +90,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     ? featuredPosts.slice(0, 3)
     : allPosts.slice(0, 3);
 
-  const bySlug = new Map(destinations.map(d => [d.slug, d]));
-  const slugs = ['hurghada', 'el-gouna', 'safaga', 'makadi-bay', 'soma-bay'];
-  const destinationCards = slugs.map((slug) => {
-    const d = bySlug.get(slug);
-    return {
-      slug: d?.slug ?? slug,
-      name: d?.name ?? slug,
-      image: d?.image ?? '',
-    };
-  });
+  // Homepage renders ALL destinations in their existing database ordering
+  // (getDestinations applies `created_at` ASC). No featured filter, no cap.
+  const destinationCards = destinations.map((d) => ({
+    slug: d.slug,
+    name: d.name,
+    image: d.image,
+  }));
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   const tMeta = await getTranslations({ locale, namespace: 'metadata' });

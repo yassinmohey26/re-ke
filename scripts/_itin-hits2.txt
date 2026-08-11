@@ -1,0 +1,105 @@
+﻿C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\duplicate\route.ts:77: itinerary: deTranslation.itinerary,
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:5: interface ItineraryItem {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:10: function sanitizeItinerary(value: unknown): ItineraryItem[] {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:36: const { data, error } = await supabase.from('tours').select('itinerary').eq('id', id).single();
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:38: return NextResponse.json({ itinerary: Array.isArray(data.itinerary) ? data.itinerary : [] });
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:53: const itinerary = sanitizeItinerary(body.itinerary);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:55: // Only the itinerary column is written (plus updated_at, same as the general save).
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:58: .update({ itinerary, updated_at: new Date().toISOString() })
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:62: console.error('Itinerary update error:', error);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:65: return NextResponse.json({ itinerary });
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:67: console.error('Itinerary update catch:', e);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\itinerary\route.ts:68: return NextResponse.json({ error: 'Failed to update itinerary' }, { status: 500 });
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\route.ts:6: function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\[id]\route.ts:137: if (body.itinerary !== undefined) tourRow.itinerary = sanitizeItinerary(body.itinerary);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:7: function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:135: if (body.itinerary !== undefined) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:136: const itinerary = sanitizeItinerary(body.itinerary);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:137: const { data: updatedTour, error: itineraryError } = await supabase
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:139: .update({ itinerary, updated_at: new Date().toISOString() })
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:144: if (itineraryError) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\api\admin\tours\route.ts:145: console.error('Tour itinerary update error:', itineraryError);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\edit\[id]\page.tsx:80: <span>Tour created successfully! You can now add the itinerary below.</span>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:5: interface ItineraryItem {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:10: interface ItineraryManagerProps {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:28: export default function ItineraryManager({ tourId, styles }: ItineraryManagerProps) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:29: const [items, setItems] = useState<ItineraryItem[]>([]);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:32: const [form, setForm] = useState<ItineraryItem>(emptyItem);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:42: const res = await fetch(`/api/admin/tours/${tourId}/itinerary`);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:45: setItems(Array.isArray(data.itinerary) ? data.itinerary : []);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:78: if (!confirm('Delete this itinerary item?')) return;
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:100: const res = await fetch(`/api/admin/tours/${tourId}/itinerary`, {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:103: body: JSON.stringify({ itinerary: items }),
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:107: throw new Error(err.error || 'Failed to save itinerary');
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:111: alert('German itinerary saved.');
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:113: alert(e instanceof Error ? e.message : 'Error saving itinerary');
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:123: German itinerary is the single source of truth. Saved directly to the tours table.
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:127: <p>Loading itinerary...</p>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:156: <tr><td colSpan={4} style={{ padding: '8px', opacity: 0.7 }}>No itinerary items yet.</td></tr>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\ItineraryManager.tsx:185: {saving ? 'Saving...' : 'Save German itinerary'}
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:9: import ItineraryManager from './ItineraryManager';
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:37: const EMPTY_ITINERARY_ITEM = { title: '', content: '' };
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:127: const [itinerary, setItinerary] = useState<{ title: string; content: string }[]>(
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:128: () => (Array.isArray(initialData?.itinerary) ? initialData.itinerary : []),
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:130: const [itineraryEditingIndex, setItineraryEditingIndex] = useState<number | 'new' | null>(null);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:131: const [itineraryForm, setItineraryForm] = useState(EMPTY_ITINERARY_ITEM);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:169: function startItineraryAdd() {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:170: setItineraryForm(EMPTY_ITINERARY_ITEM);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:171: setItineraryEditingIndex('new');
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:174: function startItineraryEdit(index: number) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:175: setItineraryForm({ ...itinerary[index] });
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:176: setItineraryEditingIndex(index);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:179: function cancelItineraryEdit() {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:180: setItineraryEditingIndex(null);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:181: setItineraryForm(EMPTY_ITINERARY_ITEM);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:184: function moveItineraryItem(index: number, direction: -1 | 1) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:186: if (index < 0 || target < 0 || target >= itinerary.length) return;
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:187: setItinerary(prev => {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:194: function removeItineraryItem(index: number) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:195: if (!confirm('Delete this itinerary item?')) return;
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:196: setItinerary(prev => prev.filter((_, i) => i !== index));
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:197: if (itineraryEditingIndex === index) cancelItineraryEdit();
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:200: function commitItineraryEdit() {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:201: if (!itineraryForm.title.trim() && !itineraryForm.content.trim()) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:202: cancelItineraryEdit();
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:205: const item = { title: itineraryForm.title.trim(), content: itineraryForm.content.trim() };
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:206: if (itineraryEditingIndex === 'new') {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:207: setItinerary(prev => [...prev, item]);
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:208: } else if (itineraryEditingIndex !== null) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:209: setItinerary(prev => prev.map((it, i) => (i === itineraryEditingIndex ? item : it)));
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:211: cancelItineraryEdit();
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:252: itinerary,
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:500: German itinerary is the single source of truth. Saved with the tour when you create it.
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:513: {itinerary.map((item, index) => (
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:517: <button type="button" onClick={() => moveItineraryItem(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:518: <button type="button" onClick={() => moveItineraryItem(index, 1)} disabled={index === itinerary.length - 1} style={reorderBtnStyle}>▼</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:524: <button type="button" onClick={() => startItineraryEdit(index)} className={styles.slugBtn}>Edit</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:525: <button type="button" onClick={() => removeItineraryItem(index)} className={styles.cancelBtn}>Delete</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:529: {itinerary.length === 0 && (
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:530: <tr><td colSpan={4} style={{ padding: '8px', opacity: 0.7 }}>No itinerary items yet.</td></tr>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:535: {itineraryEditingIndex !== null ? (
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:539: <input className={styles.input} value={itineraryForm.title} onChange={e => setItineraryForm(f => ({ ...f, title: e.target.value }))} />
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:543: <textarea className={styles.textarea} rows={3} value={itineraryForm.content} onChange={e => setItineraryForm(f => ({ ...f, content: e.target.value }))} />
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:546: <button type="button" onClick={commitItineraryEdit} className={styles.saveBtn}>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:547: {itineraryEditingIndex === 'new' ? 'Add item' : 'Update item'}
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:549: <button type="button" onClick={cancelItineraryEdit} className={styles.cancelBtn}>Cancel</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:553: <button type="button" onClick={startItineraryAdd} className={styles.slugBtn}>+ Add item</button>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:557: {itinerary.length} item(s)
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\ZAIMOZ\tours\TourForm.tsx:561: <ItineraryManager tourId={initialData.id} styles={styles} />
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:98: itinerary: {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:234: {/* Itinerary */}
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:235: {tour.itinerary.length > 0 && (
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:237: <h2 className={styles.sectionTitle}>{t('tourItinerary')}</h2>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:238: <div className={styles.itinerary}>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:239: {tour.itinerary.map((step, i) => {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:240: const prevDay = i > 0 ? tour.itinerary[i - 1].day : undefined;
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:245: <h3 className={styles.itineraryDayHeader}>{step.day}</h3>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:247: <div className={styles.itineraryStep}>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:248: <div className={styles.itineraryNumber}>{i + 1}</div>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:250: <h3 className={styles.itineraryTitle}>{step.title}</h3>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\app\[locale]\(marketing)\touren\[slug]\page.tsx:251: <p className={styles.itineraryContent}>{step.content}</p>
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\components\tours\CollapsibleItinerary.tsx:5: import styles from './CollapsibleItinerary.module.css';
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\components\tours\CollapsibleItinerary.tsx:11: export default function CollapsibleItinerary({ steps }: { steps: Step[] }) {
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\lib\data\tours.ts:146: itinerary: { day?: string; title: string; content: string }[];
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\lib\data\tours.ts:376: itinerary: parseItin(tr?.itinerary ?? tr?.content, row.itinerary ?? []),
+C:\Users\YASSIN MOHEY\Downloads\nextjs-app\lib\data-store.ts:57: itinerary: { title: string; content: string }[];

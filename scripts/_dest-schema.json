@@ -1,0 +1,114 @@
+{
+ "columns": [
+  "id",
+  "slug",
+  "name",
+  "tagline",
+  "description",
+  "image",
+  "created_at",
+  "locale"
+ ],
+ "rows": [
+  {
+   "id": "08309a02-95d1-46e7-86c4-e385b7ebebce",
+   "slug": "el-gouna",
+   "name": "El Gouna",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1784360283/hurghada-reiseplaner/destinations/qonfdkztudo8djc6mjqz.png",
+   "created_at": "2026-07-17T13:26:46.424773+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "a2b18fe9-0bd0-42a1-90d2-32151f220c3c",
+   "slug": "hurghada",
+   "name": "Hurghada",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1784360282/hurghada-reiseplaner/destinations/z4iewtoqrvccfrqqwyjo.png",
+   "created_at": "2026-07-17T13:26:46.424773+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "a74479e6-f15f-4053-85f5-d910217cd4e5",
+   "slug": "makadi-bay",
+   "name": "Makadi Bay",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1784360284/hurghada-reiseplaner/destinations/f0us6okpfoyo6eiombnd.png",
+   "created_at": "2026-07-17T13:26:46.424773+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "97593e2f-2e87-4f78-855a-c1f8f52cd83c",
+   "slug": "soma-bay",
+   "name": "Soma Bay",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1784360286/hurghada-reiseplaner/destinations/aa5twzyhxotqfbdkjsyv.png",
+   "created_at": "2026-07-17T13:26:46.424773+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "c39caf1a-a278-4aaa-9735-a255c7a77a6d",
+   "slug": "safaga",
+   "name": "Safaga",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1786440145/hurghada-reiseplaner/destinations/kgkcyrbtpo6rllzunruv.jpg",
+   "created_at": "2026-07-17T13:26:46.424773+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "b8125c80-2ed7-4749-ab30-b77a6b186a2b",
+   "slug": "sahl-hasheesh",
+   "name": "Sahl Hasheesh",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1784360286/hurghada-reiseplaner/destinations/kqrvbdti1tqqegs7t3ue.png",
+   "created_at": "2026-07-18T07:41:57.366969+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "e8f6cfb1-c9ce-4adb-b3c2-4c381cd808a8",
+   "slug": "el-quseir",
+   "name": "El Quseir",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1786440657/hurghada-reiseplaner/destinations/tc7l9k4hjhrwvqg9voya.jpg",
+   "created_at": "2026-07-18T07:41:58.559604+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "fa58e909-0571-455a-99fb-abb4033443fd",
+   "slug": "marsa-alam",
+   "name": "Marsa Alam",
+   "tagline": "",
+   "description": "",
+   "image": "https://res.cloudinary.com/sx85slkf/image/upload/v1786440849/hurghada-reiseplaner/destinations/qlhioay2cletui5typ8n.jpg",
+   "created_at": "2026-07-18T07:41:58.852534+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "0cb58b8e-0abe-44b9-9469-3233654967b2",
+   "slug": "luxor",
+   "name": "Luxor",
+   "tagline": "",
+   "description": "Dasuseum der antiken Stadt Theben mit seinen Weltkulturerbe-Stätten.",
+   "image": "",
+   "created_at": "2026-07-20T17:09:40.800009+00:00",
+   "locale": "de"
+  },
+  {
+   "id": "5233806c-dc22-4dc1-8aa8-5d90e819ef2c",
+   "slug": "kairo",
+   "name": "Kairo",
+   "tagline": "",
+   "description": "Die Hauptstadt Ägyptens mit den Pyramiden von Gizeh und dem Ägyptischen Museum.",
+   "image": "",
+   "created_at": "2026-07-20T17:09:40.800009+00:00",
+   "locale": "de"
+  }
+ ]
+}

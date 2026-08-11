@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1054,
+    "locale": "fr",
+    "name": "Safari familial du soir à Hurghada – Quad, dîner et spectacle",
+    "contentLen": 1033,
+    "contentIsItin": "1. Prise en charge à l'hôtel",
+    "itinSteps": null,
+    "itinFirst": null
+  },
+  {
+    "id": 1056,
+    "locale": "ar",
+    "name": "سفاري العائلة المسائية في الغردقة – كواد وعشاء وعرض",
+    "contentLen": null,
+    "contentIsItin": null,
+    "itinSteps": 7,
+    "itinFirst": "1. الاستقبال من الفندق"
+  },
+  {
+    "id": 1052,
+    "locale": "en",
+    "name": "Family Evening Safari Hurghada – Quad, Dinner & Show",
+    "contentLen": null,
+    "contentIsItin": null,
+    "itinSteps": 7,
+    "itinFirst": "1. Hotel Pick-Up"
+  },
+  {
+    "id": 1053,
+    "locale": "ru",
+    "name": "Вечернее семейное сафари в Хургаде – квадроцикл, ужин и шоу",
+    "contentLen": 993,
+    "contentIsItin": "1. Встреча в отеле",
+    "itinSteps": null,
+    "itinFirst": null
+  },
+  {
+    "id": 1055,
+    "locale": "hu",
+    "name": "Családi esti szafari Hurghadában – Quad, vacsora és műsor",
+    "contentLen": 897,
+    "contentIsItin": "1. Átvétel a szállodából",
+    "itinSteps": null,
+    "itinFirst": null
+  },
+  {
+    "id": 1046,
+    "locale": "de",
+    "name": "Family Abendsafari Hurghada – Quad, Abendessen & Show",
+    "contentLen": null,
+    "contentIsItin": null,
+    "itinSteps": null,
+    "itinFirst": null
+  }
+]

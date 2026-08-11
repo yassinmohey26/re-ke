@@ -203,6 +203,13 @@
   color: var(--color-accent);
 }
 
+.formError {
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+
 .actions {
   display: flex;
   gap: var(--space-2);

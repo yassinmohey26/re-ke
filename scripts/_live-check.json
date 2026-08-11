@@ -1,0 +1,14 @@
+{
+  "ar": {
+    "status": 200,
+    "hasArabicPickup": true,
+    "hasArabicDinner": true,
+    "hasGerman": false
+  },
+  "en": {
+    "status": 200,
+    "hasEnPickup": true,
+    "hasEnDinner": true,
+    "hasGerman": false
+  }
+}

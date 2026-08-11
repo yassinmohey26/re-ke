@@ -1,0 +1,32 @@
+{
+  "de": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": true
+  },
+  "en": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": false
+  },
+  "ar": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": false
+  },
+  "ru": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": false
+  },
+  "fr": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": false
+  },
+  "hu": {
+    "status": 200,
+    "hasNative": true,
+    "hasGerman": false
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "familyTours": [
+    {
+      "id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "slug": "family-safari-hurghada",
+      "name": "Family Wüstensafari Hurghada – Quad, Jeep & Beduinendorf",
+      "itinerary": [
+        {
+          "title": "1. Abholung vom Hotel",
+          "content": "Bequemer Transfer von Ihrem Hotel zur Safari-Station in Hurghada."
+        },
+        {
+          "title": "2. Einweisung & Vorbereitung",
+          "content": "Vor dem Start erhalten Sie eine Sicherheitseinweisung und wichtige Informationen zum Umgang mit den Fahrzeugen."
+        },
+        {
+          "title": "3. Quadfahrt durch die Wüste",
+          "content": "Starten Sie mit einer aufregenden Quadfahrt von ca. 30 bis 40 Minuten durch die beeindruckende Wüstenlandschaft."
+        },
+        {
+          "title": "4. Spider-Car-Fahrt",
+          "content": "Anschließend erleben Sie etwa 10 bis 15 Minuten Fahrspaß mit dem Spider Car."
+        },
+        {
+          "title": "5. Jeep-Safari zum Beduinendorf",
+          "content": "Mit dem Jeep geht es rund 25 Kilometer durch die Wüste bis zu einem Beduinendorf. Unterwegs genießen Sie die faszinierende Landschaft fernab der Hotelanlagen."
+        },
+        {
+          "title": "6. Besuch des Beduinendorfes",
+          "content": "Entdecken Sie das Leben in der Wüste und erhalten Sie interessante Einblicke in die traditionelle Lebensweise der Beduinen."
+        },
+        {
+          "title": "7. Kamelritt & Beduinentee",
+          "content": "Unternehmen Sie einen kurzen Kamelritt und genießen Sie anschließend einen traditionellen Beduinentee. Eine Flasche Wasser ist ebenfalls inklusive."
+        },
+        {
+          "title": "8. Traditionelle Beduinen-Apotheke",
+          "content": "Besuchen Sie die traditionelle Beduinen-Apotheke und erfahren Sie mehr über Kräuter und Naturprodukte der Beduinen."
+        },
+        {
+          "title": "9. Jeep-Safari zurück & Hoteltransfer",
+          "content": "Anschließend fahren Sie rund 25 Kilometer mit dem Jeep zurück. Danach erfolgt der bequeme Rücktransfer zu Ihrem Hotel."
+        }
+      ]
+    },
+    {
+      "id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "slug": "family-abendsafari-hurghada",
+      "name": "Family Abendsafari Hurghada – Quad, Abendessen & Show",
+      "itinerary": [
+        {
+          "title": "1. Abholung vom Hotel",
+          "content": "Bequemer Transfer von Ihrem Hotel zur Safari-Station in Hurghada."
+        },
+        {
+          "title": "2. Einweisung & Vorbereitung",
+          "content": "Vor Beginn erhalten Sie eine Sicherheitseinweisung und wichtige Informationen zum Umgang mit den Fahrzeugen."
+        },
+        {
+          "title": "3. Quadfahrt durch die Wüste",
+          "content": "Erleben Sie etwa 30 bis 40 Minuten Fahrspaß mit dem Quad durch die beeindruckende Wüstenlandschaft rund um Hurghada."
+        },
+        {
+          "title": "4. Spider-Car-Fahrt",
+          "content": "Anschließend erwartet Sie eine 10 bis 15 Minuten lange Spider-Car-Fahrt und damit das zweite Fahrerlebnis der Safari."
+        },
+        {
+          "title": "5. Abendessen",
+          "content": "Nach den Fahraktivitäten genießen Sie ein gemeinsames Abendessen und können sich von Ihrem Wüstenabenteuer erholen."
+        },
+        {
+          "title": "6. Unterhaltsame Show",
+          "content": "Freuen Sie sich auf eine Show, die für einen unterhaltsamen Abschluss Ihrer Family Safari sorgt."
+        },
+        {
+          "title": "7. Rücktransfer zum Hotel",
+          "content": "Nach dem Programm werden Sie bequem zurück zu Ihrem Hotel gebracht."
+        }
+      ]
+    }
+  ],
+  "tr_family-safari-hurghada": [
+    {
+      "id": 1039,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "de",
+      "table_name": "tours",
+      "name": "Family Wüstensafari Hurghada – Quad, Jeep & Beduinendorf",
+      "content": null,
+      "itinerary": null
+    },
+    {
+      "id": 1048,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "ru",
+      "table_name": "tours",
+      "name": "Семейное сафари в Хургаде – квадроцикл, джип и бедуинская деревня",
+      "content": null,
+      "itinerary": [
+        {
+          "title": "1. Трансфер из отеля",
+          "content": "Комфортный трансфер из вашего отеля до сафари-станции в Хургаде."
+        },
+        {
+          "title": "2. Инструктаж и подготовка",
+          "content": "Перед началом вы получите инструктаж по безопасности и важную информацию об обращении с транспортными средствами."
+        },
+        {
+          "title": "3. Квадроциклетная поездка по пустыне",
+          "content": "Начните с захватывающей поездки на квадроцикле продолжительностью около 30–40 минут по впечатляющей пустынной местности."
+        },
+        {
+          "title": "4. Поездка на Spider Car",
+          "content": "Затем насладитесь около 10–15 минутами увлекательного драйва на Spider Car."
+        },
+        {
+          "title": "5. Джип-сафари к бедуинской деревне",
+          "content": "На джипе около 25 километров через пустыню до бедуинской деревни. По дороге любуйтесь захватывающими пейзажами вдали от отелей."
+        },
+        {
+          "title": "6. Посещение бедуинской деревни",
+          "content": "Откройте для себя жизнь в пустыне и получите увлекательные впечатления о традиционном укладе жизни бедуинов."
+        },
+        {
+          "title": "7. Верблюжья прогулка и бедуинский чай",
+          "content": "Совершите небольшую прогулку на верблюде, а затем насладитесь традиционным бедуинским чаем. Бутылка воды также включена."
+        },
+        {
+          "title": "8. Традиционная бедуинская аптека",
+          "content": "Посетите традиционную бедуинскую аптеку и узнайте больше о травах и натуральных продуктах бедуинской культуры."
+        },
+        {
+          "title": "9. Джип-сафари обратно и трансфер в отель",
+          "content": "Около 25 километров обратного пути на джипе, после чего вас комфортно доставят в ваш отель."
+        }
+      ]
+    },
+    {
+      "id": 1050,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "fr",
+      "table_name": "tours",
+      "name": "Safari familial à Hurghada – Quad, Jeep et village bédouin",
+      "content": null,
+      "itinerary": [
+        {
+          "title": "1. Prise en charge à l'hôtel",
+          "content": "Transfert confortable depuis votre hôtel jusqu'à la station safari de Hurghada."
+        },
+        {
+          "title": "2. Briefing sécurité & préparation",
+          "content": "Avant le départ, vous recevrez un briefing sécurité et des informations importantes sur l'utilisation des véhicules."
+        },
+        {
+          "title": "3. Balade en quad dans le désert",
+          "content": "Commencez par une excitante balade en quad d'environ 30 à 40 minutes à travers l'impressionnant paysage désertique."
+        },
+        {
+          "title": "4. Balade en Spider Car",
+          "content": "Profitez ensuite d'environ 10 à 15 minutes de sensations fortes avec la Spider Car."
+        },
+        {
+          "title": "5. Safari en jeep jusqu'au village bédouin",
+          "content": "Partez en jeep sur environ 25 kilomètres à travers le désert jusqu'à un village bédouin, en profitant du paysage fascinant loin des complexes hôteliers."
+        },
+        {
+          "title": "6. Visite du village bédouin",
+          "content": "Découvrez la vie dans le désert et obtenez des aperçus fascinants du mode de vie traditionnel des Bédouins."
+        },
+        {
+          "title": "7. Promenade à dos de chameau & thé bédouin",
+          "content": "Faites une courte promenade à dos de chameau puis savourez un thé bédouin traditionnel. Une bouteille d'eau est également incluse."
+        },
+        {
+          "title": "8. Pharmacie bédouine traditionnelle",
+          "content": "Visitez la pharmacie bédouine traditionnelle et découvrez les herbes et produits naturels utilisés dans la culture bédouine."
+        },
+        {
+          "title": "9. Retour en jeep & transfert hôtelier",
+          "content": "Retournez à bord d'un jeep sur environ 25 kilomètres, puis un transfert confortable vous ramènera à votre hôtel."
+        }
+      ]
+    },
+    {
+      "id": 1049,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "ar",
+      "table_name": "tours",
+      "name": "سفاري العائلة في الغردقة – كواد وجيب وقرية بدوية",
+      "content": null,
+      "itinerary": [
+        {
+          "title": "1. الاستقبال من الفندق",
+          "content": "نقل مريح من فندقك إلى محطة السفاري في الغردقة."
+        },
+        {
+          "title": "2. الإرشاد والتحضير",
+          "content": "قبل الانطلاق ستتلقى إرشادات السلامة ومعلومات مهمة حول التعامل مع المركبات."
+        },
+        {
+          "title": "3. جولة رباعية عبر الصحراء",
+          "content": "ابدأ بجولة رباعية مثيرة لمدة نحو 30 إلى 40 دقيقة عبر المشهد الصحراوي الرائع."
+        },
+        {
+          "title": "4. جولة عربة العنكبوت",
+          "content": "بعد ذلك استمتع بنحو 10 إلى 15 دقيقة من الإثارة مع عربة العنكبوت."
+        },
+        {
+          "title": "5. سفاري الجيب إلى القرية البدوية",
+          "content": "انطلق بالجيب نحو 25 كيلومتراً عبر الصحراء إلى قرية بدوية، مستمتعاً بالمناظر الخلابة بعيداً عن الفنادق."
+        },
+        {
+          "title": "6. زيارة القرية البدوية",
+          "content": "اكتشف الحياة في الصحراء واحصل على نظرة ثاقبة على أسلوب حياة البدو التقليدي."
+        },
+        {
+          "title": "7. ركوب الجمل والشاي البدوي",
+          "content": "استمتع بجولة قصيرة على ظهر جمل ثم تناول شاياً بدوياً تقليدياً. تشمل الجولة أيضاً زجاجة ماء."
+        },
+        {
+          "title": "8. الصيدلية البدوية التقليدية",
+          "content": "زر الصيدلية البدوية التقليدية وتعرف على الأعشاب والمنتجات الطبيعية المستخدمة في الثقافة البدوية."
+        },
+        {
+          "title": "9. العودة بالجيب والنقل إلى الفندق",
+          "content": "عودة بالجيب نحو 25 كيلومتراً ثم نقل مريح إلى فندقك."
+        }
+      ]
+    },
+    {
+      "id": 1047,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "en",
+      "table_name": "tours",
+      "name": "Family Desert Safari Hurghada – Quad, Jeep & Bedouin Village",
+      "content": null,
+      "itinerary": [
+        {
+          "title": "1. Hotel Pick-Up",
+          "content": "Comfortable transfer from your hotel to the safari station in Hurghada."
+        },
+        {
+          "title": "2. Safety Briefing & Preparation",
+          "content": "Before the start you will receive a safety briefing and important information on how to handle the vehicles."
+        },
+        {
+          "title": "3. Quad Ride through the Desert",
+          "content": "Kick off with an exciting quad ride of approx. 30 to 40 minutes through the impressive desert landscape."
+        },
+        {
+          "title": "4. Spider Car Ride",
+          "content": "Next, enjoy about 10 to 15 minutes of thrilling fun with the Spider Car."
+        },
+        {
+          "title": "5. Jeep Safari to the Bedouin Village",
+          "content": "Head out by jeep for around 25 kilometres through the desert to a Bedouin village, enjoying the fascinating scenery far from the hotel areas along the way."
+        },
+        {
+          "title": "6. Visit to the Bedouin Village",
+          "content": "Discover life in the desert and gain interesting insights into the traditional lifestyle of the Bedouin people."
+        },
+        {
+          "title": "7. Camel Ride & Bedouin Tea",
+          "content": "Enjoy a short camel ride followed by a traditional Bedouin tea. A bottle of water is also included."
+        },
+        {
+          "title": "8. Traditional Bedouin Pharmacy",
+          "content": "Visit the traditional Bedouin pharmacy and learn more about the herbs and natural products used in Bedouin culture."
+        },
+        {
+          "title": "9. Jeep Safari Back & Hotel Transfer",
+          "content": "Travel back approximately 25 kilometres by jeep before a comfortable transfer returns you to your hotel."
+        }
+      ]
+    },
+    {
+      "id": 1051,
+      "row_id": "14475177-96d0-4d67-b5ca-4b277f3d6a7e",
+      "locale": "hu",
+      "table_name": "tours",
+      "name": "Családi szafari Hurghadában – Quad, Jeep és beduin falu",
+      "content": null,
+      "itinerary": [
+        {
+          "title": "1. Felvétel a szállodából",
+          "content": "Kényelmes transzfer a szállodájából a hurghada-i szafariállomásra."
+        },
+        {
+          "title": "2. Biztonsági tájékoztató és felkészülés",
+          "content": "Az indulás előtt biztonsági tájékoztatót és fontos információkat kap a járművek kezeléséről."
+        },
+        {
+          "title": "3. Quad-túra a sivatagban",
+          "content": "Kezdje kb. 30–40 perces izgalmas quad-túrával a lenyűgöző sivatagi tájban."
+        },
+        {
+          "title": "4. Spider Car-utazás",
+          "content": "Ezután kb. 10–15 percig élvezheti a Spider Car nyújtotta izgalmas élményt."
+        },
+        {
+          "title": "5. Jeep-szafari a beduin faluba",
+          "content": "Jeeppel körülbelül 25 kilométert tesznek meg a sivatagon át egy beduin faluig, útközben a hotelektől messze eső lenyűgöző tájat csodálva."
+        },
+        {
+          "title": "6. Látogatás a beduin faluba",
+          "content": "Fedezze fel a sivatagi életet, és érdekes betekintést nyerjen a beduinok hagyományos életmódjába."
+        },
+        {
+          "title": "7. Tevélovaglás és beduin tea",
+          "content": "Tegyen egy rövid tevélovaglást, majd élvezze a hagyományos beduin teát. Egy üveg víz szintén beletartozik az árba."
+        },
+        {
+          "title": "8. Hagyományos beduin gyógyszertár",
+          "content": "Látogassa meg a hagyományos beduin gyógyszertárat, és ismerje meg a beduin kultúrában használt gyógynövényeket és természetes termékeket."
+        },
+        {
+          "title": "9. Visszaút jeeppel és szállodai transzfer",
+          "content": "Körülbelül 25 kilométeres visszaúton jeeppel, majd kényelmes transzferrel visszatér szállodájába."
+        }
+      ]
+    }
+  ],
+  "tr_family-abendsafari-hurghada": [
+    {
+      "id": 1054,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "fr",
+      "table_name": "tours",
+      "name": "Safari familial du soir à Hurghada – Quad, dîner et spectacle",
+      "content": "[{\"title\":\"1. Prise en charge à l'hôtel\",\"content\":\"Transfert confortable de votre hôtel jusqu'à la station safari de Hurghada.\"},{\"title\":\"2. Briefing et préparation\",\"content\":\"Avant le départ, vous recevez une consigne de sécurité et des informations importantes sur la conduite des véhicules.\"},{\"title\":\"3. Balade en quad dans le désert\",\"content\":\"Vivez environ 30 à 40 minutes de plaisir de conduite en quad à travers l'impressionnant paysage désertique autour de Hurghada.\"},{\"title\":\"4. Balade en Spider Car\",\"content\":\"Ensuite, une balade de 10 à 15 minutes en Spider Car vous attend, soit la deuxième expérience de conduite du safari.\"},{\"title\":\"5. Dîner\",\"content\":\"Après les activités de conduite, savourez un dîner commun et récupérez de votre aventure dans le désert.\"},{\"title\":\"6. Spectacle divertissant\",\"content\":\"Préparez-vous à un spectacle qui assure une fin divertissante à votre Family Safari.\"},{\"title\":\"7. Retour à l'hôtel\",\"content\":\"Après le programme, vous êtes confortablement ramené à votre hôtel.\"}]",
+      "itinerary": null
+    },
+    {
+      "id": 1056,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "ar",
+      "table_name": "tours",
+      "name": "سفاري العائلة المسائية في الغردقة – كواد وعشاء وعرض",
+      "content": null,
+      "itinerary": null
+    },
+    {
+      "id": 1052,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "en",
+      "table_name": "tours",
+      "name": "Family Evening Safari Hurghada – Quad, Dinner & Show",
+      "content": null,
+      "itinerary": null
+    },
+    {
+      "id": 1053,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "ru",
+      "table_name": "tours",
+      "name": "Вечернее семейное сафари в Хургаде – квадроцикл, ужин и шоу",
+      "content": "[{\"title\":\"1. Встреча в отеле\",\"content\":\"Комфортабельный трансфер из вашего отеля на сафари-станцию в Хургаде.\"},{\"title\":\"2. Инструктаж и подготовка\",\"content\":\"Перед началом вы получите инструктаж по технике безопасности и важную информацию об управлении транспортными средствами.\"},{\"title\":\"3. Поездка на квадроцикле по пустыне\",\"content\":\"Получите около 30–40 минут удовольствия от езды на квадроцикле по впечатляющим пустынным ландшафтам вокруг Хургады.\"},{\"title\":\"4. Поездка на автомобиле Spider-Car\",\"content\":\"Затем вас ждёт 10–15 минутная поездка на Spider-Car — второе водительское приключение сафари.\"},{\"title\":\"5. Ужин\",\"content\":\"После активного вождения вы насладитесь совместным ужином и сможете отдохнуть после пустынного приключения.\"},{\"title\":\"6. Развлекательное шоу\",\"content\":\"Приготовьтесь к шоу, которое станет ярким завершением вашего семейного сафари.\"},{\"title\":\"7. Обратный трансфер в отель\",\"content\":\"После программы вас с комфортом отвезут обратно в отель.\"}]",
+      "itinerary": null
+    },
+    {
+      "id": 1055,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "hu",
+      "table_name": "tours",
+      "name": "Családi esti szafari Hurghadában – Quad, vacsora és műsor",
+      "content": "[{\"title\":\"1. Átvétel a szállodából\",\"content\":\"Kényelmes transzfer a szállodából a hurghadai szafariállomásra.\"},{\"title\":\"2. Tájékoztatás és felkészülés\",\"content\":\"A kezdés előtt biztonsági tájékoztatót és fontos információkat kap a járművek kezeléséről.\"},{\"title\":\"3. Quad-túra a sivatagban\",\"content\":\"Élvezzen körülbelül 30–40 perc quadvezetést a Hurghada körüli lenyűgöző sivatagi tájban.\"},{\"title\":\"4. Spider Car túra\",\"content\":\"Ezt követően egy 10–15 perces Spider Car túra várja, ami a szafari második vezetési élménye.\"},{\"title\":\"5. Vacsora\",\"content\":\"A vezetési programok után közös vacsorát élvezhet, és feltöltődhet a sivatagi kalandból.\"},{\"title\":\"6. Szórakoztató show\",\"content\":\"Készüljön egy show-ra, amely szórakoztató lezárást biztosít Family Safarijának.\"},{\"title\":\"7. Visszatérés a szállodához\",\"content\":\"A program után kényelmesen visszaszállítják a szállodájába.\"}]",
+      "itinerary": null
+    },
+    {
+      "id": 1046,
+      "row_id": "5a9c2e86-9d98-41de-a4c4-54523b45cf13",
+      "locale": "de",
+      "table_name": "tours",
+      "name": "Family Abendsafari Hurghada – Quad, Abendessen & Show",
+      "content": null,
+      "itinerary": null
+    }
+  ]
+}
