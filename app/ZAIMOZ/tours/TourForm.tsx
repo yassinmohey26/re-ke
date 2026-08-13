@@ -51,7 +51,12 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   const { t, locale } = useAdminLocale();
 
   function tr(field: string): any {
-    return initialData?.translations?.[locale]?.[field] ?? initialData?.[field] ?? initialData?.[field.replace(/_/g, '')] ?? '';
+    if (locale === 'de') {
+      // German is master → base tours columns hold the German content.
+      return initialData?.[field] ?? initialData?.[field.replace(/_/g, '')] ?? '';
+    }
+    // Non-German → ONLY this locale's translation row. Never fall back to German.
+    return initialData?.translations?.[locale]?.[field] ?? '';
   }
 
   const [form, setForm] = useState({
@@ -125,14 +130,15 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   });
 
   const [itinerary, setItinerary] = useState<{ title: string; content: string }[]>(
-    () => (Array.isArray(initialData?.itinerary) ? initialData.itinerary : []),
+    () => (Array.isArray(initialData?.translation?.itinerary) ? initialData.translation.itinerary : []),
   );
   const [itineraryEditingIndex, setItineraryEditingIndex] = useState<number | 'new' | null>(null);
   const [itineraryForm, setItineraryForm] = useState(EMPTY_ITINERARY_ITEM);
 
-  const [faqs, setFaqs] = useState<{ question: string; answer: string }[]>(
-    () => (Array.isArray(initialData?.faqs) ? initialData.faqs : []),
-  );
+  const [faqs, setFaqs] = useState<{ question: string; answer: string }[]>(() => {
+    const val = tr('faqs');
+    return Array.isArray(val) ? val : [];
+  });
 
   const [childDiscountTiers, setChildDiscountTiers] = useState<ChildDiscountFormTier[]>([]);
 
@@ -249,7 +255,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       image: images.length > 0 ? JSON.stringify(images) : '',
       gallery: initialData?.gallery || [],
       faqs,
-      itinerary,
+      itinerary: isCreateMode ? itinerary : undefined,
       childDiscounts: childDiscountTiers,
     };
     await onSave(data);

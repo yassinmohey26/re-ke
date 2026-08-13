@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useAdminLocale } from '../AdminLanguageContext';
 
 interface ItineraryItem {
   title: string;
@@ -26,6 +27,7 @@ const reorderBtnStyle: React.CSSProperties = {
 };
 
 export default function ItineraryManager({ tourId, styles }: ItineraryManagerProps) {
+  const { locale } = useAdminLocale();
   const [items, setItems] = useState<ItineraryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingIndex, setEditingIndex] = useState<number | 'new' | null>(null);
@@ -35,11 +37,11 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tourId]);
+  }, [tourId, locale]);
 
   async function load() {
     setLoading(true);
-    const res = await fetch(`/api/admin/tours/${tourId}/itinerary`);
+    const res = await fetch(`/api/admin/tours/${tourId}/itinerary?locale=${locale}`);
     if (res.ok) {
       const data = await res.json();
       setItems(Array.isArray(data.itinerary) ? data.itinerary : []);
@@ -94,13 +96,13 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
     cancelEdit();
   }
 
-  async function saveGerman() {
+  async function saveItinerary() {
     setSaving(true);
     try {
       const res = await fetch(`/api/admin/tours/${tourId}/itinerary`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ itinerary: items }),
+        body: JSON.stringify({ itinerary: items, locale }),
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
@@ -108,7 +110,7 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
       }
       cancelEdit();
       await load();
-      alert('German itinerary saved.');
+      alert(`${locale.toUpperCase()} itinerary saved.`);
     } catch (e) {
       alert(e instanceof Error ? e.message : 'Error saving itinerary');
     } finally {
@@ -118,9 +120,11 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
 
   return (
     <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Reiseverlauf (Deutsch – master)</h2>
+      <h2 className={styles.sectionTitle}>Reiseverlauf ({locale === 'de' ? 'Deutsch – master' : locale.toUpperCase()})</h2>
       <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
-        German itinerary is the single source of truth. Saved directly to the tours table.
+        {locale === 'de'
+          ? 'German itinerary is the master and is saved to the tours table. Other languages have their own independent itinerary.'
+          : `${locale.toUpperCase()} itinerary is stored separately. Saving here never touches German or any other locale.`}
       </p>
 
       {loading ? (
@@ -181,8 +185,8 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
       )}
 
       <div style={{ marginTop: 'var(--space-3)', display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <button type="button" onClick={saveGerman} disabled={saving || loading} className={styles.saveBtn}>
-          {saving ? 'Saving...' : 'Save German itinerary'}
+        <button type="button" onClick={saveItinerary} disabled={saving || loading} className={styles.saveBtn}>
+          {saving ? 'Saving...' : `Save ${locale.toUpperCase()} itinerary`}
         </button>
         {!loading && <span style={{ fontSize: '12px', color: 'var(--color-text-3)' }}>{items.length} item(s)</span>}
       </div>

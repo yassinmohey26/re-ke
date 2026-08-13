@@ -24,11 +24,12 @@ export default function EditTourPage({ params }: { params: Promise<{ id: string 
   }
 
   useEffect(() => {
-    fetch(`/api/admin/tours/${id}`)
+    setLoading(true);
+    fetch(`/api/admin/tours/${id}?locale=${locale}`)
       .then(r => r.json())
       .then(data => { setTour(data); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [id]);
+  }, [id, locale]);
 
   async function handleSave(data: any) {
     setSaving(true);
@@ -97,7 +98,7 @@ export default function EditTourPage({ params }: { params: Promise<{ id: string 
           </button>
         </div>
       )}
-      <TourForm initialData={tour} onSave={handleSave} saving={saving} />
+      <TourForm key={locale} initialData={tour} onSave={handleSave} saving={saving} />
     </div>
   );
 }

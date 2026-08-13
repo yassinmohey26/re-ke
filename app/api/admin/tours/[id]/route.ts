@@ -44,6 +44,8 @@ export async function GET(
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const { id } = await params;
+  const url = new URL(request.url);
+  const locale = url.searchParams.get('locale') || 'de';
   const supabase = getSupabaseAdmin();
   const { data: tour, error } = await supabase.from('tours').select('*').eq('id', id).single();
   if (error || !tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -100,7 +102,44 @@ export async function GET(
 
   const rawDescription = findPricingTableHtml();
 
-  return NextResponse.json({ ...tour, translations: trMap, rawDescription });
+  // Resolve the itinerary for the ACTIVE locale so the form never falls back to
+  // base `tours.itinerary` (German) when a different locale is selected.
+  // German master → base tours.itinerary; other locales → itinerary JSONB or the
+  // legacy `content` TEXT-JSON column on this locale's translation row.
+  function parseItin(val: unknown): any[] {
+    if (Array.isArray(val)) return val;
+    if (typeof val === 'string') {
+      try {
+        const parsed = JSON.parse(val);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {}
+    }
+    return [];
+  }
+
+  let activeItinerary: any[] = [];
+  if (locale === 'de') {
+    activeItinerary = parseItin(tour.itinerary);
+  } else {
+    const activeTr = trMap[locale];
+    activeItinerary = parseItin(activeTr?.itinerary);
+    if (activeItinerary.length === 0 && activeTr?.content) {
+      activeItinerary = parseItin(activeTr.content);
+    }
+  }
+
+  const translation = trMap[locale]
+    ? { ...trMap[locale], itinerary: activeItinerary }
+    : { itinerary: activeItinerary };
+
+  return NextResponse.json({
+    ...tour,
+    translations: trMap,
+    translation,
+    activeLocale: locale,
+    activeItinerary,
+    rawDescription,
+  });
 
 }
 
@@ -116,14 +155,18 @@ export async function PUT(
   try {
     const body = await request.json();
     const supabase = getSupabaseAdmin();
+    const SUPPORTED_LOCALES = ['de', 'en', 'fr', 'hu', 'ru', 'ar'];
     const locale = body.locale || 'de';
+    if (!SUPPORTED_LOCALES.includes(locale)) {
+      return NextResponse.json({ error: 'Unsupported locale' }, { status: 400 });
+    }
 
     const tourRow: Record<string, unknown> = {};
 
+    // ── SHARED / structural fields → base `tours` table (written for ANY locale) ──
     if (body.slug !== undefined) tourRow.slug = body.slug;
     if (body.price !== undefined) tourRow.price = body.price ?? null;
     if (body.durationHours !== undefined) tourRow.duration_hours = body.durationHours;
-    if (body.duration !== undefined) tourRow.duration = body.duration;
     if (body.maxGuests !== undefined) tourRow.max_guests = body.maxGuests;
     if (body.difficulty !== undefined) tourRow.difficulty = body.difficulty;
     if (body.minAge !== undefined) tourRow.min_age = body.minAge;
@@ -134,25 +177,6 @@ export async function PUT(
     if (body.active !== undefined) tourRow.active = body.active;
     if (body.discount !== undefined) tourRow.discount = body.discount;
     if (body.sortOrder !== undefined && await isTourSortOrderSupported()) tourRow.sort_order = body.sortOrder;
-    if (body.itinerary !== undefined) tourRow.itinerary = sanitizeItinerary(body.itinerary);
-    if (body.faqs !== undefined) tourRow.faqs = sanitizeFAQs(body.faqs);
-    if (body.name !== undefined && locale === 'de') tourRow.name = body.name;
-    // German‑locale specific fields
-    if (body.shortDescription !== undefined && locale === 'de')
-      tourRow.short_description = body.shortDescription;
-    if (body.description !== undefined && locale === 'de')
-      tourRow.description = body.description;
-    if (body.categoryLabel !== undefined && locale === 'de')
-      tourRow.category_label = body.categoryLabel;
-    if (body.highlights !== undefined && locale === 'de')
-      tourRow.highlights = body.highlights;
-    if (body.included !== undefined && locale === 'de')
-      tourRow.included = body.included;
-    if (body.notIncluded !== undefined && locale === 'de')
-      tourRow.not_included = body.notIncluded;
-    // meeting_point is now a structural field owned by tours base table only.
-    // Pickup time slots are stored in pickup_time_slots JSONB on tours.
-    if (body.meetingPoint !== undefined) tourRow.meeting_point = body.meetingPoint;
     if (body.pickupTimeSlots !== undefined) tourRow.pickup_time_slots = body.pickupTimeSlots;
 
     if (body.destinationSlug !== undefined) {
@@ -166,6 +190,35 @@ export async function PUT(
       } else {
         tourRow.destination_slug = null;
       }
+    }
+
+    // ── LOCALIZED fields ──
+    // German is the master language: for `de` the localized fields are persisted
+    // in the base `tours` columns (which the public render reads for `de`).
+    // For every other locale the SAME fields are persisted ONLY in the requested
+    // locale's `content_translations` row. No other locale is ever written.
+    const localized: Record<string, unknown> = {};
+    if (body.name !== undefined) localized.name = body.name;
+    if (body.shortDescription !== undefined) localized.short_description = body.shortDescription;
+    if (body.description !== undefined) localized.description = body.description;
+    if (body.categoryLabel !== undefined) localized.category_label = body.categoryLabel;
+    if (body.highlights !== undefined) localized.highlights = body.highlights;
+    if (body.included !== undefined) localized.included = body.included;
+    if (body.notIncluded !== undefined) localized.not_included = body.notIncluded;
+    if (body.faqs !== undefined) localized.faqs = sanitizeFAQs(body.faqs);
+    if (body.meetingPoint !== undefined) localized.meeting_point = body.meetingPoint;
+    if (body.duration !== undefined) localized.duration = body.duration;
+    if (body.itinerary !== undefined) localized.itinerary = sanitizeItinerary(body.itinerary);
+
+    const trRow: Record<string, unknown> = {};
+
+    if (locale === 'de') {
+      // German master → base columns (and the de translation row stays in sync).
+      Object.assign(tourRow, localized);
+      if (body.deName !== undefined) trRow.name = body.deName;
+    } else {
+      // Non-German → ONLY this locale's translation row.
+      Object.assign(trRow, localized);
     }
 
     if (Object.keys(tourRow).length > 0) {
@@ -182,31 +235,10 @@ export async function PUT(
       }
     }
 
-    const hasTrFields = body.name !== undefined || body.shortDescription !== undefined || body.description !== undefined
-      || body.categoryLabel !== undefined || body.highlights !== undefined || body.included !== undefined
-      || body.notIncluded !== undefined || (body.faqs !== undefined && locale !== 'de') || body.deName !== undefined;
-
-    if (hasTrFields) {
-      const trRow: Record<string, unknown> = {
-        table_name: 'tours',
-        row_id: id,
-        locale,
-      };
-      if (locale === 'de') {
-        if (body.deName !== undefined) trRow.name = body.deName;
-      } else if (body.name !== undefined) {
-        trRow.name = body.name;
-      }
-      if (body.shortDescription !== undefined) trRow.short_description = body.shortDescription;
-      if (body.description !== undefined) trRow.description = body.description;
-      if (body.categoryLabel !== undefined) trRow.category_label = body.categoryLabel;
-      if (body.highlights !== undefined) trRow.highlights = body.highlights;
-      if (body.included !== undefined) trRow.included = body.included;
-      if (body.notIncluded !== undefined) trRow.not_included = body.notIncluded;
-      if (body.faqs !== undefined && locale !== 'de') trRow.faqs = body.faqs;
-      // NOTE: duration and meeting_point are NOT written to content_translations.
-      // duration is derived from tours.duration_hours at render time (formatDuration).
-      // meeting_point is rendered from tours.pickup_time_slots + CT template at render time.
+    if (Object.keys(trRow).length > 0) {
+      trRow.table_name = 'tours';
+      trRow.row_id = id;
+      trRow.locale = locale;
 
       const { error: trError } = await supabase
         .from('content_translations')
@@ -215,29 +247,6 @@ export async function PUT(
       if (trError) {
         console.error('Tour translation upsert error:', trError);
         return NextResponse.json({ error: trError.message }, { status: 500 });
-      }
-
-      if (locale !== 'de') {
-        const { data: deTr } = await supabase
-          .from('content_translations')
-          .select('description')
-          .eq('table_name', 'tours')
-          .eq('row_id', id)
-          .eq('locale', 'de')
-          .maybeSingle();
-
-        if (deTr?.description) {
-          const deStripped = deTr.description.replace(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/gi, '').trim();
-          const newDesc = deStripped + '\n' + (body.description?.match(/<table[\s\S]*?class="tour-pricing-table"[\s\S]*?<\/table>/i)?.[0] ?? '');
-          if (newDesc.trim()) {
-            await supabase
-              .from('content_translations')
-              .update({ description: newDesc })
-              .eq('table_name', 'tours')
-              .eq('row_id', id)
-              .eq('locale', 'de');
-          }
-        }
       }
     }
 
