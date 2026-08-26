@@ -12,7 +12,7 @@
 }
 
 .heading::before {
-  content: '❓ ';
+  content: none;
 }
 .description {
   font-size: 14px;

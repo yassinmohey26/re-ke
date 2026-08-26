@@ -11,7 +11,7 @@ export default function CTA() {
     <section className={styles.section} aria-label={t('ariaLabel')}>
       <div className={styles.bg}>
         <Image
-          src="https://hurghada-reiseplaner.at/wp-content/uploads/2025/10/f0387742-800px-wm.jpg"
+          src="/cta-red-sea-pier.png"
           alt={t('imageAlt')}
           fill
           className={styles.bgImg}
