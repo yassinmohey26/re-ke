@@ -60,7 +60,7 @@ export default function FAQ({ faqs }: { faqs: FAQItem[] }) {
       <div className="container">
         <div className={styles.inner}>
           <div className={styles.left}>
-            <h2 className="section-title">{t('title')}</h2>
+            <h2 className="section-title">{t('eyebrow')}</h2>
             <p className={styles.desc}>
               {t('description')}
             </p>
