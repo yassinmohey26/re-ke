@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ToursClient from './ToursClient';
-import { getLocalizedAllTours, getDestinations } from '@/lib/data/tours';
+import { getLocalizedAllTours, getDestinations, getDestinationTourIds } from '@/lib/data/tours';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,7 +52,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
 
   const t = await getTranslations('tours');
-  const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale)]);
+  const [tours, destinations, destinationTourIds] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale), getDestinationTourIds()]);
   const removedDestSlugs = new Set(['marsa-alam', 'el-quseir']);
   const destinationOptions = destinations
     .filter(d => !removedDestSlugs.has(d.slug))
@@ -105,7 +105,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
 
   return (
     <Suspense>
-      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} translations={translations} heroImage={heroImage} />
+      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} destinationTourIds={destinationTourIds} translations={translations} heroImage={heroImage} />
     </Suspense>
   );
 }

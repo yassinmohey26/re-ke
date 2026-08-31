@@ -210,6 +210,10 @@ const translations = {
   destImageUrl: { de: 'Bild-URL', en: 'Image URL', ru: 'URL изображения', ar: 'رابط الصورة', fr: 'URL de l\'image', hu: 'Kép URL' },
   destCancel: { de: 'Abbrechen', en: 'Cancel', ru: 'Отмена', ar: 'إلغاء', fr: 'Annuler', hu: 'Mégse' },
   destSave: { de: 'Speichern', en: 'Save', ru: 'Сохранить', ar: 'حفظ', fr: 'Enregistrer', hu: 'Mentés' },
+  destinationTours: { de: 'Touren für diese Destination', en: 'Tours for this destination', ru: 'Туры для этого направления', ar: 'الجولات لهذه الوجهة', fr: 'Circuits pour cette destination', hu: 'Túrák ehhez az úti célhoz' },
+  selectAllTours: { de: 'Alle auswählen', en: 'Select all', ru: 'Выбрать все', ar: 'تحديد الكل', fr: 'Tout sélectionner', hu: 'Összes kijelölése' },
+  deselectAllTours: { de: 'Alle abwählen', en: 'Deselect all', ru: 'Снять выделение', ar: 'إلغاء تحديد الكل', fr: 'Tout désélectionner', hu: 'Összes kijelölés törlése' },
+  saveTourSelection: { de: 'Tour-Auswahl speichern', en: 'Save tour selection', ru: 'Сохранить выбор туров', ar: 'حفظ اختيار الجولات', fr: 'Enregistrer la sélection', hu: 'Túraválasztás mentése' },
   destinationsTitle: { de: 'Destinationen', en: 'Destinations', ru: 'Направления', ar: 'الوجهات', fr: 'Destinations', hu: 'Úti célok' },
 
   // Translation tabs

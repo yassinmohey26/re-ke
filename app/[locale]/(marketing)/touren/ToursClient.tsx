@@ -18,6 +18,7 @@ interface DestinationOption {
 
 interface Props {
   tours: Tour[];
+  destinationTourIds?: Record<string, string[]>;
   locale: string;
   heroTitle?: string;
   heroImage?: string;
@@ -80,7 +81,7 @@ const DURATION_MAP: Record<string, [number, number]> = {
   '15h': [12, Infinity],
 };
 
-export default function ToursClient({ tours, locale, heroTitle, heroImage, destinations = [], translations: t }: Props) {
+export default function ToursClient({ tours, destinationTourIds = {}, locale, heroTitle, heroImage, destinations = [], translations: t }: Props) {
   const tBook = useTranslations('booking');
   const searchParams = useSearchParams();
 
@@ -262,7 +263,13 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
     let result = [...tours];
 
     if (appliedDestination && appliedDestination !== 'hurghada') {
-      result = result.filter(tour => tour.destinationSlug === appliedDestination);
+      const destination = destinations.find(item => item.slug === appliedDestination);
+      const selectedIds = destination ? destinationTourIds[destination.slug] : undefined;
+      result = selectedIds ? result.filter(tour => selectedIds.includes(tour.id)) : result.filter(tour => tour.destinationSlug === appliedDestination);
+    } else if (appliedDestination === 'hurghada') {
+      const destination = destinations.find(item => item.slug === 'hurghada');
+      const selectedIds = destination ? destinationTourIds[destination.slug] : undefined;
+      if (selectedIds) result = result.filter(tour => selectedIds.includes(tour.id));
     }
 
     if (appliedSearch) {

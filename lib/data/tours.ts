@@ -617,6 +617,18 @@ export async function getDestinations(locale: string = 'de'): Promise<Destinatio
   return rows.map(row => mergeDestinationTranslation(row, trMap.get(row.id) ?? null));
 }
 
+export async function getDestinationTourIds(): Promise<Record<string, string[]>> {
+  const { data } = await db
+    .from('destination_tours')
+    .select('destination_id, tour_id, destinations(slug)');
+  const result: Record<string, string[]> = {};
+  for (const row of data ?? []) {
+    const destination = row.destinations as { slug?: string } | null;
+    if (destination?.slug) (result[destination.slug] ??= []).push(row.tour_id);
+  }
+  return result;
+}
+
 export async function getDestinationBySlug(slug: string, locale: string = 'de'): Promise<Destination | undefined> {
   const { data: row } = await db.from('destinations').select('*').eq('slug', slug).single();
   if (!row) return undefined;

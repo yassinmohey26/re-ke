@@ -16,6 +16,8 @@ interface Destination {
   image: string;
 }
 
+interface DestinationTour { id: string; name: string; destination: string; }
+
 const EMPTY_FORM = { name: '', slug: '', tagline: '', description: '', image: '' };
 
 function slugify(text: string): string {
@@ -28,7 +30,7 @@ function slugify(text: string): string {
 }
 
 export default function AdminDestinationsPage() {
-  const { t } = useAdminLocale();
+  const { t, locale } = useAdminLocale();
   const router = useRouter();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,6 +41,10 @@ export default function AdminDestinationsPage() {
   const [autoSlug, setAutoSlug] = useState(true);
   const [duplicateId, setDuplicateId] = useState<string | null>(null);
   const [formError, setFormError] = useState('');
+  const [destinationTours, setDestinationTours] = useState<DestinationTour[]>([]);
+  const [selectedTourIds, setSelectedTourIds] = useState<string[]>([]);
+  const [toursLoading, setToursLoading] = useState(false);
+  const [toursSaving, setToursSaving] = useState(false);
 
   useEffect(() => { fetchDestinations(); }, []);
 
@@ -75,6 +81,14 @@ export default function AdminDestinationsPage() {
     setAutoSlug(false);
     setFormError('');
     setShowForm(true);
+    setToursLoading(true);
+    fetch(`/api/admin/destinations/${dest.id}/tours?locale=${locale}`)
+      .then(res => res.json())
+      .then(data => {
+        setDestinationTours(Array.isArray(data.tours) ? data.tours : []);
+        setSelectedTourIds(Array.isArray(data.selectedTourIds) ? data.selectedTourIds : []);
+      })
+      .finally(() => setToursLoading(false));
   }
 
   function cancelForm() {
@@ -82,6 +96,18 @@ export default function AdminDestinationsPage() {
     setEditingId(null);
     setForm(EMPTY_FORM);
     setFormError('');
+    setDestinationTours([]);
+    setSelectedTourIds([]);
+  }
+
+  async function saveDestinationTours() {
+    if (!editingId) return;
+    setToursSaving(true);
+    await fetch(`/api/admin/destinations/${editingId}/tours`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tourIds: selectedTourIds }),
+    });
+    setToursSaving(false);
   }
 
   function handleNameChange(name: string) {
@@ -224,6 +250,31 @@ export default function AdminDestinationsPage() {
               />
             </div>
             {formError && <p className={styles.formError}>{formError}</p>}
+            {editingId && (
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>{t('destinationTours')}</label>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                  <button type="button" className={styles.editBtn} disabled={toursLoading}
+                    onClick={() => setSelectedTourIds(destinationTours.map(tour => tour.id))}>{t('selectAllTours')}</button>
+                  <button type="button" className={styles.editBtn} disabled={toursLoading}
+                    onClick={() => setSelectedTourIds([])}>{t('deselectAllTours')}</button>
+                </div>
+                <div style={{ maxHeight: 240, overflowY: 'auto', border: '1px solid #ddd', padding: 10 }}>
+                  {toursLoading ? t('loading') : destinationTours.map(tour => (
+                    <label key={tour.id} style={{ display: 'block', padding: '5px 0' }}>
+                      <input type="checkbox" checked={selectedTourIds.includes(tour.id)}
+                        onChange={event => setSelectedTourIds(current => event.target.checked
+                          ? [...current, tour.id]
+                          : current.filter(id => id !== tour.id))} />{' '}
+                      {tour.name}
+                    </label>
+                  ))}
+                </div>
+                <button type="button" className={styles.saveBtn} onClick={saveDestinationTours} disabled={toursSaving}>
+                  {toursSaving ? t('tourSave') : t('saveTourSelection')}
+                </button>
+              </div>
+            )}
           </div>
           <div className={styles.formActions}>
             <button className={styles.saveBtn} onClick={handleSave} disabled={saving}>
