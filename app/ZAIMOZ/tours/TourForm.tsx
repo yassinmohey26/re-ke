@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAdminLocale } from '../AdminLanguageContext';
 import GalleryUpload from '@/components/admin/GalleryUpload';
 import FAQManager from '@/components/admin/FAQManager';
@@ -17,6 +17,11 @@ interface TourFormProps {
   initialData?: any;
   onSave: (data: any) => Promise<void>;
   saving: boolean;
+}
+
+interface DestinationOption {
+  slug: string;
+  name: string;
 }
 
 function parseImageField(val: unknown): string[] {
@@ -49,6 +54,22 @@ const reorderBtnStyle: React.CSSProperties = {
 
 export default function TourForm({ initialData, onSave, saving }: TourFormProps) {
   const { t, locale } = useAdminLocale();
+  const [destinations, setDestinations] = useState<DestinationOption[]>([]);
+
+  useEffect(() => {
+    fetch('/api/admin/destinations')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setDestinations(
+            data
+              .filter(destination => !['marsa-alam', 'el-quseir'].includes(destination.slug))
+              .map(destination => ({ slug: destination.slug, name: destination.name }))
+          );
+        }
+      })
+      .catch(() => setDestinations([]));
+  }, []);
 
   function tr(field: string): any {
     if (locale === 'de') {
@@ -339,7 +360,23 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
           </div>
           <div className={styles.field}>
             <label className={styles.label}>{t('tourDestination')}</label>
-            <input className={styles.input} value={form.destination} onChange={e => update('destination', e.target.value)} />
+            <select
+              className={styles.input}
+              value={form.destinationSlug}
+              onChange={e => {
+                const selected = destinations.find(destination => destination.slug === e.target.value);
+                update('destinationSlug', selected?.slug || '');
+                update('destination', selected?.name || '');
+              }}
+              required
+            >
+              <option value="">—</option>
+              {destinations.map(destination => (
+                <option key={destination.slug} value={destination.slug}>
+                  {destination.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles.field}>
             <label className={styles.label}>{t('tourMeetingPoint')}</label>

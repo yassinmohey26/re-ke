@@ -16,20 +16,6 @@ interface DestinationOption {
   name: string;
 }
 
-const LONG_DISTANCE_SLUGS = [
-  'privater-tagesausflug-von-hurghada-nach-kairo-pyramiden-grand-egyptian-museum',
-  'kairo-mit-flug-ab-hurghada-pyramiden-museum',
-  '2-tages-ausflug-nach-kairo-ab-hurghada-pyramiden-sphinx-aegyptische-geschichte-erleben',
-  'luxor-tagesausflug-ab-hurghada',
-  'luxor-tagesausflug-heissluftballon-hoteluebernachtung',
-  'privater-pyramiden-ausflug-ab-hurghada-sakkara-dahschur-gizeh',
-  'privater-tagesausflug-ab-hurghada-dendera-abydos-tempel',
-  'dendera-halbtagesausflug-ab-hurghada-der-authentische-besuch-im-hathor-tempel',
-  'kloester-st-antonius-st-paulus',
-];
-
-const SPECIAL_DEST_SLUGS = new Set(['el-quseir', 'marsa-alam', 'kairo', 'luxor']);
-
 interface Props {
   tours: Tour[];
   locale: string;
@@ -275,8 +261,8 @@ export default function ToursClient({ tours, locale, heroTitle, heroImage, desti
   const filtered = useMemo(() => {
     let result = [...tours];
 
-    if (SPECIAL_DEST_SLUGS.has(appliedDestination)) {
-      result = result.filter(tour => LONG_DISTANCE_SLUGS.includes(tour.slug));
+    if (appliedDestination && appliedDestination !== 'hurghada') {
+      result = result.filter(tour => tour.destinationSlug === appliedDestination);
     }
 
     if (appliedSearch) {

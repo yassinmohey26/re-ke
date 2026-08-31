@@ -53,9 +53,9 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
 
   const t = await getTranslations('tours');
   const [tours, destinations] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale)]);
-  const hiddenDestSlugs = new Set(['kairo', 'luxor']);
+  const removedDestSlugs = new Set(['marsa-alam', 'el-quseir']);
   const destinationOptions = destinations
-    .filter(d => !hiddenDestSlugs.has(d.slug))
+    .filter(d => !removedDestSlugs.has(d.slug))
     .map(d => ({ slug: d.slug, name: d.name }));
 
   const heroImage =

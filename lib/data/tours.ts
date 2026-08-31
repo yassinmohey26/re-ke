@@ -484,7 +484,9 @@ async function getSingleTranslation(
 }
 
 export async function getTours(locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await orderToursQuery(db.from('tours').select('*'));
+  const { data: rows } = await orderToursQuery(
+    db.from('tours').select('*').eq('active', true),
+  );
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -492,7 +494,12 @@ export async function getTours(locale: string = 'de'): Promise<Tour[]> {
 }
 
 export async function getTourBySlug(slug: string, locale: string = 'de'): Promise<Tour | undefined> {
-  const { data: row } = await db.from('tours').select('*').eq('slug', slug).single();
+  const { data: row } = await db
+    .from('tours')
+    .select('*')
+    .eq('slug', slug)
+    .eq('active', true)
+    .single();
   if (!row) return undefined;
 
   const tr = await getSingleTranslation('tours', row.id, locale);
@@ -573,7 +580,9 @@ export async function getTourExtras(tourId: string, locale: string = 'de'): Prom
 }
 
 export async function getToursByCategory(category: Tour['category'], locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('category', category));
+  const { data: rows } = await orderToursQuery(
+    db.from('tours').select('*').eq('category', category).eq('active', true),
+  );
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -581,7 +590,9 @@ export async function getToursByCategory(category: Tour['category'], locale: str
 }
 
 export async function getToursByDestination(destinationSlug: string, locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('destination_slug', destinationSlug));
+  const { data: rows } = await orderToursQuery(
+    db.from('tours').select('*').eq('destination_slug', destinationSlug).eq('active', true),
+  );
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
@@ -589,7 +600,9 @@ export async function getToursByDestination(destinationSlug: string, locale: str
 }
 
 export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
-  const { data: rows } = await orderToursQuery(db.from('tours').select('*').eq('featured', true));
+  const { data: rows } = await orderToursQuery(
+    db.from('tours').select('*').eq('featured', true).eq('active', true),
+  );
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
