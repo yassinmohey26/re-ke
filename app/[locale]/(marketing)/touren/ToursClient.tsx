@@ -493,21 +493,22 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
       {/* Category Cards */}
       <div className={styles.categories}>
         <div className={styles.categoriesInner}>
-          {categoryCards.map(card => (
+          {categoryCards.map((card, index) => (
             <button
               key={card.key}
-              className={styles.categoryCard}
+              className={`${styles.categoryCard} ${styles[`categoryCard${index + 1}`]}`}
               onClick={() => { toggleDraftType(card.key); handleSearch(); }}
               aria-label={card.title}
-            >
-              <Image
+              >
+                <Image
                 src={card.image}
                 alt={card.title}
                 className={styles.categoryImg}
                 fill
                 sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
                 loader={cloudinaryLoader}
-              />
+                />
+              <span className={styles.categoryJourneyNumber}>0{index + 1}</span>
               <div className={styles.categoryOverlay} />
               <div className={styles.categoryIconWrap}>
                 <card.Icon className={styles.categoryIcon} size={18} strokeWidth={2.4} />

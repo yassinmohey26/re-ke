@@ -610,7 +610,11 @@ export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
 }
 
 export async function getDestinations(locale: string = 'de'): Promise<Destination[]> {
-  const { data: rows } = await db.from('destinations').select('*').order('created_at', { ascending: true });
+  const { data: rows } = await db
+    .from('destinations')
+    .select('*')
+    .order('display_order', { ascending: true, nullsFirst: false })
+    .order('created_at', { ascending: true });
   if (!rows || rows.length === 0) return [];
 
   const trMap = await getTranslationsMap('destinations', rows.map(r => r.id), locale);

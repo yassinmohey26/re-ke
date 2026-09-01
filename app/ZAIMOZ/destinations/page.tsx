@@ -14,6 +14,7 @@ interface Destination {
   tagline: string;
   description: string;
   image: string;
+  display_order: number | null;
 }
 
 interface DestinationTour { id: string; name: string; destination: string; }
@@ -45,6 +46,10 @@ export default function AdminDestinationsPage() {
   const [selectedTourIds, setSelectedTourIds] = useState<string[]>([]);
   const [toursLoading, setToursLoading] = useState(false);
   const [toursSaving, setToursSaving] = useState(false);
+  const [reorderMode, setReorderMode] = useState(false);
+  const [orderedDestinations, setOrderedDestinations] = useState<Destination[]>([]);
+  const [reorderSaving, setReorderSaving] = useState(false);
+  const [draggedId, setDraggedId] = useState<string | null>(null);
 
   useEffect(() => { fetchDestinations(); }, []);
 
@@ -54,6 +59,7 @@ export default function AdminDestinationsPage() {
       if (res.ok) {
         const data = await res.json();
         setDestinations(data);
+        setOrderedDestinations(data);
       }
     } catch (e) {
       console.error('Failed to fetch destinations:', e);
@@ -98,6 +104,39 @@ export default function AdminDestinationsPage() {
     setFormError('');
     setDestinationTours([]);
     setSelectedTourIds([]);
+  }
+
+  function moveDestination(fromId: string, toId: string) {
+    setOrderedDestinations(current => {
+      const next = [...current];
+      const fromIndex = next.findIndex(destination => destination.id === fromId);
+      const toIndex = next.findIndex(destination => destination.id === toId);
+      if (fromIndex === -1 || toIndex === -1) return current;
+      const [moved] = next.splice(fromIndex, 1);
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
+  }
+
+  async function saveDestinationOrder() {
+    setReorderSaving(true);
+    try {
+      const response = await fetch('/api/admin/destinations/reorder', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ destinationIds: orderedDestinations.map(destination => destination.id) }),
+      });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        alert(error.error || 'Failed to save destination order');
+        return;
+      }
+      setDestinations(orderedDestinations);
+      setReorderMode(false);
+      await fetchDestinations();
+    } finally {
+      setReorderSaving(false);
+    }
   }
 
   async function saveDestinationTours() {
@@ -192,11 +231,12 @@ export default function AdminDestinationsPage() {
           <h1 className={styles.title}>{t('destTitle')}</h1>
           <p className={styles.subtitle}>{destinations.length} {t('toursTotal')}</p>
         </div>
-        {!showForm && (
-          <button className={styles.addBtn} onClick={openAdd}>
-            {t('destNewBtn')}
+        {!showForm && <div className={styles.headerActions}>
+          <button className={styles.reorderBtn} onClick={() => { setOrderedDestinations(destinations); setReorderMode(true); }}>
+            Reorder homepage
           </button>
-        )}
+          <button className={styles.addBtn} onClick={openAdd}>{t('destNewBtn')}</button>
+        </div>}
       </div>
 
       {showForm && (
@@ -291,6 +331,30 @@ export default function AdminDestinationsPage() {
         <p className={styles.loading}>{t('loading')}</p>
       ) : destinations.length === 0 ? (
         <p className={styles.empty}>{t('destNoResults')}</p>
+      ) : reorderMode ? (
+        <div className={styles.reorderCard}>
+          <div className={styles.reorderHeader}>
+            <div><h2 className={styles.formTitle}>Homepage destination order</h2><p className={styles.reorderHint}>Drag destinations into the order you want visitors to see.</p></div>
+            <div className={styles.formActions}>
+              <button className={styles.saveBtn} onClick={saveDestinationOrder} disabled={reorderSaving}>{reorderSaving ? 'Saving…' : 'Save order'}</button>
+              <button className={styles.cancelBtn} onClick={() => { setReorderMode(false); setOrderedDestinations(destinations); }}>Cancel</button>
+            </div>
+          </div>
+          <div className={styles.reorderList}>
+            {orderedDestinations.map((dest, index) => (
+              <div key={dest.id} className={styles.reorderItem} draggable onDragStart={() => setDraggedId(dest.id)} onDragOver={event => event.preventDefault()} onDrop={() => { if (draggedId) moveDestination(draggedId, dest.id); setDraggedId(null); }}>
+                <span className={styles.dragHandle} aria-label="Drag destination">⋮⋮</span>
+                <span className={styles.orderNumber}>{index + 1}</span>
+                {dest.image && <img src={dest.image} alt="" className={styles.reorderImage} />}
+                <span className={styles.reorderName}>{dest.name}</span>
+                <div className={styles.reorderMoves}>
+                  <button className={styles.moveBtn} disabled={index === 0} onClick={() => moveDestination(dest.id, orderedDestinations[index - 1].id)} aria-label="Move up">↑</button>
+                  <button className={styles.moveBtn} disabled={index === orderedDestinations.length - 1} onClick={() => moveDestination(dest.id, orderedDestinations[index + 1].id)} aria-label="Move down">↓</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
         <>
           {/* ── Desktop table ── */}

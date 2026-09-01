@@ -167,6 +167,115 @@
   transform: scaleX(-1) translateX(4px);
 }
 
+/* Journey-card treatment */
+.categoryCard {
+  border: 1px solid rgba(27,79,216,.16);
+  box-shadow: 0 16px 30px rgba(10, 37, 75, .14);
+}
+.categoryJourneyNumber {
+  position: absolute;
+  top: 24px;
+  inset-inline-end: 28px;
+  z-index: 3;
+  color: #fff;
+  font: 800 42px/.9 var(--font-heading);
+  opacity: .7;
+  text-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.categoryContent { padding: 30px 28px 26px; }
+.categoryFooter { border-top: 1px solid rgba(255,255,255,.4); padding-top: 15px; }
+.categoryCard:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  inset-inline-end: -29px;
+  color: #1B4FD8;
+  font: 800 34px/1 var(--font-body);
+  text-shadow: 0 2px 8px rgba(27,79,216,.2);
+}
+@media (max-width: 600px) {
+  .categoriesInner {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 4px 18px;
+    scrollbar-width: none;
+  }
+  .categoriesInner::-webkit-scrollbar { display: none; }
+  .categoryCard {
+    flex: 0 0 88vw;
+    max-width: 360px;
+    scroll-snap-align: center;
+  }
+  .categoryCard:not(:last-child)::after {
+    content: '↓';
+    top: auto;
+    bottom: -25px;
+    inset-inline-end: 50%;
+    transform: translateX(50%);
+  }
+}
+
+/* Editorial magazine layout */
+.categoriesInner {
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(205px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.categoryCard {
+  height: auto;
+  min-height: 220px;
+  border: 1px solid rgba(27,79,216,.14);
+  outline: none;
+  border-radius: 26px;
+}
+.categoryCard1 {
+  grid-row: 1 / 3;
+  min-height: 440px;
+}
+.categoryCard2,
+.categoryCard3 { min-height: 210px; }
+.categoryCard:not(:last-child)::after { display: none; }
+.categoryJourneyNumber {
+  top: 24px;
+  inset-inline-end: 28px;
+  font-size: 48px;
+  opacity: .75;
+}
+.categoryContent { padding: 30px; }
+.categoryCard2 .categoryContent,
+.categoryCard3 .categoryContent { padding: 22px 24px; }
+.categoryCard2 .categoryTitle,
+.categoryCard3 .categoryTitle { font-size: 22px; }
+.categoryCard2 .categoryDesc,
+.categoryCard3 .categoryDesc { margin-bottom: 12px; font-size: 13px; }
+@media (max-width: 900px) {
+  .categoriesInner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .categoryCard1 { grid-row: auto; grid-column: 1 / 3; min-height: 380px; }
+  .categoryCard2, .categoryCard3 { min-height: 300px; }
+}
+@media (max-width: 600px) {
+  .categoriesInner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    overflow: visible;
+    padding: 0;
+  }
+  .categoryCard1,
+  .categoryCard2,
+  .categoryCard3 {
+    grid-column: auto;
+    min-height: 300px;
+  }
+  .categoryCard1 { min-height: 360px; }
+}
+
 /* ============ Hero ============ */
 .hero {
   position: relative;

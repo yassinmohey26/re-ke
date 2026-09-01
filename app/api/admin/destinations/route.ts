@@ -9,7 +9,11 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const supabase = getSupabaseAdmin();
-  const { data, error } = await supabase.from('destinations').select('*').order('created_at', { ascending: false });
+  const { data, error } = await supabase
+    .from('destinations')
+    .select('*')
+    .order('display_order', { ascending: true, nullsFirst: false })
+    .order('created_at', { ascending: true });
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data ?? []);
 }
@@ -28,32 +32,6 @@ export async function POST(request: NextRequest) {
     }
     const name = body.name.trim();
 
-    // Homepage featured validation
-    const featured = body.featured ?? false;
-    let displayOrder = body.display_order ?? null;
-    if (featured === false) {
-      displayOrder = null;
-    } else if (displayOrder !== null && displayOrder !== undefined) {
-      const parsed = Number(displayOrder);
-      if (!Number.isInteger(parsed) || parsed < 1 || parsed > 5) {
-        return NextResponse.json({ error: 'display_order must be an integer between 1 and 5' }, { status: 400 });
-      }
-      displayOrder = parsed;
-    }
-
-    // Prevent duplicate featured positions (server-side check)
-    if (featured && displayOrder !== null) {
-      const { data: conflict } = await supabase
-        .from('destinations')
-        .select('id')
-        .eq('featured', true)
-        .eq('display_order', displayOrder)
-        .limit(1);
-      if (conflict && conflict.length > 0) {
-        return NextResponse.json({ error: `Homepage position ${displayOrder} is already used by another featured destination` }, { status: 409 });
-      }
-    }
-
     const slug = typeof body.slug === 'string' && body.slug.trim()
       ? body.slug.trim()
       : name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -69,8 +47,7 @@ export async function POST(request: NextRequest) {
         tagline: body.tagline || '',
         description: body.description || '',
         image: body.image || '',
-        featured,
-        display_order: displayOrder,
+        display_order: null,
       })
       .select()
       .single();
