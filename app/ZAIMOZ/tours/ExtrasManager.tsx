@@ -94,13 +94,17 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Extras</h2>
+    <details className={`${styles.section} ${styles.collapsibleSection}`}>
+      <summary className={styles.sectionSummary}>
+        <span>Extras</span>
+        <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
 
       {loading ? (
         <p>Loading extras...</p>
       ) : (
-        <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+        <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
               <th style={{ textAlign: 'left', padding: '8px' }}>Name</th>
@@ -113,11 +117,11 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
           <tbody>
             {extras.map(extra => (
               <tr key={extra.id} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                <td style={{ padding: '8px' }}>{extra.name}</td>
-                <td style={{ padding: '8px' }}>{extra.price.toFixed(2)}</td>
-                <td style={{ padding: '8px' }}>{extra.active ? 'Yes' : 'No'}</td>
-                <td style={{ padding: '8px' }}>{extra.sort_order}</td>
-                <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+                <td data-label="Name" style={{ padding: '8px' }}>{extra.name}</td>
+                <td data-label="Price (€)" style={{ padding: '8px' }}>{extra.price.toFixed(2)}</td>
+                <td data-label="Active" style={{ padding: '8px' }}>{extra.active ? 'Yes' : 'No'}</td>
+                <td data-label="Order" style={{ padding: '8px' }}>{extra.sort_order}</td>
+                <td data-label="Actions" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                   <button type="button" onClick={() => startEdit(extra)} className={styles.slugBtn}>Edit</button>
                   <button type="button" onClick={() => remove(extra.id)} className={styles.cancelBtn}>Delete</button>
                 </td>
@@ -187,6 +191,7 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
       ) : (
         <button type="button" onClick={startAdd} className={styles.slugBtn}>+ Add extra</button>
       )}
-    </div>
+      </div>
+    </details>
   );
 }

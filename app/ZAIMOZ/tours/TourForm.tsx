@@ -53,7 +53,7 @@ const reorderBtnStyle: React.CSSProperties = {
 };
 
 export default function TourForm({ initialData, onSave, saving }: TourFormProps) {
-  const { t, locale } = useAdminLocale();
+  const { t, locale, setHasUnsavedChanges, confirmDiscardChanges } = useAdminLocale();
   const [destinations, setDestinations] = useState<DestinationOption[]>([]);
 
   useEffect(() => {
@@ -153,6 +153,9 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   const [itinerary, setItinerary] = useState<{ title: string; content: string }[]>(
     () => (Array.isArray(initialData?.translation?.itinerary) ? initialData.translation.itinerary : []),
   );
+  const [managedItineraryCount, setManagedItineraryCount] = useState(
+    () => (Array.isArray(initialData?.activeItinerary) ? initialData.activeItinerary.length : 0),
+  );
   const [itineraryEditingIndex, setItineraryEditingIndex] = useState<number | 'new' | null>(null);
   const [itineraryForm, setItineraryForm] = useState(EMPTY_ITINERARY_ITEM);
 
@@ -172,6 +175,38 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   });
 
   const isCreateMode = !initialData?.id;
+
+  const currentFormFingerprint = JSON.stringify({
+    form,
+    pricingTiers,
+    discount,
+    showDiscount,
+    images,
+    itinerary,
+    faqs,
+    childDiscountTiers,
+    participantPrices,
+  });
+  const [initialFormFingerprint] = useState(currentFormFingerprint);
+  const hasUnsavedChanges = currentFormFingerprint !== initialFormFingerprint;
+  const itineraryCount = isCreateMode
+    ? itinerary.length
+      : managedItineraryCount;
+
+  useEffect(() => {
+    setHasUnsavedChanges(hasUnsavedChanges);
+    return () => setHasUnsavedChanges(false);
+  }, [hasUnsavedChanges, setHasUnsavedChanges]);
+
+  useEffect(() => {
+    if (!hasUnsavedChanges) return;
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [hasUnsavedChanges]);
 
   function update(key: string, value: any) {
     setForm(prev => ({ ...prev, [key]: value }));
@@ -293,6 +328,31 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.summary} aria-label={t('tourSummary')}>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{t('tourSummaryStatus')}</span>
+          <span className={`${styles.statusBadge} ${form.active ? styles.statusActive : styles.statusInactive}`}>
+            {form.active ? t('tourSummaryActive') : t('tourSummaryInactive')}
+          </span>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{t('tourDestination')}</span>
+          <strong className={styles.summaryValue}>{form.destination || form.destinationSlug || '—'}</strong>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{t('tourSummaryBasePrice')}</span>
+          <strong className={styles.summaryValue}>{form.price === '' || form.price === null ? '—' : `${form.price} EUR`}</strong>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{t('tourSummaryFaqs')}</span>
+          <strong className={styles.summaryValue}>{faqs.length}</strong>
+        </div>
+        <div className={styles.summaryItem}>
+          <span className={styles.summaryLabel}>{t('tourSummaryItinerary')}</span>
+          <strong className={styles.summaryValue}>{itineraryCount}</strong>
+        </div>
+      </div>
+
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('tourBasics')}</h2>
         <div className={styles.row}>
@@ -414,8 +474,12 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         </div>
       </div>
 
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Preise pro Person (Gruppengröße)</h2>
+      <details className={`${styles.section} ${styles.collapsibleSection}`} open>
+        <summary className={styles.sectionSummary}>
+          <span>Preise pro Person (Gruppengröße)</span>
+          <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+        </summary>
+        <div className={styles.collapsibleContent}>
         <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
           Lege fest, wie viel pro Person für verschiedene Gruppengrößen gezahlt wird.
         </p>
@@ -462,7 +526,14 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         <button type="button" className={styles.addTierBtn} onClick={addTier}>
           + Preisstufe hinzufügen
         </button>
-      </div>
+        </div>
+      </details>
+
+      {initialData?.id ? (
+        <ChildDiscountManager tourId={initialData.id} styles={styles} />
+      ) : (
+        <ChildDiscountEditor tiers={childDiscountTiers} onChange={setChildDiscountTiers} styles={styles} />
+      )}
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>Rabatt / Sale</h2>
@@ -525,14 +596,12 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         )}
       </div>
 
-      {initialData?.id ? (
-        <ChildDiscountManager tourId={initialData.id} styles={styles} />
-      ) : (
-        <ChildDiscountEditor tiers={childDiscountTiers} onChange={setChildDiscountTiers} styles={styles} />
-      )}
-
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>{t('tourImage')} / Galerie</h2>
+      <details className={`${styles.section} ${styles.collapsibleSection}`}>
+        <summary className={styles.sectionSummary}>
+          <span>{t('tourImage')} / Galerie</span>
+          <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+        </summary>
+        <div className={styles.collapsibleContent}>
         <div className={styles.field}>
           <GalleryUpload
             values={images}
@@ -541,7 +610,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
             label="Bilder (Galerie)"
           />
         </div>
-      </div>
+        </div>
+      </details>
 
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>{t('tourLists')}</h2>
@@ -566,13 +636,17 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       )}
 
       {isCreateMode ? (
-        <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Reiseverlauf (Deutsch – master)</h2>
+        <details className={`${styles.section} ${styles.collapsibleSection}`}>
+          <summary className={styles.sectionSummary}>
+            <span>Reiseverlauf (Deutsch – master)</span>
+            <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+          </summary>
+          <div className={styles.collapsibleContent}>
           <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
             German itinerary is the single source of truth. Saved with the tour when you create it.
           </p>
 
-          <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+          <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
             <thead>
               <tr>
                 <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
@@ -584,15 +658,15 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
             <tbody>
               {itinerary.map((item, index) => (
                 <tr key={index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                  <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+                  <td data-label="Order" style={{ padding: '8px', whiteSpace: 'nowrap' }}>
                     <div style={{ display: 'flex', gap: '4px' }}>
                       <button type="button" onClick={() => moveItineraryItem(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
                       <button type="button" onClick={() => moveItineraryItem(index, 1)} disabled={index === itinerary.length - 1} style={reorderBtnStyle}>▼</button>
                     </div>
                   </td>
-                  <td style={{ padding: '8px' }}>{item.title || <span style={{ opacity: 0.6 }}>—</span>}</td>
-                  <td style={{ padding: '8px', opacity: 0.8 }}>{item.content}</td>
-                  <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+                  <td data-label="Title" style={{ padding: '8px' }}>{item.title || <span style={{ opacity: 0.6 }}>—</span>}</td>
+                  <td data-label="Content" style={{ padding: '8px', opacity: 0.8 }}>{item.content}</td>
+                  <td data-label="Actions" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                     <button type="button" onClick={() => startItineraryEdit(index)} className={styles.slugBtn}>Edit</button>
                     <button type="button" onClick={() => removeItineraryItem(index)} className={styles.cancelBtn}>Delete</button>
                   </td>
@@ -628,9 +702,10 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
           <p style={{ marginTop: 'var(--space-3)', fontSize: '12px', color: 'var(--color-text-3)' }}>
             {itinerary.length} item(s)
           </p>
-        </div>
+          </div>
+        </details>
       ) : (
-        <ItineraryManager tourId={initialData.id} styles={styles} />
+        <ItineraryManager tourId={initialData.id} styles={styles} onCountChange={setManagedItineraryCount} />
       )}
 
       <FAQManager faqs={faqs} onChange={setFaqs} styles={styles} />
@@ -650,7 +725,11 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       </div>
 
       <div className={styles.formActions}>
-        <Link href="/ZAIMOZ/tours" className={styles.cancelBtn}>{t('tourCancel')}</Link>
+        <span className={`${styles.saveState} ${hasUnsavedChanges ? styles.saveStateDirty : ''}`} role="status">
+          <span className={styles.saveStateDot} aria-hidden="true" />
+          {hasUnsavedChanges ? t('tourUnsavedChanges') : t('tourNoUnsavedChanges')}
+        </span>
+        <Link href="/ZAIMOZ/tours" className={styles.cancelBtn} onNavigate={(event) => { if (!confirmDiscardChanges()) event.preventDefault(); }}>{t('tourCancel')}</Link>
         <button type="submit" className={styles.saveBtn} disabled={saving}>
           {saving ? t('tourSave') : initialData ? t('tourUpdate') : t('tourCreate')}
         </button>

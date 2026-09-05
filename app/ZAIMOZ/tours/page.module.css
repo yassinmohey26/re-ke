@@ -120,6 +120,127 @@
   color: var(--color-accent);
 }
 
+.completeness {
+  display: flex;
+  min-width: 92px;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-2);
+  font-size: 12px;
+}
+
+.completenessDetails {
+  position: relative;
+}
+
+.completenessSummary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.completenessSummary::-webkit-details-marker {
+  display: none;
+}
+
+.completenessChecklist {
+  display: grid;
+  min-width: 220px;
+  gap: 6px;
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-2);
+}
+
+.completenessChecklist > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.completenessChecklist > span > span {
+  display: inline-grid;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.checkComplete {
+  color: #15803d;
+}
+
+.checkComplete > span {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.checkMissing {
+  color: #b45309;
+}
+
+.checkMissing > span {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.completenessTrack {
+  width: 58px;
+  height: 7px;
+  overflow: hidden;
+  background: var(--color-border-4);
+  border-radius: 999px;
+}
+
+.completenessTrack span {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: inherit;
+}
+
+.languageMatrix {
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  gap: 4px;
+}
+
+.languageDot {
+  display: inline-grid;
+  height: 24px;
+  place-items: center;
+  border: 1px solid var(--color-border-4);
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.languageDot:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-accent);
+}
+
+.languageComplete {
+  color: #15803d;
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.languageMissing {
+  color: #b45309;
+  background: #fffbeb;
+  border-color: #fcd34d;
+}
+
 .toggleBtn {
   width: 32px;
   height: 32px;
@@ -290,6 +411,22 @@
   border-top: 1px solid var(--color-border-4);
 }
 
+.mobileQuality {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border-4);
+  border-bottom: 1px solid var(--color-border-4);
+}
+
+.mobileQuality > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .mobileCardToggleLabel {
   font-size: 13px;
   color: var(--color-text-3);
@@ -344,5 +481,9 @@
 
   .mobileCardList {
     display: flex;
+  }
+
+  .completenessChecklist {
+    min-width: 0;
   }
 }

@@ -21,10 +21,11 @@ const NAV_ICONS = ['📊', '🗺️', '📝', '📋', '📬', '📧', '❓', '�
 export default function AdminSidebar({ user }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const { locale, setLocale, t } = useAdminLocale();
+  const { locale, setLocale, confirmDiscardChanges, t } = useAdminLocale();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   async function handleSignOut() {
+    if (!confirmDiscardChanges()) return;
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/login');
   }
@@ -51,7 +52,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
 
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.sidebarOpen : ''}`}>
         <div className={styles.sidebarHeader}>
-          <Link href="/ZAIMOZ" className={styles.logo} onClick={close}>
+          <Link href="/ZAIMOZ" className={styles.logo} onClick={close} onNavigate={(event) => { if (!confirmDiscardChanges()) event.preventDefault(); }}>
             {t('logo')}
           </Link>
         </div>
@@ -62,6 +63,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
               key={href}
               href={href}
               onClick={close}
+              onNavigate={(event) => { if (!confirmDiscardChanges()) event.preventDefault(); }}
               className={`${styles.navItem} ${(pathname === href || (href !== '/ZAIMOZ' && pathname.startsWith(href))) ? styles.active : ''}`}
             >
               <span className={styles.navIcon}>{NAV_ICONS[i]}</span>
@@ -109,7 +111,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
               🇭🇺 HU
             </button>
           </div>
-          <Link href="/" className={styles.navItem} target="_blank" rel="noopener noreferrer" onClick={close}>
+          <Link href="/" className={styles.navItem} target="_blank" rel="noopener noreferrer" onClick={close} onNavigate={(event) => { if (!confirmDiscardChanges()) event.preventDefault(); }}>
             <span className={styles.navIcon}>↗</span>
             {t('viewWebsite')}
           </Link>

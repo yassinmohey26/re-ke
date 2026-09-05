@@ -17,10 +17,29 @@ interface Tour {
   featured: boolean;
   active: boolean;
   sort_order?: number;
+  adminMeta?: {
+    translationStatus: Record<AdminLocaleCode, boolean>;
+    completeness: {
+      percent: number;
+      checks: Record<string, boolean>;
+    };
+  };
 }
 
+type AdminLocaleCode = 'de' | 'en' | 'fr' | 'hu' | 'ru' | 'ar';
+const ADMIN_LOCALES: AdminLocaleCode[] = ['de', 'en', 'fr', 'hu', 'ru', 'ar'];
+const COMPLETENESS_CHECKS = [
+  ['content', 'completenessContent'],
+  ['image', 'completenessImage'],
+  ['pricing', 'completenessPricing'],
+  ['childDiscounts', 'completenessChildDiscounts'],
+  ['itinerary', 'completenessItinerary'],
+  ['faqs', 'completenessFaqs'],
+  ['translations', 'completenessTranslations'],
+] as const;
+
 export default function AdminToursPage() {
-  const { t } = useAdminLocale();
+  const { t, setLocale } = useAdminLocale();
   const router = useRouter();
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
@@ -120,6 +139,34 @@ export default function AdminToursPage() {
     return matchSearch && matchCategory;
   });
 
+  function renderCompleteness(tour: Tour) {
+    const completeness = tour.adminMeta?.completeness;
+    const percent = completeness?.percent ?? 0;
+    return (
+      <details className={styles.completenessDetails}>
+        <summary className={styles.completenessSummary} title={t('completenessOpenDetails')}>
+          <div className={styles.completeness}>
+            <div className={styles.completenessTrack}>
+              <span style={{ width: `${percent}%` }} />
+            </div>
+            <strong>{percent}%</strong>
+          </div>
+        </summary>
+        <div className={styles.completenessChecklist}>
+          {COMPLETENESS_CHECKS.map(([key, label]) => {
+            const complete = completeness?.checks[key] === true;
+            return (
+              <span key={key} className={complete ? styles.checkComplete : styles.checkMissing}>
+                <span aria-hidden="true">{complete ? '✓' : '!'}</span>
+                {t(label)}
+              </span>
+            );
+          })}
+        </div>
+      </details>
+    );
+  }
+
   return (
     <div>
       <div className={styles.header}>
@@ -164,6 +211,8 @@ export default function AdminToursPage() {
                   <th>{t('colCategory')}</th>
                   <th>{t('colDestination')}</th>
                   <th>{t('colPrice')}</th>
+                  <th>{t('colCompleteness')}</th>
+                  <th>{t('colLanguages')}</th>
                   <th>{t('colFeatured')}</th>
                   <th>{t('colActive')}</th>
                   <th>{t('colActions')}</th>
@@ -194,6 +243,28 @@ export default function AdminToursPage() {
                     </td>
                     <td>{tour.destination}</td>
                     <td>{tour.price ? `€${tour.price}` : t('onRequest')}</td>
+                    <td>
+                      {renderCompleteness(tour)}
+                    </td>
+                    <td>
+                      <div className={styles.languageMatrix}>
+                        {ADMIN_LOCALES.map((code) => {
+                          const complete = tour.adminMeta?.translationStatus[code] === true;
+                          return (
+                            <Link
+                              key={code}
+                              href={`/ZAIMOZ/tours/edit/${tour.id}`}
+                              onClick={() => setLocale(code)}
+                              className={`${styles.languageDot} ${complete ? styles.languageComplete : styles.languageMissing}`}
+                              title={`${code.toUpperCase()}: ${complete ? t('translationComplete') : t('translationMissing')}`}
+                              aria-label={`${code.toUpperCase()}: ${complete ? t('translationComplete') : t('translationMissing')}`}
+                            >
+                              {code.toUpperCase()}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </td>
                     <td>
                       <button
                         className={`${styles.toggleBtn} ${tour.featured ? styles.activeToggle : ''}`}
@@ -228,7 +299,7 @@ export default function AdminToursPage() {
                 ))}
                 {filtered.length === 0 && (
                   <tr>
-                    <td colSpan={8} className={styles.empty}>{t('noResults')}</td>
+                    <td colSpan={10} className={styles.empty}>{t('noResults')}</td>
                   </tr>
                 )}
               </tbody>
@@ -272,6 +343,32 @@ export default function AdminToursPage() {
                   <div className={styles.mobileCardMetaItem}>
                     <span className={styles.mobileCardMetaLabel}>{t('colPrice')}</span>
                     <span className={styles.mobileCardMetaValue}>{tour.price ? `€${tour.price}` : t('onRequest')}</span>
+                  </div>
+                </div>
+
+                <div className={styles.mobileQuality}>
+                  <div>
+                    <span className={styles.mobileCardMetaLabel}>{t('colCompleteness')}</span>
+                    {renderCompleteness(tour)}
+                  </div>
+                  <div>
+                    <span className={styles.mobileCardMetaLabel}>{t('colLanguages')}</span>
+                    <div className={styles.languageMatrix}>
+                      {ADMIN_LOCALES.map((code) => {
+                        const complete = tour.adminMeta?.translationStatus[code] === true;
+                        return (
+                          <Link
+                            key={code}
+                            href={`/ZAIMOZ/tours/edit/${tour.id}`}
+                            onClick={() => setLocale(code)}
+                            className={`${styles.languageDot} ${complete ? styles.languageComplete : styles.languageMissing}`}
+                            title={`${code.toUpperCase()}: ${complete ? t('translationComplete') : t('translationMissing')}`}
+                          >
+                            {code.toUpperCase()}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
 

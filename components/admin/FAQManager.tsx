@@ -74,13 +74,17 @@ export default function FAQManager({ faqs, onChange, styles }: FAQManagerProps) 
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>FAQs (Deutsch – master)</h2>
+    <details className={`${styles.section} ${styles.collapsibleSection}`}>
+      <summary className={styles.sectionSummary}>
+        <span>FAQs (Deutsch – master)</span>
+        <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
       <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
         German FAQs are the single source of truth. Saved directly to the tours table.
       </p>
 
-      <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+      <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
             <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
@@ -92,15 +96,15 @@ export default function FAQManager({ faqs, onChange, styles }: FAQManagerProps) 
         <tbody>
           {faqs.map((item, index) => (
             <tr key={index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-              <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+              <td data-label="Order" style={{ padding: '8px', whiteSpace: 'nowrap' }}>
                 <div style={{ display: 'flex', gap: '4px' }}>
                   <button type="button" onClick={() => move(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
                   <button type="button" onClick={() => move(index, 1)} disabled={index === faqs.length - 1} style={reorderBtnStyle}>▼</button>
                 </div>
               </td>
-              <td style={{ padding: '8px' }}>{item.question || <span style={{ opacity: 0.6 }}>—</span>}</td>
-              <td style={{ padding: '8px', opacity: 0.8 }}>{item.answer}</td>
-              <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+              <td data-label="Question" style={{ padding: '8px' }}>{item.question || <span style={{ opacity: 0.6 }}>—</span>}</td>
+              <td data-label="Answer" style={{ padding: '8px', opacity: 0.8 }}>{item.answer}</td>
+              <td data-label="Actions" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                 <button type="button" onClick={() => startEdit(index)} className={styles.slugBtn}>Edit</button>
                 <button type="button" onClick={() => remove(index)} className={styles.cancelBtn}>Delete</button>
               </td>
@@ -136,6 +140,7 @@ export default function FAQManager({ faqs, onChange, styles }: FAQManagerProps) 
       <p style={{ marginTop: 'var(--space-3)', fontSize: '12px', color: 'var(--color-text-3)' }}>
         {faqs.length} FAQ(s)
       </p>
-    </div>
+      </div>
+    </details>
   );
 }

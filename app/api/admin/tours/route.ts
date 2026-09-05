@@ -59,7 +59,76 @@ export async function GET() {
     : base.order('created_at', { ascending: false });
   const { data, error } = await ordered;
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data ?? []);
+
+  const tours = data ?? [];
+  if (tours.length === 0) return NextResponse.json([]);
+
+  const tourIds = tours.map((tour) => tour.id);
+  const [{ data: translations }, { data: childDiscounts }] = await Promise.all([
+    supabase
+      .from('content_translations')
+      .select('row_id, locale, name, short_description, description')
+      .eq('table_name', 'tours')
+      .in('row_id', tourIds),
+    supabase
+      .from('tour_child_discounts')
+      .select('tour_id')
+      .in('tour_id', tourIds),
+  ]);
+
+  const supportedLocales = ['de', 'en', 'fr', 'hu', 'ru', 'ar'] as const;
+  const translationsByTour = new Map<string, Set<string>>();
+  for (const translation of translations ?? []) {
+    const hasCoreContent = Boolean(
+      String(translation.name ?? '').trim()
+      && String(translation.short_description ?? '').trim()
+      && String(translation.description ?? '').trim(),
+    );
+    if (!hasCoreContent || !supportedLocales.includes(translation.locale as typeof supportedLocales[number])) continue;
+    const locales = translationsByTour.get(translation.row_id) ?? new Set<string>();
+    locales.add(translation.locale);
+    translationsByTour.set(translation.row_id, locales);
+  }
+
+  const toursWithChildDiscounts = new Set((childDiscounts ?? []).map((row) => row.tour_id));
+  const hasItems = (value: unknown): boolean => {
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value !== 'string' || !value.trim()) return false;
+    try {
+      const parsed = JSON.parse(value);
+      return Array.isArray(parsed) ? parsed.length > 0 : Boolean(parsed);
+    } catch {
+      return true;
+    }
+  };
+
+  return NextResponse.json(tours.map((tour) => {
+    const completedLocales = translationsByTour.get(tour.id) ?? new Set<string>();
+    const translationStatus = Object.fromEntries(
+      supportedLocales.map((locale) => [locale, completedLocales.has(locale)]),
+    );
+    const checks = {
+      content: Boolean(String(tour.name ?? '').trim() && String(tour.slug ?? '').trim() && String(tour.description ?? '').trim()),
+      image: hasItems(tour.image),
+      pricing: Number.isFinite(Number(tour.price)) && Number(tour.price) > 0,
+      childDiscounts: toursWithChildDiscounts.has(tour.id),
+      itinerary: hasItems(tour.itinerary),
+      faqs: hasItems(tour.faqs),
+      translations: supportedLocales.every((locale) => completedLocales.has(locale)),
+    };
+    const completeCount = Object.values(checks).filter(Boolean).length;
+
+    return {
+      ...tour,
+      adminMeta: {
+        translationStatus,
+        completeness: {
+          percent: Math.round((completeCount / Object.keys(checks).length) * 100),
+          checks,
+        },
+      },
+    };
+  }));
 }
 
 export async function POST(request: NextRequest) {

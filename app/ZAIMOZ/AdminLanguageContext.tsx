@@ -6,6 +6,9 @@ import { AdminLocale, getAdminTranslation, TranslationKey } from './admin-i18n';
 interface AdminLanguageContextType {
   locale: AdminLocale;
   setLocale: (locale: AdminLocale) => void;
+  hasUnsavedChanges: boolean;
+  setHasUnsavedChanges: (value: boolean) => void;
+  confirmDiscardChanges: () => boolean;
   t: (key: TranslationKey) => string;
 }
 
@@ -13,6 +16,7 @@ const AdminLanguageContext = createContext<AdminLanguageContextType | null>(null
 
 export function AdminLanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<AdminLocale>('de');
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('admin-locale') as AdminLocale | null;
@@ -20,8 +24,17 @@ export function AdminLanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   function setLocale(l: AdminLocale) {
+    if (l === locale) return;
+    if (!confirmDiscardChanges()) return;
     setLocaleState(l);
     localStorage.setItem('admin-locale', l);
+  }
+
+  function confirmDiscardChanges(): boolean {
+    if (!hasUnsavedChanges) return true;
+    const confirmed = window.confirm(getAdminTranslation('tourLeaveUnsaved', locale));
+    if (confirmed) setHasUnsavedChanges(false);
+    return confirmed;
   }
 
   function t(key: TranslationKey): string {
@@ -29,7 +42,7 @@ export function AdminLanguageProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AdminLanguageContext.Provider value={{ locale, setLocale, t }}>
+    <AdminLanguageContext.Provider value={{ locale, setLocale, hasUnsavedChanges, setHasUnsavedChanges, confirmDiscardChanges, t }}>
       {children}
     </AdminLanguageContext.Provider>
   );

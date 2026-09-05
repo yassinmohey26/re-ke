@@ -11,6 +11,7 @@ interface ItineraryItem {
 interface ItineraryManagerProps {
   tourId: string;
   styles: { [key: string]: string };
+  onCountChange?: (count: number) => void;
 }
 
 const emptyItem = { title: '', content: '' };
@@ -26,7 +27,7 @@ const reorderBtnStyle: React.CSSProperties = {
   lineHeight: 1,
 };
 
-export default function ItineraryManager({ tourId, styles }: ItineraryManagerProps) {
+export default function ItineraryManager({ tourId, styles, onCountChange }: ItineraryManagerProps) {
   const { locale } = useAdminLocale();
   const [items, setItems] = useState<ItineraryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,10 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tourId, locale]);
+
+  useEffect(() => {
+    onCountChange?.(items.length);
+  }, [items.length, onCountChange]);
 
   async function load() {
     setLoading(true);
@@ -119,8 +124,12 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Reiseverlauf ({locale === 'de' ? 'Deutsch – master' : locale.toUpperCase()})</h2>
+    <details className={`${styles.section} ${styles.collapsibleSection}`}>
+      <summary className={styles.sectionSummary}>
+        <span>Reiseverlauf ({locale === 'de' ? 'Deutsch – master' : locale.toUpperCase()})</span>
+        <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
       <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
         {locale === 'de'
           ? 'German itinerary is the master and is saved to the tours table. Other languages have their own independent itinerary.'
@@ -130,7 +139,7 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
       {loading ? (
         <p>Loading itinerary...</p>
       ) : (
-        <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+        <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
               <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
@@ -142,15 +151,15 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
           <tbody>
             {items.map((item, index) => (
               <tr key={index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+                <td data-label="Order" style={{ padding: '8px', whiteSpace: 'nowrap' }}>
                   <div style={{ display: 'flex', gap: '4px' }}>
                     <button type="button" onClick={() => move(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
                     <button type="button" onClick={() => move(index, 1)} disabled={index === items.length - 1} style={reorderBtnStyle}>▼</button>
                   </div>
                 </td>
-                <td style={{ padding: '8px' }}>{item.title || <span style={{ opacity: 0.6 }}>—</span>}</td>
-                <td style={{ padding: '8px', opacity: 0.8 }}>{item.content}</td>
-                <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+                <td data-label="Title" style={{ padding: '8px' }}>{item.title || <span style={{ opacity: 0.6 }}>—</span>}</td>
+                <td data-label="Content" style={{ padding: '8px', opacity: 0.8 }}>{item.content}</td>
+                <td data-label="Actions" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                   <button type="button" onClick={() => startEdit(index)} className={styles.slugBtn}>Edit</button>
                   <button type="button" onClick={() => remove(index)} className={styles.cancelBtn}>Delete</button>
                 </td>
@@ -190,6 +199,7 @@ export default function ItineraryManager({ tourId, styles }: ItineraryManagerPro
         </button>
         {!loading && <span style={{ fontSize: '12px', color: 'var(--color-text-3)' }}>{items.length} item(s)</span>}
       </div>
-    </div>
+      </div>
+    </details>
   );
 }

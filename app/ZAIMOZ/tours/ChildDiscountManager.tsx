@@ -42,6 +42,52 @@ function dbRowToForm(row: Record<string, unknown>): ChildDiscountFormTier {
   };
 }
 
+function validateTierSequence(tiers: ChildDiscountFormTier[]): string | null {
+  if (tiers.length === 0) return null;
+
+  for (let index = 0; index < tiers.length; index += 1) {
+    const tier = tiers[index];
+    if (!Number.isInteger(tier.ageFrom) || tier.ageFrom < 0) {
+      return 'Das Startalter muss eine ganze Zahl ab 0 sein.';
+    }
+    if (tier.ageTo != null && (!Number.isInteger(tier.ageTo) || tier.ageTo < tier.ageFrom)) {
+      return 'Das Endalter darf nicht kleiner als das Startalter sein.';
+    }
+    if (tier.discountType === 'percentage' && (tier.discountValue == null || tier.discountValue < 0 || tier.discountValue > 100)) {
+      return 'Der prozentuale Rabatt muss zwischen 0 und 100 liegen.';
+    }
+    if (tier.discountType === 'fixed_price' && (tier.discountValue == null || tier.discountValue < 0)) {
+      return 'Der feste Preis darf nicht negativ sein.';
+    }
+
+    if (index === 0 && tier.ageFrom !== 0) {
+      return 'Die erste Altersstufe muss bei 0 beginnen.';
+    }
+    if (index === 0) continue;
+
+    const previous = tiers[index - 1];
+    if (previous.ageTo == null) {
+      return 'Eine offene Altersstufe muss die letzte Stufe sein.';
+    }
+    const expectedStart = previous.ageTo + 1;
+    if (tier.ageFrom < expectedStart) {
+      return `Die Altersstufen überschneiden sich bei ${tier.ageFrom}.`;
+    }
+    if (tier.ageFrom > expectedStart) {
+      return `Zwischen ${previous.ageTo} und ${tier.ageFrom} besteht eine Lücke.`;
+    }
+  }
+
+  return null;
+}
+
+function showTierValidationError(tiers: ChildDiscountFormTier[]): boolean {
+  const error = validateTierSequence(tiers);
+  if (!error) return false;
+  alert(error);
+  return true;
+}
+
 const reorderBtnStyle: React.CSSProperties = {
   background: 'transparent',
   border: '1px solid rgba(255,255,255,0.2)',
@@ -181,20 +227,25 @@ export function ChildDiscountEditor({
     if (target < 0 || target >= tiers.length) return;
     const next = [...tiers];
     [next[index], next[target]] = [next[target], next[index]];
-    onChange(next.map((t, i) => ({ ...t, sortOrder: i })));
+    const reordered = next.map((t, i) => ({ ...t, sortOrder: i }));
+    if (showTierValidationError(reordered)) return;
+    onChange(reordered);
   }
 
   function remove(index: number) {
     if (!confirm('Diese Altersstufe löschen?')) return;
-    onChange(tiers.filter((_, i) => i !== index).map((t, i) => ({ ...t, sortOrder: i })));
+    const next = tiers.filter((_, i) => i !== index).map((t, i) => ({ ...t, sortOrder: i }));
+    if (showTierValidationError(next)) return;
+    onChange(next);
     if (editingIndex === index) cancelEdit();
   }
 
   function commitEdit() {
-    const item = {
-      ...form,
-      ageTo: form.ageTo != null && form.ageTo < form.ageFrom ? form.ageFrom : form.ageTo,
-    };
+    const item = { ...form };
+    const next = editingIndex === 'new'
+      ? [...tiers, { ...item, sortOrder: tiers.length }]
+      : tiers.map((tier, index) => (index === editingIndex ? { ...item, sortOrder: index } : tier));
+    if (showTierValidationError(next)) return;
     if (editingIndex === 'new') {
       onChange([...tiers, { ...item, sortOrder: tiers.length }]);
     } else if (editingIndex !== null) {
@@ -204,13 +255,17 @@ export function ChildDiscountEditor({
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Kinderermäßigung</h2>
+    <details className={`${styles.section} ${styles.collapsibleSection}`} open>
+      <summary className={styles.sectionSummary}>
+        <span>Kinderermäßigung</span>
+        <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
       <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
         Leer lassen = Standard (0–2 kostenlos, 3–10 50 %, ab 11 voller Preis) auf der Website.
       </p>
 
-      <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+      <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
             <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
@@ -222,17 +277,17 @@ export function ChildDiscountEditor({
         <tbody>
           {tiers.map((tier, index) => (
             <tr key={tier.id ?? index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-              <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+              <td data-label="Reihenfolge" style={{ padding: '8px', whiteSpace: 'nowrap' }}>
                 <div style={{ display: 'flex', gap: '4px' }}>
                   <button type="button" onClick={() => move(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
                   <button type="button" onClick={() => move(index, 1)} disabled={index === tiers.length - 1} style={reorderBtnStyle}>▼</button>
                 </div>
               </td>
-              <td style={{ padding: '8px' }}>
+              <td data-label="Alter" style={{ padding: '8px' }}>
                 {tier.ageTo == null ? `${tier.ageFrom}+` : `${tier.ageFrom}–${tier.ageTo}`}
               </td>
-              <td style={{ padding: '8px' }}>{tier.discountType}{tier.discountValue != null ? ` (${tier.discountValue})` : ''}</td>
-              <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+              <td data-label="Preis" style={{ padding: '8px' }}>{tier.discountType}{tier.discountValue != null ? ` (${tier.discountValue})` : ''}</td>
+              <td data-label="Aktionen" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                 <button type="button" onClick={() => startEdit(index)} className={styles.slugBtn}>Edit</button>
                 <button type="button" onClick={() => remove(index)} className={styles.cancelBtn}>Delete</button>
               </td>
@@ -257,7 +312,8 @@ export function ChildDiscountEditor({
       ) : (
         <button type="button" onClick={startAdd} className={styles.slugBtn}>+ Altersstufe</button>
       )}
-    </div>
+      </div>
+    </details>
   );
 }
 
@@ -301,6 +357,10 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
   }
 
   async function save() {
+    const next = editingIndex === 'new'
+      ? [...tiers, { ...form, sortOrder: tiers.length }]
+      : tiers.map((tier, index) => (index === editingIndex ? { ...form, sortOrder: index } : tier));
+    if (showTierValidationError(next)) return;
     setSaving(true);
     try {
       const payload = {
@@ -335,8 +395,10 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
   }
 
   async function remove(id: string | undefined, index: number) {
+    const next = tiers.filter((_, tierIndex) => tierIndex !== index).map((tier, tierIndex) => ({ ...tier, sortOrder: tierIndex }));
+    if (showTierValidationError(next)) return;
     if (!id) {
-      setTiers(prev => prev.filter((_, i) => i !== index));
+      setTiers(next);
       return;
     }
     if (!confirm('Diese Altersstufe löschen?')) return;
@@ -351,6 +413,7 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
     const next = [...tiers];
     [next[index], next[target]] = [next[target], next[index]];
     const reordered = next.map((t, i) => ({ ...t, sortOrder: i }));
+    if (showTierValidationError(reordered)) return;
     setTiers(reordered);
     const res = await fetch(`/api/admin/tours/${tourId}/child-discounts`, {
       method: 'PUT',
@@ -373,21 +436,30 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
 
   if (loading) {
     return (
-      <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>Kinderermäßigung</h2>
+      <details className={`${styles.section} ${styles.collapsibleSection}`} open>
+        <summary className={styles.sectionSummary}>
+          <span>Kinderermäßigung</span>
+          <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+        </summary>
+        <div className={styles.collapsibleContent}>
         <p>Loading…</p>
-      </div>
+        </div>
+      </details>
     );
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={styles.sectionTitle}>Kinderermäßigung</h2>
+    <details className={`${styles.section} ${styles.collapsibleSection}`} open>
+      <summary className={styles.sectionSummary}>
+        <span>Kinderermäßigung</span>
+        <span className={styles.sectionChevron} aria-hidden="true">⌄</span>
+      </summary>
+      <div className={styles.collapsibleContent}>
       <p style={{ fontSize: '12px', color: 'var(--color-text-3)', marginBottom: 'var(--space-3)' }}>
         Keine Stufen = Standard auf der Website (0–2 kostenlos, 3–10 50 %, ab 11 voller Preis).
       </p>
 
-      <table style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
+      <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
             <th style={{ textAlign: 'left', padding: '8px' }}>#</th>
@@ -399,20 +471,20 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
         <tbody>
           {tiers.map((tier, index) => (
             <tr key={tier.id ?? index} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-              <td style={{ padding: '8px', whiteSpace: 'nowrap' }}>
+              <td data-label="Reihenfolge" style={{ padding: '8px', whiteSpace: 'nowrap' }}>
                 <div style={{ display: 'flex', gap: '4px' }}>
                   <button type="button" onClick={() => move(index, -1)} disabled={index === 0} style={reorderBtnStyle}>▲</button>
                   <button type="button" onClick={() => move(index, 1)} disabled={index === tiers.length - 1} style={reorderBtnStyle}>▼</button>
                 </div>
               </td>
-              <td style={{ padding: '8px' }}>
+              <td data-label="Alter" style={{ padding: '8px' }}>
                 {tier.ageTo == null ? `${tier.ageFrom}+` : `${tier.ageFrom}–${tier.ageTo}`}
               </td>
-              <td style={{ padding: '8px' }}>
+              <td data-label="Art" style={{ padding: '8px' }}>
                 {tier.discountType}
                 {tier.discountValue != null ? ` (${tier.discountValue})` : ''}
               </td>
-              <td style={{ padding: '8px', display: 'flex', gap: '8px' }}>
+              <td data-label="Aktionen" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                 <button type="button" onClick={() => startEdit(index)} className={styles.slugBtn}>Edit</button>
                 <button type="button" onClick={() => remove(tier.id, index)} className={styles.cancelBtn}>Delete</button>
               </td>
@@ -437,7 +509,8 @@ export default function ChildDiscountManager({ tourId, styles }: ChildDiscountMa
       ) : (
         <button type="button" onClick={startAdd} className={styles.slugBtn}>+ Altersstufe</button>
       )}
-    </div>
+      </div>
+    </details>
   );
 }
 
