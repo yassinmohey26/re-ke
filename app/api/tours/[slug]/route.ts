@@ -1,6 +1,7 @@
 // Place at: app/api/tours/[slug]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getTourBySlug, getTourExtras } from '@/lib/data/tours';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { parsePricingTiers } from '@/lib/pricing-table';
 
 export async function GET(
@@ -13,6 +14,9 @@ export async function GET(
   if (!tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   const extras = await getTourExtras(tour.id, locale);
+  const { data: participantRows } = await getSupabaseAdmin()
+    .from('tour_participant_prices').select('person_type,price,currency,min_age,max_age,is_active')
+    .eq('tour_id', tour.id).eq('is_active', true);
 
   const rawTiers = tour.discount?.pricingTiers ?? parsePricingTiers(tour.description);
   const pricingTiers = rawTiers.map((t) => {
@@ -31,5 +35,9 @@ export async function GET(
     pricingTiers,
     discount: tour.discount,
     extras,
+    participantPrices: Object.fromEntries((participantRows ?? []).map((p: Record<string, unknown>) => [p.person_type, {
+      personType: p.person_type, price: Number(p.price), currency: p.currency ?? 'EUR',
+      minAge: Number(p.min_age), maxAge: Number(p.max_age), isActive: Boolean(p.is_active),
+    }])),
   });
 }

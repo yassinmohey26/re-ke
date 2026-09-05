@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useMemo, type ReactNode } from 're
 import { type PricingTier, getPriceForGuests, applyDiscount } from '@/lib/pricing-table';
 import type { Discount } from '@/lib/data/tours';
 import type { TourChildDiscount } from '@/lib/child-discounts';
+import type { ParticipantPrice } from '@/lib/participant-pricing';
 import {
   computeTierPrice,
   findTierForChild,
@@ -40,6 +41,7 @@ interface TourBookingContextValue {
   extrasTotal: number;
   total: number | null;
   bookingHref: string;
+  participantPrices: Partial<Record<'adult' | 'child' | 'infant', ParticipantPrice>>;
 }
 
 const TourBookingContext = createContext<TourBookingContextValue | null>(null);
@@ -57,6 +59,7 @@ export function TourBookingProvider({
   pricingTiers = [],
   discount = null,
   childDiscounts = [],
+  participantPrices = {},
   extras,
   children,
 }: {
@@ -66,6 +69,7 @@ export function TourBookingProvider({
   pricingTiers?: PricingTier[];
   discount?: Discount | null;
   childDiscounts?: TourChildDiscount[];
+  participantPrices?: Partial<Record<'adult' | 'child' | 'infant', ParticipantPrice>>;
   extras: Extra[];
   children: ReactNode;
 }) {
@@ -86,7 +90,7 @@ export function TourBookingProvider({
     const guestsTotal = adults + childrenCount + infants;
     const tiers = resolveChildDiscounts(childDiscounts);
     const guestsForPricing = adults;
-    const pricePerPerson = getPriceForGuests(pricingTiers, price, guestsForPricing);
+    const pricePerPerson = participantPrices.adult?.price ?? getPriceForGuests(pricingTiers, price, guestsForPricing);
     const activeTierIndex = pricingTiers.findIndex(
       t => guestsForPricing >= t.minGuests && guestsForPricing <= t.maxGuests
     );
@@ -103,8 +107,8 @@ export function TourBookingProvider({
     const total = effectivePrice != null
       ? (() => {
           const adultTotal = effectivePrice * adults;
-          const childPrice = infantTier ? computeTierPrice(infantTier, effectivePrice) : 0;
-          const childrenPrice = childTier ? computeTierPrice(childTier, effectivePrice) : Math.round(effectivePrice / 2);
+          const childPrice = participantPrices.infant?.price ?? (infantTier ? computeTierPrice(infantTier, effectivePrice) : 0);
+          const childrenPrice = participantPrices.child?.price ?? (childTier ? computeTierPrice(childTier, effectivePrice) : Math.round(effectivePrice / 2));
           return adultTotal + childrenPrice * childrenCount + childPrice * infants;
         })() + extrasTotal
       : null;
@@ -133,8 +137,9 @@ export function TourBookingProvider({
       extrasTotal,
       total,
       bookingHref,
+      participantPrices,
     };
-  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, childDiscounts, slug, extras, selected]);
+  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, childDiscounts, participantPrices, slug, extras, selected]);
 
   return <TourBookingContext.Provider value={value}>{children}</TourBookingContext.Provider>;
 }

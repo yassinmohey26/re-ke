@@ -28,6 +28,7 @@ interface TourInfo {
   pricingTiers: { minGuests: number; maxGuests: number; pricePerPerson: number }[];
   discount: Discount | null;
   extras: TourExtra[];
+  participantPrices?: Partial<Record<'adult' | 'child' | 'infant', { personType: 'adult' | 'child' | 'infant'; price: number; currency: string; minAge: number; maxAge: number; isActive: boolean }>>;
 }
 
 function getInitialAdults(value: string | null): number {
@@ -138,6 +139,7 @@ function BookingContent() {
           initialAdults={initialAdults}
           initialChildren={initialChildren}
           initialInfants={initialInfants}
+          participantPrices={tourInfo?.participantPrices}
         />
       </div>
     </div>

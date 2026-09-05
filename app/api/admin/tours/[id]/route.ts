@@ -35,6 +35,15 @@ function sanitizeFAQs(value: unknown): { question: string; answer: string }[] {
     .filter((i) => i.question.trim() !== '' || i.answer.trim() !== '');
 }
 
+function sanitizeParticipantPrices(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is Record<string, unknown> => !!item && typeof item === 'object').map((item) => ({
+    person_type: item.personType, price: Number(item.price ?? 0),
+    currency: typeof item.currency === 'string' ? item.currency.toUpperCase() : 'EUR',
+    min_age: Number(item.minAge), max_age: Number(item.maxAge), is_active: item.isActive !== false,
+  })).filter((item) => ['adult', 'child', 'infant'].includes(String(item.person_type)) && Number.isFinite(item.price) && item.price >= 0 && Number.isInteger(item.min_age) && Number.isInteger(item.max_age) && item.min_age >= 0 && item.max_age >= item.min_age && /^[A-Z]{3}$/.test(item.currency));
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -49,6 +58,7 @@ export async function GET(
   const supabase = getSupabaseAdmin();
   const { data: tour, error } = await supabase.from('tours').select('*').eq('id', id).single();
   if (error || !tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  const { data: participantPrices } = await supabase.from('tour_participant_prices').select('*').eq('tour_id', id);
 
   const { data: translations } = await supabase
     .from('content_translations')
@@ -134,6 +144,7 @@ export async function GET(
 
   return NextResponse.json({
     ...tour,
+    participantPrices: Object.fromEntries((participantPrices ?? []).map((p: any) => [p.person_type, { price: Number(p.price), currency: p.currency, minAge: p.min_age, maxAge: p.max_age, isActive: p.is_active }])),
     translations: trMap,
     translation,
     activeLocale: locale,
@@ -251,6 +262,13 @@ export async function PUT(
     }
 
     const { data: tour } = await supabase.from('tours').select('*').eq('id', id).single();
+    if (Array.isArray(body.participantPrices)) {
+      for (const row of sanitizeParticipantPrices(body.participantPrices)) {
+        const { data: existing } = await supabase.from('tour_participant_prices').select('id').eq('tour_id', id).eq('person_type', row.person_type).maybeSingle();
+        const result = existing ? await supabase.from('tour_participant_prices').update(row).eq('id', existing.id) : await supabase.from('tour_participant_prices').insert({ ...row, tour_id: id });
+        if (result.error) return NextResponse.json({ error: result.error.message }, { status: 400 });
+      }
+    }
     return NextResponse.json(tour);
   } catch (e) {
     console.error('Tour update catch:', e);

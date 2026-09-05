@@ -36,6 +36,17 @@ function sanitizeFAQs(value: unknown): { question: string; answer: string }[] {
     .filter((i) => i.question.trim() !== '' || i.answer.trim() !== '');
 }
 
+function sanitizeParticipantPrices(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is Record<string, unknown> => !!item && typeof item === 'object').map((item) => ({
+    person_type: item.personType,
+    price: Number(item.price ?? 0),
+    currency: typeof item.currency === 'string' ? item.currency.toUpperCase() : 'EUR',
+    min_age: Number(item.minAge), max_age: Number(item.maxAge),
+    is_active: item.isActive !== false,
+  })).filter((item) => ['adult', 'child', 'infant'].includes(String(item.person_type)) && Number.isFinite(item.price) && item.price >= 0 && Number.isInteger(item.min_age) && Number.isInteger(item.max_age) && item.min_age >= 0 && item.max_age >= item.min_age && /^[A-Z]{3}$/.test(item.currency));
+}
+
 export async function GET() {
   const session = await auth();
   if (!session?.user) {
@@ -168,6 +179,17 @@ export async function POST(request: NextRequest) {
         if (childDiscountError) {
           console.error('Tour child discounts insert error:', childDiscountError);
         }
+      }
+    }
+
+    if (Array.isArray(body.participantPrices)) {
+      const rows = sanitizeParticipantPrices(body.participantPrices).map((row) => ({ ...row, tour_id: tour.id }));
+      for (const row of rows) {
+        const { data: existing } = await supabase.from('tour_participant_prices').select('id').eq('tour_id', tour.id).eq('person_type', row.person_type).maybeSingle();
+        const result = existing
+          ? await supabase.from('tour_participant_prices').update(row).eq('id', existing.id)
+          : await supabase.from('tour_participant_prices').insert(row);
+        if (result.error) return NextResponse.json({ error: result.error.message }, { status: 400 });
       }
     }
 

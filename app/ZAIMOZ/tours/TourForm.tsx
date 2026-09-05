@@ -162,6 +162,14 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   });
 
   const [childDiscountTiers, setChildDiscountTiers] = useState<ChildDiscountFormTier[]>([]);
+  const [participantPrices, setParticipantPrices] = useState(() => {
+    const source = initialData?.participantPrices ?? {};
+    return {
+      adult: { price: Number(source.adult?.price ?? initialData?.price ?? 0), minAge: 12, maxAge: 120, isActive: source.adult?.isActive !== false, currency: source.adult?.currency ?? 'EUR' },
+      child: { price: Number(source.child?.price ?? 0), minAge: Number(source.child?.minAge ?? 3), maxAge: Number(source.child?.maxAge ?? 11), isActive: source.child?.isActive ?? false, currency: source.child?.currency ?? 'EUR' },
+      infant: { price: Number(source.infant?.price ?? 0), minAge: Number(source.infant?.minAge ?? 0), maxAge: Number(source.infant?.maxAge ?? 2), isActive: source.infant?.isActive ?? false, currency: source.infant?.currency ?? 'EUR' },
+    };
+  });
 
   const isCreateMode = !initialData?.id;
 
@@ -278,6 +286,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       faqs,
       itinerary: isCreateMode ? itinerary : undefined,
       childDiscounts: childDiscountTiers,
+      participantPrices: Object.entries(participantPrices).map(([personType, value]) => ({ personType, ...value })),
     };
     await onSave(data);
   }
@@ -330,6 +339,26 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
             <label className={styles.label}>{t('tourDurationHours')}</label>
             <input className={styles.input} type="number" min="1" value={form.durationHours} onChange={e => update('durationHours', e.target.value)} />
           </div>
+        </div>
+        <div className={styles.section}>
+          <h3 className={styles.sectionTitle}>{t('participantPricingTitle')}</h3>
+          {(['adult', 'child', 'infant'] as const).map((type) => (
+            <div key={type} className={styles.row3}>
+              <div className={styles.field}>
+                <label className={styles.label}>{t(type === 'adult' ? 'participantAdultPrice' : type === 'child' ? 'participantChildPrice' : 'participantInfantPrice')}</label>
+                <input className={styles.input} type="number" min="0" step="0.01" value={participantPrices[type].price} onChange={e => setParticipantPrices(p => ({ ...p, [type]: { ...p[type], price: Math.max(0, Number(e.target.value)) } }))} />
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>{t('participantMinAge')}</label>
+                <input className={styles.input} type="number" min="0" value={participantPrices[type].minAge} onChange={e => setParticipantPrices(p => ({ ...p, [type]: { ...p[type], minAge: Math.max(0, Number(e.target.value)) } }))} />
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>{t('participantMaxAge')}</label>
+                <input className={styles.input} type="number" min="0" value={participantPrices[type].maxAge} onChange={e => setParticipantPrices(p => ({ ...p, [type]: { ...p[type], maxAge: Math.max(0, Number(e.target.value)) } }))} />
+                <label><input type="checkbox" checked={participantPrices[type].isActive} onChange={e => setParticipantPrices(p => ({ ...p, [type]: { ...p[type], isActive: e.target.checked } }))} /> {t('participantActive')}</label>
+              </div>
+            </div>
+          ))}
         </div>
         <div className={styles.row3}>
           <div className={styles.field}>

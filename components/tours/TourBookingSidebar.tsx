@@ -63,6 +63,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
     price, pricePerPerson, salePricePerPerson, hasSale, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
     pricingTiers, discount, extras, selected, toggle, extrasTotal, total, bookingHref,
+    participantPrices,
   } = useTourBooking();
   const [date, setDate] = useState('');
 
@@ -94,18 +95,18 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
     if (adults > 0) parts.push(`${adults} × ${breakdownPrice} €`);
     if (childrenCount > 0) {
       if (hasChildTiers) {
-        const cp = resolveTierPrice(childTiers[1]?.price, 0.5, breakdownPrice);
+        const cp = participantPrices?.child?.price ?? resolveTierPrice(childTiers[1]?.price, 0.5, breakdownPrice);
         parts.push(`${childrenCount} × ${cp.toFixed(0)} €`);
       } else {
-        parts.push(`${childrenCount} × ${(breakdownPrice / 2).toFixed(0)} €`);
+        parts.push(`${childrenCount} × ${(participantPrices?.child?.price ?? breakdownPrice / 2).toFixed(2)} €`);
       }
     }
     if (infants > 0) {
       if (hasChildTiers) {
-        const ip = resolveTierPrice(childTiers[0]?.price, 0, breakdownPrice);
+        const ip = participantPrices?.infant?.price ?? resolveTierPrice(childTiers[0]?.price, 0, breakdownPrice);
         parts.push(`${infants} × ${ip.toFixed(0)} €`);
       } else {
-        parts.push(`${infants} × 0 €`);
+        parts.push(`${infants} × ${(participantPrices?.infant?.price ?? 0).toFixed(2)} €`);
       }
     }
     if (parts.length > 1 && total != null) {

@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { calculateDepositAmount, toStripeCents } from '@/lib/participant-pricing';
 
 // ── Stripe Client ──────────────────────────────────────────────────
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -12,6 +13,17 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 // ── Types ──────────────────────────────────────────────────────────
+
+// Server-generated snapshot of an approved extra. Quantities and prices come
+// from the server-side recalculation, never from the browser.
+export interface CheckoutExtraSnapshot {
+  id: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  subtotal: number;
+}
+
 export interface CheckoutBookingData {
   tourSlug: string;
   tourName: string;
@@ -22,9 +34,14 @@ export interface CheckoutBookingData {
   date: string;
   guests: number;
   message?: string;
+  /** Full server-calculated total (participants + extras + transfer surcharge). The deposit amount is derived from this. */
   totalPrice: number;
   paymentOption?: 'full' | 'deposit';
-  extras?: { id: string; name: string; price: number }[];
+  extras?: CheckoutExtraSnapshot[];
+  priceSnapshot?: Record<string, unknown>;
+  /** Server-derived transfer surcharge already included in totalPrice (display/metadata only). */
+  transferSurcharge?: number;
+  hotelRegion?: string;
   locale?: string;
 }
 
@@ -45,7 +62,8 @@ export async function createCheckoutSession(
 ): Promise<StripeCheckoutResult> {
   const supabase = getSupabaseAdmin();
 
-  // 1. Create booking in Supabase (PENDING)
+  // 1. Create booking in Supabase (PENDING) with the full server-calculated
+  //    snapshot so historical bookings survive later price changes.
   const { data: booking, error: bookingError } = await supabase
     .from('bookings')
     .insert({
@@ -59,6 +77,11 @@ export async function createCheckoutSession(
       guests: data.guests,
       status: 'PENDING',
       total_price: data.totalPrice,
+      subtotal_price: data.totalPrice,
+      final_total: data.totalPrice,
+      deposit_amount: calculateDepositAmount(data.totalPrice),
+      currency: 'EUR',
+      ...(data.priceSnapshot ? { price_snapshot: data.priceSnapshot } : {}),
       payment_option: data.paymentOption || 'full',
       extras: data.extras ?? [],
     })
@@ -70,11 +93,12 @@ export async function createCheckoutSession(
     throw new Error('Failed to create booking');
   }
 
-  // 2. Calculate amount based on payment option
-  const depositPercent = 0.3; // 30% deposit
+  // 2. Calculate amount based on payment option (rounded to Stripe cents).
+  //    data.totalPrice is the final server total and already includes the
+  //    transfer surcharge, so the deposit is a rounded 30% of everything.
   const amount = data.paymentOption === 'deposit'
-    ? Math.round(data.totalPrice * depositPercent * 100)
-    : Math.round(data.totalPrice * 100);
+    ? toStripeCents(calculateDepositAmount(data.totalPrice))
+    : toStripeCents(data.totalPrice);
 
   // 3. Create Stripe Checkout Session
   const siteUrl = getSiteUrl();
@@ -83,8 +107,12 @@ export async function createCheckoutSession(
     ? ` + ${data.extras.map((e) => e.name).join(', ')}`
     : '';
 
-  const paymentOptionLabel = data.paymentOption === 'deposit' 
-    ? ' (30% Anzahlung)' 
+  const paymentOptionLabel = data.paymentOption === 'deposit'
+    ? ' (30% Anzahlung)'
+    : '';
+
+  const transferDescription = data.transferSurcharge
+    ? ` + Transfer ${data.hotelRegion ?? ''} €${data.transferSurcharge.toFixed(2)}`.replace('  ', ' ')
     : '';
 
   const session = await stripe.checkout.sessions.create({
@@ -99,13 +127,15 @@ export async function createCheckoutSession(
       guests: String(data.guests),
       date: data.date,
       paymentOption: data.paymentOption || 'full',
+      transferSurcharge: String(data.transferSurcharge ?? 0),
+      hotelRegion: data.hotelRegion ?? '',
     },
     line_items: [
       {
         price_data: {
           currency: 'eur',
           product_data: {
-            name: `${data.tourName}${extrasDescription}${paymentOptionLabel}`,
+            name: `${data.tourName}${extrasDescription}${transferDescription}${paymentOptionLabel}`,
             description: `${data.date} · ${data.guests} Guest${data.guests > 1 ? 's' : ''}`,
             metadata: {
               tourSlug: data.tourSlug,

@@ -66,10 +66,14 @@ export const bookingSchema = z.object({
     .int()
     .min(1, 'Mindestens 1 Person')
     .max(8, 'Maximal 8 Personen'),
+  adults: z.number().int().min(0).max(20),
+  children: z.number().int().min(0).max(20),
+  infants: z.number().int().min(0).max(20),
   message: z.string().max(2000).optional().or(z.literal('')),
-  totalPrice: z.number().optional(),
+  hotelRegion: z.string().max(40).optional(),
   extrasJson: z.string().optional(),
   paymentOption: z.enum(['full', 'deposit']).transform(val => val ?? 'full'),
+  locale: z.enum(['de', 'en', 'fr', 'hu', 'ru', 'ar']).optional(),
 });
 
 export interface BookingValidationMessages {
@@ -113,10 +117,14 @@ export function createBookingSchema(messages: BookingValidationMessages) {
       return selectedDate >= today;
     }, messages.dateInvalid),
     guests: z.number().int().min(1, messages.guestsMin).max(8, messages.guestsMax),
+    adults: z.number().int().min(0).max(20),
+    children: z.number().int().min(0).max(20),
+    infants: z.number().int().min(0).max(20),
     message: z.string().max(2000, messages.messageMax).optional().or(z.literal('')),
-    totalPrice: z.number().optional(),
+    hotelRegion: z.string().max(40).optional(),
     extrasJson: z.string().optional(),
-paymentOption: z.enum(['full', 'deposit']).transform(val => val ?? 'full'),
+    paymentOption: z.enum(['full', 'deposit']).transform(val => val ?? 'full'),
+    locale: z.enum(['de', 'en', 'fr', 'hu', 'ru', 'ar']).optional(),
   });
 }
 

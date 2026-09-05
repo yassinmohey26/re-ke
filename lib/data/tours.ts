@@ -4,6 +4,7 @@ import {
   resolveChildDiscounts,
   type TourChildDiscount,
 } from '@/lib/child-discounts';
+import type { ParticipantPrice } from '@/lib/participant-pricing';
 
 const db = getSupabaseAdmin();
 
@@ -152,6 +153,7 @@ export interface Tour {
   discount: Discount | null;
   /** Age-based child pricing tiers (DB rows or runtime default fallback). */
   childDiscounts: TourChildDiscount[];
+  participantPrices?: Partial<Record<'adult' | 'child' | 'infant', ParticipantPrice>>;
 }
 
 export interface Destination {
@@ -383,6 +385,7 @@ function mergeTranslation(row: any, trRaw: any, locale: string = 'de'): Tour {
     featured: row.featured ?? false,
     discount: parseDiscount(row.discount ?? null),
     childDiscounts: [],
+    participantPrices: {},
   };
 }
 
@@ -506,6 +509,19 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   const tour = mergeTranslation(row, tr, locale);
   const childDiscountRows = await getTourChildDiscountsFromDb(row.id);
   tour.childDiscounts = resolveChildDiscounts(childDiscountRows);
+  const { data: participantRows } = await db
+    .from('tour_participant_prices')
+    .select('person_type,price,currency,min_age,max_age,is_active')
+    .eq('tour_id', row.id)
+    .eq('is_active', true);
+  tour.participantPrices = Object.fromEntries((participantRows ?? []).map((p) => [p.person_type, {
+    personType: p.person_type,
+    price: Number(p.price),
+    currency: p.currency ?? 'EUR',
+    minAge: Number(p.min_age),
+    maxAge: Number(p.max_age),
+    isActive: Boolean(p.is_active),
+  }]));
 
   // If the locale is not DE, also fetch the DE translation to extract rawDescription
   // (the pricing table HTML is always stored in the DE translation row).

@@ -234,6 +234,14 @@ const translations = {
   darkMode: { de: 'Dunkelmodus', en: 'Dark mode', ru: 'Тёмный режим', ar: 'الوضع الداكن', fr: 'Mode sombre', hu: 'Sötét mód' },
   lightMode: { de: 'Hellmodus', en: 'Light mode', ru: 'Светлый режим', ar: 'الوضع الفاتح', fr: 'Mode clair', hu: 'Világos mód' },
 
+  participantPricingTitle: { de: 'Teilnehmerpreise', en: 'Participant pricing', ru: 'Цены для участников', ar: 'أسعار المشاركين', fr: 'Tarifs participants', hu: 'Résztvevői árak' },
+  participantAdultPrice: { de: 'Erwachsenenpreis', en: 'Adult price', ru: 'Цена для взрослых', ar: 'سعر البالغ', fr: 'Tarif adulte', hu: 'Felnőtt ár' },
+  participantChildPrice: { de: 'Kinderpreis', en: 'Child price', ru: 'Детская цена', ar: 'سعر الطفل', fr: 'Tarif enfant', hu: 'Gyermek ár' },
+  participantInfantPrice: { de: 'Kleinkindpreis', en: 'Infant price', ru: 'Цена для младенцев', ar: 'سعر الرضيع', fr: 'Tarif bébé', hu: 'Csecsemő ár' },
+  participantMinAge: { de: 'Mindestalter', en: 'Minimum age', ru: 'Мин. возраст', ar: 'الحد الأدنى للعمر', fr: 'Âge minimum', hu: 'Minimum életkor' },
+  participantMaxAge: { de: 'Höchstalter', en: 'Maximum age', ru: 'Макс. возраст', ar: 'الحد الأقصى للعمر', fr: 'Âge maximum', hu: 'Maximum életkor' },
+  participantActive: { de: 'Aktiv', en: 'Active', ru: 'Активен', ar: 'نشط', fr: 'Actif', hu: 'Aktív' },
+
   // Common
   confirmDelete: { de: 'Wirklich löschen?', en: 'Really delete?', ru: 'Действительно удалить?', ar: 'هل تريد الحذف فعلاً؟', fr: 'Vraiment supprimer?', hu: 'Biztosan törli?' },
   actions: { de: 'Aktionen', en: 'Actions', ru: 'Действия', ar: 'إجراءات', fr: 'Actions', hu: 'Műveletek' },

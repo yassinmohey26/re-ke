@@ -6,6 +6,8 @@ import { createBookingSchema, type BookingFormData } from '@/lib/validations';
 import { submitBooking } from '@/lib/actions';
 import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
 import CheckoutButton from '@/components/checkout/CheckoutButton';
+import type { ParticipantPrice } from '@/lib/participant-pricing';
+import { calculateTransferSurcharge } from '@/lib/transfer-pricing';
 import styles from './BookingForm.module.css';
 
 // Extend BookingFormData to make paymentOption required
@@ -48,6 +50,7 @@ interface BookingFormProps {
   initialAdults?: number;
   initialChildren?: number;
   initialInfants?: number;
+  participantPrices?: Partial<Record<'adult' | 'child' | 'infant', ParticipantPrice>>;
 }
 
 function GuestCounter({
@@ -98,6 +101,7 @@ export default function BookingForm({
   initialAdults = 2,
   initialChildren = 0,
   initialInfants = 0,
+  participantPrices = {},
 }: BookingFormProps) {
   const t = useTranslations('booking');
   const locale = useLocale();
@@ -147,11 +151,14 @@ export default function BookingForm({
       tourName,
       date: initialDate,
       guests: guestsTotal,
+      adults: initialAdults,
+      children: initialChildren,
+      infants: initialInfants,
       paymentOption: 'full',
     },
   });
 
-  const dynamicPricePerPerson = getPriceForGuests(pricingTiers, pricePerPerson ?? null, guestsForPricing);
+  const dynamicPricePerPerson = participantPrices.adult?.price ?? getPriceForGuests(pricingTiers, pricePerPerson ?? null, guestsForPricing);
 
   function toggleExtra(id: string) {
     setSelectedExtraIds((prev) =>
@@ -162,17 +169,9 @@ export default function BookingForm({
   const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
   const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
 
-  const TRANSFER_SURCHARGES: Record<string, number> = {
-    'hurghada': 0,
-    'makadi-bay': 5,
-    'sahl-hasheesh': 5,
-    'el-gouna': 10,
-    'soma-bay': 10,
-    'safaga': 10,
-    'el-quseir': 35,
-    'marsa-alam': 50,
-  };
-  const transferSurcharge = hotelRegion ? (TRANSFER_SURCHARGES[hotelRegion] ?? 0) * guestsForPricing : 0;
+  // Display-only surcharge using the same shared server rules the booking and
+  // Stripe checkout recalculate. Only the region slug is ever submitted.
+  const transferSurcharge = calculateTransferSurcharge(hotelRegion, { adult: adults, child: childrenCount, infant: infants })?.subtotal ?? 0;
 
   const parsePrice = (s: string) => {
     const m = s.match(/[\d,.]+/);
@@ -187,8 +186,8 @@ export default function BookingForm({
           const childPrice = parsePrice(childTiers[1].price);
           const infantPrice = parsePrice(childTiers[0].price);
           return adultTotal
-            + (childrenCount && childPrice != null ? childPrice * childrenCount : (dynamicPricePerPerson / 2) * childrenCount)
-            + (infants && infantPrice != null ? infantPrice * infants : 0)
+            + (childrenCount && (participantPrices.child?.price ?? childPrice) != null ? (participantPrices.child?.price ?? childPrice)! * childrenCount : (dynamicPricePerPerson / 2) * childrenCount)
+            + (infants && (participantPrices.infant?.price ?? infantPrice) != null ? (participantPrices.infant?.price ?? infantPrice)! * infants : 0)
             + extrasTotal + transferSurcharge;
         }
         return adultTotal + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal + transferSurcharge;
@@ -212,6 +211,10 @@ export default function BookingForm({
       fd.append('tourSlug', tourSlug);
       fd.append('tourName', tourName);
       fd.append('guests', String(guestsTotal));
+      fd.append('adults', String(adults));
+      fd.append('children', String(childrenCount));
+      fd.append('infants', String(infants));
+      fd.append('locale', locale);
       // Store guest breakdown in extras
       const guestBreakdown = [
         { id: '_adults', name: `Erwachsene (${adults})`, price: 0 },
@@ -222,7 +225,6 @@ export default function BookingForm({
       fd.append('extrasJson', JSON.stringify(allExtras));
       if (hotelName) fd.append('hotelName', hotelName);
       if (hotelRegion) fd.append('hotelRegion', hotelRegion);
-      if (totalPrice != null) fd.append('totalPrice', String(totalPrice));
       const result = await submitBooking(fd);
       if (result.success) {
         setSuccess(true);
@@ -515,7 +517,7 @@ export default function BookingForm({
                 <span> + {childrenCount} × {hasChildTiers ? parsePrice(childTiers[1].price)?.toFixed(0) ?? (dynamicPricePerPerson / 2).toFixed(0) : (dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}</span>
               )}
               {infants > 0 && (
-                <span> + {infants} × {hasChildTiers ? parsePrice(childTiers[0].price)?.toFixed(0) ?? '0' : '0'} € {t('priceBreakdownInfant')}</span>
+                <span> + {infants} × {(participantPrices.infant?.price ?? (hasChildTiers ? parsePrice(childTiers[0].price) : 0)) === 0 ? t('free') : `${(participantPrices.infant?.price ?? (hasChildTiers ? parsePrice(childTiers[0].price) : 0))?.toFixed(2)} €`} {t('priceBreakdownInfant')}</span>
               )}
             </div>
           )}
@@ -548,16 +550,18 @@ export default function BookingForm({
       {totalPrice != null && totalPrice > 0 ? (
         <CheckoutButton
           tourSlug={tourSlug}
-          tourName={tourName}
           firstName={watch('firstName') || ''}
           lastName={watch('lastName') || ''}
           email={watch('email') || ''}
           phone={watch('phone') || ''}
           date={watch('date') || ''}
-          guests={guestsTotal}
+          adults={adults}
+          childrenCount={childrenCount}
+          infants={infants}
           totalPrice={paymentOption === 'deposit' && depositAmount != null ? depositAmount : totalPrice}
           paymentOption={paymentOption}
-          extrasJson={JSON.stringify([...selectedExtras, { id: '_adults', name: `Erwachsene: ${adults}`, price: 0 }, ...(childrenCount > 0 ? [{ id: '_children', name: `Kinder: ${childrenCount}`, price: 0 }] : []), ...(infants > 0 ? [{ id: '_infants', name: `Kleinkind: ${infants}`, price: 0 }] : [])])}
+          hotelRegion={hotelRegion}
+          extraIds={selectedExtras.map((extra) => extra.id)}
           locale={typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : undefined}
           disabled={isPending || guestsTotal < 1}
         />

@@ -6,32 +6,36 @@ import styles from './checkout-button.module.css';
 
 interface CheckoutButtonProps {
   tourSlug: string;
-  tourName: string;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   date: string;
-  guests: number;
+  adults: number;
+  childrenCount: number;
+  infants: number;
   totalPrice: number;
   paymentOption?: 'full' | 'deposit';
-  extrasJson?: string;
+  hotelRegion?: string;
+  extraIds?: string[];
   locale?: string;
   disabled?: boolean;
 }
 
 export default function CheckoutButton({
   tourSlug,
-  tourName,
   firstName,
   lastName,
   email,
   phone,
   date,
-  guests,
+  adults,
+  childrenCount,
+  infants,
   totalPrice,
   paymentOption = 'full',
-  extrasJson,
+  hotelRegion,
+  extraIds = [],
   locale,
   disabled = false,
 }: CheckoutButtonProps) {
@@ -49,24 +53,28 @@ export default function CheckoutButton({
     setError('');
 
     try {
-const res = await fetch('/api/checkout/stripe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        tourSlug,
-        tourName,
-        firstName,
-        lastName,
-        email,
-        phone,
-        date,
-        guests,
-        totalPrice,
-        paymentOption,
-        extrasJson,
-        locale,
-      }),
-    });
+      // Only WHAT is booked goes to the server (slug, counts, extra IDs).
+      // The server loads the tour, prices, and extras from Supabase and
+      // recalculates the total — totalPrice is display-only.
+      const res = await fetch('/api/checkout/stripe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tourSlug,
+          adults,
+          children: childrenCount,
+          infants,
+          extraIds,
+          hotelRegion: hotelRegion || undefined,
+          paymentOption,
+          firstName,
+          lastName,
+          email,
+          phone,
+          date,
+          locale,
+        }),
+      });
 
       const data = await res.json();
 

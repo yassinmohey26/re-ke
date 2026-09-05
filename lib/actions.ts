@@ -4,6 +4,8 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 import { contactSchema, bookingSchema } from '@/lib/validations';
 import { Resend } from 'resend';
 import { revalidatePath } from 'next/cache';
+import { calculateParticipantPrice, normalizeParticipantPrices, calculateDepositAmount } from '@/lib/participant-pricing';
+import { calculateTransferSurcharge, TransferPricingError } from '@/lib/transfer-pricing';
 
 // ── Contact Form Action ───────────────────────────────────────────
 export async function submitContact(formData: FormData) {
@@ -77,7 +79,6 @@ export async function submitContact(formData: FormData) {
 // ── Booking Form Action ───────────────────────────────────────────
 export async function submitBooking(formData: FormData) {
   try {
-    const totalPriceRaw = formData.get('totalPrice');
     const extrasJsonRaw = formData.get('extrasJson');
 
     const raw = {
@@ -89,8 +90,11 @@ export async function submitBooking(formData: FormData) {
       phone: formData.get('phone'),
       date: formData.get('date'),
       guests: Number(formData.get('guests')),
+      adults: Number(formData.get('adults')),
+      children: Number(formData.get('children')),
+      infants: Number(formData.get('infants')),
       message: formData.get('message'),
-      totalPrice: totalPriceRaw ? Number(totalPriceRaw) : undefined,
+      hotelRegion: formData.get('hotelRegion') || undefined,
       paymentOption: formData.get('paymentOption') || 'full',
       extrasJson: extrasJsonRaw ? String(extrasJsonRaw) : undefined,
     };
@@ -105,14 +109,52 @@ export async function submitBooking(formData: FormData) {
 
     const data = parsed.data;
 
-    let extras: { id: string; name: string; price: number }[] = [];
+    let requestedExtras: { id: string }[] = [];
     try {
-      extras = data.extrasJson ? JSON.parse(data.extrasJson) : [];
+      requestedExtras = data.extrasJson ? JSON.parse(data.extrasJson) : [];
     } catch {
-      extras = [];
+      requestedExtras = [];
     }
 
     const supabase = getSupabaseAdmin();
+    const { data: tour } = await supabase.from('tours').select('id,slug,price,max_guests,discount').eq('slug', data.tourSlug).eq('active', true).single();
+    if (!tour) return { success: false, error: 'Tour not found' };
+    const quantities = { adult: data.adults, child: data.children, infant: data.infants };
+    if (data.adults + data.children + data.infants !== data.guests || data.guests > (tour.max_guests ?? 8)) {
+      return { success: false, error: 'Invalid participant quantities' };
+    }
+    if (data.adults < 1) return { success: false, error: 'At least one adult is required' };
+    const { data: participantRows } = await supabase.from('tour_participant_prices').select('*').eq('tour_id', tour.id).eq('is_active', true);
+    const structured = normalizeParticipantPrices(participantRows ?? []);
+    for (const type of ['adult', 'child', 'infant'] as const) {
+      if (quantities[type] > 0 && !structured[type] && Object.keys(structured).length > 0) {
+        return { success: false, error: 'Configured participant price is missing' };
+      }
+    }
+    const selectedIds = requestedExtras.map((e) => e.id).filter((id) => !id.startsWith('_'));
+    const { data: approvedExtras } = selectedIds.length
+      ? await supabase.from('tour_extras').select('id,name,price').eq('tour_id', tour.id).eq('active', true).in('id', selectedIds)
+      : { data: [] as { id: string; name: string; price: number }[] };
+    const prices = Object.keys(structured).length > 0 ? structured : {
+      adult: { personType: 'adult' as const, price: Number(tour.price ?? 0), currency: 'EUR', minAge: 12, maxAge: 120, isActive: true },
+      child: { personType: 'child' as const, price: Number(tour.price ?? 0) / 2, currency: 'EUR', minAge: 3, maxAge: 11, isActive: true },
+      infant: { personType: 'infant' as const, price: 0, currency: 'EUR', minAge: 0, maxAge: 2, isActive: true },
+    };
+    // Transfer surcharge: derived server-side from the region slug + the
+    // server-validated quantities. The browser never sends an amount.
+    let transfer;
+    try {
+      transfer = calculateTransferSurcharge(data.hotelRegion, quantities);
+    } catch (error) {
+      if (error instanceof TransferPricingError) {
+        return { success: false, error: error.message };
+      }
+      throw error;
+    }
+    const calculation = calculateParticipantPrice({ prices, quantities, extras: (approvedExtras ?? []).map((e) => ({ ...e, price: Number(e.price) })) });
+    const finalTotal = calculation.subtotal + (transfer?.subtotal ?? 0);
+    const snapshot = { ...calculation, transfer, transferSubtotal: transfer?.subtotal ?? 0, quantities, locale: data.locale ?? 'de', legacyFallback: Object.keys(structured).length === 0, depositPercent: 0.3, depositAmount: calculateDepositAmount(finalTotal) };
+    const extras = calculation.extras;
     const { data: booking, error } = await supabase
       .from('bookings')
       .insert({
@@ -125,7 +167,12 @@ export async function submitBooking(formData: FormData) {
         date: data.date,
         guests: data.guests,
         status: 'PENDING',
-        total_price: data.totalPrice ?? null,
+        total_price: finalTotal,
+        subtotal_price: calculation.subtotal,
+        final_total: finalTotal,
+        deposit_amount: calculateDepositAmount(finalTotal),
+        currency: calculation.currency,
+        price_snapshot: snapshot,
         payment_option: data.paymentOption || 'full',
         extras,
       })
@@ -142,9 +189,7 @@ export async function submitBooking(formData: FormData) {
       const extrasHtml = extras.length
         ? `<tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Extras</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#374151">${extras.map(e => e.name).join(', ')}</td></tr>`
         : '';
-      const priceHtml = data.totalPrice
-        ? `<tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Total Price</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:700;font-size:18px">€${data.totalPrice}</td></tr>`
-        : '';
+      const priceHtml = `<tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Total Price</td><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:700;font-size:18px">€${finalTotal.toFixed(2)}</td></tr>`;
 
       const adminHtml = `
         <h2>Neue Buchungsanfrage</h2>
@@ -156,7 +201,7 @@ export async function submitBooking(formData: FormData) {
           <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Datum</td><td style="padding:8px;border:1px solid #ddd">${dateStr}</td></tr>
           <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Personen</td><td style="padding:8px;border:1px solid #ddd">${data.guests}</td></tr>
           ${extras.length ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Extras</td><td style="padding:8px;border:1px solid #ddd">${extras.map(e => e.name).join(', ')}</td></tr>` : ''}
-          ${data.totalPrice ? `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Gesamtpreis</td><td style="padding:8px;border:1px solid #ddd">€${data.totalPrice}</td></tr>` : ''}
+          <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Gesamtpreis</td><td style="padding:8px;border:1px solid #ddd">€${finalTotal.toFixed(2)}</td></tr>
           <tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold">Buchungs-ID</td><td style="padding:8px;border:1px solid #ddd">#${booking.id}</td></tr>
         </table>
         <p style="margin-top:16px"><a href="${siteUrl}/ZAIMOZ/bookings" style="background:#0057b8;color:#fff;padding:10px 20px;text-decoration:none;border-radius:6px">Im Admin anzeigen</a></p>
