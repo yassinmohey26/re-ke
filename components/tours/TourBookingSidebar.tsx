@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useTourBooking } from './TourBookingContext';
 import { applyDiscount } from '@/lib/pricing-table';
+import { getBookingAgeLabels, type ChildDiscountLocale } from '@/lib/child-discounts';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 function getTodayLocalDate() {
@@ -59,13 +60,16 @@ function GuestCounter({
 export default function TourBookingSidebar({ styles: css }: { styles: Record<string, string> }) {
   const t = useTranslations('tours');
   const tb = useTranslations('booking');
+  const locale = useLocale() as ChildDiscountLocale;
   const {
     price, pricePerPerson, salePricePerPerson, hasSale, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
-    pricingTiers, discount, extras, selected, toggle, extrasTotal, total, bookingHref,
+    pricingTiers, discount, childDiscounts, extras, selected, toggle, extrasTotal, total, bookingHref,
     participantPrices,
   } = useTourBooking();
   const [date, setDate] = useState('');
+
+  const ageLabels = getBookingAgeLabels(childDiscounts, locale);
 
   const displayPrice = salePricePerPerson ?? pricePerPerson ?? price ?? 0;
   const minimumDate = getTodayLocalDate();
@@ -162,7 +166,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
         <label className={css.bookingLabel}>{t('guests')} ({guests}/{maxGuests})</label>
         <GuestCounter
           label={tb('adults')}
-          subtitle={tb('adultsAge')}
+          subtitle={ageLabels.adults}
           count={adults}
           min={0}
           max={adultsMax}
@@ -172,7 +176,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
         />
         <GuestCounter
           label={tb('children')}
-          subtitle={tb('childrenAge')}
+          subtitle={ageLabels.children}
           count={childrenCount}
           min={0}
           max={childrenMax}
@@ -182,7 +186,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
         />
         <GuestCounter
           label={tb('infant')}
-          subtitle={tb('infantAge')}
+          subtitle={ageLabels.infants}
           count={infants}
           min={0}
           max={infantsMax}

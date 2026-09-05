@@ -146,6 +146,31 @@ export function findTierForChild(tiers: TourChildDiscount[]): TourChildDiscount 
   return sorted.find(t => ageMatchesTier(5, t)) ?? sorted[1] ?? sorted[0];
 }
 
+/** Adult bracket: the highest full-price tier, else the last (highest) tier. */
+export function findTierForAdult(tiers: TourChildDiscount[]): TourChildDiscount | undefined {
+  const sorted = resolveChildDiscounts(tiers);
+  const fullPriceTiers = sorted.filter(t => t.discount_type === 'full_price');
+  return fullPriceTiers[fullPriceTiers.length - 1] ?? sorted[sorted.length - 1];
+}
+
+/**
+ * Age-range subtitles for the booking card guest counters, derived from the
+ * same tiers the Child Discounts table renders — one shared source of truth.
+ */
+export function getBookingAgeLabels(
+  tiers: TourChildDiscount[],
+  locale: ChildDiscountLocale,
+): { adults: string; children: string; infants: string } {
+  const adultTier = findTierForAdult(tiers);
+  const childTier = findTierForChild(tiers);
+  const infantTier = findTierForInfant(tiers);
+  return {
+    adults: adultTier ? formatAgeLabel(adultTier, locale) : '',
+    children: childTier ? formatAgeLabel(childTier, locale) : '',
+    infants: infantTier ? formatAgeLabel(infantTier, locale) : '',
+  };
+}
+
 export function computeTierPrice(tier: TourChildDiscount, adultPrice: number): number {
   switch (tier.discount_type) {
     case 'free':

@@ -34,6 +34,7 @@ export async function GET(
     maxGuests: tour.maxGuests,
     pricingTiers,
     discount: tour.discount,
+    childDiscounts: tour.childDiscounts ?? [],
     extras,
     participantPrices: Object.fromEntries((participantRows ?? []).map((p: Record<string, unknown>) => [p.person_type, {
       personType: p.person_type, price: Number(p.price), currency: p.currency ?? 'EUR',

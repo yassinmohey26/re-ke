@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import BookingForm from '@/components/forms/BookingForm';
+import type { TourChildDiscount } from '@/lib/child-discounts';
 import styles from './page.module.css';
 
 interface TourExtra {
@@ -27,6 +28,7 @@ interface TourInfo {
   maxGuests: number;
   pricingTiers: { minGuests: number; maxGuests: number; pricePerPerson: number }[];
   discount: Discount | null;
+  childDiscounts?: TourChildDiscount[];
   extras: TourExtra[];
   participantPrices?: Partial<Record<'adult' | 'child' | 'infant', { personType: 'adult' | 'child' | 'infant'; price: number; currency: string; minAge: number; maxAge: number; isActive: boolean }>>;
 }
@@ -132,6 +134,7 @@ function BookingContent() {
           maxGuests={tourInfo?.maxGuests ?? 8}
           pricingTiers={tourInfo?.pricingTiers ?? []}
           discount={tourInfo?.discount ?? null}
+          childDiscounts={tourInfo?.childDiscounts ?? []}
           extras={tourInfo?.extras ?? []}
           destinations={destinations}
           initialSelectedExtraIds={initialSelectedExtraIds}

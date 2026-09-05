@@ -8,6 +8,7 @@ import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
 import CheckoutButton from '@/components/checkout/CheckoutButton';
 import type { ParticipantPrice } from '@/lib/participant-pricing';
 import { calculateTransferSurcharge } from '@/lib/transfer-pricing';
+import { getBookingAgeLabels, type TourChildDiscount, type ChildDiscountLocale } from '@/lib/child-discounts';
 import styles from './BookingForm.module.css';
 
 // Extend BookingFormData to make paymentOption required
@@ -43,6 +44,7 @@ interface BookingFormProps {
   maxGuests?: number;
   pricingTiers?: PricingTier[];
   discount?: Discount | null;
+  childDiscounts?: TourChildDiscount[];
   extras?: Extra[];
   destinations?: { slug: string; name: string }[];
   initialSelectedExtraIds?: string[];
@@ -94,6 +96,7 @@ export default function BookingForm({
   maxGuests = 8,
   pricingTiers = [],
   discount = null,
+  childDiscounts = [],
   extras = [],
   destinations = [],
   initialSelectedExtraIds = [],
@@ -116,6 +119,8 @@ export default function BookingForm({
   const [hotelName, setHotelName] = useState('');
   const [hotelRegion, setHotelRegion] = useState('');
   const minimumDate = getTodayLocalDate();
+
+  const ageLabels = getBookingAgeLabels(childDiscounts, (locale in { de: 1, en: 1, ar: 1, fr: 1, hu: 1, ru: 1 } ? locale : 'de') as ChildDiscountLocale);
 
   const guestsTotal = adults + childrenCount + infants;
   const hasFixedChildPricing = discount?.childTiers != null && discount.childTiers.length >= 2;
@@ -334,7 +339,7 @@ export default function BookingForm({
         <label className={styles.label}>{t('guests')} ({guestsTotal}/{maxGuests})</label>
         <GuestCounter
           label={t('adults')}
-          subtitle={t('adultsAge')}
+          subtitle={ageLabels.adults}
           count={adults}
           min={0}
           max={adultsMax}
@@ -344,7 +349,7 @@ export default function BookingForm({
         />
         <GuestCounter
           label={t('children')}
-          subtitle={t('childrenAge')}
+          subtitle={ageLabels.children}
           count={childrenCount}
           min={0}
           max={childrenMax}
@@ -354,7 +359,7 @@ export default function BookingForm({
         />
         <GuestCounter
           label={t('infant')}
-          subtitle={t('infantAge')}
+          subtitle={ageLabels.infants}
           count={infants}
           min={0}
           max={infantsMax}

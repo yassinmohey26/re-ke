@@ -35,6 +35,7 @@ interface TourBookingContextValue {
   setInfants: (n: number) => void;
   pricingTiers: PricingTier[];
   discount: Discount | null;
+  childDiscounts: TourChildDiscount[];
   extras: Extra[];
   selected: string[];
   toggle: (id: string) => void;
@@ -131,6 +132,7 @@ export function TourBookingProvider({
       setInfants: setInfants,
       pricingTiers,
       discount,
+      childDiscounts: tiers,
       extras,
       selected,
       toggle,

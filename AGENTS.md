@@ -166,3 +166,22 @@ UI-only redesign of the 3 category cards (Cultural / Snorkelling / Safari) in `T
 
 ## Result
 Counts render dynamically (13 / 10 / 6 for cultural/snorkel/safari on the current data; sum 29 = all tours). `npx tsc --noEmit` passes; `npm run build` exits 0; dev server serves `/de/touren` with all 3 new cards + pills present.
+
+# Session — Sep 05 2026: Booking card age ranges linked to Child Discounts
+
+## Bug
+Booking card guest counters (Adults/Children/Infants) showed hardcoded age ranges from `messages/*.json` (`booking.adultsAge/childrenAge/infantAge` = "Age 11+", "Age 3 – 10", "Age 0 – 2") instead of the tour's actual Child Discounts tiers.
+
+## Fix (single source of truth)
+- `lib/child-discounts.ts` — added `findTierForAdult()` (highest `full_price` tier, else last tier) and `getBookingAgeLabels(tiers, locale)` returning `{adults, children, infants}` age strings via the same `formatAgeLabel` used by `TourDiscountTable`.
+- `components/tours/TourBookingContext.tsx` — exposes resolved `childDiscounts` (tiers) on the context value.
+- `components/tours/TourBookingSidebar.tsx` — guest-counter subtitles now render `getBookingAgeLabels()` (locale via `useLocale()`).
+- Checkout form synced too: `app/api/tours/[slug]/route.ts` returns `childDiscounts`; `app/[locale]/(marketing)/booking/page.tsx` passes it; `components/forms/BookingForm.tsx` renders `getBookingAgeLabels()`.
+- `messages/{de,en,fr,hu,ru,ar}.json` — removed the now-unused `adultsAge`/`childrenAge`/`infantAge` keys.
+
+## Semantics
+Adults = tier whose price is Full Price (highest one if several); Children = tier matching age 5 (`findTierForChild`, same tier the pricing engine uses); Infants = tier matching age 0 (`findTierForInfant`). Defaults (0–2 free / 3–10 50% / 11+ full) still apply when a tour has no rows.
+
+## Verification
+- `npx tsc --noEmit` clean; `npm run build` exits 0 (build needs `STRIPE_SECRET_KEY` env — pre-existing gap, unrelated).
+- Live prod server: `mahmya-insel-ausflug-hurghada` (custom 0–2 free / 3–7 50% / 8+ full) card shows "Ab 8 Jahre / 3–7 Jahre / 0–2 Jahre" = discount table, de + en. `reiten-in-hurghada…` (3–10 & 11+ both full_price) card adults = "Ab 11 Jahre" (highest full-price tier). Default-tier tour (dolphin-house) shows 0–2/3–10/11+ matching the table. Checkout form verified in browser: same labels as table.
