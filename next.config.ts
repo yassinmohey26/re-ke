@@ -4,6 +4,9 @@ import type { NextConfig } from 'next';
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_SITE_URL: 'https://www.hurghada-reiseplaner.at',
+  },
   images: {
     qualities: [75, 80, 85],
     remotePatterns: [

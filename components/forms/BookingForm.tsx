@@ -566,6 +566,7 @@ export default function BookingForm({
           totalPrice={paymentOption === 'deposit' && depositAmount != null ? depositAmount : totalPrice}
           paymentOption={paymentOption}
           hotelRegion={hotelRegion}
+          hotelName={hotelName}
           extraIds={selectedExtras.map((extra) => extra.id)}
           locale={typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : undefined}
           disabled={isPending || guestsTotal < 1}

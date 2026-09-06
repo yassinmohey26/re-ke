@@ -1,5 +1,30 @@
 import { z } from 'zod';
 
+export function isValidBookingDate(value: string, today = new Date()): boolean {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return false;
+
+  const [, year, month, day] = match;
+  const selectedDate = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day)
+  );
+
+  if (
+    selectedDate.getFullYear() !== Number(year) ||
+    selectedDate.getMonth() !== Number(month) - 1 ||
+    selectedDate.getDate() !== Number(day)
+  ) {
+    return false;
+  }
+
+  const minimumDate = new Date(today);
+  minimumDate.setHours(0, 0, 0, 0);
+
+  return selectedDate >= minimumDate;
+}
+
 // ── Contact Form ──────────────────────────────────────────────────
 export const contactSchema = z.object({
   name: z
@@ -55,12 +80,7 @@ export const bookingSchema = z.object({
     .max(30),
   date: z
     .string()
-    .refine((d) => {
-      const date = new Date(d);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return !isNaN(date.getTime()) && date >= today;
-    }, 'Datum muss in der Zukunft liegen'),
+    .refine(isValidBookingDate, 'Datum muss in der Zukunft liegen'),
   guests: z
     .number()
     .int()
@@ -98,24 +118,7 @@ export function createBookingSchema(messages: BookingValidationMessages) {
     lastName: z.string().min(2, messages.lastNameMin).max(60, messages.lastNameMax).trim(),
     email: z.string().email(messages.emailInvalid).max(254).trim().toLowerCase(),
     phone: z.string().min(7, messages.phoneMin).max(30, messages.phoneMax),
-    date: z.string().refine((value) => {
-      const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-      if (!match) return false;
-
-      const [, year, month, day] = match;
-      const selectedDate = new Date(Number(year), Number(month) - 1, Number(day));
-      if (
-        selectedDate.getFullYear() !== Number(year) ||
-        selectedDate.getMonth() !== Number(month) - 1 ||
-        selectedDate.getDate() !== Number(day)
-      ) {
-        return false;
-      }
-
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      return selectedDate >= today;
-    }, messages.dateInvalid),
+    date: z.string().refine(isValidBookingDate, messages.dateInvalid),
     guests: z.number().int().min(1, messages.guestsMin).max(8, messages.guestsMax),
     adults: z.number().int().min(0).max(20),
     children: z.number().int().min(0).max(20),

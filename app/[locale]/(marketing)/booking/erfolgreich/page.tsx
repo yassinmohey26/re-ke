@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title,
     description,
+    robots: { index: false, follow: false },
     openGraph: {
       title,
       description,
@@ -60,15 +61,19 @@ export default async function BookingSuccessPage({
 
   const { session_id } = await searchParams;
 
-  if (session_id) {
-    try {
-      const session = await retrieveSession(session_id);
-      if (session.payment_status !== 'paid') {
-        redirect(`/${locale}/booking/abgebrochen?reason=unpaid`);
-      }
-    } catch {
-      redirect(`/${locale}/booking/abgebrochen?reason=invalid_session`);
-    }
+  if (!session_id) {
+    redirect(`/${locale}/booking/abgebrochen?reason=missing_session`);
+  }
+
+  let session: Awaited<ReturnType<typeof retrieveSession>>;
+  try {
+    session = await retrieveSession(session_id);
+  } catch {
+    redirect(`/${locale}/booking/abgebrochen?reason=invalid_session`);
+  }
+
+  if (session.payment_status !== 'paid' || !session.metadata?.bookingId) {
+    redirect(`/${locale}/booking/abgebrochen?reason=unpaid`);
   }
 
   return (

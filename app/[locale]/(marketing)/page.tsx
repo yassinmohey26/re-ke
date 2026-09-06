@@ -108,7 +108,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     name: 'Hurghada Reiseplaner',
     alternateName: siteName,
     url: baseUrl,
-    logo: `${baseUrl}/logo.png`,
+    logo: `${baseUrl}/hurghada-logo.png`,
     image: `${baseUrl}/og-default.jpg`,
     description: tMeta('homeDescription'),
     address: {

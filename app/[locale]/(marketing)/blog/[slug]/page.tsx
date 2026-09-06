@@ -98,7 +98,7 @@ export default async function BlogPostPage({ params }: Props) {
       name: 'Hurghada Reiseplaner',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
+        url: `${baseUrl}/hurghada-logo.png`,
       },
     },
     url: `${baseUrl}/${locale}/blog/${slug}`,

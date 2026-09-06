@@ -19,6 +19,17 @@ async function sendConfirmationEmail(bookingId: string) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';
   const dateStr = new Date(booking.date).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const bookingTotal = Number(booking.final_total ?? booking.total_price ?? 0);
+  const amountPaid =
+    booking.payment_option === 'deposit'
+      ? Number(booking.deposit_amount ?? 0)
+      : bookingTotal;
+  const remainingBalance = Math.max(bookingTotal - amountPaid, 0);
+  const depositRows =
+    booking.payment_option === 'deposit'
+      ? `<tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Booking Total</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">€${bookingTotal.toFixed(2)}</td></tr>
+        <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Remaining Balance</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">€${remainingBalance.toFixed(2)}</td></tr>`
+      : '';
 
   const customerHtml = `
 <!DOCTYPE html>
@@ -37,7 +48,8 @@ async function sendConfirmationEmail(bookingId: string) {
         <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Tour</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">${booking.tour_name}</td></tr>
         <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Date</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">${dateStr}</td></tr>
         <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Guests</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">${booking.guests}</td></tr>
-        <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Total Paid</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:700;font-size:18px">€${booking.total_price}</td></tr>
+        <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Amount Paid</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151;font-weight:700;font-size:18px">€${amountPaid.toFixed(2)}</td></tr>
+        ${depositRows}
         <tr><td style="padding:10px;border-bottom:1px solid #e5e7eb;font-weight:600;color:#374151">Booking ID</td><td style="padding:10px;border-bottom:1px solid #e5e7eb;color:#374151">#${booking.id}</td></tr>
       </table>
       <p style="color:#6b7280;font-size:13px">We will contact you within 24 hours with further details.</p>
@@ -49,7 +61,9 @@ async function sendConfirmationEmail(bookingId: string) {
 
   try {
     await resend.emails.send({
-      from: 'Hurghada Reiseplaner <onboarding@resend.dev>',
+      from:
+        process.env.EMAIL_FROM ||
+        'Hurghada Reiseplaner <onboarding@resend.dev>',
       to: booking.email,
       subject: `Booking Confirmed — ${booking.tour_name}`,
       html: customerHtml,

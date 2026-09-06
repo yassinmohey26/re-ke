@@ -42,6 +42,7 @@ export interface CheckoutBookingData {
   /** Server-derived transfer surcharge already included in totalPrice (display/metadata only). */
   transferSurcharge?: number;
   hotelRegion?: string;
+  hotelName?: string;
   locale?: string;
 }
 
@@ -115,20 +116,26 @@ export async function createCheckoutSession(
     ? ` + Transfer ${data.hotelRegion ?? ''} €${data.transferSurcharge.toFixed(2)}`.replace('  ', ' ')
     : '';
 
+  const paymentMetadata = {
+    bookingId: booking.id,
+    tourSlug: data.tourSlug,
+    tourName: data.tourName,
+    guests: String(data.guests),
+    date: data.date,
+    paymentOption: data.paymentOption || 'full',
+    transferSurcharge: String(data.transferSurcharge ?? 0),
+    hotelName: data.hotelName ?? '',
+    hotelRegion: data.hotelRegion ?? '',
+  };
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',
     customer_email: data.email,
     client_reference_id: booking.id,
-    metadata: {
-      bookingId: booking.id,
-      tourSlug: data.tourSlug,
-      tourName: data.tourName,
-      guests: String(data.guests),
-      date: data.date,
-      paymentOption: data.paymentOption || 'full',
-      transferSurcharge: String(data.transferSurcharge ?? 0),
-      hotelRegion: data.hotelRegion ?? '',
+    metadata: paymentMetadata,
+    payment_intent_data: {
+      metadata: paymentMetadata,
     },
     line_items: [
       {

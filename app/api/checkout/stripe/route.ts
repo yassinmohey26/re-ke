@@ -10,6 +10,7 @@ import {
 } from '@/lib/participant-pricing';
 import { CheckoutPricingError, resolveServerCheckout } from '@/lib/checkout-pricing';
 import { calculateTransferSurcharge, TransferPricingError } from '@/lib/transfer-pricing';
+import { isValidBookingDate } from '@/lib/validations';
 
 // The browser only tells us WHAT is booked: tour slug, participant counts,
 // selected extra IDs, and the hotel region slug. Every name, price, surcharge,
@@ -23,12 +24,13 @@ const checkoutSchema = z.object({
   infants: z.number().int().min(0).max(20),
   extraIds: z.array(z.string().min(1).max(64)).max(20).optional().default([]),
   hotelRegion: z.string().max(40).optional(),
+  hotelName: z.string().trim().max(120).optional().or(z.literal('')),
   paymentOption: z.enum(['full', 'deposit']).optional().default('full'),
   firstName: z.string().min(2).max(60).trim(),
   lastName: z.string().min(2).max(60).trim(),
   email: z.string().email().max(254).trim().toLowerCase(),
   phone: z.string().min(7).max(30),
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  date: z.string().refine(isValidBookingDate, 'Invalid booking date'),
   message: z.string().max(2000).optional().or(z.literal('')),
   locale: z.string().optional(),
 });
@@ -129,6 +131,7 @@ export async function POST(request: NextRequest) {
       ...server.calculation,
       transfer: transfer,
       transferSubtotal: transfer?.subtotal ?? 0,
+      hotelName: data.hotelName ?? '',
       quantities: { adult: data.adults, child: data.children, infant: data.infants },
       locale: data.locale ?? 'de',
       legacyFallback: server.legacyFallback,
@@ -154,6 +157,7 @@ export async function POST(request: NextRequest) {
       priceSnapshot,
       transferSurcharge: transfer?.subtotal ?? 0,
       hotelRegion: data.hotelRegion,
+      hotelName: data.hotelName,
       locale: data.locale,
     });
 

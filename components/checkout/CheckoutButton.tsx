@@ -17,6 +17,7 @@ interface CheckoutButtonProps {
   totalPrice: number;
   paymentOption?: 'full' | 'deposit';
   hotelRegion?: string;
+  hotelName?: string;
   extraIds?: string[];
   locale?: string;
   disabled?: boolean;
@@ -35,6 +36,7 @@ export default function CheckoutButton({
   totalPrice,
   paymentOption = 'full',
   hotelRegion,
+  hotelName,
   extraIds = [],
   locale,
   disabled = false,
@@ -66,6 +68,7 @@ export default function CheckoutButton({
           infants,
           extraIds,
           hotelRegion: hotelRegion || undefined,
+          hotelName: hotelName || undefined,
           paymentOption,
           firstName,
           lastName,
