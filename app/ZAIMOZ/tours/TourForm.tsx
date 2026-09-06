@@ -168,7 +168,13 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   const [participantPrices, setParticipantPrices] = useState(() => {
     const source = initialData?.participantPrices ?? {};
     return {
-      adult: { price: Number(source.adult?.price ?? initialData?.price ?? 0), minAge: 12, maxAge: 120, isActive: source.adult?.isActive !== false, currency: source.adult?.currency ?? 'EUR' },
+      adult: {
+        price: Number(source.adult?.price ?? initialData?.price ?? 0),
+        minAge: Number(source.adult?.minAge ?? 12),
+        maxAge: Number(source.adult?.maxAge ?? 120),
+        isActive: source.adult?.isActive !== false,
+        currency: source.adult?.currency ?? 'EUR',
+      },
       child: { price: Number(source.child?.price ?? 0), minAge: Number(source.child?.minAge ?? 3), maxAge: Number(source.child?.maxAge ?? 11), isActive: source.child?.isActive ?? false, currency: source.child?.currency ?? 'EUR' },
       infant: { price: Number(source.infant?.price ?? 0), minAge: Number(source.infant?.minAge ?? 0), maxAge: Number(source.infant?.maxAge ?? 2), isActive: source.infant?.isActive ?? false, currency: source.infant?.currency ?? 'EUR' },
     };

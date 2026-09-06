@@ -1,0 +1,2 @@
+ALTER TABLE public.tour_participant_prices
+DROP CONSTRAINT IF EXISTS tour_participant_prices_age_range;
