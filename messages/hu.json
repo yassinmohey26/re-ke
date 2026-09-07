@@ -680,5 +680,18 @@
       "title": "5. Kényszermajor",
       "text": "Kényszermajor (természeti katasztrófák, politikai görcsök, járványok, hatósági rendelkezések) esetén a túrák felelősség nélkül lemondhatók vagy átrendezhetők. A már befizetett összegek visszatérítésre kerülnek vagy későbbi túra esetén jóváírásként kínáljuk fel."
     }
+  },
+  "reviews": {
+    "eyebrow": "Utazói történetek",
+    "tourTitle": "Vendégeink véleménye",
+    "tourSubtitle": "Valódi élmények azoktól az utazóktól, akik velünk vettek részt ezen a túrán.",
+    "homepageTitle": "Az utazók kedvence",
+    "homepageSubtitle": "Személyes történetek és felejthetetlen pillanatok legnépszerűbb programjainkról.",
+    "verified": "Ellenőrzött foglalás",
+    "basedOn": "{count, plural, one {# értékelés} other {# értékelés}} alapján",
+    "viewTour": "Túra megtekintése",
+    "noReviews": "A túrához tartozó vendégtörténetek hamarosan itt jelennek meg.",
+    "traveled": "Utazás időpontja: {date}",
+    "ratingLabel": "{rating} az 5 csillagból"
   }
 }

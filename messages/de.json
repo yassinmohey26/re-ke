@@ -685,5 +685,18 @@
       "text": "Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer Datenschutzerklärung und der DSGVO. Daten werden nur zur Vertragsabwicklung und Kommunikation verwendet. Eine Weitergabe an Dritte erfolgt nur zur Vertragserfüllung (z.B. Hotel, Transferpartner) oder auf gesetzliche Verpflichtung.",
       "policyLink": "Datenschutzerklärung"
     }
+  },
+  "reviews": {
+    "eyebrow": "Reiseerlebnisse",
+    "tourTitle": "Das sagen unsere Gäste",
+    "tourSubtitle": "Echte Erlebnisse von Reisenden, die diese Tour mit uns unternommen haben.",
+    "homepageTitle": "Von Reisenden geliebt",
+    "homepageSubtitle": "Persönliche Geschichten und unvergessliche Momente aus unseren beliebtesten Erlebnissen.",
+    "verified": "Verifizierte Buchung",
+    "basedOn": "Basierend auf {count, plural, one {# Bewertung} other {# Bewertungen}}",
+    "viewTour": "Tour ansehen",
+    "noReviews": "Gästegeschichten zu dieser Tour erscheinen demnächst hier.",
+    "traveled": "Gereist im {date}",
+    "ratingLabel": "{rating} von 5 Sternen"
   }
 }

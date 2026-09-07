@@ -689,5 +689,18 @@
       "title": "5. Force Majeure",
       "text": "In case of force majeure (natural disasters, political unrest, pandemics, official orders), tours may be cancelled or postponed without liability for damages. Amounts already paid will be refunded or offered as credit for a future tour."
     }
+  },
+  "reviews": {
+    "eyebrow": "Traveler stories",
+    "tourTitle": "What our guests say",
+    "tourSubtitle": "Real experiences from travelers who joined this tour with us.",
+    "homepageTitle": "Loved by travelers",
+    "homepageSubtitle": "Personal stories and unforgettable moments from our most popular experiences.",
+    "verified": "Verified booking",
+    "basedOn": "Based on {count, plural, one {# review} other {# reviews}}",
+    "viewTour": "View tour",
+    "noReviews": "Guest stories for this tour will appear here soon.",
+    "traveled": "Traveled in {date}",
+    "ratingLabel": "{rating} out of 5 stars"
   }
 }

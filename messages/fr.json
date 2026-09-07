@@ -680,5 +680,18 @@
       "title": "5. Force Majeure",
       "text": "En cas de force majeure (catastrophes naturelles, troubles politiques, pandémies, injonctions officielles), les visites peuvent être annulées ou reportées sans responsabilité pour dommages. Les montants déjà payés seront remboursés ou proposés sous forme d'avoir pour une visite ultérieure."
     }
+  },
+  "reviews": {
+    "eyebrow": "Récits de voyageurs",
+    "tourTitle": "Ce que disent nos clients",
+    "tourSubtitle": "Des expériences authentiques de voyageurs qui ont participé à cette excursion avec nous.",
+    "homepageTitle": "Apprécié par les voyageurs",
+    "homepageSubtitle": "Des histoires personnelles et des moments inoubliables vécus lors de nos expériences les plus populaires.",
+    "verified": "Réservation vérifiée",
+    "basedOn": "Basé sur {count, plural, one {# avis} other {# avis}}",
+    "viewTour": "Voir le circuit",
+    "noReviews": "Les témoignages concernant cette excursion apparaîtront bientôt ici.",
+    "traveled": "Voyage en {date}",
+    "ratingLabel": "{rating} étoiles sur 5"
   }
 }

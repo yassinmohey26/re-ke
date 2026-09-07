@@ -7,7 +7,9 @@ import Features from '@/components/sections/Features';
 import BlogPreview from '@/components/sections/BlogPreview';
 import FAQ from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
+import HomeReviews from '@/components/sections/HomeReviews';
 import { getDestinations } from '@/lib/data/tours';
+import { getFeaturedReviews } from '@/lib/data/reviews';
 import { getLocalizedAllBlogPosts } from '@/lib/data/posts';
 import { supabase } from '@/lib/supabase';
 import JsonLd from '@/components/seo/JsonLd';
@@ -70,10 +72,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     benefits: tHero('benefits'),
   };
 
-  const [destinations, allPosts, faqsResult] = await Promise.all([
+  const [destinations, allPosts, faqsResult, featuredReviews] = await Promise.all([
     getDestinations(locale),
     getLocalizedAllBlogPosts(locale),
     supabase.from('faqs').select('question, answer').eq('locale', locale).order('sort_order', { ascending: true }),
+    getFeaturedReviews(locale, 4),
   ]);
 
   let faqs = faqsResult.data ?? [];
@@ -162,6 +165,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Hero {...heroTranslations} />
       <Destinations destinations={destinationCards} />
       <FeaturedTours locale={locale} />
+      <HomeReviews reviews={featuredReviews} locale={locale} />
       <CTA />
       <Features />
       <BlogPreview posts={homepagePosts} locale={locale} />

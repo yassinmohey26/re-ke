@@ -16,6 +16,11 @@ import TourDiscountTable from '@/components/tours/TourDiscountTable';
 import CancellationPolicy from '@/components/tours/CancellationPolicy';
 import TrustBox from '@/components/tours/TrustBox';
 import CollapsibleDescription from '@/components/tours/CollapsibleDescription';
+import TourReviews from '@/components/reviews/TourReviews';
+import {
+  getTourReviews,
+  summarizeReviews,
+} from '@/lib/data/reviews';
 import JsonLd from '@/components/seo/JsonLd';
 import styles from './page.module.css';
 
@@ -75,13 +80,15 @@ export default async function TourDetailPage({ params }: Props) {
 
   const t = await getTranslations('tours');
 
-  const [relatedToursRaw, catLabel, extras] = await Promise.all([
+  const [relatedToursRaw, catLabel, extras, reviews] = await Promise.all([
     getToursByCategory(tour.category, locale).then((list) => list.filter((t) => t.slug !== tour.slug).slice(0, 3)),
     getLocalizedCategoryLabel(tour.category, locale),
     getTourExtras(tour.id, locale),
+    getTourReviews(tour.id, locale),
   ]);
 
   const relatedTours = relatedToursRaw;
+  const reviewSummary = summarizeReviews(reviews);
 
   const galleryImages = tour.images.length > 0 ? tour.images : (tour.image ? [tour.image] : []);
 
@@ -111,6 +118,31 @@ export default async function TourDetailPage({ params }: Props) {
       name: 'Hurghada Reiseplaner',
       url: baseUrl,
     },
+    ...(reviewSummary.total > 0 ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: reviewSummary.average,
+        reviewCount: reviewSummary.total,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      review: reviews.slice(0, 5).map(review => ({
+        '@type': 'Review',
+        author: {
+          '@type': 'Person',
+          name: review.guestName,
+        },
+        datePublished: review.travelDate ?? review.createdAt,
+        name: review.title || undefined,
+        reviewBody: review.body,
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+      })),
+    } : {}),
   };
 
   const breadcrumbJsonLd = {
@@ -323,6 +355,8 @@ export default async function TourDetailPage({ params }: Props) {
                     </div>
                   </div>
                 )}
+
+                <TourReviews reviews={reviews} locale={locale} />
 
                 {/* Trust Box */}
                 <TrustBox />

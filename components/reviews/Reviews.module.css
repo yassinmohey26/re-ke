@@ -1,0 +1,549 @@
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--space-3);
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 24px;
+  height: 2px;
+  background: var(--color-accent);
+  content: "";
+}
+
+.starRow {
+  display: inline-flex;
+  color: #f5a623;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.starRowLarge {
+  font-size: 21px;
+}
+
+.emptyStars {
+  color: #dce2ea;
+}
+
+.tourSection {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-4);
+}
+
+.sectionHeading {
+  max-width: 650px;
+  margin-bottom: var(--space-6);
+}
+
+.sectionHeading h2,
+.homeHeading h2 {
+  margin: 0;
+  color: var(--color-text-1);
+  font-family: var(--font-heading);
+}
+
+.sectionHeading h2 {
+  font-size: clamp(26px, 4vw, 36px);
+}
+
+.sectionHeading p,
+.homeHeading p {
+  margin: var(--space-2) 0 0;
+  color: var(--color-text-2);
+  line-height: 1.7;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: center;
+  margin-bottom: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-accent-soft),
+      var(--color-bg-1) 58%
+    );
+}
+
+.scoreCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--space-4);
+  border-inline-end: 1px solid var(--color-border-4);
+  text-align: center;
+}
+
+.scoreCard > strong {
+  color: var(--color-text-1);
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 1;
+}
+
+.scoreCard > span:last-child {
+  margin-top: var(--space-2);
+  color: var(--color-text-3);
+  font-size: 12px;
+}
+
+.breakdown {
+  display: grid;
+  gap: 9px;
+}
+
+.breakdownRow {
+  display: grid;
+  grid-template-columns: 14px 14px minmax(80px, 1fr) 24px;
+  gap: 7px;
+  align-items: center;
+  color: var(--color-text-3);
+  font-size: 12px;
+}
+
+.smallStar {
+  color: #f5a623;
+}
+
+.breakdownTrack {
+  overflow: hidden;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--color-border-4);
+}
+
+.breakdownTrack > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f7b733, #f5a623);
+}
+
+.breakdownCount {
+  text-align: end;
+}
+
+.tourReviewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.tourReviewCard {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-1);
+  box-shadow: var(--shadow-sm);
+}
+
+.quoteMark {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-end: 20px;
+  color: var(--color-accent-soft);
+  font-family: Georgia, serif;
+  font-size: 76px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.tourReviewCard h3,
+.secondaryStory h3 {
+  position: relative;
+  margin: var(--space-3) 0 var(--space-2);
+  color: var(--color-text-1);
+  font-size: 17px;
+}
+
+.tourReviewCard blockquote,
+.secondaryStory blockquote,
+.primaryStory blockquote {
+  margin: 0;
+  color: var(--color-text-2);
+  line-height: 1.75;
+}
+
+.tourReviewCard blockquote {
+  position: relative;
+  flex: 1;
+  font-size: 15px;
+}
+
+.reviewFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-4);
+}
+
+.avatar,
+.avatarFallback {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 50%;
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+.avatarFallback {
+  display: grid;
+  place-items: center;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.guestDetails {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.guestDetails strong {
+  overflow: hidden;
+  color: var(--color-text-1);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.guestDetails > span,
+.guestDetails small {
+  color: var(--color-text-3);
+  font-size: 12px;
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #e8f2ff;
+  color: #1b4fd8;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.emptyState {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 1px dashed var(--color-border-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-2);
+  color: var(--color-text-3);
+  text-align: center;
+}
+
+.emptyState span {
+  color: #f5a623;
+  font-size: 34px;
+}
+
+.emptyState p {
+  max-width: 420px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.homeSection {
+  padding-block: var(--space-14);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-bg-2),
+      var(--color-bg-1)
+    );
+}
+
+.homeHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.7fr);
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-7);
+}
+
+.homeHeading h2 {
+  margin: 0;
+  color: var(--color-text-1);
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.homeHeading p {
+  max-width: 530px;
+  margin: 0;
+  color: var(--color-text-2);
+  line-height: 1.7;
+}
+
+.homeReviewGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.homeReviewCard {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 290px;
+  flex-direction: column;
+  padding: var(--space-5);
+  overflow: hidden;
+  border: 1px solid var(--color-border-4);
+  border-radius: 20px;
+  background: var(--color-bg-1);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.homeReviewCard::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1b4fd8, #5b8cff);
+  content: "";
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.homeReviewCard:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--color-accent) 28%,
+    var(--color-border-4)
+  );
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+
+.homeReviewCard:hover::before {
+  opacity: 1;
+}
+
+.homeCardTop {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.homeQuoteMark {
+  color: var(--color-accent-soft);
+  font-family: Georgia, serif;
+  font-size: 52px;
+  line-height: 0.6;
+}
+
+.homeReviewCard h3 {
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--color-text-1);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.homeReviewCard blockquote {
+  display: -webkit-box;
+  overflow: hidden;
+  flex: 1;
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.homeCardFooter {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-4);
+}
+
+.homeGuest {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.homeGuest > img,
+.homeGuestFallback {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 50%;
+}
+
+.homeGuest > img {
+  object-fit: cover;
+}
+
+.homeGuestFallback {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-accent),
+      #5b8cff
+    );
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  box-shadow: 0 5px 14px rgba(27, 79, 216, 0.22);
+}
+
+.homeGuestDetails {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.homeGuestDetails strong {
+  overflow: hidden;
+  color: var(--color-text-1);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.homeGuestDetails small {
+  overflow: hidden;
+  margin-top: 2px;
+  color: var(--color-text-3);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.homeTourLink {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.homeTourLink span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[dir="rtl"] .homeTourLink span:last-child {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1100px) {
+  .homeReviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .homeReviewCard {
+    min-height: 270px;
+  }
+}
+
+@media (max-width: 720px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .scoreCard {
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--color-border-4);
+  }
+
+  .tourReviewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewFooter {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .verifiedBadge {
+    margin-inline-start: 58px;
+  }
+
+  .homeSection {
+    padding-block: var(--space-12);
+  }
+
+  .homeHeading {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .homeReviewGrid {
+    display: flex;
+    overflow-x: auto;
+    margin-inline: calc(var(--container-pad) * -1);
+    padding: 2px var(--container-pad) var(--space-4);
+    scroll-padding-inline: var(--container-pad);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .homeReviewGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .homeReviewCard {
+    width: min(84vw, 340px);
+    min-height: 280px;
+    flex: 0 0 min(84vw, 340px);
+    scroll-snap-align: start;
+  }
+}
