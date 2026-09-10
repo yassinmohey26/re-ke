@@ -294,17 +294,23 @@ export default function AdminReviewsPage() {
   async function deleteReview(review: AdminReview) {
     if (!window.confirm(t('reviewDeleteConfirm'))) return;
 
-    const response = await fetch(`/api/admin/reviews/${review.id}`, {
-      method: 'DELETE',
-    });
+    try {
+      const response = await fetch(`/api/admin/reviews/${review.id}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json().catch(() => ({}));
 
-    if (response.ok) {
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to delete review');
+      }
+
       setReviews(current =>
         current.filter(candidate => candidate.id !== review.id),
       );
-    } else {
-      const data = await response.json().catch(() => ({}));
-      window.alert(data.error || 'Failed to delete review');
+    } catch (error) {
+      window.alert(
+        error instanceof Error ? error.message : 'Failed to delete review',
+      );
     }
   }
 

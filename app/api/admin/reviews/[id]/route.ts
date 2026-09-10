@@ -126,8 +126,20 @@ export async function DELETE(
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  await normalizeReviewOrder(supabase);
-  revalidateReviewPages();
+  try {
+    await normalizeReviewOrder(supabase);
+  } catch (orderError) {
+    // The review has already been deleted. A temporary ordering failure must
+    // not turn that successful delete into a failed request for the admin UI.
+    console.error('[reviews] Failed to normalize review order after delete:', orderError);
+  }
+
+  try {
+    revalidateReviewPages();
+  } catch (revalidationError) {
+    // Revalidation is best-effort here; it must not mask a completed delete.
+    console.error('[reviews] Failed to revalidate pages after delete:', revalidationError);
+  }
 
   return NextResponse.json({ success: true });
 }
