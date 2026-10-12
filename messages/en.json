@@ -74,6 +74,7 @@
     "tourItinerary": "Tour itinerary",
     "person": "person",
     "persons": "persons",
+    "maxGuests": "Up to",
     "noTours": "No tours available yet.",
     "noDeposit": "No deposit required. We will contact you.",
     "allToursDesc": "Choose from our diverse selection of tours and excursions.",
@@ -515,6 +516,7 @@
   "airportTransfer": {
     "heroTitle": "Airport Transfer",
     "heroSubtitle": "Your private transfer service in Hurghada and surrounding areas – stress-free and on time to your destination.",
+    "bookTransfer": "Book transfer",
     "tableHeading": "Transfer Prices — Car & Minibus",
     "colGoal": "Destination",
     "colCar": "Car (max. 2 persons)",

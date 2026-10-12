@@ -28,6 +28,24 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/trip', destination: '/de/touren', permanent: true },
+      { source: '/trip/:slug', destination: '/de/touren/:slug', permanent: true },
+      { source: '/de/trip', destination: '/de/touren', permanent: true },
+      { source: '/de/trip/:slug', destination: '/de/touren/:slug', permanent: true },
+      { source: '/contact-us', destination: '/de/kontakt', permanent: true },
+      { source: '/de/contact-us', destination: '/de/kontakt', permanent: true },
+      { source: '/autotransport', destination: '/de/airport-transfer', permanent: true },
+      { source: '/de/autotransport', destination: '/de/airport-transfer', permanent: true },
+      { source: '/trip-types/kultur-ausfluege', destination: '/de/touren/kultur-ausfluege', permanent: true },
+      { source: '/de/trip-types/kultur-ausfluege', destination: '/de/touren/kultur-ausfluege', permanent: true },
+      { source: '/trip-types/safari-ausfluege', destination: '/de/touren/safari-ausfluege', permanent: true },
+      { source: '/de/trip-types/safari-ausfluege', destination: '/de/touren/safari-ausfluege', permanent: true },
+      { source: '/trip-types/schnorchel-touren', destination: '/de/touren/schnorchel-touren', permanent: true },
+      { source: '/de/trip-types/schnorchel-touren', destination: '/de/touren/schnorchel-touren', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

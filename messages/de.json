@@ -37,8 +37,8 @@
   },
   "hero": {
     "eyebrow": "Ihr Reiseplaner für Ägypten",
-    "title": "Unvergessliche Erlebnisse in Ägypten",
-    "subtitle": "Entdecken Sie die Schönheit des Roten Meeres. Wir planen Ihre perfekte Reise — von Schnorcheln und Tauchen bis hin zu faszinierenden Wüsten-Safaris.",
+    "title": "Hurghada Reiseplaner – Ausflüge & Touren in Ägypten",
+    "subtitle": "Planen Sie Ihre Reise mit persönlichen Tipps und deutschsprachiger Beratung. Entdecken Sie Schnorchelausflüge, Wüsten-Safaris und private Touren ab Hurghada.",
     "cta": "Touren entdecken",
     "secondary": "Kostenlose Beratung",
     "check1": "Persönliche Reiseplanung auf Deutsch",
@@ -74,6 +74,7 @@
     "tourItinerary": "Ablauf der Tour",
     "person": "Person",
     "persons": "Personen",
+    "maxGuests": "Max.",
     "noTours": "Noch keine Touren verfügbar.",
     "noDeposit": "Keine Anzahlung erforderlich. Wir melden uns bei Ihnen.",
     "allToursDesc": "Wählen Sie aus unserer vielfältigen Auswahl an Touren und Ausflügen.",
@@ -486,7 +487,7 @@
   },
   "metadata": {
     "homeTitle": "Hurghada Reiseplaner",
-    "homeDescription": "Ihr persönlicher Reiseplaner für Hurghada und das Rote Meer. Ausflüge, Touren und Abenteuer.",
+    "homeDescription": "Hurghada Reiseplaner: Entdecken und buchen Sie Ausflüge, private Touren und Flughafentransfers in Hurghada. Persönliche Planung und Beratung auf Deutsch.",
     "toursTitle": "Touren & Ausflüge",
     "toursDescription": "Entdecken Sie alle Touren und Ausflüge in Hurghada.",
     "destinationsTitle": "Destinationen",
@@ -515,6 +516,7 @@
   "airportTransfer": {
     "heroTitle": "Flughafen-Transfer",
     "heroSubtitle": "Ihr privater Transfer-Service in Hurghada und Umgebung – stressfrei und pünktlich zu Ihrem Ziel.",
+    "bookTransfer": "Transfer buchen",
     "tableHeading": "Transfer-Preise — PKW & Minibus",
     "colGoal": "Ziel",
     "colCar": "PKW (max. 2 Personen)",

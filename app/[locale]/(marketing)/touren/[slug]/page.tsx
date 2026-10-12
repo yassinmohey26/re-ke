@@ -10,6 +10,7 @@ import InteractivePricingTable from '@/components/tours/InteractivePricingTable'
 import { TourBookingProvider } from '@/components/tours/TourBookingContext';
 import TourGallery from '@/components/tours/TourGallery';
 import TourBookingSidebar from '@/components/tours/TourBookingSidebar';
+import MobileTourBookingAction from '@/components/tours/MobileTourBookingAction';
 import TourBreadcrumb from '@/components/tours/TourBreadcrumb';
 import TourPriceTable from '@/components/tours/TourPriceTable';
 import TourDiscountTable from '@/components/tours/TourDiscountTable';
@@ -195,7 +196,16 @@ export default async function TourDetailPage({ params }: Props) {
 
                 {/* Gallery */}
                 {galleryImages.length > 0 && (
-                  <TourGallery images={galleryImages} name={tour.name} />
+                  <TourGallery
+                    images={galleryImages}
+                    name={tour.name}
+                    mobileAction={
+                      <MobileTourBookingAction
+                        styles={styles}
+                        variant="overlay"
+                      />
+                    }
+                  />
                 )}
 
                 {/* Quick Facts */}
@@ -369,6 +379,11 @@ export default async function TourDetailPage({ params }: Props) {
                 </div>
               </aside>
             </div>
+
+            <MobileTourBookingAction
+              styles={styles}
+              variant="dock"
+            />
           </TourBookingProvider>
 
           {/* Related Tours */}

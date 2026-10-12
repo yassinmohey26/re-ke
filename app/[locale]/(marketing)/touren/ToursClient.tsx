@@ -54,9 +54,9 @@ interface Props {
     perPerson: string;
     hours: string;
     persons: string;
+    maxGuests: string;
     allDestinations: string;
     inquiry: string;
-    favorite: string;
     categoryCulturalDesc: string;
     categorySnorkelDesc: string;
     categorySafariDesc: string;
@@ -217,18 +217,22 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
       const next = new Set(prev);
       if (next.has(key)) next.delete(key);
       else next.add(key);
+      setAppliedTypes(new Set(next));
       return next;
     });
-  }, []);
+    setPage(1);
+  }, [setPage]);
 
   const toggleDraftDuration = useCallback((key: string) => {
     setDraftDurations(prev => {
       const next = new Set(prev);
       if (next.has(key)) next.delete(key);
       else next.add(key);
+      setAppliedDurations(new Set(next));
       return next;
     });
-  }, []);
+    setPage(1);
+  }, [setPage]);
 
   const handleSearch = useCallback(() => {
     setGuestOpen(false);
@@ -265,7 +269,9 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
     if (appliedDestination && appliedDestination !== 'hurghada') {
       const destination = destinations.find(item => item.slug === appliedDestination);
       const selectedIds = destination ? destinationTourIds[destination.slug] : undefined;
-      result = selectedIds ? result.filter(tour => selectedIds.includes(tour.id)) : result.filter(tour => tour.destinationSlug === appliedDestination);
+      result = selectedIds
+        ? result.filter(tour => selectedIds.includes(tour.id))
+        : result.filter(tour => tour.destinationSlug === appliedDestination);
     } else if (appliedDestination === 'hurghada') {
       const destination = destinations.find(item => item.slug === 'hurghada');
       const selectedIds = destination ? destinationTourIds[destination.slug] : undefined;
@@ -497,7 +503,7 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
             <button
               key={card.key}
               className={`${styles.categoryCard} ${styles[`categoryCard${index + 1}`]}`}
-              onClick={() => { toggleDraftType(card.key); handleSearch(); }}
+              onClick={() => toggleDraftType(card.key)}
               aria-label={card.title}
               >
                 <Image
@@ -568,7 +574,11 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                   min={0}
                   className={styles.priceInput}
                   value={draftPriceMin}
-                  onChange={e => setDraftPriceMin(e.target.value)}
+                  onChange={e => {
+                    setDraftPriceMin(e.target.value);
+                    setAppliedPriceMin(e.target.value);
+                    setPage(1);
+                  }}
                 />
               </div>
               <span className={styles.priceDash}>–</span>
@@ -579,7 +589,11 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                   min={0}
                   className={styles.priceInput}
                   value={draftPriceMax}
-                  onChange={e => setDraftPriceMax(e.target.value)}
+                  onChange={e => {
+                    setDraftPriceMax(e.target.value);
+                    setAppliedPriceMax(e.target.value);
+                    setPage(1);
+                  }}
                 />
               </div>
             </div>
@@ -637,11 +651,6 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                     {tour.discount?.active && (
                       <span className={styles.saleBadge}>-{tour.discount.percentage}%</span>
                     )}
-                    <button className={styles.heartBtn} aria-label={t.favorite} onClick={e => e.preventDefault()}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    </button>
                   </div>
                   <div className={styles.cardBody}>
                     <p className={styles.cardLocation}>
@@ -667,7 +676,7 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                         </svg>
-                        0–{tour.maxGuests} {t.persons}
+                        {t.maxGuests} {tour.maxGuests} {t.persons}
                       </span>
                     </div>
                     <div className={styles.cardPrice}>

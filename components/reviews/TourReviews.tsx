@@ -34,6 +34,8 @@ export default async function TourReviews({
   reviews,
   locale,
 }: TourReviewsProps) {
+  if (reviews.length === 0) return null;
+
   const t = await getTranslations({ locale, namespace: 'reviews' });
   const summary = summarizeReviews(reviews);
 

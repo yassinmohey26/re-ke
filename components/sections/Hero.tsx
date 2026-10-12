@@ -43,14 +43,23 @@ export default function Hero({
   return (
     <section className={styles.hero} ref={heroRef} aria-label="Hero">
       <div className={styles.bg}>
-        <video ref={videoRef} className={styles.bgVideo} autoPlay muted loop playsInline preload="auto">
+        <video
+          ref={videoRef}
+          className={styles.bgVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/cta-red-sea-pier.png"
+        >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         <div className={styles.overlay} />
       </div>
       <div className={styles.content}>
         <div className={styles.textBlock}>
-          <h1 className={styles.headline}>
+          <h1 className={styles.headline} aria-label={title}>
             <KineticText text={title} as="span" />
           </h1>
           <p className={styles.subtext}>{subtitle}</p>

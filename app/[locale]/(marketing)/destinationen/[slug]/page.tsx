@@ -105,6 +105,7 @@ export default async function DestinationDetailPage({ params }: Props) {
     perPerson: await t('perPerson'),
     hours: await t('hours'),
     persons: await t('persons'),
+    maxGuests: await t('maxGuests'),
     allDestinations: await t('allDestinations'),
     inquiry: await t('inquiry'),
     categoryCulturalDesc: await t('categoryCulturalDesc'),
@@ -112,7 +113,6 @@ export default async function DestinationDetailPage({ params }: Props) {
     categorySafariDesc: await t('categorySafariDesc'),
     viewTours: await t('viewTours'),
     toursWord: await t('toursWord'),
-    favorite: await (await getTranslations('a11y'))('favorite'),
   };
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hurghada-reiseplaner.at';

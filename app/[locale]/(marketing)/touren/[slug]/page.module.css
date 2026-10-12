@@ -44,6 +44,43 @@
 .gallery {
   margin-bottom: var(--space-8);
 }
+
+.galleryMobileAction,
+.mobileBookingOverlay,
+.mobileBookingDock {
+  display: none;
+}
+
+.mobileBookingPrice {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.mobileBookingPrice strong {
+  font-size: 18px;
+}
+
+.mobileBookingFrom,
+.mobileBookingPer {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.72;
+}
+
+.mobileBookingCta {
+  flex-shrink: 0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+}
 .galleryHero {
   position: relative;
   width: 100%;
@@ -744,6 +781,48 @@
 }
 
 @media (max-width: 640px) {
+  .galleryMobileAction {
+    position: relative;
+    z-index: 3;
+    display: block;
+    margin: -28px 12px 20px;
+  }
+
+  .mobileBookingOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 10px 30px rgba(8, 24, 44, 0.18);
+    backdrop-filter: blur(12px);
+  }
+
+  .mobileBookingDock {
+    position: fixed;
+    inset-inline-start: 12px;
+    inset-inline-end: 84px;
+    bottom: 12px;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 10px 9px 14px;
+    border: 1px solid var(--color-border-4);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 34px rgba(8, 24, 44, 0.24);
+    backdrop-filter: blur(14px);
+  }
+
+  .mobileBookingDock .mobileBookingCta {
+    padding-inline: 15px;
+  }
+
   .tourTitle { font-size: 24px; }
   .quickFacts { grid-template-columns: 1fr; }
   .includedGrid { grid-template-columns: 1fr; }

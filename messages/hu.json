@@ -74,6 +74,7 @@
     "tourItinerary": "Túra program",
     "person": "fő",
     "persons": "személy",
+    "maxGuests": "Legfeljebb",
     "noTours": "Még nincsenek elérhető túrák.",
     "noDeposit": "Nem szükséges foglaló. Felvesszük Önnel a kapcsolatot.",
     "allToursDesc": "Válasszon sokszínű túra- és kiránduláskínálatunkból.",
@@ -507,6 +508,7 @@
   "airportTransfer": {
     "heroTitle": "Repülőtéri transzfer",
     "heroSubtitle": "Privát transzferszolgálat Hurghadában és környékén – stresszmentesen és időben az úti céljához.",
+    "bookTransfer": "Transzfer foglalása",
     "tableHeading": "Transzfer árak — Autó és mikrobusz",
     "colGoal": "Úti cél",
     "colCar": "Autó (max. 2 személy)",

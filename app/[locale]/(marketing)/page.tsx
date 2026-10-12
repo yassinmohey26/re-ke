@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const description = tMeta('homeDescription');
   const localeMap: Record<string, string> = { de: 'de_AT', en: 'en_US', ru: 'ru_RU', ar: 'ar_EG', fr: 'fr_FR', hu: 'hu_HU' };
   return {
-    title: siteName,
+    title: { absolute: siteName },
     description,
     openGraph: {
       title: siteName,
@@ -126,7 +126,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       contactType: 'customer service',
       availableLanguage: ['German', 'English', 'Russian', 'Arabic', 'French', 'Hungarian'],
     },
-    sameAs: [],
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61591750581996',
+      'https://www.instagram.com/hurghadareiseplaner/',
+    ],
   };
 
   const websiteJsonLd = {

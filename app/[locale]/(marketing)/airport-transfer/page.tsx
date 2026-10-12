@@ -5,6 +5,7 @@ import HeroSection from '@/components/sections/airport-transfer/HeroSection';
 import PricingTable from '@/components/sections/airport-transfer/PricingTable';
 import FaqAccordion from '@/components/sections/airport-transfer/FaqAccordion';
 import FaqContactCard from '@/components/sections/airport-transfer/FaqContactCard';
+import TransferActions from '@/components/sections/airport-transfer/TransferActions';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -53,6 +54,7 @@ export default async function AirportTransferPage({ params }: { params: Promise<
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'airportTransfer' });
+  const tContact = await getTranslations({ locale, namespace: 'contact' });
   const db = getSupabaseAdmin();
 
   const transfersResult = await db.from('airport_transfers').select('destination, car_price, minibus_price').order('sort_order', { ascending: true });
@@ -67,6 +69,8 @@ export default async function AirportTransferPage({ params }: { params: Promise<
         image="https://res.cloudinary.com/sx85slkf/image/upload/f_auto,q_auto,w_1920/v1785218112/hurghada-reiseplaner/tours/transfer-hero.avif"
         title={t('heroTitle')}
         subtitle={t('heroSubtitle')}
+        bookingText={t('bookTransfer')}
+        whatsappText={tContact('whatsapp')}
       />
 
       <PricingTable
@@ -76,6 +80,15 @@ export default async function AirportTransferPage({ params }: { params: Promise<
         colMinibus={t('colMinibus')}
         rows={transfers}
       />
+
+      <section className={styles.transferCta}>
+        <div className="container">
+          <TransferActions
+            bookingText={t('bookTransfer')}
+            whatsappText={tContact('whatsapp')}
+          />
+        </div>
+      </section>
 
       <section className={styles.faqSection}>
         <div className="container">

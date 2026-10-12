@@ -52,7 +52,11 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
 
   const t = await getTranslations('tours');
-  const [tours, destinations, destinationTourIds] = await Promise.all([getLocalizedAllTours(locale), getDestinations(locale), getDestinationTourIds()]);
+  const [tours, destinations, destinationTourIds] = await Promise.all([
+    getLocalizedAllTours(locale),
+    getDestinations(locale),
+    getDestinationTourIds(),
+  ]);
   const removedDestSlugs = new Set(['marsa-alam', 'el-quseir']);
   const destinationOptions = destinations
     .filter(d => !removedDestSlugs.has(d.slug))
@@ -93,6 +97,7 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
     perPerson: await t('perPerson'),
     hours: await t('hours'),
     persons: await t('persons'),
+    maxGuests: await t('maxGuests'),
     allDestinations: await t('allDestinations'),
     inquiry: await t('inquiry'),
     categoryCulturalDesc: await t('categoryCulturalDesc'),
@@ -100,12 +105,18 @@ export default async function TourenPage({ params }: { params: Promise<{ locale:
     categorySafariDesc: await t('categorySafariDesc'),
     viewTours: await t('viewTours'),
     toursWord: await t('toursWord'),
-    favorite: await (await getTranslations('a11y'))('favorite'),
   };
 
   return (
     <Suspense>
-      <ToursClient tours={tours} locale={locale} destinations={destinationOptions} destinationTourIds={destinationTourIds} translations={translations} heroImage={heroImage} />
+      <ToursClient
+        tours={tours}
+        destinationTourIds={destinationTourIds}
+        locale={locale}
+        destinations={destinationOptions}
+        translations={translations}
+        heroImage={heroImage}
+      />
     </Suspense>
   );
 }

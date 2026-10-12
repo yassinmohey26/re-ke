@@ -1,12 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import cloudinaryLoader from '@/lib/cloudinaryLoader';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
-export default function TourGallery({ images, name }: { images: string[]; name: string }) {
+export default function TourGallery({
+  images,
+  name,
+  mobileAction,
+}: {
+  images: string[];
+  name: string;
+  mobileAction?: ReactNode;
+}) {
   const t = useTranslations('tours');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -36,6 +45,11 @@ export default function TourGallery({ images, name }: { images: string[]; name: 
             {validImages.length} {t('photos')}
           </span>
         </button>
+        {mobileAction && (
+          <div className={styles.galleryMobileAction}>
+            {mobileAction}
+          </div>
+        )}
         {thumbs.length > 0 && (
           <div className={styles.galleryThumbs}>
             {thumbs.map((img, i) => (

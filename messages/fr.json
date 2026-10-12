@@ -74,6 +74,7 @@
     "tourItinerary": "Itinéraire de la visite",
     "person": "personne",
     "persons": "personnes",
+    "maxGuests": "Jusqu’à",
     "noTours": "Aucune visite disponible pour le moment.",
     "noDeposit": "Aucun acompte requis. Nous vous contacterons.",
     "allToursDesc": "Choisissez parmi notre sélection variée de visites et excursions.",
@@ -507,6 +508,7 @@
   "airportTransfer": {
     "heroTitle": "Transfert aéroport",
     "heroSubtitle": "Votre service de transfert privé à Hurghada et ses environs – sans stress et ponctuel直至 à votre destination.",
+    "bookTransfer": "Réserver le transfert",
     "tableHeading": "Prix de transfert — Voiture & Minibus",
     "colGoal": "Destination",
     "colCar": "Voiture (max. 2 personnes)",
