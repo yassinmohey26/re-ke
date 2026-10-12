@@ -5,7 +5,8 @@ import { Link } from '@/i18n/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import TourCard from '@/components/cards/TourCard';
 import { getLocalizedTour, getToursByCategory, getLocalizedCategoryLabel, getLocalizedAllTours, getTourExtras } from '@/lib/data/tours';
-import { parsePricingTiers, hasPricingTable, stripPricingTable } from '@/lib/pricing-table';
+import { hasPricingTable, stripPricingTable } from '@/lib/pricing-table';
+import { getTourPricingTiers } from '@/lib/tour-pricing';
 import InteractivePricingTable from '@/components/tours/InteractivePricingTable';
 import { TourBookingProvider } from '@/components/tours/TourBookingContext';
 import TourGallery from '@/components/tours/TourGallery';
@@ -159,14 +160,8 @@ export default async function TourDetailPage({ params }: Props) {
   // Always parse pricing from rawDescription (the base German DB column) because
   // buildPricingTable writes German HTML headers. The translated `description` may
   // not contain the <table> at all, which would make parsePricingTiers return [].
-  const basePricingTiers = parsePricingTiers(tour.rawDescription || tour.description);
-  const discountTiers = (tour.discount?.pricingTiers ?? []).map(t => ({
-    minGuests: t.min,
-    maxGuests: t.max,
-    pricePerPerson: t.price,
-  }));
-  const pricingTiers = discountTiers.length > 0 ? discountTiers : basePricingTiers;
-  const hasPricing = basePricingTiers.length > 0 || discountTiers.length > 0;
+  const pricingTiers = getTourPricingTiers(tour.discount, tour.rawDescription);
+  const hasPricing = pricingTiers.length > 0;
 
   return (
     <>
@@ -265,12 +260,10 @@ export default async function TourDetailPage({ params }: Props) {
 
                 {/* Price Table */}
                 <TourPriceTable
-                  price={tour.price}
                   duration={tour.duration}
                   meetingPoint={tour.meetingPoint}
                   category={tour.category}
                   categoryLabel={catLabel}
-                  discount={tour.discount}
                 />
 
                 {/* Itinerary */}

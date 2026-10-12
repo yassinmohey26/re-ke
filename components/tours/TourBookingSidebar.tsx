@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { useTourBooking } from './TourBookingContext';
-import { applyDiscount } from '@/lib/pricing-table';
 import { getBookingAgeLabels, type ChildDiscountLocale } from '@/lib/child-discounts';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
@@ -62,10 +61,9 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const tb = useTranslations('booking');
   const locale = useLocale() as ChildDiscountLocale;
   const {
-    price, pricePerPerson, salePricePerPerson, hasSale, adults, children: childrenCount, infants,
+    price, pricePerPerson, salePricePerPerson, childPricePerPerson, infantPricePerPerson, hasSale, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
-    pricingTiers, discount, childDiscounts, extras, selected, toggle, extrasTotal, total, bookingHref,
-    participantPrices,
+    childDiscounts, extras, selected, toggle, extrasTotal, total, bookingHref,
   } = useTourBooking();
   const [date, setDate] = useState('');
 
@@ -79,40 +77,18 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const infantsMax = maxGuests - adults - childrenCount;
 
   // Build price breakdown line
-  const childTiers = discount?.childTiers;
-  const hasChildTiers = childTiers && childTiers.length >= 2;
   const breakdownPrice = salePricePerPerson ?? pricePerPerson;
-  const resolveTierPrice = (priceString: string | undefined, fallbackRatio: number, fullPrice: number) => {
-    if (!priceString) return Math.round(fullPrice * fallbackRatio);
-    const s = priceString.trim().toLowerCase();
-    if (!s || s === 'kostenlos' || s === 'frei' || s === 'free' || /^0\b/.test(s)) return 0;
-    const pct = s.match(/(\d+)\s*%/);
-    if (pct) return Math.round(fullPrice * parseFloat(pct[1]) / 100);
-    if (s.includes('voller') || s.includes('full')) return fullPrice;
-    const m = s.match(/[\d,.]+/);
-    if (m) return parseFloat(m[0].replace(',', '.'));
-    return Math.round(fullPrice * fallbackRatio);
-  };
   let breakdown = null;
   if (breakdownPrice != null) {
     const parts: string[] = [];
     if (adults > 0) parts.push(`${adults} × ${breakdownPrice} €`);
     if (childrenCount > 0) {
-      if (hasChildTiers) {
-        const cp = participantPrices?.child?.price ?? resolveTierPrice(childTiers[1]?.price, 0.5, breakdownPrice);
-        parts.push(`${childrenCount} × ${cp.toFixed(0)} €`);
-      } else {
-        parts.push(`${childrenCount} × ${(participantPrices?.child?.price ?? breakdownPrice / 2).toFixed(2)} €`);
-      }
+      parts.push(`${childrenCount} × ${(childPricePerPerson ?? 0).toFixed(2)} €`);
     }
     if (infants > 0) {
-      if (hasChildTiers) {
-        const ip = participantPrices?.infant?.price ?? resolveTierPrice(childTiers[0]?.price, 0, breakdownPrice);
-        parts.push(`${infants} × ${ip.toFixed(0)} €`);
-      } else {
-        parts.push(`${infants} × ${(participantPrices?.infant?.price ?? 0).toFixed(2)} €`);
-      }
+      parts.push(`${infants} × ${(infantPricePerPerson ?? 0).toFixed(2)} €`);
     }
+    if (extrasTotal > 0) parts.push(`${extrasTotal.toFixed(2)} € ${t('extras')}`);
     if (parts.length > 1 && total != null) {
       breakdown = (
         <span className={css.bookingTotalLine}>
@@ -126,13 +102,10 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
 
   return (
     <div className={css.bookingCard}>
-      {price != null ? (
+      {salePricePerPerson != null || pricePerPerson != null ? (
         <div className={css.bookingPriceBlock}>
           {hasSale && pricePerPerson != null && (
             <span className={css.bookingOriginalPrice}>{pricePerPerson} EUR</span>
-          )}
-          {!hasSale && pricePerPerson != null && pricePerPerson !== price && (
-            <span className={css.bookingOriginalPrice}>{price} EUR</span>
           )}
           <span className={`${css.bookingCurrentPrice} ${hasSale ? css.salePrice : ''}`}>{displayPrice} EUR</span>
           <span className={css.bookingPricePer}>{t('perPerson')}</span>

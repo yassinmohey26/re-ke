@@ -4,7 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations, useLocale } from 'next-intl';
 import { createBookingSchema, type BookingFormData } from '@/lib/validations';
 import { submitBooking } from '@/lib/actions';
-import { type PricingTier, getPriceForGuests } from '@/lib/pricing-table';
+import type { PricingTier } from '@/lib/pricing-table';
+import { resolveTourUnitPrices } from '@/lib/tour-pricing';
 import CheckoutButton from '@/components/checkout/CheckoutButton';
 import type { ParticipantPrice } from '@/lib/participant-pricing';
 import { calculateTransferSurcharge } from '@/lib/transfer-pricing';
@@ -33,7 +34,7 @@ interface Extra {
 interface Discount {
   active: boolean;
   percentage: number;
-  tierPrices?: number[];
+  tierPrices?: (number | null)[];
   childTiers?: { label: string; price: string }[];
 }
 
@@ -123,8 +124,6 @@ export default function BookingForm({
   const ageLabels = getBookingAgeLabels(childDiscounts, (locale in { de: 1, en: 1, ar: 1, fr: 1, hu: 1, ru: 1 } ? locale : 'de') as ChildDiscountLocale);
 
   const guestsTotal = adults + childrenCount + infants;
-  const hasFixedChildPricing = discount?.childTiers != null && discount.childTiers.length >= 2;
-  const guestsForPricing = hasFixedChildPricing ? adults : adults + childrenCount;
 
   const bookingSchema = useMemo(
     () => createBookingSchema({
@@ -163,7 +162,15 @@ export default function BookingForm({
     },
   });
 
-  const dynamicPricePerPerson = participantPrices.adult?.price ?? getPriceForGuests(pricingTiers, pricePerPerson ?? null, guestsForPricing);
+  const unitPrices = resolveTourUnitPrices({
+    basePrice: pricePerPerson ?? null,
+    adultCount: adults,
+    groupTiers: pricingTiers,
+    discount,
+    participantPrices,
+    childDiscounts,
+  });
+  const dynamicPricePerPerson = unitPrices.adult;
 
   function toggleExtra(id: string) {
     setSelectedExtraIds((prev) =>
@@ -172,31 +179,17 @@ export default function BookingForm({
   }
 
   const selectedExtras = extras.filter((e) => selectedExtraIds.includes(e.id));
-  const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
+  const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0) * (adults + childrenCount);
 
   // Display-only surcharge using the same shared server rules the booking and
   // Stripe checkout recalculate. Only the region slug is ever submitted.
   const transferSurcharge = calculateTransferSurcharge(hotelRegion, { adult: adults, child: childrenCount, infant: infants })?.subtotal ?? 0;
 
-  const parsePrice = (s: string) => {
-    const m = s.match(/[\d,.]+/);
-    return m ? parseFloat(m[0].replace(',', '.')) : null;
-  };
-  const childTiers = discount?.childTiers;
-  const hasChildTiers = childTiers && childTiers.length >= 2;
   const totalPrice = dynamicPricePerPerson != null
-    ? (() => {
-        const adultTotal = dynamicPricePerPerson * adults;
-        if (hasChildTiers) {
-          const childPrice = parsePrice(childTiers[1].price);
-          const infantPrice = parsePrice(childTiers[0].price);
-          return adultTotal
-            + (childrenCount && (participantPrices.child?.price ?? childPrice) != null ? (participantPrices.child?.price ?? childPrice)! * childrenCount : (dynamicPricePerPerson / 2) * childrenCount)
-            + (infants && (participantPrices.infant?.price ?? infantPrice) != null ? (participantPrices.infant?.price ?? infantPrice)! * infants : 0)
-            + extrasTotal + transferSurcharge;
-        }
-        return adultTotal + (dynamicPricePerPerson / 2) * childrenCount + extrasTotal + transferSurcharge;
-      })()
+    ? dynamicPricePerPerson * adults
+      + (unitPrices.child ?? 0) * childrenCount
+      + (unitPrices.infant ?? 0) * infants
+      + extrasTotal + transferSurcharge
     : null;
 
   const depositAmount = totalPrice != null ? Math.round(totalPrice * 0.3 * 100) / 100 : null;
@@ -508,9 +501,9 @@ export default function BookingForm({
       {dynamicPricePerPerson != null && (
         <div className={styles.priceDisplay}>
           <div style={{ marginBottom: 4 }}>
-            {dynamicPricePerPerson !== pricePerPerson && pricePerPerson != null && (
+            {unitPrices.adultBeforeDiscount != null && dynamicPricePerPerson < unitPrices.adultBeforeDiscount && (
               <span style={{ textDecoration: 'line-through', color: 'var(--color-text-5)', marginInlineEnd: 8 }}>
-                {t('pricePerPerson', { price: pricePerPerson })}
+                {t('pricePerPerson', { price: unitPrices.adultBeforeDiscount })}
               </span>
             )}
             {t('pricePerPerson', { price: dynamicPricePerPerson })}
@@ -519,18 +512,18 @@ export default function BookingForm({
             <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
               {adults} × {dynamicPricePerPerson} € {t('priceBreakdownAdults')}
               {childrenCount > 0 && (
-                <span> + {childrenCount} × {hasChildTiers ? parsePrice(childTiers[1].price)?.toFixed(0) ?? (dynamicPricePerPerson / 2).toFixed(0) : (dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}</span>
+                <span> + {childrenCount} × {(unitPrices.child ?? 0).toFixed(2)} € {t('priceBreakdownChildren')}</span>
               )}
               {infants > 0 && (
-                <span> + {infants} × {(participantPrices.infant?.price ?? (hasChildTiers ? parsePrice(childTiers[0].price) : 0)) === 0 ? t('free') : `${(participantPrices.infant?.price ?? (hasChildTiers ? parsePrice(childTiers[0].price) : 0))?.toFixed(2)} €`} {t('priceBreakdownInfant')}</span>
+                <span> + {infants} × {unitPrices.infant === 0 ? t('free') : `${(unitPrices.infant ?? 0).toFixed(2)} €`} {t('priceBreakdownInfant')}</span>
               )}
             </div>
           )}
           {adults === 0 && childrenCount > 0 && (
             <div style={{ fontSize: 13, color: 'var(--color-text-2)' }}>
-              {childrenCount} × {hasChildTiers ? parsePrice(childTiers[1].price)?.toFixed(0) ?? (dynamicPricePerPerson / 2).toFixed(0) : (dynamicPricePerPerson / 2).toFixed(0)} € {t('priceBreakdownChildren')}
+              {childrenCount} × {(unitPrices.child ?? 0).toFixed(2)} € {t('priceBreakdownChildren')}
               {infants > 0 && (
-                <span> + {infants} × {hasChildTiers ? parsePrice(childTiers[0].price)?.toFixed(0) ?? '0' : '0'} € {t('priceBreakdownInfant')}</span>
+                <span> + {infants} × {(unitPrices.infant ?? 0).toFixed(2)} € {t('priceBreakdownInfant')}</span>
               )}
             </div>
           )}
@@ -568,7 +561,7 @@ export default function BookingForm({
           hotelRegion={hotelRegion}
           hotelName={hotelName}
           extraIds={selectedExtras.map((extra) => extra.id)}
-          locale={typeof window !== 'undefined' ? window.location.pathname.split('/')[1] : undefined}
+          locale={locale}
           disabled={isPending || guestsTotal < 1}
         />
       ) : (

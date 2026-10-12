@@ -1,28 +1,29 @@
+'use client';
+
 import React from 'react';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { useTourBooking } from './TourBookingContext';
 import styles from '@/app/[locale]/(marketing)/touren/[slug]/page.module.css';
 
 interface Props {
-  price: number | null;
   duration: string;
   meetingPoint: string;
   category: string;
   categoryLabel: string;
-  discount?: { active: boolean; percentage: number } | null;
 }
 
-export default async function TourPriceTable({ price, duration, meetingPoint, category, categoryLabel, discount }: Props) {
-  const t = await getTranslations('tours');
+export default function TourPriceTable({ duration, meetingPoint, category, categoryLabel }: Props) {
+  const t = useTranslations('tours');
+  const { pricePerPerson, salePricePerPerson, hasSale } = useTourBooking();
 
   let priceDisplay: string | React.ReactNode = t('requestOnly');
-  if (price != null) {
-    if (discount?.active) {
-      const salePrice = Math.round(price * (1 - discount.percentage / 100));
+  if (salePricePerPerson != null) {
+    if (hasSale && pricePerPerson != null) {
       priceDisplay = (
-        <><span className={styles.saleOriginalPrice}>{price} EUR</span> <span className={styles.salePrice}>{salePrice} EUR</span></>
+        <><span className={styles.saleOriginalPrice}>{pricePerPerson} EUR</span> <span className={styles.salePrice}>{salePricePerPerson} EUR</span></>
       );
     } else {
-      priceDisplay = `${price} EUR`;
+      priceDisplay = `${salePricePerPerson} EUR`;
     }
   }
 

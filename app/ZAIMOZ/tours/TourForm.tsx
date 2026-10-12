@@ -8,7 +8,8 @@ import FAQManager from '@/components/admin/FAQManager';
 import ExtrasManager from './ExtrasManager';
 import ItineraryManager from './ItineraryManager';
 import ChildDiscountManager, { ChildDiscountEditor, type ChildDiscountFormTier } from './ChildDiscountManager';
-import { parsePricingTiers, stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
+import { stripPricingTable, buildPricingTable } from '@/lib/pricing-table';
+import { getTourPricingTiers } from '@/lib/tour-pricing';
 import type { PricingTier } from '@/lib/pricing-table';
 import type { Discount } from '@/lib/data/tours';
 import styles from './TourForm.module.css';
@@ -105,28 +106,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   });
 
   const [pricingTiers, setPricingTiers] = useState<PricingTier[]>(() => {
-    // 1. First try parsing from description HTML (legacy: table was appended by buildPricingTable)
-    const baseDesc =
-      initialData?.rawDescription ||
-      initialData?.translations?.de?.description ||
-      initialData?.description ||
-      tr('description') ||
-      '';
-    const fromDesc = parsePricingTiers(baseDesc);
-    if (fromDesc.length > 0) return fromDesc;
-
-    // 2. Fallback: read from discount.pricingTiers JSON column
-    // The public tour page stores/reads pricing tiers here when no HTML table exists.
-    const discountTiers = initialData?.discount?.pricingTiers;
-    if (Array.isArray(discountTiers) && discountTiers.length > 0) {
-      return discountTiers.map((t: any) => ({
-        minGuests: Number(t.min ?? t.minGuests ?? 1),
-        maxGuests: Number(t.max ?? t.maxGuests ?? 1),
-        pricePerPerson: Number(t.price ?? t.pricePerPerson ?? 0),
-      }));
-    }
-
-    return [];
+    return getTourPricingTiers(initialData?.discount, initialData?.rawDescription ?? initialData?.description);
   });
 
   function parseDiscountInit(val: unknown): Discount {
@@ -172,7 +152,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         price: Number(source.adult?.price ?? initialData?.price ?? 0),
         minAge: Number(source.adult?.minAge ?? 12),
         maxAge: Number(source.adult?.maxAge ?? 120),
-        isActive: source.adult?.isActive !== false,
+        isActive: source.adult?.isActive === true,
         currency: source.adult?.currency ?? 'EUR',
       },
       child: { price: Number(source.child?.price ?? 0), minAge: Number(source.child?.minAge ?? 3), maxAge: Number(source.child?.maxAge ?? 11), isActive: source.child?.isActive ?? false, currency: source.child?.currency ?? 'EUR' },
@@ -218,6 +198,15 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
     setForm(prev => ({ ...prev, [key]: value }));
   }
 
+  function updateBasePrice(value: number | '') {
+    const previousPrice = Number(form.price);
+    setForm(prev => ({ ...prev, price: value }));
+    setParticipantPrices(prev => {
+      if (!prev.adult.isActive || prev.adult.price !== previousPrice) return prev;
+      return { ...prev, adult: { ...prev.adult, price: value === '' ? 0 : value } };
+    });
+  }
+
   function generateSlug() {
     const slug = form.name
       .toLowerCase()
@@ -240,6 +229,10 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
 
   function removeTier(index: number) {
     setPricingTiers(prev => prev.filter((_, i) => i !== index));
+    setDiscount(prev => ({
+      ...prev,
+      tierPrices: prev.tierPrices?.filter((_, i) => i !== index),
+    }));
   }
 
   function startItineraryAdd() {
@@ -290,10 +283,9 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    let description = stripPricingTable(form.description);
-    if (pricingTiers.length > 0) {
-      description = description + '\n' + buildPricingTable(pricingTiers);
-    }
+    const description = locale === 'de'
+      ? `${stripPricingTable(form.description)}${pricingTiers.length > 0 ? `\n${buildPricingTable(pricingTiers)}` : ''}`
+      : form.description;
 
     // Always persist pricingTiers in the discount JSON column so the public
     // tour page can find them even when description HTML parsing fails.
@@ -327,7 +319,9 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       faqs,
       itinerary: isCreateMode ? itinerary : undefined,
       childDiscounts: childDiscountTiers,
-      participantPrices: Object.entries(participantPrices).map(([personType, value]) => ({ personType, ...value })),
+      participantPrices: Object.entries(participantPrices)
+        .filter(([personType, value]) => Boolean(initialData?.participantPrices?.[personType]) || value.isActive)
+        .map(([personType, value]) => ({ personType, ...value })),
     };
     await onSave(data);
   }
@@ -395,7 +389,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
         <div className={styles.row3}>
           <div className={styles.field}>
             <label className={styles.label}>{t('tourPrice')}</label>
-            <input className={styles.input} type="number" min="0" value={form.price ?? ''} onChange={e => update('price', e.target.value === '' ? '' : Number(e.target.value))} />
+            <input className={styles.input} type="number" min="0" value={form.price ?? ''} onChange={e => updateBasePrice(e.target.value === '' ? '' : Number(e.target.value))} />
+            {pricingTiers.length > 0 && <small>{t('tourPriceWithTiersHint')}</small>}
           </div>
           <div className={styles.field}>
             <label className={styles.label}>{t('tourDuration')}</label>
@@ -575,10 +570,10 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
                         className={styles.pricingPrice}
                         value={discount.tierPrices?.[i] ?? ''}
                         onChange={e => {
-                          const val = e.target.value === '' ? undefined : parseInt(e.target.value) || 0;
+                          const val = e.target.value === '' ? null : parseInt(e.target.value) || 0;
                           setDiscount(prev => {
                             const tp = [...(prev.tierPrices ?? [])];
-                            tp[i] = val ?? 0;
+                            tp[i] = val;
                             return { ...prev, active: true, tierPrices: tp };
                           });
                         }}
@@ -587,8 +582,8 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
                       <button type="button" className={styles.removeTierBtn} onClick={() => {
                         setDiscount(prev => {
                           const tp = [...(prev.tierPrices ?? [])];
-                          delete tp[i];
-                          return { ...prev, tierPrices: tp.filter(v => v !== undefined) };
+                          tp[i] = null;
+                          return { ...prev, tierPrices: tp };
                         });
                       }}>
                         ✕
@@ -638,7 +633,7 @@ export default function TourForm({ initialData, onSave, saving }: TourFormProps)
       </div>
 
       {initialData?.id && (
-        <ExtrasManager tourId={initialData.id} styles={styles} />
+        <ExtrasManager key={`${initialData.id}:${locale}`} tourId={initialData.id} locale={locale} styles={styles} />
       )}
 
       {isCreateMode ? (

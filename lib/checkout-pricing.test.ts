@@ -8,6 +8,7 @@ import {
   validateParticipantQuantities,
 } from './checkout-pricing';
 import { calculateDepositAmount, toStripeCents } from './participant-pricing';
+import { getTourPricingTiers, getTourStartingPrice } from './tour-pricing';
 
 // Server-loaded database rows (shapes returned by Supabase for this tour).
 const tour = { price: 100, max_guests: 8 };
@@ -118,13 +119,68 @@ test('display-only participant rows (_adults etc.) are stripped', () => {
   );
 });
 
-test('missing configured participant price is rejected', () => {
-  // Structured prices exist but child is not configured while children > 0.
+test('missing child override uses the child discount tier', () => {
   const rowsWithoutChild = participantRows.filter((row) => row.person_type !== 'child');
-  assert.throws(
-    () => resolveServerCheckout({ ...baseArgs, participantRows: rowsWithoutChild }),
-    (error: unknown) => error instanceof CheckoutPricingError && error.message === 'Configured participant price is missing'
-  );
+  const { calculation } = resolveServerCheckout({ ...baseArgs, participantRows: rowsWithoutChild });
+  assert.equal(calculation.lines.find(line => line.personType === 'child')?.unitPrice, 25);
+  assert.equal(calculation.subtotal, 170);
+});
+
+test('group price overrides a stale adult row for both display and checkout', () => {
+  const { calculation } = resolveServerCheckout({
+    ...baseArgs,
+    tour: { price: 220, max_guests: 8, discount: {
+      active: false, percentage: 0,
+      pricingTiers: [{ min: 1, max: 1, price: 450 }, { min: 2, max: 2, price: 300 }],
+    } },
+    participantRows: participantRows.filter(row => row.person_type === 'adult'),
+    requestedExtraIds: [],
+  });
+  assert.equal(calculation.lines.find(line => line.personType === 'adult')?.unitPrice, 300);
+  assert.equal(calculation.lines.find(line => line.personType === 'child')?.unitPrice, 150);
+  assert.equal(calculation.subtotal, 750);
+});
+
+test('per-tier discount and custom child discount affect server total', () => {
+  const { calculation } = resolveServerCheckout({
+    ...baseArgs,
+    tour: { price: 220, max_guests: 8, discount: {
+      active: true, percentage: 10, tierPrices: [null, 270],
+      pricingTiers: [{ min: 1, max: 1, price: 450 }, { min: 2, max: 2, price: 300 }],
+    } },
+    participantRows: [],
+    childDiscountRows: [
+      { age_from: 0, age_to: 2, discount_type: 'free', discount_value: null, sort_order: 0 },
+      { age_from: 3, age_to: 10, discount_type: 'fixed_price', discount_value: 40, sort_order: 1 },
+      { age_from: 11, age_to: null, discount_type: 'full_price', discount_value: null, sort_order: 2 },
+    ],
+    requestedExtraIds: [],
+  });
+  assert.equal(calculation.lines.find(line => line.personType === 'adult')?.unitPrice, 270);
+  assert.equal(calculation.lines.find(line => line.personType === 'child')?.unitPrice, 40);
+  assert.equal(calculation.subtotal, 580);
+});
+
+test('structured group prices take priority over an older HTML table', () => {
+  const html = '<table class="tour-pricing-table"><tr><th>Teilnehmer</th><th>Preis pro Person</th></tr><tr><td>2 Personen</td><td>170 € p. P.</td></tr></table>';
+  const structured = getTourPricingTiers({ pricingTiers: [{ min: 2, max: 2, price: 300 }] }, html);
+  assert.equal(structured[0].pricePerPerson, 300);
+  const legacy = getTourPricingTiers(null, html);
+  assert.equal(legacy[0].pricePerPerson, 170);
+});
+
+test('tour card starting price comes from the same group tiers as checkout', () => {
+  const starting = getTourStartingPrice({
+    basePrice: 220,
+    maxGuests: 8,
+    discount: { active: false, percentage: 0, pricingTiers: [
+      { min: 1, max: 1, price: 450 },
+      { min: 2, max: 2, price: 300 },
+      { min: 3, max: 8, price: 195 },
+    ] },
+    participantPrices: { adult: { price: 220 } },
+  });
+  assert.equal(starting?.price, 195);
 });
 
 test('legacy fallback: tour.price for adults, half for children, infants free', () => {

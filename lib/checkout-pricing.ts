@@ -5,6 +5,8 @@ import {
   type ParticipantType,
   type PriceCalculation,
 } from './participant-pricing';
+import { getTourPricingTiers, resolveTourUnitPrices } from './tour-pricing';
+import type { TourChildDiscount } from './child-discounts';
 
 // Pure, dependency-free checkout pricing rules for the Stripe checkout route.
 // Every input is a server-loaded database row: the browser's totals, unit
@@ -26,6 +28,13 @@ export class CheckoutPricingError extends Error {
 export interface TourPricingRow {
   price: number | string | null;
   max_guests: number | null;
+  description?: string | null;
+  discount?: {
+    active: boolean;
+    percentage: number;
+    tierPrices?: (number | null)[];
+    pricingTiers?: { min: number; max: number; price: number }[];
+  } | null;
 }
 
 export interface ApprovedExtraRow {
@@ -66,25 +75,38 @@ export function validateParticipantQuantities(
 export function resolveParticipantPrices(
   tour: TourPricingRow,
   participantRows: Record<string, unknown>[],
-  quantities: ParticipantQuantities
+  quantities: ParticipantQuantities,
+  childDiscountRows: TourChildDiscount[] = [],
 ): { prices: Partial<Record<ParticipantType, ParticipantPrice>>; legacyFallback: boolean } {
   const structured = normalizeParticipantPrices(participantRows ?? []);
-  if (Object.keys(structured).length > 0) {
-    for (const type of ['adult', 'child', 'infant'] as const) {
-      if (quantities[type] > 0 && !structured[type]) {
-        throw new CheckoutPricingError('Configured participant price is missing');
-      }
-    }
-    return { prices: structured, legacyFallback: false };
+  const groupTiers = getTourPricingTiers(tour.discount, tour.description);
+  const unitPrices = resolveTourUnitPrices({
+    basePrice: tour.price == null ? null : Number(tour.price),
+    adultCount: quantities.adult,
+    groupTiers,
+    discount: tour.discount,
+    participantPrices: structured,
+    childDiscounts: childDiscountRows,
+  });
+  if (unitPrices.adult == null || !Number.isFinite(unitPrices.adult)) {
+    throw new CheckoutPricingError('Tour price is unavailable');
   }
-  const tourPrice = Number(tour.price ?? 0);
+  const currency = structured.adult?.currency ?? structured.child?.currency ?? structured.infant?.currency ?? 'EUR';
+  const makePrice = (personType: ParticipantType, price: number, minAge: number, maxAge: number): ParticipantPrice => ({
+    personType,
+    price,
+    currency,
+    minAge,
+    maxAge,
+    isActive: true,
+  });
   return {
     prices: {
-      adult: { personType: 'adult', price: tourPrice, currency: 'EUR', minAge: 12, maxAge: 120, isActive: true },
-      child: { personType: 'child', price: tourPrice / LEGACY_CHILD_PRICE_DIVISOR, currency: 'EUR', minAge: 3, maxAge: 11, isActive: true },
-      infant: { personType: 'infant', price: 0, currency: 'EUR', minAge: 0, maxAge: 2, isActive: true },
+      adult: makePrice('adult', unitPrices.adult, structured.adult?.minAge ?? 11, structured.adult?.maxAge ?? 120),
+      child: makePrice('child', unitPrices.child ?? unitPrices.adult / LEGACY_CHILD_PRICE_DIVISOR, structured.child?.minAge ?? 3, structured.child?.maxAge ?? 10),
+      infant: makePrice('infant', unitPrices.infant ?? 0, structured.infant?.minAge ?? 0, structured.infant?.maxAge ?? 2),
     },
-    legacyFallback: true,
+    legacyFallback: Object.keys(structured).length === 0 && groupTiers.length === 0,
   };
 }
 
@@ -118,12 +140,13 @@ export function validateExtraSelection(
 export function resolveServerCheckout(args: {
   tour: TourPricingRow;
   participantRows: Record<string, unknown>[];
+  childDiscountRows?: TourChildDiscount[];
   quantities: ParticipantQuantities;
   requestedExtraIds: string[];
   approvedExtras: ApprovedExtraRow[];
 }): { calculation: PriceCalculation; guests: number; legacyFallback: boolean } {
   const guests = validateParticipantQuantities(args.quantities, args.tour.max_guests);
-  const { prices, legacyFallback } = resolveParticipantPrices(args.tour, args.participantRows, args.quantities);
+  const { prices, legacyFallback } = resolveParticipantPrices(args.tour, args.participantRows, args.quantities, args.childDiscountRows);
   const selectedIds = sanitizeExtraIds(args.requestedExtraIds);
   const extras = validateExtraSelection(selectedIds, args.approvedExtras);
   const calculation = calculateParticipantPrice({

@@ -11,6 +11,8 @@ import {
 import { CheckoutPricingError, resolveServerCheckout } from '@/lib/checkout-pricing';
 import { calculateTransferSurcharge, TransferPricingError } from '@/lib/transfer-pricing';
 import { isValidBookingDate } from '@/lib/validations';
+import { parseChildDiscountRow } from '@/lib/child-discounts';
+import { getExtraText } from '@/lib/tour-extras';
 
 // The browser only tells us WHAT is booked: tour slug, participant counts,
 // selected extra IDs, and the hotel region slug. Every name, price, surcharge,
@@ -32,7 +34,7 @@ const checkoutSchema = z.object({
   phone: z.string().min(7).max(30),
   date: z.string().refine(isValidBookingDate, 'Invalid booking date'),
   message: z.string().max(2000).optional().or(z.literal('')),
-  locale: z.string().optional(),
+  locale: z.enum(['de', 'en', 'fr', 'hu', 'ru', 'ar']).optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -50,7 +52,7 @@ export async function POST(request: NextRequest) {
     // 1. Load the active tour from the database — never from the request body.
     const { data: tour } = await supabase
       .from('tours')
-      .select('id,name,price,max_guests')
+      .select('id,name,price,max_guests,description,discount')
       .eq('slug', data.tourSlug)
       .eq('active', true)
       .single();
@@ -61,10 +63,12 @@ export async function POST(request: NextRequest) {
     // 2. Load structured participant prices (legacy tour.price fallback is
     //    applied inside resolveServerCheckout) and only the ACTIVE extras
     //    that belong to this exact tour.
-    const [{ data: participantRows }, { data: extraRows }] = await Promise.all([
+    const [{ data: participantRows, error: participantError }, { data: extraRows, error: extrasError }, { data: childRows, error: childError }] = await Promise.all([
       supabase.from('tour_participant_prices').select('*').eq('tour_id', tour.id).eq('is_active', true),
-      supabase.from('tour_extras').select('id,name,price').eq('tour_id', tour.id).eq('active', true),
+      supabase.from('tour_extras').select('id,name,description,price').eq('tour_id', tour.id).eq('active', true),
+      supabase.from('tour_child_discounts').select('*').eq('tour_id', tour.id).order('sort_order'),
     ]);
+    if (participantError || extrasError || childError) throw participantError ?? extrasError ?? childError;
 
     // 3. Recalculate everything on the server: quantities, participant
     //    prices, approved extras, hotel-region transfer surcharge, and the
@@ -74,9 +78,13 @@ export async function POST(request: NextRequest) {
       server = resolveServerCheckout({
         tour,
         participantRows: participantRows ?? [],
+        childDiscountRows: (childRows ?? []).map(row => parseChildDiscountRow(row as Record<string, unknown>)),
         quantities: { adult: data.adults, child: data.children, infant: data.infants },
         requestedExtraIds: data.extraIds,
-        approvedExtras: extraRows ?? [],
+        approvedExtras: (extraRows ?? []).flatMap(row => {
+          const text = getExtraText(row, data.locale ?? 'de');
+          return text ? [{ id: row.id, name: text.name, price: row.price }] : [];
+        }),
       });
     } catch (error) {
       if (error instanceof CheckoutPricingError) {

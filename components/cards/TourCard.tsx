@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import styles from './TourCard.module.css';
 import type { Tour } from '@/lib/data/tours';
+import { getTourStartingPrice } from '@/lib/tour-pricing';
 
 export default async function TourCard({
   tour,
@@ -22,6 +23,13 @@ export default async function TourCard({
   const displayName = name ?? tour.name;
   const displayDesc = description ?? tour.shortDescription;
   const displayCat = categoryLabel ?? tour.categoryLabel;
+  const startingPrice = getTourStartingPrice({
+    basePrice: tour.price,
+    maxGuests: tour.maxGuests,
+    discount: tour.discount,
+    baseDescription: tour.rawDescription,
+    participantPrices: tour.participantPrices,
+  });
 
   return (
     <article className={styles.card}>
@@ -55,15 +63,15 @@ export default async function TourCard({
         </h3>
         <p className={styles.desc}>{displayDesc}</p>
         <div className={styles.footer}>
-          {tour.price ? (
+          {startingPrice ? (
             <span className={styles.price}>
-              {tour.discount?.active ? (
+              {startingPrice.hasSale ? (
                 <>
-                  <span className={styles.oldPrice}>{t('from')} {tour.price} EUR</span>{' '}
-                  <span className={styles.salePrice}>{t('from')} {Math.round(tour.price * (1 - tour.discount.percentage / 100))} EUR</span>
+                  <span className={styles.oldPrice}>{t('from')} {startingPrice.original} EUR</span>{' '}
+                  <span className={styles.salePrice}>{t('from')} {startingPrice.price} EUR</span>
                 </>
               ) : (
-                <>{t('from')} {tour.price} EUR</>
+                <>{t('from')} {startingPrice.price} EUR</>
               )}
             </span>
           ) : (

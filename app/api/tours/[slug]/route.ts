@@ -1,8 +1,7 @@
 // Place at: app/api/tours/[slug]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getTourBySlug, getTourExtras } from '@/lib/data/tours';
-import { getSupabaseAdmin } from '@/lib/supabase';
-import { parsePricingTiers } from '@/lib/pricing-table';
+import { getTourPricingTiers } from '@/lib/tour-pricing';
 
 export async function GET(
   request: NextRequest,
@@ -14,17 +13,7 @@ export async function GET(
   if (!tour) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   const extras = await getTourExtras(tour.id, locale);
-  const { data: participantRows } = await getSupabaseAdmin()
-    .from('tour_participant_prices').select('person_type,price,currency,min_age,max_age,is_active')
-    .eq('tour_id', tour.id).eq('is_active', true);
-
-  const rawTiers = tour.discount?.pricingTiers ?? parsePricingTiers(tour.description);
-  const pricingTiers = rawTiers.map((t) => {
-    if ('minGuests' in t && 'pricePerPerson' in t) {
-      return { minGuests: t.minGuests, maxGuests: t.maxGuests, pricePerPerson: t.pricePerPerson };
-    }
-    return { minGuests: t.min, maxGuests: t.max, pricePerPerson: t.price };
-  });
+  const pricingTiers = getTourPricingTiers(tour.discount, tour.rawDescription);
 
   return NextResponse.json({
     id: tour.id,
@@ -36,9 +25,6 @@ export async function GET(
     discount: tour.discount,
     childDiscounts: tour.childDiscounts ?? [],
     extras,
-    participantPrices: Object.fromEntries((participantRows ?? []).map((p: Record<string, unknown>) => [p.person_type, {
-      personType: p.person_type, price: Number(p.price), currency: p.currency ?? 'EUR',
-      minAge: Number(p.min_age), maxAge: Number(p.max_age), isActive: Boolean(p.is_active),
-    }])),
+    participantPrices: tour.participantPrices ?? {},
   });
 }

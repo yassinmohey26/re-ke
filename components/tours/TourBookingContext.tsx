@@ -1,16 +1,12 @@
 'use client';
 
 import { createContext, useContext, useState, useMemo, type ReactNode } from 'react';
-import { type PricingTier, getPriceForGuests, applyDiscount } from '@/lib/pricing-table';
+import type { PricingTier } from '@/lib/pricing-table';
+import { resolveTourUnitPrices } from '@/lib/tour-pricing';
 import type { Discount } from '@/lib/data/tours';
 import type { TourChildDiscount } from '@/lib/child-discounts';
 import type { ParticipantPrice } from '@/lib/participant-pricing';
-import {
-  computeTierPrice,
-  findTierForChild,
-  findTierForInfant,
-  resolveChildDiscounts,
-} from '@/lib/child-discounts';
+import { resolveChildDiscounts } from '@/lib/child-discounts';
 
 interface Extra {
   id: string;
@@ -23,6 +19,8 @@ interface TourBookingContextValue {
   price: number | null;
   pricePerPerson: number | null;
   salePricePerPerson: number | null;
+  childPricePerPerson: number | null;
+  infantPricePerPerson: number | null;
   hasSale: boolean;
   adults: number;
   children: number;
@@ -91,26 +89,25 @@ export function TourBookingProvider({
     const guestsTotal = adults + childrenCount + infants;
     const tiers = resolveChildDiscounts(childDiscounts);
     const guestsForPricing = adults;
-    const pricePerPerson = participantPrices.adult?.price ?? getPriceForGuests(pricingTiers, price, guestsForPricing);
-    const activeTierIndex = pricingTiers.findIndex(
-      t => guestsForPricing >= t.minGuests && guestsForPricing <= t.maxGuests
-    );
-    const salePricePerPerson = pricePerPerson != null
-      ? applyDiscount(pricePerPerson, discount, activeTierIndex >= 0 ? activeTierIndex : undefined)
-      : null;
+    const unitPrices = resolveTourUnitPrices({
+      basePrice: price,
+      adultCount: adults,
+      groupTiers: pricingTiers,
+      discount,
+      participantPrices,
+      childDiscounts: tiers,
+    });
+    const pricePerPerson = unitPrices.adultBeforeDiscount;
+    const salePricePerPerson = unitPrices.adult;
     const hasSale = salePricePerPerson != null && pricePerPerson != null && salePricePerPerson < pricePerPerson;
     const extrasTotal = extras
       .filter((e) => selected.includes(e.id))
-      .reduce((sum, e) => sum + e.price, 0) * guestsForPricing;
+      .reduce((sum, e) => sum + e.price, 0) * (adults + childrenCount);
     const effectivePrice = salePricePerPerson ?? pricePerPerson;
-    const infantTier = findTierForInfant(tiers);
-    const childTier = findTierForChild(tiers);
     const total = effectivePrice != null
       ? (() => {
           const adultTotal = effectivePrice * adults;
-          const childPrice = participantPrices.infant?.price ?? (infantTier ? computeTierPrice(infantTier, effectivePrice) : 0);
-          const childrenPrice = participantPrices.child?.price ?? (childTier ? computeTierPrice(childTier, effectivePrice) : Math.round(effectivePrice / 2));
-          return adultTotal + childrenPrice * childrenCount + childPrice * infants;
+          return adultTotal + (unitPrices.child ?? 0) * childrenCount + (unitPrices.infant ?? 0) * infants;
         })() + extrasTotal
       : null;
     const bookingHref =
@@ -120,6 +117,8 @@ export function TourBookingProvider({
       price,
       pricePerPerson,
       salePricePerPerson,
+      childPricePerPerson: unitPrices.child,
+      infantPricePerPerson: unitPrices.infant,
       hasSale,
       adults,
       children: childrenCount,

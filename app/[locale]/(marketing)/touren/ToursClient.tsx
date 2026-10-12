@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { Tour } from '@/lib/data/tours';
+import { getTourStartingPrice } from '@/lib/tour-pricing';
 import Image from 'next/image';
 import { Pyramid, Waves, Compass, ArrowRight } from 'lucide-react';
 import cloudinaryLoader from '@/lib/cloudinaryLoader';
@@ -263,6 +264,14 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
     setPage(1);
   }, []);
 
+  const startingPrices = useMemo(() => new Map(tours.map(tour => [tour.id, getTourStartingPrice({
+    basePrice: tour.price,
+    maxGuests: tour.maxGuests,
+    discount: tour.discount,
+    baseDescription: tour.rawDescription,
+    participantPrices: tour.participantPrices,
+  })])), [tours]);
+
   const filtered = useMemo(() => {
     let result = [...tours];
 
@@ -312,19 +321,20 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
     const maxVal = appliedPriceMax !== '' ? parseFloat(appliedPriceMax) : null;
     if (minVal !== null || maxVal !== null) {
       result = result.filter(tour => {
-        if (tour.price == null) return false;
-        if (minVal !== null && tour.price < minVal) return false;
-        if (maxVal !== null && tour.price > maxVal) return false;
+        const price = startingPrices.get(tour.id)?.price;
+        if (price == null) return false;
+        if (minVal !== null && price < minVal) return false;
+        if (maxVal !== null && price > maxVal) return false;
         return true;
       });
     }
 
     switch (sortBy) {
       case 'price-asc':
-        result.sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+        result.sort((a, b) => (startingPrices.get(a.id)?.price ?? Infinity) - (startingPrices.get(b.id)?.price ?? Infinity));
         break;
       case 'price-desc':
-        result.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+        result.sort((a, b) => (startingPrices.get(b.id)?.price ?? -Infinity) - (startingPrices.get(a.id)?.price ?? -Infinity));
         break;
       case 'duration-asc':
         result.sort((a, b) => a.durationHours - b.durationHours);
@@ -335,7 +345,7 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
     }
 
     return result;
-  }, [tours, appliedSearch, appliedDestination, sortBy, appliedTypes, appliedDurations, appliedPriceMin, appliedPriceMax]);
+  }, [tours, startingPrices, appliedSearch, appliedDestination, sortBy, appliedTypes, appliedDurations, appliedPriceMin, appliedPriceMax]);
 
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
   const paged = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
@@ -635,7 +645,9 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
             <p className={styles.noResults}>{t.showing} 0 {t.toursFound}</p>
           ) : (
             <div className={styles.grid}>
-              {paged.map(tour => (
+              {paged.map(tour => {
+                const displayPrice = startingPrices.get(tour.id);
+                return (
                 <Link key={tour.slug} href={`/touren/${tour.slug}`} className={styles.card}>
                   <div className={styles.cardImgWrap}>
                     {tour.images?.[0] && (
@@ -680,18 +692,18 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                       </span>
                     </div>
                     <div className={styles.cardPrice}>
-                      {tour.price != null ? (
-                        tour.discount?.active ? (
+                      {displayPrice ? (
+                        displayPrice.hasSale ? (
                           <>
                             <span className={styles.priceLabel}>{t.from} </span>
-                            <span className={styles.oldPrice}>€{tour.price.toFixed(2)}</span>{' '}
-                            <span className={styles.salePrice}>€{Math.round(tour.price * (1 - tour.discount.percentage / 100)).toFixed(2)}</span>
+                            <span className={styles.oldPrice}>€{displayPrice.original.toFixed(2)}</span>{' '}
+                            <span className={styles.salePrice}>€{displayPrice.price.toFixed(2)}</span>
                             <span className={styles.priceUnit}> /{t.perPerson}</span>
                           </>
                         ) : (
                           <>
                             <span className={styles.priceLabel}>{t.from} </span>
-                            <span className={styles.priceValue}>€{tour.price.toFixed(2)}</span>
+                            <span className={styles.priceValue}>€{displayPrice.price.toFixed(2)}</span>
                             <span className={styles.priceUnit}> /{t.perPerson}</span>
                           </>
                         )
@@ -701,7 +713,7 @@ export default function ToursClient({ tours, destinationTourIds = {}, locale, he
                     </div>
                   </div>
                 </Link>
-              ))}
+              );})}
             </div>
           )}
 

@@ -3,6 +3,7 @@ import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { isTourSortOrderSupported } from '@/lib/data/tours';
 import { sanitizeChildDiscountInput, type ChildDiscountInput } from '@/lib/child-discounts';
+import { revalidateTourPages } from './revalidate';
 
 function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
   if (!Array.isArray(value)) return [];
@@ -144,6 +145,8 @@ export async function POST(request: NextRequest) {
     const tourRow: Record<string, unknown> = {
       name: body.name || '',
       slug: body.slug,
+      short_description: body.shortDescription || '',
+      description: body.description || '',
       price: body.price ?? null,
       duration_hours: body.durationHours || 0,
       max_guests: body.maxGuests || 8,
@@ -262,6 +265,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    revalidateTourPages();
     return NextResponse.json(createdTour, { status: 201 });
   } catch (e) {
     console.error('Tour create catch:', e);

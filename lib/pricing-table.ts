@@ -174,7 +174,7 @@ export function getPriceForGuests(
 
 export function applyDiscount(
   price: number,
-  discount: { active: boolean; percentage: number; tierPrices?: number[] } | null,
+  discount: { active: boolean; percentage: number; tierPrices?: (number | null)[] } | null,
   tierIndex?: number,
 ): number {
   if (!discount?.active) return price;

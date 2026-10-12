@@ -4,8 +4,11 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 import { contactSchema, bookingSchema } from '@/lib/validations';
 import { Resend } from 'resend';
 import { revalidatePath } from 'next/cache';
-import { calculateParticipantPrice, normalizeParticipantPrices, calculateDepositAmount } from '@/lib/participant-pricing';
+import { calculateDepositAmount } from '@/lib/participant-pricing';
 import { calculateTransferSurcharge, TransferPricingError } from '@/lib/transfer-pricing';
+import { CheckoutPricingError, resolveServerCheckout } from '@/lib/checkout-pricing';
+import { parseChildDiscountRow } from '@/lib/child-discounts';
+import { getExtraText } from '@/lib/tour-extras';
 
 // ── Contact Form Action ───────────────────────────────────────────
 export async function submitContact(formData: FormData) {
@@ -97,6 +100,7 @@ export async function submitBooking(formData: FormData) {
       hotelRegion: formData.get('hotelRegion') || undefined,
       paymentOption: formData.get('paymentOption') || 'full',
       extrasJson: extrasJsonRaw ? String(extrasJsonRaw) : undefined,
+      locale: formData.get('locale') || undefined,
     };
 
     const parsed = bookingSchema.safeParse(raw);
@@ -117,29 +121,36 @@ export async function submitBooking(formData: FormData) {
     }
 
     const supabase = getSupabaseAdmin();
-    const { data: tour } = await supabase.from('tours').select('id,slug,price,max_guests,discount').eq('slug', data.tourSlug).eq('active', true).single();
+    const { data: tour } = await supabase.from('tours').select('id,slug,price,max_guests,description,discount').eq('slug', data.tourSlug).eq('active', true).single();
     if (!tour) return { success: false, error: 'Tour not found' };
     const quantities = { adult: data.adults, child: data.children, infant: data.infants };
     if (data.adults + data.children + data.infants !== data.guests || data.guests > (tour.max_guests ?? 8)) {
       return { success: false, error: 'Invalid participant quantities' };
     }
     if (data.adults < 1) return { success: false, error: 'At least one adult is required' };
-    const { data: participantRows } = await supabase.from('tour_participant_prices').select('*').eq('tour_id', tour.id).eq('is_active', true);
-    const structured = normalizeParticipantPrices(participantRows ?? []);
-    for (const type of ['adult', 'child', 'infant'] as const) {
-      if (quantities[type] > 0 && !structured[type] && Object.keys(structured).length > 0) {
-        return { success: false, error: 'Configured participant price is missing' };
-      }
+    const [{ data: participantRows, error: participantError }, { data: approvedExtras, error: extrasError }, { data: childRows, error: childError }] = await Promise.all([
+      supabase.from('tour_participant_prices').select('*').eq('tour_id', tour.id).eq('is_active', true),
+      supabase.from('tour_extras').select('id,name,description,price').eq('tour_id', tour.id).eq('active', true),
+      supabase.from('tour_child_discounts').select('*').eq('tour_id', tour.id).order('sort_order'),
+    ]);
+    if (participantError || extrasError || childError) throw participantError ?? extrasError ?? childError;
+    let server;
+    try {
+      server = resolveServerCheckout({
+        tour,
+        participantRows: participantRows ?? [],
+        childDiscountRows: (childRows ?? []).map(row => parseChildDiscountRow(row as Record<string, unknown>)),
+        quantities,
+        requestedExtraIds: requestedExtras.map(extra => extra.id),
+        approvedExtras: (approvedExtras ?? []).flatMap(row => {
+          const text = getExtraText(row, data.locale ?? 'de');
+          return text ? [{ id: row.id, name: text.name, price: row.price }] : [];
+        }),
+      });
+    } catch (error) {
+      if (error instanceof CheckoutPricingError) return { success: false, error: error.message };
+      throw error;
     }
-    const selectedIds = requestedExtras.map((e) => e.id).filter((id) => !id.startsWith('_'));
-    const { data: approvedExtras } = selectedIds.length
-      ? await supabase.from('tour_extras').select('id,name,price').eq('tour_id', tour.id).eq('active', true).in('id', selectedIds)
-      : { data: [] as { id: string; name: string; price: number }[] };
-    const prices = Object.keys(structured).length > 0 ? structured : {
-      adult: { personType: 'adult' as const, price: Number(tour.price ?? 0), currency: 'EUR', minAge: 12, maxAge: 120, isActive: true },
-      child: { personType: 'child' as const, price: Number(tour.price ?? 0) / 2, currency: 'EUR', minAge: 3, maxAge: 11, isActive: true },
-      infant: { personType: 'infant' as const, price: 0, currency: 'EUR', minAge: 0, maxAge: 2, isActive: true },
-    };
     // Transfer surcharge: derived server-side from the region slug + the
     // server-validated quantities. The browser never sends an amount.
     let transfer;
@@ -151,9 +162,9 @@ export async function submitBooking(formData: FormData) {
       }
       throw error;
     }
-    const calculation = calculateParticipantPrice({ prices, quantities, extras: (approvedExtras ?? []).map((e) => ({ ...e, price: Number(e.price) })) });
+    const calculation = server.calculation;
     const finalTotal = calculation.subtotal + (transfer?.subtotal ?? 0);
-    const snapshot = { ...calculation, transfer, transferSubtotal: transfer?.subtotal ?? 0, quantities, locale: data.locale ?? 'de', legacyFallback: Object.keys(structured).length === 0, depositPercent: 0.3, depositAmount: calculateDepositAmount(finalTotal) };
+    const snapshot = { ...calculation, transfer, transferSubtotal: transfer?.subtotal ?? 0, quantities, locale: data.locale ?? 'de', legacyFallback: server.legacyFallback, depositPercent: 0.3, depositAmount: calculateDepositAmount(finalTotal) };
     const extras = calculation.extras;
     const { data: booking, error } = await supabase
       .from('bookings')

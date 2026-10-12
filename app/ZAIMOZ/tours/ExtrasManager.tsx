@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useAdminLocale } from '../AdminLanguageContext';
 
 interface Extra {
   id: string;
@@ -10,18 +11,22 @@ interface Extra {
   price: number;
   active: boolean;
   sort_order: number;
+  hasTranslation: boolean;
 }
 
 interface ExtrasManagerProps {
   tourId: string;
+  locale: string;
   styles: { [key: string]: string };
 }
 
 const emptyExtra = { name: '', description: '', price: 0, active: true, sortOrder: 0 };
 
-export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
+export default function ExtrasManager({ tourId, locale, styles }: ExtrasManagerProps) {
+  const { t } = useAdminLocale();
   const [extras, setExtras] = useState<Extra[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
   const [editingId, setEditingId] = useState<string | 'new' | null>(null);
   const [form, setForm] = useState(emptyExtra);
   const [saving, setSaving] = useState(false);
@@ -29,13 +34,21 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tourId]);
+  }, [tourId, locale]);
 
   async function load() {
     setLoading(true);
-    const res = await fetch(`/api/admin/tours/${tourId}/extras`);
-    if (res.ok) setExtras(await res.json());
-    setLoading(false);
+    setExtras([]);
+    setLoadError('');
+    try {
+      const res = await fetch(`/api/admin/tours/${tourId}/extras?locale=${encodeURIComponent(locale)}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load extras');
+      setExtras(await res.json());
+    } catch (error) {
+      setLoadError(error instanceof Error ? error.message : 'Failed to load extras');
+    } finally {
+      setLoading(false);
+    }
   }
 
   function startAdd() {
@@ -66,16 +79,22 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
         const res = await fetch(`/api/admin/tours/${tourId}/extras`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
+          body: JSON.stringify({ ...form, locale }),
         });
-        if (!res.ok) throw new Error('Failed to create extra');
+        if (!res.ok) {
+          const result = await res.json().catch(() => ({}));
+          throw new Error(result.error || 'Failed to create extra');
+        }
       } else if (editingId) {
         const res = await fetch(`/api/admin/extras/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
+          body: JSON.stringify(locale === 'de' ? { ...form, locale } : { name: form.name, description: form.description, locale }),
         });
-        if (!res.ok) throw new Error('Failed to update extra');
+        if (!res.ok) {
+          const result = await res.json().catch(() => ({}));
+          throw new Error(result.error || 'Failed to update extra');
+        }
       }
       cancelEdit();
       await load();
@@ -103,6 +122,8 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
 
       {loading ? (
         <p>Loading extras...</p>
+      ) : loadError ? (
+        <p role="alert">{loadError}</p>
       ) : (
         <table className={styles.managerTable} style={{ width: '100%', marginBottom: 'var(--space-3)', borderCollapse: 'collapse' }}>
           <thead>
@@ -117,13 +138,13 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
           <tbody>
             {extras.map(extra => (
               <tr key={extra.id} style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                <td data-label="Name" style={{ padding: '8px' }}>{extra.name}</td>
+                <td data-label="Name" style={{ padding: '8px' }}>{extra.hasTranslation ? extra.name : t('extraTranslationMissing')}</td>
                 <td data-label="Price (€)" style={{ padding: '8px' }}>{extra.price.toFixed(2)}</td>
                 <td data-label="Active" style={{ padding: '8px' }}>{extra.active ? 'Yes' : 'No'}</td>
                 <td data-label="Order" style={{ padding: '8px' }}>{extra.sort_order}</td>
                 <td data-label="Actions" style={{ padding: '8px', display: 'flex', gap: '8px' }}>
                   <button type="button" onClick={() => startEdit(extra)} className={styles.slugBtn}>Edit</button>
-                  <button type="button" onClick={() => remove(extra.id)} className={styles.cancelBtn}>Delete</button>
+                  {locale === 'de' && <button type="button" onClick={() => remove(extra.id)} className={styles.cancelBtn}>Delete</button>}
                 </td>
               </tr>
             ))}
@@ -144,7 +165,7 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             />
           </div>
-          <div className={styles.field}>
+          {locale === 'de' && <div className={styles.field}>
             <label className={styles.label}>Price (€)</label>
             <input
               className={styles.input}
@@ -154,8 +175,8 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
               value={form.price}
               onChange={e => setForm(f => ({ ...f, price: Number(e.target.value) }))}
             />
-          </div>
-          <div className={styles.field}>
+          </div>}
+          {locale === 'de' && <div className={styles.field}>
             <label className={styles.label}>Sort order</label>
             <input
               className={styles.input}
@@ -163,7 +184,7 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
               value={form.sortOrder}
               onChange={e => setForm(f => ({ ...f, sortOrder: Number(e.target.value) }))}
             />
-          </div>
+          </div>}
           <div className={styles.field} style={{ gridColumn: '1 / -1' }}>
             <label className={styles.label}>Description</label>
             <textarea
@@ -173,14 +194,14 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
               onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
             />
           </div>
-          <label className={styles.checkboxLabel}>
+          {locale === 'de' && <label className={styles.checkboxLabel}>
             <input
               type="checkbox"
               checked={form.active}
               onChange={e => setForm(f => ({ ...f, active: e.target.checked }))}
             />
             <span>Active</span>
-          </label>
+          </label>}
           <div style={{ display: 'flex', gap: '8px', gridColumn: '1 / -1' }}>
             <button type="button" onClick={save} disabled={saving} className={styles.saveBtn}>
               {saving ? 'Saving...' : 'Save extra'}
@@ -188,8 +209,10 @@ export default function ExtrasManager({ tourId, styles }: ExtrasManagerProps) {
             <button type="button" onClick={cancelEdit} className={styles.cancelBtn}>Cancel</button>
           </div>
         </div>
-      ) : (
+      ) : locale === 'de' ? (
         <button type="button" onClick={startAdd} className={styles.slugBtn}>+ Add extra</button>
+      ) : (
+        <p>{t('extraGermanFirst')}</p>
       )}
       </div>
     </details>

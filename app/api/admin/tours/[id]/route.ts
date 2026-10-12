@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { isTourSortOrderSupported } from '@/lib/data/tours';
+import { revalidateTourPages } from '../revalidate';
 
 function sanitizeItinerary(value: unknown): { title: string; content: string }[] {
   if (!Array.isArray(value)) return [];
@@ -71,46 +72,8 @@ export async function GET(
     trMap[tr.locale] = tr;
   }
 
-  // Compute rawDescription: the field that contains the pricing table HTML.
-  // The table is always in German so we search in order:
-  // 1. DE translation description
-  // 2. Any translation description that contains the table
-  // 3. EAV joined string parts in DE translation (if name contains '---تسيب---')
-  // 4. Base tours.description column
-  function findPricingTableHtml(): string {
-    const TABLE_RE = /tour-pricing-table/;
-
-    // 1. DE translation description directly
-    const deTr = trMap['de'];
-    if (deTr?.description && TABLE_RE.test(deTr.description)) return deTr.description;
-
-    // 2. Any other translation description
-    for (const tr of Object.values(trMap) as any[]) {
-      if (tr?.description && TABLE_RE.test(tr.description)) return tr.description;
-    }
-
-    // 3. EAV joined string — split by separator and search parts
-    if (deTr?.name && typeof deTr.name === 'string' && deTr.name.includes('---')) {
-      const parts = deTr.name.split(/---\s*تسيب\s*---/);
-      for (const part of parts) {
-        if (TABLE_RE.test(part)) return part.trim();
-      }
-    }
-    // Also check any locale's name field
-    for (const tr of Object.values(trMap) as any[]) {
-      if (tr?.name && typeof tr.name === 'string' && tr.name.includes('---')) {
-        const parts = tr.name.split(/---\s*تسيب\s*---/);
-        for (const part of parts) {
-          if (TABLE_RE.test(part)) return part.trim();
-        }
-      }
-    }
-
-    // 4. Base column fallback
-    return tour?.description || '';
-  }
-
-  const rawDescription = findPricingTableHtml();
+  // The public page also reads the base description for legacy price tables.
+  const rawDescription = tour.description || '';
 
   // Resolve the itinerary for the ACTIVE locale so the form never falls back to
   // base `tours.itinerary` (German) when a different locale is selected.
@@ -226,6 +189,8 @@ export async function PUT(
     if (locale === 'de') {
       // German master → base columns (and the de translation row stays in sync).
       Object.assign(tourRow, localized);
+      if (body.description !== undefined) trRow.description = body.description;
+      if (body.shortDescription !== undefined) trRow.short_description = body.shortDescription;
       if (body.deName !== undefined) trRow.name = body.deName;
     } else {
       // Non-German → ONLY this locale's translation row.
@@ -269,6 +234,7 @@ export async function PUT(
         if (result.error) return NextResponse.json({ error: result.error.message }, { status: 400 });
       }
     }
+    revalidateTourPages();
     return NextResponse.json(tour);
   } catch (e) {
     console.error('Tour update catch:', e);
@@ -290,5 +256,6 @@ export async function DELETE(
   await supabase.from('content_translations').delete().eq('table_name', 'tours').eq('row_id', id);
   const { error } = await supabase.from('tours').delete().eq('id', id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  revalidateTourPages();
   return NextResponse.json({ success: true });
 }

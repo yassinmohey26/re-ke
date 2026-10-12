@@ -5,6 +5,7 @@ import {
   type TourChildDiscount,
 } from '@/lib/child-discounts';
 import type { ParticipantPrice } from '@/lib/participant-pricing';
+import { getExtraText, isExtraLocale } from '@/lib/tour-extras';
 
 const db = getSupabaseAdmin();
 
@@ -117,7 +118,7 @@ export interface PricingTierEntry {
 export interface Discount {
   active: boolean;
   percentage: number;
-  tierPrices?: number[];
+  tierPrices?: (number | null)[];
   childTiers?: { label: string; price: string }[];
   pricingTiers?: PricingTierEntry[];
 }
@@ -225,7 +226,9 @@ function parseDiscount(val: unknown): Discount | null {
       return {
         active: true,
         percentage: d.percentage,
-        tierPrices: Array.isArray(d.tierPrices) ? d.tierPrices.map(Number) : undefined,
+        tierPrices: Array.isArray(d.tierPrices)
+          ? d.tierPrices.map((price: unknown) => price == null ? null : Number(price))
+          : undefined,
         childTiers: Array.isArray(d.childTiers) ? d.childTiers : undefined,
         pricingTiers,
       };
@@ -389,6 +392,39 @@ function mergeTranslation(row: any, trRaw: any, locale: string = 'de'): Tour {
   };
 }
 
+function mapParticipantPrice(row: any): ParticipantPrice {
+  return {
+    personType: row.person_type,
+    price: Number(row.price),
+    currency: row.currency ?? 'EUR',
+    minAge: Number(row.min_age),
+    maxAge: Number(row.max_age),
+    isActive: Boolean(row.is_active),
+  };
+}
+
+async function mergeTourList(rows: any[], locale: string): Promise<Tour[]> {
+  const ids = rows.map(row => row.id);
+  const [trMap, participantResult] = await Promise.all([
+    getTranslationsMap('tours', ids, locale),
+    db.from('tour_participant_prices')
+      .select('tour_id,person_type,price,currency,min_age,max_age,is_active')
+      .in('tour_id', ids)
+      .eq('is_active', true),
+  ]);
+  if (participantResult.error) throw participantResult.error;
+  const tours = rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
+  const byId = new Map(tours.map(tour => [tour.id, tour]));
+  for (const row of participantResult.data ?? []) {
+    const tour = byId.get(row.tour_id);
+    if (tour) {
+      tour.participantPrices ??= {};
+      tour.participantPrices[row.person_type as 'adult' | 'child' | 'infant'] = mapParticipantPrice(row);
+    }
+  }
+  return tours;
+}
+
 function mergeDestinationTranslation(row: any, trRaw: any): Destination {
   const tr = parseDestinationEav(trRaw);
   return {
@@ -425,6 +461,10 @@ async function getTranslationsMap(
       map.set(row.row_id, row);
     }
   }
+
+  // The base tours row is the German master. A missing locale must fall back
+  // to that row, not a potentially older DE translation copy.
+  if (tableName === 'tours') return map;
 
   // Fill in missing with 'de' fallback
   const missingIds = rowIds.filter(id => !map.has(id));
@@ -469,6 +509,8 @@ async function getSingleTranslation(
 
   if (data) return data;
 
+  if (tableName === 'tours') return null;
+
   // Fallback to de
   const { data: deData } = await db
     .from('content_translations')
@@ -492,8 +534,7 @@ export async function getTours(locale: string = 'de'): Promise<Tour[]> {
   );
   if (!rows || rows.length === 0) return [];
 
-  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
+  return mergeTourList(rows, locale);
 }
 
 export async function getTourBySlug(slug: string, locale: string = 'de'): Promise<Tour | undefined> {
@@ -509,34 +550,13 @@ export async function getTourBySlug(slug: string, locale: string = 'de'): Promis
   const tour = mergeTranslation(row, tr, locale);
   const childDiscountRows = await getTourChildDiscountsFromDb(row.id);
   tour.childDiscounts = resolveChildDiscounts(childDiscountRows);
-  const { data: participantRows } = await db
+  const { data: participantRows, error: participantError } = await db
     .from('tour_participant_prices')
     .select('person_type,price,currency,min_age,max_age,is_active')
     .eq('tour_id', row.id)
     .eq('is_active', true);
-  tour.participantPrices = Object.fromEntries((participantRows ?? []).map((p) => [p.person_type, {
-    personType: p.person_type,
-    price: Number(p.price),
-    currency: p.currency ?? 'EUR',
-    minAge: Number(p.min_age),
-    maxAge: Number(p.max_age),
-    isActive: Boolean(p.is_active),
-  }]));
-
-  // If the locale is not DE, also fetch the DE translation to extract rawDescription
-  // (the pricing table HTML is always stored in the DE translation row).
-  if (locale !== 'de') {
-    const { data: deTr } = await db
-      .from('content_translations')
-      .select('description')
-      .eq('table_name', 'tours')
-      .eq('row_id', row.id)
-      .eq('locale', 'de')
-      .maybeSingle();
-    if (deTr?.description) {
-      tour.rawDescription = deTr.description;
-    }
-  }
+  if (participantError) throw participantError;
+  tour.participantPrices = Object.fromEntries((participantRows ?? []).map((p) => [p.person_type, mapParticipantPrice(p)]));
 
   return tour;
 }
@@ -564,34 +584,23 @@ export async function getTourChildDiscountsFromDb(tourId: string): Promise<TourC
 }
 
 export async function getTourExtras(tourId: string, locale: string = 'de'): Promise<TourExtra[]> {
-  const { data } = await db
+  const { data, error } = await db
     .from('tour_extras')
     .select('*')
     .eq('tour_id', tourId)
     .eq('active', true)
     .order('sort_order', { ascending: true });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (data ?? []).map((row: any) => {
-    let name = row.name;
-    let description = row.description ?? '';
-    try {
-      const translations = JSON.parse(row.description);
-      if (translations[locale]) {
-        name = translations[locale].name || name;
-        description = translations[locale].description || '';
-      } else if (translations['en']) {
-        name = translations['en'].name || name;
-        description = translations['en'].description || '';
-      }
-    } catch {
-      // description is plain text (old format)
-    }
-    return {
+  if (error) throw error;
+  if (!isExtraLocale(locale)) return [];
+  return (data ?? []).flatMap(row => {
+    const text = getExtraText(row, locale);
+    if (!text) return [];
+    return [{
       id: row.id,
-      name,
-      description,
+      name: text.name,
+      description: text.description,
       price: Number(row.price),
-    };
+    }];
   });
 }
 
@@ -601,8 +610,7 @@ export async function getToursByCategory(category: Tour['category'], locale: str
   );
   if (!rows || rows.length === 0) return [];
 
-  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
+  return mergeTourList(rows, locale);
 }
 
 export async function getToursByDestination(destinationSlug: string, locale: string = 'de'): Promise<Tour[]> {
@@ -611,8 +619,7 @@ export async function getToursByDestination(destinationSlug: string, locale: str
   );
   if (!rows || rows.length === 0) return [];
 
-  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
+  return mergeTourList(rows, locale);
 }
 
 export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
@@ -621,8 +628,7 @@ export async function getFeaturedTours(locale: string = 'de'): Promise<Tour[]> {
   );
   if (!rows || rows.length === 0) return [];
 
-  const trMap = await getTranslationsMap('tours', rows.map(r => r.id), locale);
-  return rows.map(row => mergeTranslation(row, trMap.get(row.id) ?? null, locale));
+  return mergeTourList(rows, locale);
 }
 
 export async function getDestinations(locale: string = 'de'): Promise<Destination[]> {

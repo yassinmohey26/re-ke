@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { getExtraText, isExtraLocale, updateExtraTexts } from '@/lib/tour-extras';
+import { revalidateTourPages } from '../../revalidate';
 
 export async function GET(
   request: NextRequest,
@@ -12,6 +14,8 @@ export async function GET(
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const { id } = await params;
+  const locale = request.nextUrl.searchParams.get('locale') ?? 'de';
+  if (!isExtraLocale(locale)) return NextResponse.json({ error: 'Unsupported locale' }, { status: 400 });
   const supabase = getSupabaseAdmin();
   const { data, error } = await supabase
     .from('tour_extras')
@@ -20,7 +24,10 @@ export async function GET(
     .order('sort_order', { ascending: true });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data);
+  return NextResponse.json((data ?? []).map(row => {
+    const text = getExtraText(row, locale);
+    return { ...row, name: text?.name ?? '', description: text?.description ?? '', hasTranslation: text !== null };
+  }));
 }
 
 export async function POST(
@@ -34,13 +41,22 @@ export async function POST(
   const { id } = await params;
   try {
     const body = await request.json();
+    if ((body.locale ?? 'de') !== 'de') {
+      return NextResponse.json({ error: 'Create extras in German first' }, { status: 400 });
+    }
+    const name = typeof body.name === 'string' ? body.name.trim() : '';
+    const description = typeof body.description === 'string' ? body.description.trim() : '';
+    const price = Number(body.price);
+    if (!name || !Number.isFinite(price) || price < 0) {
+      return NextResponse.json({ error: 'A name and valid price are required' }, { status: 400 });
+    }
     const supabase = getSupabaseAdmin();
 
     const row = {
       tour_id: id,
-      name: body.name,
-      description: body.description || '',
-      price: body.price ?? 0,
+      name,
+      description: updateExtraTexts({ name, description: '' }, 'de', { name, description }),
+      price,
       active: body.active !== false,
       sort_order: body.sortOrder ?? 0,
     };
@@ -56,6 +72,7 @@ export async function POST(
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
+    revalidateTourPages();
     return NextResponse.json(data);
   } catch (e) {
     console.error('Extra create catch:', e);

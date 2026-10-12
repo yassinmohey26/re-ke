@@ -33,18 +33,23 @@ export default function EditTourPage({ params }: { params: Promise<{ id: string 
 
   async function handleSave(data: any) {
     setSaving(true);
-    const payload = { ...data, locale };
-    const res = await fetch(`/api/admin/tours/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
+    try {
+      const payload = { ...data, locale };
+      const res = await fetch(`/api/admin/tours/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const result = await res.json().catch(() => ({}));
+        throw new Error(result.error || t('saveError'));
+      }
       router.push('/ZAIMOZ/tours');
-    } else {
-      alert(t('saveError'));
+    } catch (error) {
+      alert(`${t('saveError')} ${error instanceof Error ? error.message : ''}`.trim());
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   }
 
   if (loading) return <p style={{ padding: 'var(--space-8)', color: 'var(--color-text-3)' }}>{t('tourLoading')}</p>;
