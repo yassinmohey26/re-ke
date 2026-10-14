@@ -7,27 +7,33 @@ import { useTourBooking } from './TourBookingContext';
 interface Props {
   styles: Record<string, string>;
   variant: 'overlay' | 'dock';
+  startingPrice?: number | null;
 }
 
 export default function MobileTourBookingAction({
   styles: css,
   variant,
+  startingPrice,
 }: Props) {
   const locale = useLocale();
   const t = useTranslations('tours');
   const {
-    startingPrice,
+    price,
+    pricePerPerson,
+    salePricePerPerson,
     bookingHref,
   } = useTourBooking();
 
-  const displayPrice = startingPrice?.price;
+  const displayPrice = variant === 'overlay'
+    ? startingPrice ?? null
+    : salePricePerPerson ?? pricePerPerson ?? price;
   const formattedPrice =
     displayPrice == null
       ? t('requestOnly')
       : new Intl.NumberFormat(locale, {
           style: 'currency',
           currency: 'EUR',
-          minimumFractionDigits: 2,
+          minimumFractionDigits: Number.isInteger(displayPrice) ? 0 : 2,
           maximumFractionDigits: 2,
         }).format(displayPrice);
 

@@ -182,7 +182,7 @@ export default async function TourDetailPage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 'var(--space-4)' }}>
         <div className="container">
-          <TourBookingProvider slug={tour.slug} price={tour.price} startingPrice={startingPrice} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={pricingTiers} discount={tour.discount} childDiscounts={tour.childDiscounts} participantPrices={tour.participantPrices} extras={extras}>
+          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={pricingTiers} discount={tour.discount} childDiscounts={tour.childDiscounts} participantPrices={tour.participantPrices} extras={extras}>
             {/* Title */}
             <h1 className={styles.tourTitle}>{tour.name}</h1>
             {tour.meetingPoint && (
@@ -205,6 +205,7 @@ export default async function TourDetailPage({ params }: Props) {
                       <MobileTourBookingAction
                         styles={styles}
                         variant="overlay"
+                        startingPrice={startingPrice?.price ?? null}
                       />
                     }
                   />
