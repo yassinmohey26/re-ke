@@ -46,8 +46,7 @@
 }
 
 .galleryMobileAction,
-.mobileBookingOverlay,
-.mobileBookingDock {
+.mobileBookingOverlay {
   display: none;
 }
 
@@ -799,28 +798,6 @@
     background: rgba(255, 255, 255, 0.94);
     box-shadow: 0 10px 30px rgba(8, 24, 44, 0.18);
     backdrop-filter: blur(12px);
-  }
-
-  .mobileBookingDock {
-    position: fixed;
-    inset-inline-start: 12px;
-    inset-inline-end: 84px;
-    bottom: 12px;
-    z-index: 998;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 9px 10px 9px 14px;
-    border: 1px solid var(--color-border-4);
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 12px 34px rgba(8, 24, 44, 0.24);
-    backdrop-filter: blur(14px);
-  }
-
-  .mobileBookingDock .mobileBookingCta {
-    padding-inline: 15px;
   }
 
   .tourTitle { font-size: 24px; }

@@ -6,27 +6,18 @@ import { useTourBooking } from './TourBookingContext';
 
 interface Props {
   styles: Record<string, string>;
-  variant: 'overlay' | 'dock';
   startingPrice?: number | null;
 }
 
 export default function MobileTourBookingAction({
   styles: css,
-  variant,
   startingPrice,
 }: Props) {
   const locale = useLocale();
   const t = useTranslations('tours');
-  const {
-    price,
-    pricePerPerson,
-    salePricePerPerson,
-    bookingHref,
-  } = useTourBooking();
+  const { bookingHref } = useTourBooking();
 
-  const displayPrice = variant === 'overlay'
-    ? startingPrice ?? null
-    : salePricePerPerson ?? pricePerPerson ?? price;
+  const displayPrice = startingPrice ?? null;
   const formattedPrice =
     displayPrice == null
       ? t('requestOnly')
@@ -38,13 +29,7 @@ export default function MobileTourBookingAction({
         }).format(displayPrice);
 
   return (
-    <div
-      className={
-        variant === 'overlay'
-          ? css.mobileBookingOverlay
-          : css.mobileBookingDock
-      }
-    >
+    <div className={css.mobileBookingOverlay}>
       <span className={css.mobileBookingPrice}>
         {displayPrice != null && (
           <small className={css.mobileBookingFrom}>{t('from')}</small>

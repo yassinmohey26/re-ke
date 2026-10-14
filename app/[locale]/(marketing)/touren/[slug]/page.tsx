@@ -204,7 +204,6 @@ export default async function TourDetailPage({ params }: Props) {
                     mobileAction={
                       <MobileTourBookingAction
                         styles={styles}
-                        variant="overlay"
                         startingPrice={startingPrice?.price ?? null}
                       />
                     }
@@ -381,10 +380,6 @@ export default async function TourDetailPage({ params }: Props) {
               </aside>
             </div>
 
-            <MobileTourBookingAction
-              styles={styles}
-              variant="dock"
-            />
           </TourBookingProvider>
 
           {/* Related Tours */}
