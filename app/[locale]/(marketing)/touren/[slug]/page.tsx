@@ -6,7 +6,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import TourCard from '@/components/cards/TourCard';
 import { getLocalizedTour, getToursByCategory, getLocalizedCategoryLabel, getLocalizedAllTours, getTourExtras } from '@/lib/data/tours';
 import { hasPricingTable, stripPricingTable } from '@/lib/pricing-table';
-import { getTourPricingTiers } from '@/lib/tour-pricing';
+import { getTourPricingTiers, getTourStartingPrice } from '@/lib/tour-pricing';
 import InteractivePricingTable from '@/components/tours/InteractivePricingTable';
 import { TourBookingProvider } from '@/components/tours/TourBookingContext';
 import TourGallery from '@/components/tours/TourGallery';
@@ -162,6 +162,13 @@ export default async function TourDetailPage({ params }: Props) {
   // not contain the <table> at all, which would make parsePricingTiers return [].
   const pricingTiers = getTourPricingTiers(tour.discount, tour.rawDescription);
   const hasPricing = pricingTiers.length > 0;
+  const startingPrice = getTourStartingPrice({
+    basePrice: tour.price,
+    maxGuests: tour.maxGuests,
+    discount: tour.discount,
+    baseDescription: tour.rawDescription,
+    participantPrices: tour.participantPrices,
+  });
 
   return (
     <>
@@ -175,7 +182,7 @@ export default async function TourDetailPage({ params }: Props) {
 
       <section className="section" style={{ paddingTop: 'var(--space-4)' }}>
         <div className="container">
-          <TourBookingProvider slug={tour.slug} price={tour.price} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={pricingTiers} discount={tour.discount} childDiscounts={tour.childDiscounts} participantPrices={tour.participantPrices} extras={extras}>
+          <TourBookingProvider slug={tour.slug} price={tour.price} startingPrice={startingPrice} maxGuests={Math.min(tour.maxGuests, 8)} pricingTiers={pricingTiers} discount={tour.discount} childDiscounts={tour.childDiscounts} participantPrices={tour.participantPrices} extras={extras}>
             {/* Title */}
             <h1 className={styles.tourTitle}>{tour.name}</h1>
             {tour.meetingPoint && (

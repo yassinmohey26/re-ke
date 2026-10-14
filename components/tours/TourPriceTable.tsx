@@ -14,16 +14,16 @@ interface Props {
 
 export default function TourPriceTable({ duration, meetingPoint, category, categoryLabel }: Props) {
   const t = useTranslations('tours');
-  const { pricePerPerson, salePricePerPerson, hasSale } = useTourBooking();
+  const { startingPrice } = useTourBooking();
 
   let priceDisplay: string | React.ReactNode = t('requestOnly');
-  if (salePricePerPerson != null) {
-    if (hasSale && pricePerPerson != null) {
+  if (startingPrice) {
+    if (startingPrice.hasSale) {
       priceDisplay = (
-        <><span className={styles.saleOriginalPrice}>{pricePerPerson} EUR</span> <span className={styles.salePrice}>{salePricePerPerson} EUR</span></>
+        <>{t('from')} <span className={styles.saleOriginalPrice}>{startingPrice.original} EUR</span> <span className={styles.salePrice}>{startingPrice.price} EUR</span></>
       );
     } else {
-      priceDisplay = `${salePricePerPerson} EUR`;
+      priceDisplay = `${t('from')} ${startingPrice.price} EUR`;
     }
   }
 

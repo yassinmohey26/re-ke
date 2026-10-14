@@ -17,6 +17,7 @@ interface Extra {
 
 interface TourBookingContextValue {
   price: number | null;
+  startingPrice: { price: number; original: number; hasSale: boolean } | null;
   pricePerPerson: number | null;
   salePricePerPerson: number | null;
   childPricePerPerson: number | null;
@@ -54,6 +55,7 @@ export function useTourBooking() {
 export function TourBookingProvider({
   slug,
   price,
+  startingPrice,
   maxGuests = 8,
   pricingTiers = [],
   discount = null,
@@ -64,6 +66,7 @@ export function TourBookingProvider({
 }: {
   slug: string;
   price: number | null;
+  startingPrice: { price: number; original: number; hasSale: boolean } | null;
   maxGuests?: number;
   pricingTiers?: PricingTier[];
   discount?: Discount | null;
@@ -115,6 +118,7 @@ export function TourBookingProvider({
 
     return {
       price,
+      startingPrice,
       pricePerPerson,
       salePricePerPerson,
       childPricePerPerson: unitPrices.child,
@@ -140,7 +144,7 @@ export function TourBookingProvider({
       bookingHref,
       participantPrices,
     };
-  }, [price, adults, childrenCount, infants, maxGuests, pricingTiers, discount, childDiscounts, participantPrices, slug, extras, selected]);
+  }, [price, startingPrice, adults, childrenCount, infants, maxGuests, pricingTiers, discount, childDiscounts, participantPrices, slug, extras, selected]);
 
   return <TourBookingContext.Provider value={value}>{children}</TourBookingContext.Provider>;
 }

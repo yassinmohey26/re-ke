@@ -61,7 +61,7 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
   const tb = useTranslations('booking');
   const locale = useLocale() as ChildDiscountLocale;
   const {
-    price, pricePerPerson, salePricePerPerson, childPricePerPerson, infantPricePerPerson, hasSale, adults, children: childrenCount, infants,
+    startingPrice, pricePerPerson, salePricePerPerson, childPricePerPerson, infantPricePerPerson, adults, children: childrenCount, infants,
     guests, maxGuests, setAdults, setChildren, setInfants,
     childDiscounts, extras, selected, toggle, extrasTotal, total, bookingHref,
   } = useTourBooking();
@@ -69,7 +69,6 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
 
   const ageLabels = getBookingAgeLabels(childDiscounts, locale);
 
-  const displayPrice = salePricePerPerson ?? pricePerPerson ?? price ?? 0;
   const minimumDate = getTodayLocalDate();
 
   const adultsMax = maxGuests - childrenCount - infants;
@@ -102,17 +101,18 @@ export default function TourBookingSidebar({ styles: css }: { styles: Record<str
 
   return (
     <div className={css.bookingCard}>
-      {salePricePerPerson != null || pricePerPerson != null ? (
+      {startingPrice ? (
         <div className={css.bookingPriceBlock}>
-          {hasSale && pricePerPerson != null && (
-            <span className={css.bookingOriginalPrice}>{pricePerPerson} EUR</span>
+          <span className={css.bookingPricePer}>{t('from')}</span>
+          {startingPrice.hasSale && (
+            <span className={css.bookingOriginalPrice}>{startingPrice.original} EUR</span>
           )}
-          <span className={`${css.bookingCurrentPrice} ${hasSale ? css.salePrice : ''}`}>{displayPrice} EUR</span>
+          <span className={`${css.bookingCurrentPrice} ${startingPrice.hasSale ? css.salePrice : ''}`}>{startingPrice.price} EUR</span>
           <span className={css.bookingPricePer}>{t('perPerson')}</span>
           {breakdown}
           {guests > 1 && total != null && !breakdown && (
             <span className={css.bookingTotalLine}>
-              {guests} × {displayPrice} EUR = <strong>{total.toFixed(2)} EUR</strong>
+              {guests} × {breakdownPrice} EUR = <strong>{total.toFixed(2)} EUR</strong>
             </span>
           )}
         </div>

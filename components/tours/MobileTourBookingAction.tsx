@@ -16,20 +16,18 @@ export default function MobileTourBookingAction({
   const locale = useLocale();
   const t = useTranslations('tours');
   const {
-    price,
-    pricePerPerson,
-    salePricePerPerson,
+    startingPrice,
     bookingHref,
   } = useTourBooking();
 
-  const displayPrice = salePricePerPerson ?? pricePerPerson ?? price;
+  const displayPrice = startingPrice?.price;
   const formattedPrice =
     displayPrice == null
       ? t('requestOnly')
       : new Intl.NumberFormat(locale, {
           style: 'currency',
           currency: 'EUR',
-          minimumFractionDigits: Number.isInteger(displayPrice) ? 0 : 2,
+          minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         }).format(displayPrice);
 
