@@ -1,6 +1,22 @@
 export const REVIEW_LOCALES = ['de', 'en', 'fr', 'hu', 'ru', 'ar'] as const;
 
 export type ReviewLocale = typeof REVIEW_LOCALES[number];
+export const REVIEW_TYPES = ['company', 'tour', 'transfer'] as const;
+export type ReviewType = typeof REVIEW_TYPES[number];
+
+export function reviewType(value: unknown): ReviewType {
+  return value === 'company' || value === 'transfer' ? value : 'tour';
+}
+
+export function reviewTourIds(row: Record<string, unknown>): string[] {
+  if (reviewType(row.review_type) !== 'tour') return [];
+  const links = Array.isArray(row.review_tours) ? row.review_tours : [];
+  return [...new Set([
+    ...(typeof row.tour_id === 'string' ? [row.tour_id] : []),
+    ...links.flatMap(link => isObject(link) && typeof link.tour_id === 'string'
+      ? [link.tour_id] : []),
+  ])];
+}
 
 export interface ReviewTranslation {
   title: string;
@@ -12,7 +28,8 @@ export type ReviewTranslations = Partial<
 >;
 
 export interface ReviewMutationRow {
-  tour_id: string;
+  tour_id: string | null;
+  review_type: ReviewType;
   guest_name: string;
   guest_country: string;
   country_code: string;
@@ -28,7 +45,7 @@ export interface ReviewMutationRow {
 }
 
 export type ReviewInputResult =
-  | { row: ReviewMutationRow; error?: never }
+  | { row: ReviewMutationRow; tourIds: string[]; error?: never }
   | { row?: never; error: string };
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -93,7 +110,15 @@ export function sanitizeReviewInput(value: unknown): ReviewInputResult {
     return { error: 'Invalid review payload' };
   }
 
-  const tourId = readString(value.tourId);
+  const type = value.reviewType ?? 'tour';
+  if (!REVIEW_TYPES.includes(type as ReviewType)) {
+    return { error: 'Invalid review type' };
+  }
+  const requestedTours = value.tourIds ?? (value.tourId ? [value.tourId] : []);
+  if (!Array.isArray(requestedTours) || requestedTours.some(id =>
+    typeof id !== 'string' || !/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(id),
+  )) return { error: 'Invalid tour selection' };
+  const tourIds = type === 'tour' ? [...new Set<string>(requestedTours)] : [];
   const guestName = readString(value.guestName);
   const guestCountry = readString(value.guestCountry);
   const countryCode = readString(value.countryCode).toUpperCase();
@@ -103,7 +128,7 @@ export function sanitizeReviewInput(value: unknown): ReviewInputResult {
   const sortOrder = Number(value.sortOrder ?? 0);
   const translations = sanitizeReviewTranslations(value.translations);
 
-  if (!tourId) return { error: 'A tour is required' };
+  if (type === 'tour' && tourIds.length === 0) return { error: 'At least one tour is required' };
   if (!guestName) return { error: 'Guest name is required' };
 
   if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
@@ -127,8 +152,10 @@ export function sanitizeReviewInput(value: unknown): ReviewInputResult {
   }
 
   return {
+    tourIds,
     row: {
-      tour_id: tourId,
+      tour_id: tourIds[0] ?? null,
+      review_type: type as ReviewType,
       guest_name: guestName,
       guest_country: guestCountry,
       country_code: countryCode,

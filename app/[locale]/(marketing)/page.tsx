@@ -1,3 +1,4 @@
+import { connection } from 'next/server';
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Hero from '@/components/sections/Hero';
@@ -56,6 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  await connection();
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -76,7 +78,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     getDestinations(locale),
     getLocalizedAllBlogPosts(locale),
     supabase.from('faqs').select('question, answer').eq('locale', locale).order('sort_order', { ascending: true }),
-    getFeaturedReviews(locale, 4),
+    getFeaturedReviews(locale),
   ]);
 
   let faqs = faqsResult.data ?? [];

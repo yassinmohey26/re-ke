@@ -688,12 +688,19 @@
     "tourTitle": "Vendégeink véleménye",
     "tourSubtitle": "Valódi élmények azoktól az utazóktól, akik velünk vettek részt ezen a túrán.",
     "homepageTitle": "Az utazók kedvence",
-    "homepageSubtitle": "Személyes történetek és felejthetetlen pillanatok legnépszerűbb programjainkról.",
+    "homepageSubtitle": "Vendégeink tapasztalatai cégünkkel, kirándulásainkkal és transzfereinkkel.",
     "verified": "Ellenőrzött foglalás",
     "basedOn": "{count, plural, one {# értékelés} other {# értékelés}} alapján",
     "viewTour": "Túra megtekintése",
     "noReviews": "A túrához tartozó vendégtörténetek hamarosan itt jelennek meg.",
     "traveled": "Utazás időpontja: {date}",
-    "ratingLabel": "{rating} az 5 csillagból"
+    "ratingLabel": "{rating} az 5 csillagból",
+    "companyLabel": "Tapasztalat cégünkkel",
+    "transferLabel": "Reptéri transzfer",
+    "transferTitle": "Transzferutasaink véleménye",
+    "transferSubtitle": "Vendégeink tapasztalatai a reptéri transzferszolgáltatásunkkal.",
+    "transferred": "Transzfer: {date}",
+    "previous": "Előző",
+    "next": "Következő"
   }
 }

@@ -5,6 +5,8 @@ import ImageUpload from '@/components/admin/ImageUpload';
 import { useAdminLocale } from '../AdminLanguageContext';
 import {
   REVIEW_LOCALES,
+  REVIEW_TYPES,
+  type ReviewType,
   type ReviewLocale,
   type ReviewTranslations,
 } from '@/lib/reviews';
@@ -18,7 +20,8 @@ interface AdminTour {
 
 interface AdminReview {
   id: string;
-  tour_id: string;
+  review_type: ReviewType;
+  tour_ids: string[];
   guest_name: string;
   guest_country: string;
   country_code: string;
@@ -31,11 +34,12 @@ interface AdminReview {
   featured: boolean;
   sort_order: number;
   created_at: string;
-  tour: AdminTour | null;
+  tours: AdminTour[];
 }
 
 interface ReviewForm {
-  tourId: string;
+  reviewType: ReviewType;
+  tourIds: string[];
   guestName: string;
   guestCountry: string;
   countryCode: string;
@@ -48,6 +52,8 @@ interface ReviewForm {
   featured: boolean;
   sortOrder: number;
 }
+
+const REVIEW_TYPE_LABELS = { company: 'reviewTypeCompany', tour: 'reviewTypeTour', transfer: 'reviewTypeTransfer' } as const;
 
 const LOCALE_LABEL_KEYS = {
   de: 'localeDe',
@@ -66,7 +72,8 @@ function emptyTranslations(): ReviewTranslations {
 
 function emptyForm(): ReviewForm {
   return {
-    tourId: '',
+    reviewType: 'tour',
+    tourIds: [],
     guestName: '',
     guestCountry: '',
     countryCode: '',
@@ -124,6 +131,8 @@ export default function AdminReviewsPage() {
   const [formError, setFormError] = useState('');
   const [search, setSearch] = useState('');
   const [tourFilter, setTourFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState('');
+  const [tourSearch, setTourSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [featuredOnly, setFeaturedOnly] = useState(false);
 
@@ -160,6 +169,7 @@ export default function AdminReviewsPage() {
       : 1;
 
     setEditingId(null);
+    setTourSearch('');
     setForm({
       ...emptyForm(),
       sortOrder: nextPosition,
@@ -180,9 +190,11 @@ export default function AdminReviewsPage() {
       };
     }
 
+    setTourSearch('');
     setEditingId(review.id);
     setForm({
-      tourId: review.tour_id,
+      reviewType: review.review_type,
+      tourIds: review.tour_ids,
       guestName: review.guest_name,
       guestCountry: review.guest_country,
       countryCode: review.country_code,
@@ -246,8 +258,8 @@ export default function AdminReviewsPage() {
       return;
     }
 
-    if (!form.tourId) {
-      setFormError(t('reviewTour'));
+    if (form.reviewType === 'tour' && form.tourIds.length === 0) {
+      setFormError(t('reviewToursRequired'));
       return;
     }
 
@@ -327,19 +339,20 @@ export default function AdminReviewsPage() {
       const matchesSearch = !query || [
         review.guest_name,
         review.guest_country,
-        review.tour?.name ?? '',
+        ...review.tours.map(tour => tour.name),
         preview?.title ?? '',
         preview?.body ?? '',
       ].some(value => value.toLocaleLowerCase().includes(query));
 
-      const matchesTour = !tourFilter || review.tour_id === tourFilter;
+      const matchesTour = !tourFilter || review.tour_ids.includes(tourFilter);
+      const matchesType = !typeFilter || review.review_type === typeFilter;
       const matchesStatus =
         !statusFilter ||
         (statusFilter === 'published' && review.is_published) ||
         (statusFilter === 'draft' && !review.is_published);
       const matchesFeatured = !featuredOnly || review.featured;
 
-      return matchesSearch &&
+      return matchesType && matchesSearch &&
         matchesTour &&
         matchesStatus &&
         matchesFeatured;
@@ -351,6 +364,7 @@ export default function AdminReviewsPage() {
     search,
     statusFilter,
     tourFilter,
+    typeFilter,
   ]);
 
   return (
@@ -403,16 +417,17 @@ export default function AdminReviewsPage() {
             </label>
 
             <label className={styles.field}>
-              <span>{t('reviewTour')}</span>
+              <span>{t('reviewType')}</span>
               <select
-                value={form.tourId}
-                onChange={event => updateForm('tourId', event.target.value)}
+                value={form.reviewType}
+                onChange={event => {
+                  const reviewType = event.target.value as ReviewType;
+                  setForm(current => ({ ...current, reviewType, tourIds: reviewType === 'tour' ? current.tourIds : [] }));
+                  setHasUnsavedChanges(true);
+                }}
               >
-                <option value="">{t('reviewsAllTours')}</option>
-                {tours.map(tour => (
-                  <option key={tour.id} value={tour.id}>
-                    {tour.name}
-                  </option>
+                {REVIEW_TYPES.map(type => (
+                  <option key={type} value={type}>{t(REVIEW_TYPE_LABELS[type])}</option>
                 ))}
               </select>
             </label>
@@ -468,6 +483,37 @@ export default function AdminReviewsPage() {
               />
             </label>
           </div>
+
+          {form.reviewType === 'tour' && (
+            <fieldset className={styles.tourPicker}>
+              <legend>{t('reviewTours')}</legend>
+              <p>{t('reviewToursHint')}</p>
+              <input
+                className={styles.searchInput}
+                aria-label={t('reviewTourSearch')}
+                placeholder={t('reviewTourSearch')}
+                value={tourSearch}
+                onChange={event => setTourSearch(event.target.value)}
+              />
+              {form.tourIds.length > 0 && (
+                <div className={styles.selectedTours}>
+                  {form.tourIds.map(id => (
+                    <button key={id} type="button" onClick={() => updateForm('tourIds', form.tourIds.filter(candidate => candidate !== id))}>
+                      {tours.find(tour => tour.id === id)?.name ?? id} ×
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className={styles.tourOptions}>
+                {tours.filter(tour => tour.name.toLocaleLowerCase().includes(tourSearch.trim().toLocaleLowerCase())).map(tour => (
+                  <label key={tour.id}>
+                    <input type="checkbox" checked={form.tourIds.includes(tour.id)} onChange={event => updateForm('tourIds', event.target.checked ? [...form.tourIds, tour.id] : form.tourIds.filter(id => id !== tour.id))} />
+                    <span>{tour.name}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          )}
 
           <fieldset className={styles.ratingField}>
             <legend>{t('reviewRating')}</legend>
@@ -609,6 +655,13 @@ export default function AdminReviewsPage() {
             </label>
           </div>
 
+          {!form.isPublished && (
+            <p className={styles.visibilityHint} role="status">{t('reviewDraftWarning')}</p>
+          )}
+          {form.isPublished && form.featured && (
+            <p className={styles.visibilityHint} role="status">{t('reviewHomeHint')}</p>
+          )}
+
           {formError && (
             <p className={styles.errorMessage}>{formError}</p>
           )}
@@ -640,6 +693,11 @@ export default function AdminReviewsPage() {
           placeholder={t('reviewsSearch')}
           onChange={event => setSearch(event.target.value)}
         />
+
+        <select className={styles.filterSelect} aria-label={t('reviewType')} value={typeFilter} onChange={event => setTypeFilter(event.target.value)}>
+          <option value="">{t('reviewsAllTypes')}</option>
+          {REVIEW_TYPES.map(type => <option key={type} value={type}>{t(REVIEW_TYPE_LABELS[type])}</option>)}
+        </select>
 
         <select
           className={styles.filterSelect}
@@ -739,7 +797,7 @@ export default function AdminReviewsPage() {
 
                   {review.featured && (
                     <span className={styles.featuredBadge}>
-                      ★ {t('reviewFeaturedBadge')}
+                      ★ {t(review.is_published ? 'reviewFeaturedBadge' : 'reviewHomePending')}
                     </span>
                   )}
                 </div>
@@ -750,7 +808,8 @@ export default function AdminReviewsPage() {
                 </div>
 
                 <div className={styles.reviewMeta}>
-                  <strong>{review.tour?.name ?? '—'}</strong>
+                  <strong>{t(REVIEW_TYPE_LABELS[review.review_type])}</strong>
+                  {review.tours.map(tour => <span key={tour.id}>{tour.name}</span>)}
                   {review.travel_date && (
                     <time>
                       {new Intl.DateTimeFormat(locale).format(

@@ -9,6 +9,7 @@ import styles from './Reviews.module.css';
 interface TourReviewsProps {
   reviews: TourReview[];
   locale: string;
+  variant?: 'tour' | 'transfer';
 }
 
 function countryFlag(countryCode: string): string {
@@ -33,6 +34,7 @@ function formatTravelDate(date: string | null, locale: string): string {
 export default async function TourReviews({
   reviews,
   locale,
+  variant = 'tour',
 }: TourReviewsProps) {
   if (reviews.length === 0) return null;
 
@@ -40,11 +42,11 @@ export default async function TourReviews({
   const summary = summarizeReviews(reviews);
 
   return (
-    <section className={styles.tourSection} aria-labelledby="tour-reviews">
+    <section className={styles.tourSection} aria-labelledby={`${variant}-reviews`}>
       <div className={styles.sectionHeading}>
         <span className={styles.eyebrow}>{t('eyebrow')}</span>
-        <h2 id="tour-reviews">{t('tourTitle')}</h2>
-        <p>{t('tourSubtitle')}</p>
+        <h2 id={`${variant}-reviews`}>{t(variant === 'transfer' ? 'transferTitle' : 'tourTitle')}</h2>
+        <p>{t(variant === 'transfer' ? 'transferSubtitle' : 'tourSubtitle')}</p>
       </div>
 
       {reviews.length === 0 ? (
@@ -132,7 +134,7 @@ export default async function TourReviews({
                       </span>
 
                       {travelDate && (
-                        <small>{t('traveled', { date: travelDate })}</small>
+                        <small>{t(variant === 'transfer' ? 'transferred' : 'traveled', { date: travelDate })}</small>
                       )}
                     </span>
 

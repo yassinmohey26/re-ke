@@ -123,7 +123,7 @@ const translations = {
 
   // Reviews
   reviewsTitle: { de: 'Bewertungen verwalten', en: 'Manage Reviews', ru: 'Управление отзывами', ar: 'إدارة التقييمات', fr: 'Gérer les avis', hu: 'Értékelések kezelése' },
-  reviewsSubtitle: { de: 'Gästebewertungen für Tourseiten und die Startseite.', en: 'Guest reviews for tour pages and the homepage.', ru: 'Отзывы гостей для страниц туров и главной страницы.', ar: 'تقييمات الضيوف لصفحات الجولات والصفحة الرئيسية.', fr: 'Avis clients pour les pages des circuits et la page d’accueil.', hu: 'Vendégértékelések a túraoldalakhoz és a kezdőlaphoz.' },
+  reviewsSubtitle: { de: 'Bewertungen zu Unternehmen, Touren und Transfers.', en: 'Reviews for the company, tours and transfers.', ru: 'Отзывы о компании, экскурсиях и трансферах.', ar: 'تقييمات الشركة والرحلات وخدمات الترانسفير.', fr: 'Avis sur l’entreprise, les excursions et les transferts.', hu: 'Értékelések a cégről, kirándulásokról és transzferekről.' },
   reviewsNew: { de: '+ Neue Bewertung', en: '+ New Review', ru: '+ Новый отзыв', ar: '+ تقييم جديد', fr: '+ Nouvel avis', hu: '+ Új értékelés' },
   reviewsSearch: { de: 'Gast, Tour oder Text suchen …', en: 'Search guest, tour, or review …', ru: 'Поиск гостя, тура или отзыва …', ar: 'البحث عن ضيف أو جولة أو تقييم …', fr: 'Rechercher un client, un circuit ou un avis…', hu: 'Vendég, túra vagy értékelés keresése…' },
   reviewsAllTours: { de: 'Alle Touren', en: 'All Tours', ru: 'Все туры', ar: 'جميع الجولات', fr: 'Tous les circuits', hu: 'Összes túra' },
@@ -139,7 +139,7 @@ const translations = {
   reviewGuestCountry: { de: 'Land', en: 'Country', ru: 'Страна', ar: 'الدولة', fr: 'Pays', hu: 'Ország' },
   reviewCountryCode: { de: 'Ländercode', en: 'Country Code', ru: 'Код страны', ar: 'رمز الدولة', fr: 'Code pays', hu: 'Országkód' },
   reviewCountryCodeHint: { de: 'Zwei Buchstaben, z. B. AT', en: 'Two letters, e.g. AT', ru: 'Две буквы, например AT', ar: 'حرفان، مثل AT', fr: 'Deux lettres, par ex. AT', hu: 'Két betű, pl. AT' },
-  reviewTravelDate: { de: 'Reisedatum', en: 'Travel Date', ru: 'Дата поездки', ar: 'تاريخ الرحلة', fr: 'Date du voyage', hu: 'Utazás dátuma' },
+  reviewTravelDate: { de: 'Datum des Erlebnisses', en: 'Experience date', ru: 'Дата поездки или услуги', ar: 'تاريخ التجربة', fr: 'Date de l’expérience', hu: 'Élmény dátuma' },
   reviewTour: { de: 'Tour *', en: 'Tour *', ru: 'Тур *', ar: 'الجولة *', fr: 'Circuit *', hu: 'Túra *' },
   reviewRating: { de: 'Bewertung *', en: 'Rating *', ru: 'Оценка *', ar: 'التقييم *', fr: 'Note *', hu: 'Értékelés *' },
   reviewGuestImage: { de: 'Optionales Gästefoto', en: 'Optional Guest Photo', ru: 'Необязательное фото гостя', ar: 'صورة ضيف اختيارية', fr: 'Photo facultative du client', hu: 'Opcionális vendégfotó' },
@@ -157,6 +157,19 @@ const translations = {
   reviewDeleteConfirm: { de: 'Diese Bewertung wirklich löschen?', en: 'Really delete this review?', ru: 'Удалить этот отзыв?', ar: 'هل تريد حذف هذا التقييم؟', fr: 'Supprimer réellement cet avis ?', hu: 'Biztosan törli ezt az értékelést?' },
   reviewVerifiedBadge: { de: 'Verifiziert', en: 'Verified', ru: 'Подтверждён', ar: 'موثّق', fr: 'Vérifié', hu: 'Ellenőrzött' },
   reviewFeaturedBadge: { de: 'Startseite', en: 'Homepage', ru: 'Главная', ar: 'الرئيسية', fr: 'Accueil', hu: 'Kezdőlap' },
+
+  reviewType: { de: "Art der Bewertung", en: "Review type", fr: "Type d’avis", hu: "Értékelés típusa", ru: "Тип отзыва", ar: "نوع التقييم" },
+  reviewTypeCompany: { de: "Unternehmen allgemein", en: "Company overall", fr: "Entreprise en général", hu: "Cég általában", ru: "Компания в целом", ar: "تقييم عام للشركة" },
+  reviewTypeTour: { de: "Touren", en: "Tours", fr: "Excursions", hu: "Kirándulások", ru: "Экскурсии", ar: "تقييم رحلات" },
+  reviewTypeTransfer: { de: "Transfer", en: "Transfer", fr: "Transfert", hu: "Transzfer", ru: "Трансфер", ar: "تقييم ترانسفير" },
+  reviewsAllTypes: { de: "Alle Arten", en: "All types", fr: "Tous les types", hu: "Minden típus", ru: "Все типы", ar: "كل الأنواع" },
+  reviewTours: { de: "Zugehörige Touren *", en: "Related tours *", fr: "Excursions concernées *", hu: "Kapcsolódó kirándulások *", ru: "Связанные экскурсии *", ar: "الرحلات المرتبطة *" },
+  reviewTourSearch: { de: "Touren suchen…", en: "Search tours…", fr: "Rechercher des excursions…", hu: "Kirándulások keresése…", ru: "Поиск экскурсий…", ar: "ابحث عن الرحلات…" },
+  reviewToursRequired: { de: "Bitte mindestens eine Tour auswählen.", en: "Select at least one tour.", fr: "Sélectionnez au moins une excursion.", hu: "Válasszon legalább egy kirándulást.", ru: "Выберите хотя бы одну экскурсию.", ar: "اختار رحلة واحدة على الأقل." },
+  reviewToursHint: { de: "Eine oder mehrere Touren auswählen. Dieselbe Bewertung gilt für jede ausgewählte Tour.", en: "Select one or more tours. The same rating applies to each selected tour.", fr: "Sélectionnez une ou plusieurs excursions. La même note s’applique à chacune.", hu: "Válasszon egy vagy több kirándulást. Ugyanaz a pontszám vonatkozik mindegyikre.", ru: "Выберите одну или несколько экскурсий. Одна и та же оценка применяется к каждой.", ar: "اختار رحلة أو أكتر. نفس النجوم هتتحسب لكل رحلة مختارة." },
+  reviewDraftWarning: { de: "Diese Bewertung erscheint erst nach der Veröffentlichung auf der Website.", en: "This review will not appear on the website until it is published.", fr: "Cet avis apparaîtra sur le site après sa publication.", hu: "Az értékelés csak közzététel után jelenik meg a weboldalon.", ru: "Отзыв появится на сайте только после публикации.", ar: "التقييم مش هيظهر في الموقع إلا بعد تفعيل النشر." },
+  reviewHomeHint: { de: "Nach dem Speichern erscheint diese Bewertung auf der Startseite in der gewählten Reihenfolge.", en: "After saving, this review appears on the homepage in the selected order.", fr: "Après enregistrement, cet avis apparaît sur l’accueil selon l’ordre choisi.", hu: "Mentés után az értékelés a megadott sorrendben jelenik meg a kezdőlapon.", ru: "После сохранения отзыв появится на главной в выбранном порядке.", ar: "بعد الحفظ، التقييم هيظهر في قسم تقييمات الصفحة الرئيسية حسب ترتيب العرض." },
+  reviewHomePending: { de: "Startseite nach Veröffentlichung", en: "Homepage after publishing", fr: "Accueil après publication", hu: "Kezdőlap közzététel után", ru: "На главной после публикации", ar: "الرئيسية بعد النشر" },
 
   // Blog
   blogTitle: { de: 'Blog-Artikel', en: 'Blog Posts', ru: 'Статьи блога', ar: 'مقالات المدونة', fr: 'Articles de blog', hu: 'Blogbejegyzések' },

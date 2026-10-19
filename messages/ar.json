@@ -672,12 +672,19 @@
     "tourTitle": "ماذا يقول ضيوفنا",
     "tourSubtitle": "تجارب حقيقية من مسافرين شاركوا معنا في هذه الجولة.",
     "homepageTitle": "تجارب أحبها المسافرون",
-    "homepageSubtitle": "قصص شخصية ولحظات لا تُنسى من أشهر تجاربنا السياحية.",
+    "homepageSubtitle": "تجارب عملائنا مع شركتنا والرحلات وخدمات الترانسفير.",
     "verified": "حجز موثّق",
     "basedOn": "استناداً إلى {count, plural, zero {لا تقييمات} one {تقييم واحد} two {تقييمين} few {# تقييمات} many {# تقييماً} other {# تقييم}}",
     "viewTour": "عرض الجولة",
     "noReviews": "ستظهر تجارب الضيوف الخاصة بهذه الجولة هنا قريباً.",
     "traveled": "تاريخ الرحلة: {date}",
-    "ratingLabel": "{rating} من 5 نجوم"
+    "ratingLabel": "{rating} من 5 نجوم",
+    "companyLabel": "تجربة مع شركتنا",
+    "transferLabel": "ترانسفير المطار",
+    "transferTitle": "آراء عملائنا عن الترانسفير",
+    "transferSubtitle": "تجارب العملاء مع خدمة الاستقبال والنقل.",
+    "transferred": "الترانسفير في {date}",
+    "previous": "السابق",
+    "next": "التالي"
   }
 }

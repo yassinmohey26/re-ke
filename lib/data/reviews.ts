@@ -1,6 +1,10 @@
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { getLocalizedAllTours } from '@/lib/data/tours';
+import { loadReviewRows } from './review-rows';
 import {
+  reviewType,
+  reviewTourIds,
+  type ReviewType,
   resolveReviewTranslation,
   type ReviewTranslation,
   type ReviewTranslations,
@@ -10,7 +14,8 @@ const db = getSupabaseAdmin();
 
 export interface TourReview {
   id: string;
-  tourId: string;
+  reviewType: ReviewType;
+  tourIds: string[];
   guestName: string;
   guestCountry: string;
   countryCode: string;
@@ -25,11 +30,12 @@ export interface TourReview {
   featured: boolean;
   sortOrder: number;
   createdAt: string;
-  tour?: {
+  tours: {
+    id: string;
     slug: string;
     name: string;
     image: string;
-  };
+  }[];
 }
 
 export interface ReviewSummary {
@@ -44,7 +50,9 @@ function mapReview(
 ): TourReview {
   return {
     id: String(row.id),
-    tourId: String(row.tour_id),
+    reviewType: reviewType(row.review_type),
+    tourIds: reviewTourIds(row),
+    tours: [],
     guestName: String(row.guest_name ?? ''),
     guestCountry: String(row.guest_country ?? ''),
     countryCode: String(row.country_code ?? ''),
@@ -92,21 +100,8 @@ export async function getTourReviews(
   tourId: string,
   locale: string,
 ): Promise<TourReview[]> {
-  const { data, error } = await db
-    .from('reviews')
-    .select('*')
-    .eq('tour_id', tourId)
-    .eq('is_published', true)
-    .order('sort_order', { ascending: true })
-    .order('travel_date', { ascending: false, nullsFirst: false })
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error('[reviews] Failed to load tour reviews:', error.message);
-    return [];
-  }
-
-  return (data ?? []).flatMap(row => {
+  const data = await loadReviewRows(db, { published: true });
+  return data.filter(row => reviewTourIds(row).includes(tourId)).flatMap(row => {
     const translation = resolveReviewTranslation(row.translations, locale);
     return translation
       ? [mapReview(row as Record<string, unknown>, translation)]
@@ -116,41 +111,32 @@ export async function getTourReviews(
 
 export async function getFeaturedReviews(
   locale: string,
-  limit = 4,
 ): Promise<TourReview[]> {
-  const [{ data, error }, tours] = await Promise.all([
-    db
-      .from('reviews')
-      .select('*')
-      .eq('is_published', true)
-      .eq('featured', true)
-      .order('sort_order', { ascending: true })
-      .order('travel_date', { ascending: false, nullsFirst: false })
-      .order('created_at', { ascending: false })
-      .limit(limit),
+  const [data, tours] = await Promise.all([
+    loadReviewRows(db, { published: true, featured: true }),
     getLocalizedAllTours(locale),
   ]);
-
-  if (error) {
-    console.error('[reviews] Failed to load featured reviews:', error.message);
-    return [];
-  }
 
   const toursById = new Map(tours.map(tour => [tour.id, tour]));
 
   return (data ?? []).flatMap(row => {
     const translation = resolveReviewTranslation(row.translations, locale);
-    const tour = toursById.get(row.tour_id);
-
-    if (!translation || !tour) return [];
+    if (!translation) return [];
 
     return [{
       ...mapReview(row as Record<string, unknown>, translation),
-      tour: {
-        slug: tour.slug,
-        name: tour.name,
-        image: tour.image,
-      },
+      tours: reviewTourIds(row).flatMap(id => {
+        const tour = toursById.get(id);
+        return tour ? [{ id, slug: tour.slug, name: tour.name, image: tour.image }] : [];
+      }),
     }];
+  });
+}
+
+export async function getTransferReviews(locale: string): Promise<TourReview[]> {
+  const rows = await loadReviewRows(db, { published: true });
+  return rows.filter(row => row.review_type === 'transfer').flatMap(row => {
+    const translation = resolveReviewTranslation(row.translations, locale);
+    return translation ? [mapReview(row, translation)] : [];
   });
 }

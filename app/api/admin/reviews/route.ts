@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
-import { sanitizeReviewInput } from '@/lib/reviews';
-import { revalidateReviewPages } from './revalidate';
-import { normalizeReviewOrder } from './order';
+import { reviewTourIds, reviewType } from '@/lib/reviews';
+import { loadReviewRows } from '@/lib/data/review-rows';
+import { saveReview } from './save';
 
 export async function GET() {
   const session = await auth();
@@ -14,28 +14,27 @@ export async function GET() {
 
   const supabase = getSupabaseAdmin();
 
-  const [{ data: reviews, error }, { data: tours }] = await Promise.all([
-    supabase
-      .from('reviews')
-      .select('*')
-      .order('sort_order', { ascending: true })
-      .order('created_at', { ascending: false }),
-    supabase
-      .from('tours')
-      .select('id, name, slug')
-      .order('name', { ascending: true }),
+  const [reviewResult, tourResult] = await Promise.allSettled([
+    loadReviewRows(supabase),
+    supabase.from('tours').select('id, name, slug').order('name', { ascending: true }),
   ]);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (reviewResult.status === 'rejected' || tourResult.status === 'rejected' || tourResult.value.error) {
+    return NextResponse.json({ error: 'Failed to load reviews and tours' }, { status: 500 });
   }
+  const reviews = reviewResult.value;
+  const tours = tourResult.value.data;
 
   const toursById = new Map((tours ?? []).map(tour => [tour.id, tour]));
 
   return NextResponse.json({
     reviews: (reviews ?? []).map(review => ({
       ...review,
-      tour: toursById.get(review.tour_id) ?? null,
+      review_type: reviewType(review.review_type),
+      tour_ids: reviewTourIds(review),
+      tours: reviewTourIds(review).flatMap(id => {
+        const tour = toursById.get(id);
+        return tour ? [tour] : [];
+      }),
     })),
     tours: tours ?? [],
   });
@@ -49,44 +48,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const input = sanitizeReviewInput(await request.json());
-
-    if (input.row === undefined) {
-      return NextResponse.json({ error: input.error }, { status: 400 });
-    }
-
-    const reviewInput = input.row;
-    const supabase = getSupabaseAdmin();
-
-    const { data: tour } = await supabase
-      .from('tours')
-      .select('id')
-      .eq('id', reviewInput.tour_id)
-      .maybeSingle();
-
-    if (!tour) {
-      return NextResponse.json({ error: 'Selected tour was not found' }, {
-        status: 404,
-      });
-    }
-
-    const { data: review, error } = await supabase
-      .from('reviews')
-      .insert({
-        ...reviewInput,
-        created_at: new Date().toISOString(),
-      })
-      .select('*')
-      .single();
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    await normalizeReviewOrder(supabase, review.id);
-    revalidateReviewPages();
-
-    return NextResponse.json(review, { status: 201 });
+    return await saveReview(await request.json(), null);
   } catch {
     return NextResponse.json({ error: 'Failed to create review' }, {
       status: 500,

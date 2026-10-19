@@ -1,3 +1,6 @@
+import TourReviews from '@/components/reviews/TourReviews';
+import { getTransferReviews } from '@/lib/data/reviews';
+import { connection } from 'next/server';
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
@@ -50,6 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function AirportTransferPage({ params }: { params: Promise<{ locale: string }> }) {
+  await connection();
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -59,6 +63,7 @@ export default async function AirportTransferPage({ params }: { params: Promise<
 
   const transfersResult = await db.from('airport_transfers').select('destination, car_price, minibus_price').order('sort_order', { ascending: true });
   const transfers = transfersResult.data ?? [];
+  const reviews = await getTransferReviews(locale);
 
   const rawFaqs = t.raw('faqs') as Array<{ q: string; a: string }>;
   const faqs = (rawFaqs ?? []).map((f) => ({ question: f.q, answer: f.a }));
@@ -89,6 +94,10 @@ export default async function AirportTransferPage({ params }: { params: Promise<
           />
         </div>
       </section>
+
+      <div className="container">
+        <TourReviews reviews={reviews} locale={locale} variant="transfer" />
+      </div>
 
       <section className={styles.faqSection}>
         <div className="container">

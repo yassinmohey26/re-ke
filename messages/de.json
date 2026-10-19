@@ -693,12 +693,19 @@
     "tourTitle": "Das sagen unsere Gäste",
     "tourSubtitle": "Echte Erlebnisse von Reisenden, die diese Tour mit uns unternommen haben.",
     "homepageTitle": "Von Reisenden geliebt",
-    "homepageSubtitle": "Persönliche Geschichten und unvergessliche Momente aus unseren beliebtesten Erlebnissen.",
+    "homepageSubtitle": "Erfahrungen unserer Gäste mit unserem Unternehmen, unseren Touren und Transfers.",
     "verified": "Verifizierte Buchung",
     "basedOn": "Basierend auf {count, plural, one {# Bewertung} other {# Bewertungen}}",
     "viewTour": "Tour ansehen",
     "noReviews": "Gästegeschichten zu dieser Tour erscheinen demnächst hier.",
     "traveled": "Gereist im {date}",
-    "ratingLabel": "{rating} von 5 Sternen"
+    "ratingLabel": "{rating} von 5 Sternen",
+    "companyLabel": "Erfahrung mit unserem Unternehmen",
+    "transferLabel": "Flughafentransfer",
+    "transferTitle": "Das sagen unsere Transfergäste",
+    "transferSubtitle": "Erfahrungen mit unserem Abhol- und Transferservice.",
+    "transferred": "Transfer im {date}",
+    "previous": "Zurück",
+    "next": "Weiter"
   }
 }

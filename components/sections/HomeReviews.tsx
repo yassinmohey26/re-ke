@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import type { TourReview } from '@/lib/data/reviews';
 import ReviewStars from '@/components/reviews/ReviewStars';
+import ReviewCarousel from '@/components/reviews/ReviewCarousel';
 import styles from '@/components/reviews/Reviews.module.css';
 
 interface HomeReviewsProps {
@@ -38,8 +39,8 @@ export default async function HomeReviews({
           <p>{t('homepageSubtitle')}</p>
         </div>
 
-        <div className={styles.homeReviewGrid}>
-          {reviews.slice(0, 4).map(review => (
+        <ReviewCarousel previousLabel={t('previous')} nextLabel={t('next')} label={t('homepageTitle')}>
+          {reviews.map(review => (
             <article key={review.id} className={styles.homeReviewCard}>
               <div className={styles.homeCardTop}>
                 <ReviewStars
@@ -86,20 +87,25 @@ export default async function HomeReviews({
                   </span>
                 </span>
 
-                {review.tour && (
+                {review.reviewType === 'company' && <span className={styles.reviewScope}>{t('companyLabel')}</span>}
+                {review.reviewType === 'transfer' && (
+                  <Link className={styles.homeTourLink} href="/airport-transfer">{t('transferLabel')}</Link>
+                )}
+                {review.tours.map(tour => (
                   <Link
+                    key={tour.id}
                     className={styles.homeTourLink}
-                    href={`/touren/${review.tour.slug}`}
-                    title={review.tour.name}
+                    href={`/touren/${tour.slug}`}
+                    title={tour.name}
                   >
-                    <span>{review.tour.name}</span>
+                    <span>{tour.name}</span>
                     <span aria-hidden="true">→</span>
                   </Link>
-                )}
+                ))}
               </footer>
             </article>
           ))}
-        </div>
+        </ReviewCarousel>
       </div>
     </section>
   );
