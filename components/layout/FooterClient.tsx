@@ -2,6 +2,7 @@
 
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { ArrowUpRight } from 'lucide-react';
 import NewsletterForm from '@/components/forms/NewsletterForm';
 import styles from './Footer.module.css';
 
@@ -145,6 +146,22 @@ export default function FooterClient() {
         <div className={styles.bottomInner}>
           <p className={styles.copyright}>
             © {year} {t('copyright')}
+          </p>
+          <p className={styles.siteCredit}>
+            {t.rich('siteCredit', {
+              brand: chunks => (
+                <a
+                  href="https://zaimoz.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.creditBrand}
+                  dir="ltr"
+                >
+                  {chunks}
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              ),
+            })}
           </p>
           <div className={styles.legal}>
             <Link href="/datenschutz">{t('privacy')}</Link>

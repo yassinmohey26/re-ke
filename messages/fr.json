@@ -267,6 +267,7 @@
     "errorDefault": "Une erreur est survenue."
   },
   "footer": {
+    "siteCredit": "Conception et développement par <brand>ZAIMOZ</brand>",
     "tagline": "Votre planificateur de voyage personnel pour des expériences inoubliables à Hurghada et sur la mer Rouge.",
     "email": "E-mail",
     "copyright": "Tous droits réservés.",
