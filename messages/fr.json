@@ -684,6 +684,12 @@
     }
   },
   "reviews": {
+    "toursExperienced": "Excursions de ce voyageur",
+    "moreTours": "{count, plural, one {+# autre excursion} other {+# autres excursions}}",
+    "viewAllTours": "Voir les {count} excursions",
+    "readFullReview": "Lire l’avis complet",
+    "closeReview": "Fermer l’avis",
+    "fullReview": "Avis client",
     "eyebrow": "Récits de voyageurs",
     "tourTitle": "Ce que disent nos clients",
     "tourSubtitle": "Des expériences authentiques de voyageurs qui ont participé à cette excursion avec nous.",

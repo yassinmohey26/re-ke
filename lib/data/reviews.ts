@@ -127,7 +127,7 @@ export async function getFeaturedReviews(
       ...mapReview(row as Record<string, unknown>, translation),
       tours: reviewTourIds(row).flatMap(id => {
         const tour = toursById.get(id);
-        return tour ? [{ id, slug: tour.slug, name: tour.name, image: tour.image }] : [];
+        return tour ? [{ id, slug: tour.slug, name: tour.name, image: tour.images[0] ?? '' }] : [];
       }),
     }];
   });

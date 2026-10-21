@@ -668,6 +668,12 @@
     }
   },
   "reviews": {
+    "toursExperienced": "رحلات الضيف",
+    "moreTours": "{count, plural, one {+رحلة أخرى} two {+رحلتان أخريان} few {+# رحلات أخرى} many {+# رحلة أخرى} other {+# رحلة أخرى}}",
+    "viewAllTours": "عرض كل الرحلات ({count})",
+    "readFullReview": "اقرأ التقييم كاملًا",
+    "closeReview": "إغلاق التقييم",
+    "fullReview": "تقييم أحد ضيوفنا",
     "eyebrow": "حكايات المسافرين",
     "tourTitle": "ماذا يقول ضيوفنا",
     "tourSubtitle": "تجارب حقيقية من مسافرين شاركوا معنا في هذه الجولة.",

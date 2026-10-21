@@ -689,6 +689,12 @@
     }
   },
   "reviews": {
+    "toursExperienced": "Erlebte Ausflüge",
+    "moreTours": "{count, plural, one {+# weiterer Ausflug} other {+# weitere Ausflüge}}",
+    "viewAllTours": "Alle {count} Ausflüge ansehen",
+    "readFullReview": "Vollständige Bewertung lesen",
+    "closeReview": "Bewertung schließen",
+    "fullReview": "Gästebewertung",
     "eyebrow": "Reiseerlebnisse",
     "tourTitle": "Das sagen unsere Gäste",
     "tourSubtitle": "Echte Erlebnisse von Reisenden, die diese Tour mit uns unternommen haben.",

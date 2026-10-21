@@ -684,6 +684,12 @@
     }
   },
   "reviews": {
+    "toursExperienced": "Kipróbált programok",
+    "moreTours": "+{count} további program",
+    "viewAllTours": "Mind a(z) {count} program megtekintése",
+    "readFullReview": "Teljes értékelés elolvasása",
+    "closeReview": "Értékelés bezárása",
+    "fullReview": "Vendégértékelés",
     "eyebrow": "Utazói történetek",
     "tourTitle": "Vendégeink véleménye",
     "tourSubtitle": "Valódi élmények azoktól az utazóktól, akik velünk vettek részt ezen a túrán.",

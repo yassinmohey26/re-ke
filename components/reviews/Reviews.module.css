@@ -407,16 +407,162 @@
   line-height: 1.35;
 }
 
-.homeReviewCard blockquote {
+.homeReviewPreview {
+  flex: 1;
+}
+
+.homeReviewExcerpt {
   display: -webkit-box;
   overflow: hidden;
-  flex: 1;
   margin: 0;
   color: var(--color-text-2);
   font-size: 14px;
   line-height: 1.7;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
+}
+
+.readFullReview {
+  display: block;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: start;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.readFullReview:hover {
+  text-decoration-thickness: 2px;
+}
+
+.readFullReview:focus-visible,
+.closeFullReview:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.fullReviewDialog {
+  width: min(640px, calc(100vw - 40px));
+  max-width: none;
+  max-height: min(820px, calc(100dvh - 64px));
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border-4);
+  border-radius: 24px;
+  background: var(--color-bg-card);
+  color: var(--color-text-1);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 22%);
+}
+
+.fullReviewDialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: reviewReveal 180ms ease-out;
+}
+
+.fullReviewDialog::backdrop {
+  background: rgb(10 25 45 / 55%);
+  backdrop-filter: blur(4px);
+}
+
+.fullReviewToolbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--color-border-4);
+  color: var(--color-text-3);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.closeFullReview {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  place-items: center;
+  border: 1px solid var(--color-border-4);
+  border-radius: 50%;
+  background: var(--color-bg-card);
+  color: var(--color-text-1);
+  cursor: pointer;
+}
+
+.closeFullReview:hover {
+  background: var(--color-accent-light);
+}
+
+.fullReviewContent {
+  min-height: 0;
+  padding: 28px 32px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
+}
+
+.fullReviewContent h2 {
+  margin: 16px 0;
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.35;
+}
+
+.fullReviewContent h2:focus {
+  outline: none;
+}
+
+.fullReviewContent blockquote {
+  margin: 0;
+  color: var(--color-text-2);
+  font-size: 16px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+.fullReviewContent .homeGuestDetails strong,
+.fullReviewContent .homeGuestDetails small,
+.fullReviewContent .homeTourLink span:first-child {
+  overflow: visible;
+  white-space: normal;
+}
+
+@keyframes reviewReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fullReviewDialog[open] { animation: none; }
+}
+
+@media (max-width: 600px) {
+  .fullReviewDialog {
+    width: 100%;
+    max-height: 90dvh;
+    max-height: calc(100dvh - max(32px, env(safe-area-inset-top)));
+    margin: auto 0 0;
+    border-radius: 24px 24px 0 0;
+    border-bottom: 0;
+  }
+
+  .fullReviewToolbar { padding: 12px 20px; }
+
+  .fullReviewContent {
+    padding: 24px 24px calc(24px + env(safe-area-inset-bottom));
+  }
 }
 
 .homeCardFooter {
@@ -432,6 +578,146 @@
   min-width: 0;
   align-items: center;
   gap: var(--space-3);
+}
+
+.reviewTourPreview {
+  margin-top: 18px;
+}
+
+.reviewToursLabel {
+  margin: 0 0 9px;
+  color: var(--color-text-2);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.reviewTourChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.reviewTourChip,
+.moreReviewTours {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 36px;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 11px;
+  border: 1px solid rgb(21 95 167 / 12%);
+  border-radius: 18px;
+  background: rgb(21 95 167 / 6%);
+  color: var(--color-accent);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: start;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.reviewTourChip svg {
+  flex: 0 0 auto;
+}
+
+.moreReviewTours {
+  border-style: dashed;
+  border-color: rgb(21 95 167 / 32%);
+  background: transparent;
+  font-weight: 750;
+}
+
+.reviewTourChip:hover,
+.moreReviewTours:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+
+.reviewTourChip:focus-visible,
+.moreReviewTours:focus-visible,
+.fullReviewTourLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.fullReviewTours {
+  margin-top: 28px;
+}
+
+.fullReviewTours h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  scroll-margin-top: 4px;
+}
+
+.fullReviewTours h3:focus {
+  outline: none;
+}
+
+.fullReviewTours h3 span {
+  color: var(--color-text-2);
+  font-weight: 400;
+}
+
+.fullReviewTourList {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fullReviewTourLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--color-border-4);
+  border-radius: 14px;
+  color: var(--color-text-1);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.fullReviewTourLink:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+
+.reviewTourThumbnail {
+  display: grid;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.reviewTourThumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewTourArrow {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+  color: var(--color-accent);
+}
+
+[dir="rtl"] .reviewTourArrow {
+  transform: scaleX(-1);
 }
 
 .homeGuest > img,

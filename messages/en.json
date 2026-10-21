@@ -693,6 +693,12 @@
     }
   },
   "reviews": {
+    "toursExperienced": "Tours they experienced",
+    "moreTours": "{count, plural, one {+# more tour} other {+# more tours}}",
+    "viewAllTours": "View all {count} tours",
+    "readFullReview": "Read full review",
+    "closeReview": "Close review",
+    "fullReview": "Guest review",
     "eyebrow": "Traveler stories",
     "tourTitle": "What our guests say",
     "tourSubtitle": "Real experiences from travelers who joined this tour with us.",
